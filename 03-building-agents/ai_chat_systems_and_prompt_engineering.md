@@ -1,3 +1,19 @@
+---
+title: "Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat"
+aliases:
+  - AI Chat Systems and Architecture
+  - AI Harness and Evolution
+tags:
+  - agent-course
+  - building-agents
+  - harness
+  - memory
+  - loops
+type: note
+created: 2026-09-20
+updated: 2026-09-21
+---
+
 # KIẾN TRÚC & TIẾN HÓA CỦA CÁC HỆ THỐNG AI CHAT
 ## Từ Prompting, Context, Harness đến Loop Engineering
 

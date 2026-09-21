@@ -1,8 +1,64 @@
-# OS files
+# ==============================================================================
+# .gitignore for Markdown Content / Knowledge Base (Blog)
+# Mục tiêu: Chỉ lưu trữ các bài viết Markdown (.md) và tư liệu hình ảnh nội dung.
+# Loại bỏ toàn bộ file cấu hình, metadata của Obsidian, AI agent và công cụ cục bộ.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Obsidian App & Runtime Artifacts
+# Không đưa cấu hình workspace, plugins, cache hoặc các định dạng file riêng của Obsidian
+# ------------------------------------------------------------------------------
+.obsidian/
+.trash/
+*.canvas
+*.base
+*.sync-conflict-*
+
+# ------------------------------------------------------------------------------
+# 2. AI Agents & Assistant Workspace Configurations
+# Các thư mục skills, file chỉ thị rules và hướng dẫn dành riêng cho AI agent
+# ------------------------------------------------------------------------------
+.agent/
+.agents/
+.gemini/
+.claude/
+.cursor/
+AGENTS.md
+GEMINI.md
+
+# ------------------------------------------------------------------------------
+# 3. Local Binaries, Tools & Scripts
+# Ứng dụng tải về máy (AppImage), binary thực thi và shell scripts khởi chạy cục bộ
+# ------------------------------------------------------------------------------
+tools/
+bin/
+*.AppImage
+*.sh
+
+# ------------------------------------------------------------------------------
+# 4. Environment Variables & Credentials
+# Phòng ngừa rò rỉ API key, tokens và biến môi trường cá nhân
+# ------------------------------------------------------------------------------
+.env
+.env.*
+*.local
+secrets.*
+
+# ------------------------------------------------------------------------------
+# 5. OS & Editor Artifacts
+# ------------------------------------------------------------------------------
 .DS_Store
 Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Python
+# ------------------------------------------------------------------------------
+# 6. Runtimes, Build Caches & Temp Dirs
+# ------------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
@@ -12,11 +68,10 @@ env/
 venv/
 .venv/
 ENV/
-
-# IDE
-.vscode/
-.idea/
-
-# Environment / Secrets
-.env
-*.local
+node_modules/
+dist/
+build/
+*.log
+scratch/
+tmp/
+temp/
