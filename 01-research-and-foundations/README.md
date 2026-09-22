@@ -25,9 +25,12 @@ Trụ cột này tập trung vào việc nghiên cứu bản chất toán học,
 ├── neural-networks/                             # 🧠 Nền tảng Mạng Nơ-ron & Học sâu (ANN, CNN, RNN, Transformers, MoE)
 │   ├── README.md
 │   └── neural_networks_and_classifications.md   # Giải phẫu nơ-ron, Backpropagation, Hàm kích hoạt, Bản đồ phân loại
-└── llm-internals/                               # 📚 Bản chất Mô hình Ngôn ngữ Lớn (LLM Core & Pre-training)
+├── llm-internals/                               # 📚 Bản chất Mô hình Ngôn ngữ Lớn (LLM Core & Pre-training)
+│   ├── README.md
+│   └── what_are_large_language_models.md        # Thí nghiệm điền từ, Transformer, AR vs AE, Scaling, Reasoning
+└── semantic-search/                             # 🔍 Tìm kiếm Ngữ nghĩa, Không gian Vector & Tái xếp hạng (Re-ranking)
     ├── README.md
-    └── what_are_large_language_models.md        # Thí nghiệm điền từ, Transformer, AR vs AE, Scaling, Reasoning
+    └── semantic_search_and_reranking.md         # Bi-Encoder vs Cross-Encoder, Two-stage Retrieval, Chunking & Benchmarks
 ```
 
 ---
@@ -41,6 +44,10 @@ Trụ cột này tập trung vào việc nghiên cứu bản chất toán học,
 ### 2. [[01-research-and-foundations/llm-internals/README|LLM Internals & Mechanisms]]
 * **Trọng tâm:** Bản chất toán học của Language Modeling (Fill-in-the-blank), Subword Tokenization (BPE), 4 bước nhảy vọt lịch sử (2001–2017), so sánh chuyên sâu Autoregressive (GPT) vs. Autoencoding (BERT) vs. Seq2Seq (T5), quy mô tham số & VRAM, siêu tham số suy luận (`temperature`, `top_p`), và bản chất "Reasoning Machine".
 * **Tài liệu chi tiết:** [[what_are_large_language_models|what_are_large_language_models.md]]
+
+### 3. [[01-research-and-foundations/semantic-search/README|Semantic Search & Re-ranking Architecture]]
+* **Trọng tâm:** Nghịch lý khớp từ khóa (Vintage Magic Card vs Kit), Vector Embeddings & Lời nguyền số chiều, Asymmetric vs Symmetric Search, so sánh chuyên sâu Bi-Encoder (Siamese) vs Cross-Encoder (Full Attention), quy trình phễu 2 giai đoạn (Two-Stage Pipeline), chiến lược Chunking và thực nghiệm định lượng Recall@K (OpenAI vs Open-source).
+* **Tài liệu chi tiết:** [[semantic_search_and_reranking|semantic_search_and_reranking.md]]
 
 ---
 

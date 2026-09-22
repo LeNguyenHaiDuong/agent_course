@@ -7,7 +7,9 @@ Thư mục này dành riêng để ghi chú cho các khóa học và tài liệu
 ## 📌 Khái Niệm Cốt Lõi Về Harness
 
 * **AI Harness là gì?** Là toàn bộ lớp phần mềm đứng trung gian giữa người dùng và mô hình ngôn ngữ (LLM Core). Harness chịu trách nhiệm nạp System Prompt, gắn Chat History, tiêm User Memory, quản lý cấp quyền và cung cấp Tools/Connectors.
-* **Tài liệu tham chiếu cốt lõi:** [Kiến trúc & Tiến hóa của các hệ thống AI Chat](../ai_chat_systems_and_prompt_engineering.md)
+* **Tài liệu tham chiếu cốt lõi:**
+  * [Kiến trúc & Tiến hóa của các hệ thống AI Chat](../ai_chat_systems_and_prompt_engineering.md)
+  * [[semantic_search_and_reranking|Tìm kiếm Ngữ nghĩa (Semantic Search) & Tái xếp hạng (Re-ranking)]]: Hạ tầng truy xuất nền tảng cho Semantic Memory và RAG.
 
 ---
 

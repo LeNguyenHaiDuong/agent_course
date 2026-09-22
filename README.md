@@ -34,9 +34,12 @@ agent_course/
 │   ├── neural-networks/                               # 🧠 Mạng Nơ-ron Nhân tạo (ANN, CNN, RNN, Transformers, MoE)
 │   │   ├── README.md
 │   │   └── neural_networks_and_classifications.md     # Giải phẫu nơ-ron, Backpropagation, Hàm kích hoạt, Bản đồ phân loại
-│   └── llm-internals/                                 # 📚 Bản chất Mô hình Ngôn ngữ Lớn (LLM Core & Pre-training)
+│   ├── llm-internals/                                 # 📚 Bản chất Mô hình Ngôn ngữ Lớn (LLM Core & Pre-training)
+│   │   ├── README.md
+│   │   └── what_are_large_language_models.md          # Thí nghiệm điền từ, Transformer, AR vs AE, Scaling, Reasoning
+│   └── semantic-search/                               # 🔍 Tìm kiếm Ngữ nghĩa & Tái xếp hạng (Vector Retrieval & Re-ranking)
 │       ├── README.md
-│       └── what_are_large_language_models.md          # Thí nghiệm điền từ, Transformer, AR vs AE, Scaling, Reasoning
+│       └── semantic_search_and_reranking.md           # Bi-Encoder vs Cross-Encoder, Two-Stage Pipeline, Chunking & Benchmarks
 │
 ├── 02-prompt-and-context/                             # ✍️ TRỤ CỘT 2: KỸ THUẬT CÂU LỆNH & QUẢN TRỊ NGỮ CẢNH
 │   ├── README.md                                      # Tổng quan & Lộ trình Trụ cột 2
@@ -62,6 +65,7 @@ agent_course/
 ### 🔬 [[01-research-and-foundations/README|Trụ cột 1: Research & Foundations]]
 * [[neural_networks_and_classifications|Neural Networks & Their Classifications]]: Giải phẫu nơ-ron nhân tạo, Forward Pass, Backpropagation & Chain Rule, các hàm kích hoạt (ReLU, GELU, SwiGLU), hàm mất mát, giải thuật tối ưu (SGD, AdamW), và bản đồ 8 họ kiến trúc từ MLP, CNN, RNN đến Transformer, GNN, Autoencoders, GAN, Diffusion và MoE.
 * [[what_are_large_language_models|What Are Large Language Models?]]: Bản chất Language Modeling (Fill-in-the-blank), Tokenization (BPE), 4 bước nhảy vọt lịch sử (2001–2017), so sánh chuyên sâu Autoregressive (GPT) vs. Autoencoding (BERT) vs. Seq2Seq (T5), quy mô tham số, siêu tham số suy luận (`temperature`, `top_p`), và bản chất "Reasoning Machine".
+* [[semantic_search_and_reranking|Semantic Search & Re-ranking Architecture]]: Nghịch lý khớp từ khóa ("Vintage Magic Card"), Vector Embeddings & Lời nguyền số chiều, Asymmetric vs Symmetric Search, so sánh Bi-Encoder (Siamese) vs Cross-Encoder (Full Attention), Two-Stage Pipeline, chiến lược Chunking và thực nghiệm định lượng Recall@K (OpenAI Ada vs Open-source MPNet).
 
 ### ✍️ [[02-prompt-and-context/README|Trụ cột 2: Prompt & Context Engineering]]
 * [[advanced_prompt_engineering_techniques|Advanced Prompt Engineering Techniques]]: Chi tiết 8 kỹ thuật prompt từ khóa học LinkedIn Learning: Zero/Few-shot, CoT Family (Zero-shot CoT, Few-shot CoT, Hybrid CoT), Optimization Prompting (OPRO / "Take a deep breath"), Generated Knowledge, Tree of Thoughts (ToT), Directional Stimulus (DSP) và Chain of Density (CoD), kèm liên kết bài báo arXiv.
