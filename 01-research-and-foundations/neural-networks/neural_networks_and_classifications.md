@@ -256,7 +256,7 @@ $$
 \boldsymbol{\delta}^{[L]} = \frac{\partial \mathcal{L}}{\partial \mathbf{a}^{[L]}} \odot \sigma'(\mathbf{z}^{[L]})
 $$
 
-   *(Đặc biệt: với Cross-Entropy loss và Softmax output, công thức rút gọn thành $\boldsymbol{\delta}^{[L]} = \hat{\mathbf{y}} - \mathbf{y}$).*
+*Lưu ý:* Với Cross-Entropy loss và Softmax output, công thức rút gọn thành $\boldsymbol{\delta}^{[L]} = \hat{\mathbf{y}} - \mathbf{y}$.
 
 2. **Lan truyền sai số ngược từ tầng $l+1$ về tầng $l$:**
    
@@ -264,7 +264,7 @@ $$
 \boldsymbol{\delta}^{[l]} = \left( (\mathbf{W}^{[l+1]})^T \boldsymbol{\delta}^{[l+1]} \right) \odot \sigma'(\mathbf{z}^{[l]})
 $$
 
-   *(Trong đó $\odot$ là phép nhân Hadamard từng phần tử).*
+*Trong đó:* $\odot$ là phép nhân Hadamard từng phần tử.
 
 3. **Tính đạo hàm riêng đối với các tham số trọng số và bias:**
    
@@ -310,13 +310,24 @@ $$
 \mathbf{W}_{t+1} = \mathbf{W}_t - \eta \mathbf{v}_t
 $$
 
-  *(Hệ số $\beta \approx 0.9$ giúp triệt tiêu dao động vuông góc và gia tốc theo hướng hội tụ chính).*
+*Ghi chú:* Hệ số $\beta \approx 0.9$ giúp triệt tiêu dao động vuông góc và gia tốc theo hướng hội tụ chính.
 
 #### 2. Adaptive Moment Estimation (Adam - Kingma & Ba, 2014):
 Adam tính toán tốc độ học thích ứng riêng cho từng tham số dựa trên cả mô-men bậc 1 (kỳ vọng hướng đi) và mô-men bậc 2 (độ lớn biến thiên):
-* Ước lượng mô-men bậc 1: $\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1 - \beta_1) \mathbf{g}_t$ ($\beta_1 = 0.9$).
-* Ước lượng mô-men bậc 2: $\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1 - \beta_2) \mathbf{g}_t^2$ ($\beta_2 = 0.999$).
-* Hiệu chỉnh độ lệch khởi tạo (Bias Correction):
+
+* **Ước lượng mô-men bậc 1** ($\beta_1 = 0.9$):
+
+$$
+\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1 - \beta_1) \mathbf{g}_t
+$$
+
+* **Ước lượng mô-men bậc 2** ($\beta_2 = 0.999$):
+
+$$
+\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1 - \beta_2) \mathbf{g}_t^2
+$$
+
+* **Hiệu chỉnh độ lệch khởi tạo (Bias Correction):**
   
 $$
 \hat{\mathbf{m}}_t = \frac{\mathbf{m}_t}{1 - \beta_1^t}, \quad \hat{\mathbf{v}}_t = \frac{\mathbf{v}_t}{1 - \beta_2^t}
@@ -506,7 +517,7 @@ $$
 \end{bmatrix}
 $$
 
-*(Ý nghĩa của bộ lọc: Cột trái mang trọng số dương $+1$, cột giữa bằng $0$, cột phải mang trọng số âm $-1$. Nếu có sự biến thiên ánh sáng đột ngột từ trái sang phải, tổng nhân sẽ cho ra một giá trị rất lớn).*
+*Ý nghĩa của bộ lọc:* Cột trái mang trọng số dương $+1$, cột giữa bằng $0$, cột phải mang trọng số âm $-1$. Nếu có sự biến thiên ánh sáng đột ngột từ trái sang phải, tổng nhân sẽ cho ra một giá trị rất lớn.
 
 ##### 2. Quá trình trượt Kernel và tính toán từng bước (Stride = 1):
 
@@ -894,7 +905,7 @@ $$
 \mathbf{H}^{(l+1)} = \sigma\left( \mathbf{\tilde{D}}^{-\frac{1}{2}} \mathbf{\tilde{A}} \mathbf{\tilde{D}}^{-\frac{1}{2}} \mathbf{H}^{(l)} \mathbf{W}^{(l)} \right)
 $$
 
-  *(Trong đó $\mathbf{\tilde{A}} = \mathbf{A} + \mathbf{I}_N$ là ma trận kề bổ sung vòng tự nối self-loop, $\mathbf{\tilde{D}}_{ii} = \sum_j \mathbf{\tilde{A}}_{ij}$ là ma trận bậc).*
+*Trong đó:* $\mathbf{\tilde{A}} = \mathbf{A} + \mathbf{I}_N$ là ma trận kề bổ sung vòng tự nối self-loop, và $\mathbf{\tilde{D}}_{ii} = \sum_j \mathbf{\tilde{A}}_{ij}$ là ma trận bậc.
 * **Graph Attention Networks (GAT - Veličković et al., 2018):**  
   Không sử dụng trọng số cố định từ ma trận bậc, GAT tính toán trọng số chú ý động $\alpha_{uv}$ giữa các đỉnh láng giềng:
   
@@ -1046,7 +1057,7 @@ $$
 \mathbf{x}_t = \sqrt{\bar{\alpha}_t}\mathbf{x}_0 + \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}, \quad \boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})
 $$
 
-   *(Với $\alpha_t = 1 - \beta_t$ và $\bar{\alpha}_t = \prod_{s=1}^t \alpha_s$).*
+*Trong đó:* $\alpha_t = 1 - \beta_t$ và $\bar{\alpha}_t = \prod_{s=1}^t \alpha_s$.
 
 2. **Quá trình khử nhiễu nghịch (Reverse Denoising Process):**  
    Huấn luyện một mạng nơ-ron (kiến trúc **U-Net** hoặc **Diffusion Transformer - DiT**) học cách dự đoán chính xác thành phần nhiễu $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)$ đã bị trộn vào ở bước $t$.
@@ -1064,7 +1075,7 @@ $$
 \tilde{\boldsymbol{\epsilon}}_\theta(\mathbf{x}_t, c) = \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, \emptyset) + s \cdot \left( \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, c) - \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, \emptyset) \right)
 $$
 
-  *(Hệ số hướng dẫn $s > 1$ giúp ảnh sinh ra khớp chính xác với prompt).*
+*Lưu ý:* Hệ số hướng dẫn $s > 1$ giúp ảnh sinh ra khớp chính xác với prompt.
 * **Latent Diffusion Models (LDM / Stable Diffusion - Rombach et al., 2022):**  
   Việc chạy quy trình khuếch tán trên không gian điểm ảnh gốc $512 \times 512 \times 3$ đòi hỏi chi phí tính toán khổng lồ. LDM sử dụng một VAE đã được huấn luyện trước để nén bức ảnh xuống không gian tiềm ẩn $64 \times 64 \times 4$ (giảm $64\times$ khối lượng tính toán), sau đó chạy quá trình khuếch tán hoàn toàn trong không gian tiềm ẩn này.
 * **Diffusion Transformer (DiT - Peebles & Xie, 2023):**  
@@ -1117,7 +1128,7 @@ $$
 \mathcal{L}_{\text{aux}} = \alpha \cdot N \sum_{i=1}^N f_i P_i
 $$
 
-  *(Trong đó $f_i$ là tỉ lệ token thực tế gửi tới chuyên gia $i$, và $P_i$ là xác suất định tuyến trung bình dành cho chuyên gia $i$).*
+*Trong đó:* $f_i$ là tỉ lệ token thực tế gửi tới chuyên gia $i$, và $P_i$ là xác suất định tuyến trung bình dành cho chuyên gia $i$.
 * **Nghiên cứu thực tế:**
   * **Mixtral 8x7B (Mistral AI):** Tổng 46.7 tỷ tham số, nhưng chỉ kích hoạt 12.9 tỷ tham số cho mỗi token, đạt tốc độ suy luận và chi phí của mô hình 13B nhưng năng lực tương đương LLaMA-2 70B.
   * **DeepSeek-V2 / V3:** Ứng dụng **Fine-Grained MoE** (chia nhỏ thành hàng trăm chuyên gia siêu nhỏ) kết hợp cơ chế chia sẻ chuyên gia (**Shared Experts**) và Multi-head Latent Attention (MLA), tối ưu chi phí huấn luyện xuống mức kỷ lục thế giới.
@@ -1317,7 +1328,7 @@ $$
 \mathbf{g} \leftarrow \mathbf{g} \cdot \frac{c}{\max(c, \|\mathbf{g}\|_2)}
 $$
 
-   *(Ví dụ: Đặt ngưỡng cắt $c = 1.0$. Nếu $\|\mathbf{g}\|_2 = 8366.8$, gradient sẽ bị thu nhỏ đúng $8366.8$ lần về độ dài $1.0$, giữ nguyên hướng di chuyển nhưng kiểm soát độ dài bước).*
+*Ví dụ:* Đặt ngưỡng cắt $c = 1.0$. Nếu $\|\mathbf{g}\|_2 = 8366.8$, gradient sẽ bị thu nhỏ đúng $8366.8$ lần về độ dài $1.0$, giữ nguyên hướng di chuyển nhưng kiểm soát độ dài bước.
 2. **Learning Rate Warmup:** Trong 1,000 đến 5,000 bước đầu tiên, cho learning rate tăng từ từ từ $0$ lên giá trị đỉnh $\eta_{\max}$ để các trọng số ổn định trước khi nhận các bước cập nhật lớn.
 3. **Weight Decay (AdamW):** Phạt kích thước trọng số lớn để ép bán kính phổ của các ma trận luôn được kiểm soát.
 
@@ -1453,7 +1464,11 @@ Xét hàm số đơn giản hai chiều: $f(x, y) = x^2 - y^2$.
 * Tuy nhiên, điểm $(0, 0)$ chỉ là cực tiểu theo chiều $x$, còn theo chiều $y$, giá trị hàm số có thể dốc xuống $-\infty$! Chỉ cần đẩy nhẹ thuật toán lệch khỏi trục $x$ một chút, nó sẽ trôi tuột xuống dốc theo chiều $y$.
 
 #### 2. Phương án giải quyết:
-1. **Sử dụng Momentum & Adam:** Nhờ có biến vận tốc tích lũy $\mathbf{v}_t = \beta \mathbf{v}_{t-1} + (1-\beta)\mathbf{g}_t$, thuật toán mang theo "quán tính động năng" từ các bước dốc trước đó, giúp viên bi dễ dàng lăn vọt qua các cao nguyên phẳng và điểm yên ngựa thay vì dừng lại.
+1. **Sử dụng Momentum & Adam:** Nhờ có biến vận tốc tích lũy mang theo "quán tính động năng" từ các bước dốc trước đó, giúp viên bi dễ dàng lăn vọt qua các cao nguyên phẳng và điểm yên ngựa thay vì dừng lại:
+
+$$
+\mathbf{v}_t = \beta \mathbf{v}_{t-1} + (1-\beta)\mathbf{g}_t
+$$
 2. **Nhiễu ngẫu nhiên trong Stochastic Gradient:** Gradient tính trên mini-batch ngẫu nhiên luôn có phương sai tự nhiên (Noise). Chính phương sai này đóng vai trò như một lực đẩy rung lắc, tự động đánh văng tham số ra khỏi các điểm yên ngựa không ổn định.
 
 ---

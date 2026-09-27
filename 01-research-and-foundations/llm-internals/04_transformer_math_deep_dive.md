@@ -510,7 +510,7 @@ Trong giai đoạn sinh token tuần tự (Autoregressive Generation / Decode Ph
 #### Công thức tổng quát tính dung lượng VRAM của KV-Cache:
 
 $$
-\text{Dung lượng KV-Cache (Bytes)} = 2 \times 2 \times n_{\text{layers}} \times n_{\text{kv\_heads}} \times d_{\text{head}} \times N_{\text{tokens}} \times \text{dtype\_bytes}
+\text{Memory}_{\text{KV-Cache}} \text{ (Bytes)} = 2 \times 2 \times n_{\text{layers}} \times n_{\text{kv\_heads}} \times d_{\text{head}} \times N_{\text{tokens}} \times \text{dtype\_bytes}
 $$
 
 Trong đó:

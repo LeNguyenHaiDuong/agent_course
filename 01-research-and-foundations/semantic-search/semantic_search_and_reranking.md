@@ -203,11 +203,7 @@ $$
 $$
 
 > [!TIP] Tối ưu hóa tính toán trong Vector Database
-> Nếu các vector được **chuẩn hóa độ dài đơn vị (Unit Normalized)** trước khi lưu trữ (tức $\|\mathbf{u}\|_2 = 1$ và $\|\mathbf{v}\|_2 = 1$), khi đó:
-> 
-> $$
-> \text{CosineSimilarity}(\mathbf{u}, \mathbf{v}) = \mathbf{u} \cdot \mathbf{v}
-> $$
+> Nếu các vector được **chuẩn hóa độ dài đơn vị (Unit Normalized)** trước khi lưu trữ (tức $\|\mathbf{u}\|_2 = 1$ và $\|\mathbf{v}\|_2 = 1$), khi đó: $\text{CosineSimilarity}(\mathbf{u}, \mathbf{v}) = \mathbf{u} \cdot \mathbf{v}$.
 > 
 > Phép tính Cosine Similarity phức tạp (phải tính căn bậc hai ở mẫu số) được rút gọn hoàn toàn thành một phép **nhân ma trận (Dot Product)** cực nhanh, có thể tăng tốc hàng trăm lần thông qua tập lệnh SIMD/AVX trên CPU hoặc Tensor Cores trên GPU.
 

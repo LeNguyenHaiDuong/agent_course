@@ -63,7 +63,7 @@ flowchart LR
 Năm 2020, Jared Kaplan và các nhà nghiên cứu tại OpenAI công bố bài báo *"Scaling Laws for Neural Language Models"*. Họ đưa ra kết luận:
 * Hàm mất mát (Cross-entropy Loss) suy giảm theo định luật lũy thừa (Power Law) đối với số lượng tham số $N$, kích thước dữ liệu $D$, và tổng năng lực tính toán $C$.
 * **Sai lầm cốt tử:** Kaplan et al. cho rằng hiệu năng của mô hình phụ thuộc nhiều hơn vào số lượng tham số $N$ so với số lượng dữ liệu $D$. Khi ngân sách compute tăng lên, họ khuyến nghị tăng số lượng tham số $N \propto C^{0.73}$ và chỉ tăng số lượng tokens $D \propto C^{0.27}$.
-* **Hậu quả thực tiễn:** Điều này dẫn tới sự ra đời của **GPT-3 (175 tỷ tham số)** nhưng chỉ được huấn luyện trên **$300\text{ tỷ tokens}$** (tỷ lệ chỉ $1.7\text{ tokens}$ cho mỗi tham số). Mô hình có kích thước khổng lồ nhưng bị "đói dữ liệu" (Severely Undertrained).
+* **Hậu quả thực tiễn:** Điều này dẫn tới sự ra đời của **GPT-3 (175 tỷ tham số)** nhưng chỉ được huấn luyện trên **300 tỷ tokens** (tỷ lệ chỉ $1.7\text{ tokens}$ cho mỗi tham số). Mô hình có kích thước khổng lồ nhưng bị "đói dữ liệu" (Severely Undertrained).
 
 ---
 
@@ -92,24 +92,21 @@ $$
 C \approx 6 N D
 $$
 
-*(Trong đó mỗi token cần khoảng $2N$ FLOPs cho Forward Pass và $4N$ FLOPs cho Backward Pass).*
+*Trong đó:* Mỗi token cần khoảng $2N$ FLOPs cho Forward Pass và $4N$ FLOPs cho Backward Pass.
 
 Áp dụng phương pháp nhân tử Lagrange để cực tiểu hóa hàm mất mát $L(N, D)$ dưới ràng buộc $C = 6ND$:
 
 $$
-N_{\text{optimal}} \propto C^a, \quad D_{\text{optimal}} \propto C^b \quad \text{với } a = \frac{\beta}{\alpha + \beta} \approx 0.5, \quad b = \frac{\alpha}{\alpha + \beta} \approx 0.5
+N_{\text{optimal}} \propto C^a, \quad D_{\text{optimal}} \propto C^b \quad \text{with } a = \frac{\beta}{\alpha + \beta} \approx 0.5, \quad b = \frac{\alpha}{\alpha + \beta} \approx 0.5
 $$
 
 > [!important] Quy Tắc Ngón Tay Cái Chinchilla (Chinchilla Rule of Thumb)
 > Để đạt trạng thái tối ưu về mặt chi phí tính toán (Compute-Optimal):
 > 1. Kích thước mô hình $N$ và số lượng dữ liệu $D$ **bắt buộc phải tăng trưởng với tốc độ bằng nhau (tỷ lệ $1:1$)**.
-> 2. Cứ mỗi **$1$ tham số** mô hình cần ít nhất xấp xỉ **$20\text{ tokens}$** huấn luyện chất lượng cao:
->    $$
->    D \approx 20 \times N
->    $$
+> 2. Cứ mỗi **$1$ tham số** mô hình cần ít nhất xấp xỉ **$20\text{ tokens}$** huấn luyện chất lượng cao ($D \approx 20 \times N$).
 
 #### Minh chứng Chinchilla 70B:
-DeepMind đã huấn luyện mô hình **Chinchilla với 70 tỷ tham số trên $1.4\text{ nghìn tỷ (Trillion) tokens}$** (đúng tỷ lệ $1:20$). Kết quả: Chinchilla 70B **đè bẹp hoàn toàn Gopher 280B và GPT-3 175B** trên tất cả các bài đánh giá học thuật MMLU, BIG-bench, trong khi kích thước mô hình chỉ bằng $1/4$, giúp giảm mạnh chi phí phần cứng phục vụ suy luận.
+DeepMind đã huấn luyện mô hình **Chinchilla với 70 tỷ tham số trên 1.4 nghìn tỷ (Trillion) tokens** (đúng tỷ lệ $1:20$). Kết quả: Chinchilla 70B **đè bẹp hoàn toàn Gopher 280B và GPT-3 175B** trên tất cả các bài đánh giá học thuật MMLU, BIG-bench, trong khi kích thước mô hình chỉ bằng $1/4$, giúp giảm mạnh chi phí phần cứng phục vụ suy luận.
 
 ---
 
@@ -120,7 +117,7 @@ DeepMind đã huấn luyện mô hình **Chinchilla với 70 tỷ tham số trê
 Meta AI nhận ra rằng: **Chi phí huấn luyện chỉ trả một lần, còn chi phí suy luận phải trả mãi mãi.**
 * Do đó, họ cố tình "huấn luyện vượt ngưỡng tối ưu" (Over-training):
   * **LLaMA-1 / LLaMA-2 (7B):** Huấn luyện trên $1\text{T} - 2\text{T tokens}$ (tỷ lệ gấp 7 đến 14 lần tiêu chuẩn Chinchilla).
-  * **LLaMA-3 (8B):** Huấn luyện trên **$15\text{ nghìn tỷ tokens}$** (tỷ lệ gấp hơn $90$ lần Chinchilla!).
+  * **LLaMA-3 (8B):** Huấn luyện trên **15 nghìn tỷ tokens** (tỷ lệ gấp hơn $90$ lần Chinchilla!).
 * **Kết quả:** Mô hình 8B nhỏ gọn, có thể chạy mượt mà trên một chiếc laptop cá nhân hoặc card đồ họa tầm trung, nhưng sở hữu tri thức và năng lực nhận thức tương đương các mô hình $70\text{B}$ đời trước.
 
 ---
@@ -130,7 +127,7 @@ Meta AI nhận ra rằng: **Chi phí huấn luyện chỉ trả một lần, cò
 Dù LLaMA-3 8B rất nhỏ gọn, nó vẫn có $8\times 10^9$ tham số. Nếu lưu trữ ở định dạng chuẩn nửa chính xác (16-bit Float - FP16 / BF16):
 
 $$
-\text{Dung lượng VRAM} = 8 \times 10^9 \text{ params} \times 2 \text{ bytes} \approx 16 \text{ GB}
+\text{VRAM}_{\text{weights}} = 8 \times 10^9 \text{ params} \times 2 \text{ bytes} \approx 16 \text{ GB}
 $$
 
 Để chạy mô hình này cùng với Cửa sổ ngữ cảnh lớn trong các vòng lặp Agent, một card đồ họa phổ thông 8GB hay 12GB VRAM sẽ lập tức báo lỗi **Out of Memory (OOM)**. **Lượng tử hóa (Quantization)** là kỹ thuật toán học giải cứu phần cứng.
@@ -205,7 +202,7 @@ Trong đó:
 
 ### 2.3. Hiểm Họa Outlier Features Trong Các Mô Hình Lớn
 
-Năm 2022, Tim Dettmers và cộng sự phát hiện một hiện tượng kỳ lạ: Khi mô hình vượt qua ngưỡng kích thước **$6.7\text{ tỷ tham số}$**, các thuật toán lượng tử hóa INT8 truyền thống bỗng nhiên khiến độ mất mát (**Perplexity**) nổ tung, mô hình mất hoàn toàn khả năng tư duy ngôn ngữ.
+Năm 2022, Tim Dettmers và cộng sự phát hiện một hiện tượng kỳ lạ: Khi mô hình vượt qua ngưỡng kích thước **6.7 tỷ tham số**, các thuật toán lượng tử hóa INT8 truyền thống bỗng nhiên khiến độ mất mát (**Perplexity**) nổ tung, mô hình mất hoàn toàn khả năng tư duy ngôn ngữ.
 
 > [!warning] Hiện Tượng Outlier Features (Kênh Ngoại Lai)
 > Ở các tầng sâu của LLM lớn, có khoảng **$0.1\%$ số chiều đặc trưng** xuất hiện các giá trị biên độ khổng lồ ($|x| \ge 6.0$, thậm chí lên tới $100.0$), trong khi $99.9\%$ giá trị còn lại chỉ dao động trong khoảng $[-1.0, 1.0]$.
@@ -306,9 +303,8 @@ $$
 
 > [!important] Quy Tắc Ngân Sách Phần Cứng Cho Agent
 > Để chạy một mô hình 8B (Q4_K_M) với Cửa sổ ngữ cảnh $32\text{K}$ tokens:
-> $$
-> \text{VRAM}_{\text{cần}} = 5.0\text{ GB (Weights)} + 4.2\text{ GB (KV-Cache)} + 1.0\text{ GB (CUDA)} \approx \mathbf{10.2 \text{ GB VRAM}}
-> $$
+> * $\text{VRAM}_{\text{total}} = 5.0\text{ GB (Weights)} + 4.2\text{ GB (KV-Cache)} + 1.0\text{ GB (CUDA)} \approx \mathbf{10.2 \text{ GB VRAM}}$
+> 
 > Do đó, bắt buộc phải có card đồ họa tối thiểu **$12\text{ GB}$ (như RTX 3060 12GB hoặc RTX 4070)** hoặc Apple Silicon Unified Memory từ **$16\text{ GB}$ trở lên**.
 
 ---

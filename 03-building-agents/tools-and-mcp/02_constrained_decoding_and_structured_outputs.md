@@ -130,19 +130,33 @@ Tại bước $t$, dựa trên cú pháp định sẵn (JSON Schema, EBNF Gramma
 
 Từ tập hợp này, ta xây dựng một vector mặt nạ nhị phân (Logit Mask) $\mathbf{M}_t \in \{0, 1\}^{|V|}$:
 
-$$M_{t,i} = \begin{cases} 1 & \text{nếu } v_i \in V_{\text{valid}}(w_{<t}) \\ 0 & \text{nếu } v_i \notin V_{\text{valid}}(w_{<t}) \end{cases}$$
+$$
+M_{t,i} = \begin{cases} 
+1 & \text{if } v_i \in V_{\text{valid}}(w_{<t}) \\ 
+0 & \text{if } v_i \notin V_{\text{valid}}(w_{<t}) 
+\end{cases}
+$$
 
 Vector logits được điều chỉnh bằng cách cộng thêm giá trị phạt cực lớn (âm vô cực $-\infty$) vào tất cả các token vi phạm:
 
-$$\tilde{z}_{t,i} = z_{t,i} + \log(M_{t,i}) = \begin{cases} z_{t,i} & \text{nếu } M_{t,i} = 1 \\ -\infty & \text{nếu } M_{t,i} = 0 \end{cases}$$
+$$
+\tilde{z}_{t,i} = z_{t,i} + \log(M_{t,i}) = \begin{cases} 
+z_{t,i} & \text{if } M_{t,i} = 1 \\ 
+-\infty & \text{if } M_{t,i} = 0 
+\end{cases}
+$$
 
 Khi đưa vector logits đã lọc $\mathbf{\tilde{z}}_t$ qua Softmax:
 
-$$P_{\text{constrained}}(w_t = v_i \mid w_{<t}) = \frac{\exp(\tilde{z}_{t,i} / \tau)}{\sum_{j=1}^{|V|} \exp(\tilde{z}_{t,j} / \tau)}$$
+$$
+P_{\text{constrained}}(w_t = v_i \mid w_{<t}) = \frac{\exp(\tilde{z}_{t,i} / \tau)}{\sum_{j=1}^{|V|} \exp(\tilde{z}_{t,j} / \tau)}
+$$
 
 Vì $\exp(-\infty) = 0$, xác suất của mọi token vi phạm cú pháp lập tức bị triệt tiêu về đúng $0.0\%$. Mô hình bị bắt buộc phải phân phối toàn bộ khối lượng xác suất $100\%$ cho các token hợp lệ về mặt ngữ pháp:
 
-$$\sum_{v_i \in V_{\text{valid}}} P_{\text{constrained}}(w_t = v_i \mid w_{<t}) = 1.0$$
+$$
+\sum_{v_i \in V_{\text{valid}}} P_{\text{constrained}}(w_t = v_i \mid w_{<t}) = 1.0
+$$
 
 ```mermaid
 flowchart TD
@@ -224,7 +238,9 @@ Trong NLP, Transformer không sinh từng ký tự mà sinh các **Subword Token
 
 Để giải bài toán này, Outlines xây dựng một hàm ánh xạ mở rộng từ trạng thái hiện tại $q \in Q$ sang tập token hợp lệ:
 
-$$V_{\text{valid}}(q) = \{ v \in V \mid \delta^*(q, v) \text{ không dẫn đến trạng thái Dead/Trap} \}$$
+$$
+V_{\text{valid}}(q) = \{ v \in V \mid \delta^*(q, v) \notin Q_{\text{dead}} \}
+$$
 
 Trong đó $\delta^*(q, v)$ là hàm duyệt liên tiếp tất cả các ký tự bên trong token $v$.
 

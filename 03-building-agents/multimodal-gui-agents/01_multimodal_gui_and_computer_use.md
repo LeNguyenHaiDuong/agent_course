@@ -109,7 +109,8 @@ Thay vì bắt VLM tự tìm tọa độ trong một ma trận pixel khổng l�
 1. **Detect Interactive Elements:** Sử dụng một mô hình phát hiện đối tượng chuyên biệt (như Fine-tuned YOLO, GroundingDINO, hoặc DOM Tree Parser) để phát hiện tất cả các vùng tương tác (Buttons, Inputs, Links, Icons).
 2. **Overlay Visual Markers (Đánh số trực tiếp lên ảnh):** Vẽ một khung bao (Bounding Box) có màu sắc nổi bật xung quanh mỗi phần tử và gắn một thẻ nhãn số nguyên $[1], [2], [3], \dots, [N]$ ngay tại tâm của phần tử đó.
 3. **Discrete Action Output:** Khi VLM nhìn vào ảnh đã gắn nhãn, câu hỏi chuyển từ *"Hãy cho tôi tọa độ $(x, y)$ của nút Đăng Nhập"* thành:
-   $$\text{"Nút Đăng Nhập mang số nhãn mấy trong các số được đánh dấu?"}$$
+   > *"Nút Đăng Nhập mang số nhãn mấy trong các số được đánh dấu?"*
+   
    Mô hình chỉ cần sinh ra một token số học rời rạc duy nhất: `[14]`.
 
 ```mermaid
@@ -311,9 +312,7 @@ sequenceDiagram
 
 > [!note] Giải thích Khối: Bộ Đo Độ Ổn Định Thị Giác (Visual Stability Buffer)
 > * **Đầu vào:** Luồng frame video hoặc ảnh chụp màn hình liên tiếp sau khi phát lệnh hành động.
-> * **Giải thuật đo lường:** 
->   $$\Delta_{\text{visual}} = \frac{1}{W \times H} \sum_{x=1}^{W} \sum_{y=1}^{H} |I_{t}(x, y) - I_{t - \delta}(x, y)|$$
->   Nếu $\Delta_{\text{visual}} > \epsilon_{\text{threshold}}$, hệ thống giữ trạng thái chờ (Holding State). Chỉ khi $\Delta_{\text{visual}} \le \epsilon$ trong 2 chu kỳ liên tiếp, frame mới được xác nhận là "ổn định" (Quiescent State) và chuyển tiếp cho mô hình VLA phân tích.
+> * **Giải thuật đo lường:** $\Delta_{\text{visual}} = \frac{1}{W \times H} \sum_{x=1}^{W} \sum_{y=1}^{H} |I_{t}(x, y) - I_{t - \delta}(x, y)|$. Nếu $\Delta_{\text{visual}} > \epsilon_{\text{threshold}}$, hệ thống giữ trạng thái chờ (Holding State). Chỉ khi $\Delta_{\text{visual}} \le \epsilon$ trong 2 chu kỳ liên tiếp, frame mới được xác nhận là "ổn định" (Quiescent State) và chuyển tiếp cho mô hình VLA phân tích.
 > * **Lợi ích:** Triệt tiêu hoàn toàn lỗi click trùng (Double Click Thrashing) và tiết kiệm chi phí gọi API VLM khi trang web đang tải dở.
 
 ### Bùng nổ Token Ngữ cảnh từ Screenshots & Giải pháp Frame Differencing

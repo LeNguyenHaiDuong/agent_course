@@ -340,7 +340,7 @@ P(w_i) = \frac{\exp(z_i / \tau)}{\sum_{j} \exp(z_j / \tau)}
 $$
 * **Khi $\tau \to 0$ (Greedy Decoding / Argmax):**
   $$
-  \lim_{\tau \to 0} P(w_i) = \begin{cases} 1 & \text{nếu } z_i = \max_j z_j \\ 0 & \text{ngược lại} \end{cases}
+  \lim_{\tau \to 0} P(w_i) = \begin{cases} 1 & \text{if } z_i = \max_j z_j \\ 0 & \text{otherwise} \end{cases}
   $$
   Mô hình luôn luôn chọn token có xác suất cao nhất. Phân phối xác suất trở thành hàm Dirac Delta.
   * **Ứng dụng cho Agent:** Bắt buộc sử dụng $\tau = 0.0$ (hoặc $\le 0.1$) khi Agent thực hiện **Tool Calling, Sinh JSON có cấu trúc, Viết mã nguồn AST**, hoặc thực thi tính toán logic. Nó triệt tiêu hoàn toàn sự ngẫu nhiên, bảo đảm nếu schema đòi hỏi trường `"file_path"`, mô hình không bao giờ "ngẫu hứng" đổi thành `"filepath"`.

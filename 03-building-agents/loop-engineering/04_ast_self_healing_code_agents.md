@@ -209,8 +209,7 @@ flowchart TD
 > * **Nhiệm vụ:** Chạy mã nguồn trong môi trường cô lập tài nguyên (giao tiếp qua Subprocess cô lập hoặc MicroVM Firecracker). Khối này thiết lập trần CPU/RAM và timeout $5\text{s}$ để vô hiệu hóa hoàn toàn bẫy vòng lặp vô tận `while True`. Nếu xảy ra crash, khối trích xuất Call Stack và giá trị biến tại thời điểm sụp đổ.
 
 > [!note] Giải thích Khối: Tầng 4 - Thẩm Định Đo Độ Lệch Khẳng Định (Assertion Delta Engine)
-> * **Nhiệm vụ:** Chạy Pytest hoặc các unit test định trước. Khi phát hiện một assertion thất bại, thay vì chỉ báo `Test Failed`, khối này tính toán **Assertion Delta**:
->   $$\Delta_{\text{test}} = (\text{Input: } x, \text{ Expected: } y_{\text{true}}, \text{ Actual: } y_{\text{pred}})$$
+> * **Nhiệm vụ:** Chạy Pytest hoặc các unit test định trước. Khi phát hiện một assertion thất bại, thay vì chỉ báo `Test Failed`, khối này tính toán **Assertion Delta**: $\Delta_{\text{test}} = (\text{Input: } x, \text{ Expected: } y_{\text{true}}, \text{ Actual: } y_{\text{pred}})$.
 >   Cung cấp bằng chứng cụ thể giúp Agent định vị chính xác sai lệch logic biên.
 
 ---

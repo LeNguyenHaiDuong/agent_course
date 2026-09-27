@@ -206,7 +206,7 @@ flowchart LR
 
 1. **`dspy.Predict`:** Gọi LLM theo chế độ thực thi trực tiếp cơ bản nhất.
 2. **`dspy.ChainOfThought`:** DSPy tự động phân rã Signature thành:
-   $$\text{Input} \to \text{Rationale (Chuỗi suy luận CoT)} \to \text{Output}$$
+   $$\text{Input} \to \text{Rationale} \to \text{Output}$$
    Điều kỳ diệu là bạn không cần phải gõ `"Let's think step by step"`; DSPy tự cấu trúc hóa trường suy luận này.
 3. **`dspy.ProgramOfThought`:** Thay vì để LLM tự làm tính nhẩm bằng chữ (dễ sai sót), module này điều hướng LLM sinh mã Python, chạy mã trong sandbox và lấy kết quả nạp vào output.
 4. **`dspy.ReAct`:** Tự động biến Signature thông thường thành một Tác tử ReAct hoàn chỉnh có khả năng gọi các công cụ ngoài:

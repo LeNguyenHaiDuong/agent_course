@@ -299,14 +299,14 @@ Nghiên cứu của Shahul Es và cộng sự (Cardiff University & Exploding Gr
 * **Khái niệm:** Đánh giá thuật toán xếp hạng của bộ máy tìm kiếm (Bi-Encoder / Re-ranker) có đẩy các đoạn văn chứa câu trả lời đúng lên **đầu danh sách (Top ranks)** hay không, giải quyết điểm mù *Lost in the Middle*.
 * **Công thức toán học (Mean Average Precision - MAP):**
   $$
-  \text{Context Precision@K} = \frac{\sum_{k=1}^K \Big(\text{Precision@}k \times v_k\Big)}{\text{Tổng số đoạn văn liên quan trong Top } K}
+  \text{Context Precision@K} = \frac{\sum_{k=1}^K \Big(\text{Precision@}k \times v_k\Big)}{\text{Total Relevant Items in Top } K}
   $$
   Trong đó $v_k \in \{0, 1\}$ thể hiện đoạn văn bản ở vị trí thứ $k$ có chứa dữ kiện giải quyết câu hỏi hay không.
 
 #### 4. Độ bao phủ của ngữ cảnh (Context Recall)
 * **Khái niệm:** Đo lường tỷ lệ các dữ kiện cốt lõi trong câu trả lời chuẩn (Ground Truth) được **bắt trọn (retrieved)** bởi hệ thống tìm kiếm:
   $$
-  \text{Context Recall} = \frac{|\text{Các câu trong Ground Truth được chứng thực bởi Context}|}{|\text{Tổng số câu trong Ground Truth}|}
+  \text{Context Recall} = \frac{|\text{Ground Truth Sentences Supported by Context}|}{|\text{Total Sentences in Ground Truth}|}
   $$
 
 ---
@@ -481,7 +481,7 @@ flowchart LR
 
 1. **Tool Selection Precision (Độ chuẩn xác chọn Tool):**
    $$
-   \text{Tool Precision} = \frac{\text{Số lần Agent chọn đúng Tool quy định}}{\text{Tổng số lần Agent triệu hồi Tool}}
+   \text{Tool Precision} = \frac{\text{Correct Tool Calls}}{\text{Total Tool Calls}}
    $$
 2. **Argument Extraction F1-Score (Độ chính xác tham số):**
    Đối chiếu từng trường dữ liệu trong JSON Arguments do LLM sinh ra so với Ground Truth (đo lường độ chuẩn xác về kiểu dữ liệu, định dạng ngày tháng và giá trị chuỗi).
