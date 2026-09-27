@@ -32,6 +32,7 @@ updated: 2026-09-22
    - [Từ văn bản thô đến Dense Vector Embeddings](#từ-văn-bản-thô-đến-dense-vector-embeddings)
    - [Không gian hình học đa chiều & Lời nguyền số chiều (Curse of Dimensionality)](#không-gian-hình-học-đa-chiều--lời-nguyền-số-chiều-curse-of-dimensionality)
    - [Hàm đo khoảng cách: Cosine Similarity vs. Euclidean Distance vs. Dot Product](#hàm-đo-khoảng-cách-cosine-similarity-vs-euclidean-distance-vs-dot-product)
+   - [Hình học không gian nhúng: Hiện tượng dị hướng (Anisotropy) & Giải pháp làm trắng (Whitening)](#hình-học-không-gian-nhúng-hiện-tượng-dị-hướng-anisotropy--giải-pháp-làm-trắng-whitening)
 3. [Phân Loại Tác Vụ: Asymmetric Search vs. Symmetric Search](#3-phân-loại-tác-vụ-asymmetric-search-vs-symmetric-search)
    - [Tìm kiếm không đối xứng (Asymmetric Search): Thách thức cốt lõi của RAG](#tìm-kiếm-không-đối-xứng-asymmetric-search-thách-thức-cốt-lõi-của-rag)
    - [Tìm kiếm đối xứng (Symmetric Search): So khớp văn bản đồng đẳng](#tìm-kiếm-đối-xứng-symmetric-search-so-khớp-văn-bản-đồng-đẳng)
@@ -55,11 +56,16 @@ updated: 2026-09-22
 8. [Tối Ưu Hóa Nâng Cao: Tinh Chỉnh Mô Hình (Fine-Tuning Rerankers & Embeddings)](#8-tối-ưu-hóa-nâng-cao-tinh-chỉnh-mô-hình-fine-tuning-rerankers--embeddings)
    - [Khi nào nên Fine-tune Re-ranker?](#khi-nào-nên-fine-tune-re-ranker)
    - [Fine-tuning Bi-encoder: Đánh bại mô hình thương mại đóng trên dữ liệu ngách](#fine-tuning-bi-encoder-đánh-bại-mô-hình-thương-mại-đóng-trên-dữ-liệu-ngách)
-9. [Mối Liên Kết Tầng Nền Với AI Agents & Hệ Thống RAG](#9-mối-liên-kết-tầng-nền-với-ai-agents--hệ-thống-rag)
-   - [Chất lượng truy xuất là "Trần hiệu năng" (Performance Ceiling) của Chatbot](#chất-lượng-truy-xuất-là-trần-hiệu-năng-performance-ceiling-của-chatbot)
-   - [Hiện tượng "Lost in the Middle" (Liu et al., 2023) & Vai trò sống còn của Re-ranker](#hiện-tượng-lost-in-the-middle-liu-et-al-2023--vai-trò-sống-còn-của-re-ranker)
-   - [Tích hợp Semantic Memory vào AI Harness](#tích-hợp-semantic-memory-vào-ai-harness)
-10. [Bảng Ma Trận Ra Quyết Định Kiến Trúc (Architecture Decision Matrix)](#10-bảng-ma-trận-ra-quyết-định-kiến-trúc-architecture-decision-matrix)
+9. [Cẩm Nang Toàn Tập Các Kiến Trúc RAG Tiên Tiến (Advanced & Agentic RAG)](#9-cẩm-nang-toàn-tập-các-kiến-trúc-rag-tiên-tiến-advanced--agentic-rag)
+   - [9.1. Bản chất nền tảng: Trần hiệu năng & Hiện tượng Lost in the Middle](#91-bản-chất-nền-tảng-trần-hiệu-năng--hiện-tượng-lost-in-the-middle)
+   - [9.2. Ba thế hệ tiến hóa: Naive RAG vs. Advanced RAG vs. Modular & Agentic RAG](#92-ba-thế-hệ-tiến-hóa-naive-rag-vs-advanced-rag-vs-modular--agentic-rag)
+   - [9.3. Kỹ thuật tiền truy xuất (Pre-Retrieval): HyDE, Multi-Query, Step-Back](#93-kỹ-thuật-tiền-truy-xuất-pre-retrieval-hyde-multi-query-step-back)
+   - [9.4. Đột phá phân đoạn & lập chỉ mục: Parent Document, Contextual Retrieval, GraphRAG](#94-đột-phá-phân-đoạn--lập-chỉ-mục-parent-document-contextual-retrieval-graphrag)
+   - [9.5. Kỹ thuật hậu truy xuất (Post-Retrieval): RRF Fusion, Re-ranking & Context Compression](#95-kỹ-thuật-hậu-truy-xuất-post-retrieval-rrf-fusion-re-ranking--context-compression)
+   - [9.6. RAG Tác tử & Tự phản tư (Agentic RAG): Self-RAG, CRAG, Adaptive RAG](#96-rag-tác-tử--tự-phản-tư-agentic-rag-self-rag-crag-adaptive-rag)
+   - [9.7. Bảng ma trận so sánh toàn diện 9 kỹ thuật RAG hàng đầu](#97-bảng-ma-trận-so-sánh-toàn-diện-9-kỹ-thuật-rag-hàng-đầu)
+   - [9.8. Cây quyết định kiến trúc RAG thực chiến (Practical Decision Tree)](#98-cây-quyết-định-kiến-trúc-rag-thực-chiến-practical-decision-tree)
+10. [Bảng Ma Trận Ra Quyết Định Kiến Trúc Tìm Kiếm (Search Decision Matrix)](#10-bảng-ma-trận-ra-quyết-định-kiến-trúc-tìm-kiếm-search-decision-matrix)
 11. [Tài Liệu Nghiên Cứu & Bài Báo Khoa Học Cốt Lõi (Academic References)](#11-tài-liệu-nghiên-cứu--bài-báo-khoa-học-cốt-lõi-academic-references)
 
 ---
@@ -205,7 +211,65 @@ $$
 > 
 > Phép tính Cosine Similarity phức tạp (phải tính căn bậc hai ở mẫu số) được rút gọn hoàn toàn thành một phép **nhân ma trận (Dot Product)** cực nhanh, có thể tăng tốc hàng trăm lần thông qua tập lệnh SIMD/AVX trên CPU hoặc Tensor Cores trên GPU.
 
+#### 4. Mối quan hệ toán học và sự khác biệt khi chưa chuẩn hóa
+Mối quan hệ giữa khoảng cách Euclid bình phương và Cosine Similarity của hai vector đã chuẩn hóa $L_2$ ($\|\mathbf{u}\|_2 = \|\mathbf{v}\|_2 = 1$):
+
+$$
+d_E^2(\mathbf{u}, \mathbf{v}) = \|\mathbf{u} - \mathbf{v}\|_2^2 = \|\mathbf{u}\|_2^2 + \|\mathbf{v}\|_2^2 - 2(\mathbf{u} \cdot \mathbf{v}) = 1 + 1 - 2\cos(\theta) = 2(1 - \cos(\theta))
+$$
+
+* **Khi vector đã chuẩn hóa $L_2$:** Cả ba phép đo (Cosine Similarity, Euclidean Distance, Dot Product) đều cho ra **thứ tự xếp hạng (rank order) hoàn toàn đồng nhất 100%**.
+* **Khi vector CHƯA chuẩn hóa:** Dot Product bị chi phối bởi độ dài $\|\mathbf{v}\|$. Một đoạn văn bản dài lặp đi lặp lại nhiều lần có thể có norm $\|\mathbf{v}\|$ rất lớn, khiến điểm Dot Product tăng vọt giả tạo dù góc $\theta$ lệch xa. Do đó, trong hệ thống tìm kiếm ngữ nghĩa, **chuẩn hóa $L_2$ trước khi lập chỉ mục là yêu cầu bắt buộc**.
+
 ---
+
+### Hình học không gian nhúng: Hiện tượng dị hướng (Anisotropy) & Giải pháp làm trắng (Whitening)
+
+Một giả định ngây thơ thường thấy là các vector nhúng (như BERT, RoBERTa hay GPT embeddings) sẽ phân bố đều đặn khắp các hướng trên mặt cầu đơn vị $d$-chiều ($\mathbb{S}^{d-1}$ - tính đẳng hướng / *Isotropy*). Tuy nhiên, các nghiên cứu thực nghiệm đã chỉ ra một nghịch lý hình học nghiêm trọng.
+
+```mermaid
+flowchart LR
+    subgraph Isotropic["Không gian Đẳng Hướng Lý Tưởng (Isotropy)"]
+        I1["Các vector phân bố đều 360 độ trên mặt cầu"]
+        I2["Cosine giữa 2 câu ngẫu nhiên ≈ 0.0"]
+        I3["Biên độ phân biệt cực lớn"]
+    end
+
+    subgraph Anisotropic["Thực tế: Hiện Tượng Dị Hướng (Anisotropy - Narrow Cone)"]
+        A1["Các vector co cụm trong một hình nón hẹp"]
+        A2["Cosine giữa 2 câu bất kỳ đều > 0.6 - 0.8"]
+        A3["Biên độ phân biệt bị bóp nghẹt, khó đặt threshold"]
+    end
+```
+
+#### 1. Hiện tượng "Hình nón hẹp" (The Narrow Cone Phenomenon)
+* **Phát hiện học thuật:** Nghiên cứu kinh điển của Ethayarajh (EMNLP 2019) mang tên *"How Contextual are Contextualized Word Representations?"* và Gao et al. (ICLR 2019) đã chứng minh rằng: **Không gian embedding của Transformer biểu hiện tính dị hướng (Anisotropic) cực kỳ nặng nề.**
+* **Bản chất hình học:** Toàn bộ các vector văn bản không phân bố đều, mà bị nén chặt vào một hình nón cực hẹp trong không gian $\mathbb{R}^d$.
+* **Hậu quả thực tế đối với RAG và Tìm kiếm Ngữ nghĩa:**
+  * Hai câu văn hoàn toàn ngẫu nhiên và không hề liên quan về mặt nội dung (ví dụ: *"Hôm nay trời mưa to"* và *"Axit sulfuric có công thức là H2SO4"*) vẫn có độ tương đồng Cosine lên tới **$0.65 - 0.80$**!
+  * **Mất khả năng phân biệt (Discriminative Margin Collapse):** Khoảng cách giữa câu cực kỳ liên quan (Cosine $0.88$) và câu hoàn toàn vô nghĩa (Cosine $0.72$) bị thu hẹp đáng kể. Điều này khiến kỹ sư gần như không thể đặt một ngưỡng lọc tĩnh (Similarity Threshold) đáng tin cậy để loại bỏ các đoạn văn rác.
+
+#### 2. Nguyên nhân toán học: Sự suy giảm phổ giá trị suy biến (Singular Value Spectrum Decay)
+Hiện tượng dị hướng bắt nguồn từ việc ma trận trọng số embedding bị chi phối bởi các từ có tần suất xuất hiện quá cao (Word Frequency Bias). Khi phân tích suy biến ma trận (SVD) của tập hợp các vector biểu diễn:
+* Một số ít hướng kỳ dị đầu tiên ($\mathbf{u}_1, \mathbf{u}_2$) sở hữu giá trị suy biến ($\sigma_1, \sigma_2$) khổng lồ, chi phối phần lớn phương sai của toàn bộ không gian.
+* Các hướng còn lại có giá trị suy biến tiệm cận 0. Điều này biến không gian thực tế thành một elipxtoit dẹp hoặc một dải hẹp cục bộ.
+
+#### 3. Các giải pháp khắc phục triệt để
+1. **Biến đổi làm trắng (BERT-Whitening / Zero-Centering - Su et al., 2021):**
+   * Tính vector kỳ vọng trung bình $\boldsymbol{\mu} = \frac{1}{N}\sum_{i=1}^N \mathbf{v}_i$ và ma trận hiệp phương sai $\boldsymbol{\Sigma} = \frac{1}{N}\sum_{i=1}^N (\mathbf{v}_i - \boldsymbol{\mu})^T (\mathbf{v}_i - \boldsymbol{\mu})$.
+   * Phân rã SVD ma trận hiệp phương sai: $\boldsymbol{\Sigma} = \mathbf{U} \boldsymbol{\Lambda} \mathbf{U}^T$.
+   * Biến đổi tuyến tính làm trắng (Whitening Matrix $\mathbf{W} = \mathbf{U} \boldsymbol{\Lambda}^{-1/2}$):
+     $$
+     \tilde{\mathbf{v}} = (\mathbf{v} - \boldsymbol{\mu}) \mathbf{W}
+     $$
+   * Sau phép biến đổi này, ma trận hiệp phương sai mới trở thành ma trận đơn vị $\mathbf{I}$, các vector được kéo về tâm $0$ và phân tán đều theo mọi hướng, khôi phục hoàn toàn tính đẳng hướng (Isotropy) và mở rộng biên độ phân biệt.
+2. **Học tương phản với ràng buộc phân bố đều (Contrastive Learning - SimCSE & InfoNCE):**
+   * Các mô hình hiện đại như SimCSE (Gao et al., 2021), BGE (BAAI) hay E5 được huấn luyện với hàm mất mát tương phản ép buộc hai mục tiêu hình học cốt lõi (theo Wang & Isola, ICML 2020):
+     * **Alignment (Căn chỉnh):** Kéo các cặp văn bản cùng ngữ nghĩa lại sát cạnh nhau.
+     * **Uniformity (Đồng đều):** Đẩy các vector phân bố đều khắp mặt cầu đơn vị, tối đa hóa entropy thông tin và triệt tiêu vĩnh viễn hiện tượng hình nón hẹp:
+       $$
+       \mathcal{L}_{\text{uniformity}} = \log \mathbb{E}_{x, y \stackrel{i.i.d.}{\sim} p_{\text{data}}} \left[ e^{-2\|\mathbf{f}(x) - \mathbf{f}(y)\|_2^2} \right]
+       $$
 
 ## 3. PHÂN LOẠI TÁC VỤ: ASYMMETRIC SEARCH VS. SYMMETRIC SEARCH
 
@@ -647,11 +711,15 @@ Rất nhiều kỹ sư mặc định rằng API đóng của các công ty công
 
 ---
 
-## 9. MỐI LIÊN KẾT TẦNG NỀN VỚI AI AGENTS & HỆ THỐNG RAG
+## 9. CẨM NANG TOÀN TẬP CÁC KIẾN TRÚC RAG TIÊN TIẾN (ADVANCED, MODULAR & AGENTIC RAG)
+
+---
+
+### 9.1. Bản chất nền tảng: Trần hiệu năng & Hiện tượng Lost in the Middle
 
 Tại sao chúng ta phải dành nhiều công sức nghiên cứu tầng sâu của Semantic Search, phân đoạn chunking và Re-ranking thay vì nhảy thẳng vào việc viết Prompt cho Chatbot?
 
-### Chất lượng truy xuất là "Trần hiệu năng" (Performance Ceiling) của Chatbot
+#### Chất lượng truy xuất là "Trần hiệu năng" (Performance Ceiling) của Chatbot
 
 Trong bất kỳ kiến trúc [[ai_chat_systems_and_prompt_engineering|RAG (Retrieval-Augmented Generation)]] hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
 
@@ -684,7 +752,7 @@ flowchart TD
 * Nếu bộ máy truy xuất (Semantic Search) không thể đưa tài liệu đúng vào Top-3 hoặc Top-5, thì dù bạn có sử dụng kỹ thuật [[advanced_prompt_engineering_techniques|Prompt Engineering]] tài tình đến đâu, hay sử dụng mô hình LLM thông minh nhất hành tinh, câu trả lời sinh ra vẫn sẽ là **ảo giác (hallucination)** hoặc câu từ chối sáo rỗng.
 * Nói cách khác: **Khả năng của bộ máy Semantic Search chính là chiếc trần nhà giới hạn năng lực tối đa của ứng dụng AI.**
 
-### Hiện tượng "Lost in the Middle" (Liu et al., 2023) & Vai trò sống còn của Re-ranker
+#### Hiện tượng "Lost in the Middle" (Liu et al., 2023) & Vai trò sống còn của Re-ranker
 
 Một trong những lý do khoa học quan trọng nhất khiến chúng ta **bắt buộc phải có bước Re-ranking** trong các hệ thống RAG và AI Agent xuất phát từ nghiên cứu kinh điển của Nelson F. Liu và cộng sự tại Đại học Stanford, UC Berkeley và Samaya AI mang tên *Lost in the Middle: How Language Models Use Long Contexts* (TACL 2024 - [arXiv:2307.03172](https://arxiv.org/abs/2307.03172)).
 
@@ -696,19 +764,303 @@ xychart-beta
     line "Hiệu năng trích xuất của LLM" [84.5, 62.0, 38.2, 59.4, 76.8]
 ```
 
-#### Bản chất hiện tượng "Lạc lối ở giữa" (Lost in the Middle)
-* Các mô hình ngôn ngữ lớn (kể cả GPT-4, Claude 3.5 hay LLaMA) biểu hiện sự suy giảm khả năng chú ý nghiêm trọng khi dữ liệu ngữ cảnh nằm ở khoảng giữa cửa sổ ngữ cảnh (đường cong hiệu năng hình chữ **U** - *U-shaped performance curve*).
+* **Bản chất hiện tượng:** Các mô hình ngôn ngữ lớn biểu hiện sự suy giảm khả năng chú ý nghiêm trọng khi dữ liệu ngữ cảnh nằm ở khoảng giữa cửa sổ ngữ cảnh (đường cong hiệu năng hình chữ **U** - *U-shaped performance curve*).
 * Mô hình xử lý tốt nhất thông tin xuất hiện ở **đầu ngữ cảnh** (hiệu ứng ưu tiên - *Primacy Bias*) hoặc ở **cuối ngữ cảnh** (hiệu ứng gần nhất - *Recency Bias*). Khi dữ liệu quan trọng nằm kẹt ở vị trí từ thứ 10 đến 40 trong danh sách 50 tài liệu được lấy về từ Bi-Encoder, độ chính xác của LLM **lao dốc hơn 30% đến 40%**, dẫn tới hiện tượng bỏ sót dữ kiện hoặc bịa đặt câu trả lời.
 * **Vai trò cứu cánh của Cross-Encoder:** Cross-Encoder sắp xếp lại độ ưu tiên và đẩy văn bản chính xác nhất lên vị trí số 1 (`index 0` - ngay đầu danh sách context). Điều này trực tiếp đưa thông tin chuẩn xác vào "điểm rơi vàng" của cơ chế Self-Attention của LLM, triệt tiêu hoàn toàn điểm mù "Lost in the Middle".
 
-### Tích hợp Semantic Memory vào AI Harness
-Như đã phân tích trong tài liệu [[ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], một AI Agent hoàn chỉnh cần một thành phần gọi là **Semantic Memory**:
-* Khi người dùng hội thoại với Agent qua nhiều tháng, lịch sử trò chuyện lên tới hàng triệu token.
-* Agent không thể nạp toàn bộ lịch sử này vào Prompt. Nó dùng chính kiến trúc **Bi-Encoder + Vector DB** để lập chỉ mục các đoạn hội thoại cũ, và dùng **Cross-Encoder Re-ranker** để lọc ra đúng 2-3 kỷ niệm liên quan nhất với chủ đề hiện tại để tiêm vào System Prompt của Agent.
+---
+
+### 9.2. Ba thế hệ tiến hóa: Naive RAG vs. Advanced RAG vs. Modular & Agentic RAG
+
+Kiến trúc RAG không đứng yên mà đã trải qua 3 giai đoạn tiến hóa nhảy vọt nhằm khắc phục các nút thắt cổ chai về độ chính xác và khả năng khái quát hóa:
+
+```mermaid
+flowchart TD
+    subgraph Gen1["1. Naive RAG (Thế hệ đầu: Tuyến tính ngây thơ)"]
+        N_Q["User Query"] --> N_Ret["Bi-Encoder Vector Search"]
+        N_Ret --> N_Cat["Ghép thô Top-K Chunks"]
+        N_Cat --> N_LLM["LLM Generation"]
+    end
+
+    subgraph Gen2["2. Advanced RAG (Thế hệ 2: Tiền & Hậu xử lý)"]
+        A_Q["User Query"] --> A_Pre["Pre-Retrieval (HyDE / Multi-Query)"]
+        A_Pre --> A_Ret["Hybrid Search (Dense + Sparse BM25)"]
+        A_Ret --> A_Post["Post-Retrieval (Cross-Encoder Re-rank + Compression)"]
+        A_Post --> A_LLM["LLM Generation (Được tối ưu vị trí)"]
+    end
+
+    subgraph Gen3["3. Modular & Agentic RAG (Thế hệ 3: Tác tử tự phản tư)"]
+        M_Q["User Query"] --> M_Router["Adaptive Query Router"]
+        M_Router --> M_Self["Self-RAG / CRAG Loop"]
+        M_Self <--> M_Tools["Dynamic Tools: Vector DB, GraphRAG, Web Search"]
+        M_Self --> M_Eval["Self-Evaluation (Reflection Tokens / Evaluator)"]
+        M_Eval --> M_LLM["Fact-Verified Output"]
+    end
+
+    Gen1 -->|"Khắc phục đứt gãy context & nhiễu"| Gen2
+    Gen2 -->|"Khắc phục tư duy tuyến tính & điểm mù"| Gen3
+```
+
+#### Bốn điểm nghẽn chí mạng của Naive RAG:
+1. **Thác loạn ảo giác (Hallucination Cascade):** Nếu Bi-Encoder nhặt về các đoạn văn bản có từ khóa tương tự nhưng mang nội dung sai lệch, LLM bị ép buộc phải tổng hợp trên thông tin rác, dẫn tới ảo giác có độ tự tin cao.
+2. **Lệch pha ngữ nghĩa (Asymmetric Semantic Mismatch):** Câu hỏi ngắn của người dùng ($3 - 10$ tokens) bị ép so khớp trực tiếp với đoạn văn dài ($500$ tokens) trong không gian vector.
+3. **Phân mảnh ngữ cảnh (Context Fragmentation):** Việc cắt văn bản thành các chunk cố định ($512$ tokens) làm đứt gãy câu văn, ngắt đôi bảng biểu, và làm mất đi mạch logic tổng thể của tài liệu.
+4. **Lãng phí Token & Ô nhiễm Ngữ cảnh (Context Pollution):** Ghép toàn bộ Top-K chunks vào Prompt làm tràn ngập các câu văn vô nghĩa, kích hoạt hiện tượng *Lost in the Middle*.
 
 ---
 
-## 10. BẢNG MA TRẬN RA QUYẾT ĐỊNH KIẾN TRÚC (ARCHITECTURE DECISION MATRIX)
+### 9.3. Kỹ thuật tiền truy xuất (Pre-Retrieval Optimization)
+
+Giai đoạn Tiền truy xuất tập trung vào việc **chuẩn hóa, mở rộng và chuyển hóa câu truy vấn của người dùng** trước khi đưa vào cơ sở dữ liệu vector.
+
+#### 1. HyDE (Hypothetical Document Embeddings - Gao et al., 2022)
+* **Ý tưởng đột phá:** Thay vì so sánh vector giữa một *Câu hỏi ngắn* và một *Đoạn tài liệu dài* (Asymmetric Search), HyDE yêu cầu một LLM đóng vai trò chuyên gia để **tự sinh ra một câu trả lời giả định (Hypothetical Document)** trước. Sau đó, hệ thống lấy vector của chính văn bản giả định này để đi tìm kiếm trong Vector DB.
+* **Công thức toán học:**
+  $$
+  \mathbf{v}_{\text{search}} = \mathbf{f}_{\text{embed}}\Big(\text{LLM}_{\text{zero-shot}}(\text{query})\Big)
+  $$
+* **Tại sao HyDE hoạt động?** Dù văn bản giả định có thể chứa dữ kiện chi tiết không hoàn toàn chuẩn xác (ungrounded facts), nhưng **cấu trúc câu, phong cách học thuật, vốn từ chuyên ngành và không gian ngữ nghĩa** của nó hoàn toàn trùng khớp với định dạng của tài liệu mục tiêu trong cơ sở dữ liệu. Nhờ đó, bài toán được biến đổi hoàn toàn từ *Asymmetric Search* thành *Symmetric Search (Doc-to-Doc)*.
+* **Điểm mạnh:** Cực kỳ hiệu quả khi người dùng đặt các câu hỏi trừu tượng, truy vấn mang tính khái niệm, hoặc câu hỏi ngắn mà người dùng không biết chính xác từ vựng chuyên ngành.
+* **Điểm yếu & Đánh đổi:**
+  * **Tăng độ trễ (Latency Overhead):** Phải chờ LLM sinh văn bản giả định (thêm từ $400\text{ms}$ đến $1.2\text{s}$).
+  * **Ảo giác kéo lệch hướng (Query Drift):** Nếu câu hỏi quá xa lạ hoặc LLM giả định sai hoàn toàn bản chất vấn đề, vector sinh ra sẽ kéo bộ máy tìm kiếm đi sang một miền dữ liệu hoàn toàn sai lạc.
+* **Kịch bản nên dùng:** Hệ thống Q&A tri thức chuyên sâu, kho tài liệu học thuật hoặc tài liệu nội bộ nơi câu hỏi thường có tính trừu tượng cao.
+
+```mermaid
+flowchart LR
+    Q["User: 'Tại sao bầu trời có màu xanh?'"] --> Prompt["Prompt: 'Hãy viết một đoạn giải thích khoa học ngắn gọn...'"]
+    Prompt --> LLM_Hypo["LLM Generator"]
+    LLM_Hypo --> HypoDoc["Hypo Doc: 'Bầu trời xanh do hiện tượng tán xạ Rayleigh, ánh sáng bước sóng ngắn...'"]
+    HypoDoc --> Embed["Embedding Model"]
+    Embed --> Vec["Vector Đậm Đặc (Doc-level)"]
+    Vec --> VDB[("Vector Database<br>(Doc-to-Doc Search)")]
+    VDB --> RealDocs["Top Chunks chuẩn xác về Tán xạ Rayleigh"]
+```
+
+#### 2. Multi-Query Expansion & Sub-Question Decomposition
+* **Ý tưởng:** Một câu hỏi của người dùng có thể được diễn đạt bằng nhiều cách khác nhau, hoặc chứa đựng nhiều câu hỏi con lồng ghép (Multi-hop Reasoning).
+  * **Multi-Query Expansion:** Dùng LLM sinh ra $3 - 5$ câu hỏi tương đương mang các biến thể từ vựng và ngữ pháp khác nhau. Thực hiện truy xuất song song cho tất cả các biến thể và hợp nhất kết quả qua giải thuật [[#reciprocal-rank-fusion-rrf|RRF (Reciprocal Rank Fusion)]].
+  * **Sub-Question Decomposition:** Bẻ nhỏ câu hỏi phức tạp (ví dụ: *"So sánh doanh thu quý 2 của VinFast và Tesla, hãng nào có biên lợi nhuận cao hơn?"*) thành 3 câu hỏi con độc lập:
+    1. *"Doanh thu và biên lợi nhuận Q2 của VinFast là bao nhiêu?"*
+    2. *"Doanh thu và biên lợi nhuận Q2 của Tesla là bao nhiêu?"*
+    3. *"So sánh số liệu biên lợi nhuận giữa hai bên."*
+* **Ưu/Nhược điểm:** Tăng vọt tỷ lệ bao phủ (Recall), nhưng nhân chi phí vector search lên gấp $N$ lần.
+
+#### 3. Step-Back Prompting (Zheng et al., 2023 - Google DeepMind)
+* **Ý tưởng:** Khi đối mặt với một câu hỏi quá cụ thể và chi tiết, LLM thường bị sa đà vào các dữ kiện vụn vặt. Step-Back Prompting chỉ dẫn LLM lùi lại một bước để **trừu tượng hóa câu hỏi thành một nguyên lý nền tảng tổng quát**.
+* **Ví dụ:**
+  * *Câu hỏi gốc:* *"Động cơ xe Honda Civic 2024 khi leo dốc 15 độ ở vòng tua 3000 RPM thì nhiệt độ nước làm mát tăng bao nhiêu độ?"*
+  * *Câu hỏi Step-Back:* *"Các yếu tố nhiệt động lực học nào ảnh hưởng đến nhiệt độ nước làm mát động cơ đốt trong khi xe chịu tải cao?"*
+* Hệ thống tiến hành truy xuất cả tài liệu nguyên lý nền tảng (Step-back context) và tài liệu chi tiết (Specific context), giúp LLM có đầy đủ cả khung lý thuyết lẫn dữ kiện thực tế để suy luận.
+
+---
+
+### 9.4. Đột phá trong phân đoạn & lập chỉ mục (Indexing & Chunking Innovations)
+
+Chất lượng của RAG được định đoạt phần lớn từ khâu chuẩn bị dữ liệu (Indexing phase). Ba đột phá kiến trúc dưới đây giải quyết triệt để vấn đề mất ngữ cảnh và phân mảnh thông tin:
+
+#### 1. Hierarchical / Parent Document Retrieval (Sentence Window & Auto-Merging)
+* **Nghịch lý kích thước Chunk (The Chunk Size Dilemma):**
+  * **Chunk nhỏ ($100 - 150$ tokens):** Cực kỳ sắc nét về mặt ngữ nghĩa, vector embedding tập trung cao độ, điểm Cosine Similarity rất chính xác. Nhưng khi nạp vào LLM, câu văn bị đứt gãy, thiếu bối cảnh xung quanh khiến LLM không hiểu trọn vẹn ngữ cảnh.
+  * **Chunk lớn ($1000 - 2000$ tokens):** Chứa trọn vẹn ngữ cảnh và cấu trúc lập luận, nhưng vector embedding bị "pha loãng" (diluted), điểm tương đồng bị kéo tụt và khó so khớp chính xác với câu hỏi cụ thể.
+* **Giải pháp hai tầng (Decoupled Representation & Retrieval):**
+  * Tách rời **Đơn vị tìm kiếm (Retrieval Unit)** và **Đơn vị suy luận (Generation Unit)**:
+    1. **Tầng lá (Child Chunks):** Chia tài liệu thành các mẩu nhỏ $128$ tokens để tạo embedding và lập chỉ mục trong Vector Database.
+    2. **Tầng gốc (Parent Documents / Blocks):** Lưu các khối văn bản lớn $1024$ tokens (hoặc nguyên section/document) trong Document Store (như SQLite, MongoDB, PostgreSQL) với ID liên kết tương ứng.
+  * **Quy trình thực thi:** Tìm kiếm vector trên các Child Chunks. Khi một Child Chunk được chọn, hệ thống tự động **tra cứu ID và trả về Parent Block chứa nó** để nạp vào Context Window của LLM.
+
+```mermaid
+flowchart TD
+    subgraph DocStore["Document Store (Lưu khối lớn - Context đầy đủ)"]
+        Parent1["Parent Block 1 (1024 tokens): Toàn bộ điều khoản bồi thường hợp đồng"]
+    end
+
+    subgraph VectorDB["Vector Index (Lưu mảnh nhỏ - Semantic sắc nét)"]
+        Child1["Child Chunk 1.1 (128 tokens): Trễ > 4 giờ đền 200$"]
+        Child2["Child Chunk 1.2 (128 tokens): Trễ > 8 giờ đền 500$"]
+        Child3["Child Chunk 1.3 (128 tokens): Điều kiện bất khả kháng"]
+    end
+
+    Parent1 -.->|"Chia nhỏ lập chỉ mục"| Child1
+    Parent1 -.->|"Chia nhỏ lập chỉ mục"| Child2
+    Parent1 -.->|"Chia nhỏ lập chỉ mục"| Child3
+
+    UserQ["Query: 'Trễ chuyến bay 5 tiếng bồi thường bao nhiêu?'"] --> VectorDB
+    VectorDB -->|"Khớp chính xác cực cao"| Child1
+    Child1 -->|"Ánh xạ Parent ID"| Parent1
+    Parent1 -->|"Nạp vào LLM Context"| LLM["LLM (Nhận đầy đủ ngữ cảnh pháp lý)"]
+```
+
+#### 2. Contextual Retrieval (Anthropic Research, 2024)
+* **Phát hiện của Anthropic:** Khi cắt tài liệu thành hàng nghìn chunk nhỏ, hầu hết các chunk đều bị rơi vào tình trạng **mất hoàn toàn ngữ cảnh gốc** (ví dụ: một chunk chỉ ghi *"Doanh thu quý này tăng 15% nhờ mở rộng dịch vụ"* mà hoàn toàn không nhắc đến tên công ty hay năm tài chính).
+* **Phương pháp thực thi Contextual Embeddings & BM25:**
+  * Trước khi tính embedding cho từng chunk, sử dụng một LLM nhỏ, tốc độ cao (như Claude 3 Haiku) đọc toàn bộ tài liệu gốc và tự động sinh ra một đoạn tiền tố ngữ cảnh cô đọng từ $50 - 100$ từ đặt trước mỗi chunk:
+  ```text
+  [Ngữ cảnh tài liệu: Đây là Báo cáo Tài chính Thường niên năm 2023 của Tập đoàn Bán lẻ ACME, phần Thảo luận của Ban Giám đốc về Kết quả Kinh doanh Mảng Thương mại Điện tử tại Khu vực Đông Nam Á]
+  Nội dung đoạn văn gốc: Doanh thu quý này tăng 15% nhờ mở rộng dịch vụ giao hàng nhanh trong 2 giờ...
+  ```
+  * Đoạn văn bản kết hợp này được dùng để:
+    1. Tạo **Contextual Embeddings** lưu vào Vector DB.
+    2. Tạo chỉ mục từ vựng **Contextual BM25**.
+* **Hiệu quả định lượng:** Nghiên cứu của Anthropic (tháng 9/2024) chỉ ra rằng:
+  * Kết hợp Contextual Embeddings + Contextual BM25 giúp giảm **35% lỗi truy xuất trượt**.
+  * Khi bổ sung thêm tầng Re-ranking (Reranker), tỷ lệ lỗi giảm kỷ lục lên tới **49%**!
+
+#### 3. GraphRAG (Microsoft Research, 2024 - Leiden Community Detection)
+* **Điểm mù chí mạng của Vector RAG (Failure of Global Sensemaking):**
+  * Vector RAG vận hành xuất sắc đối với câu hỏi cục bộ (Local Queries, ví dụ: *"Ai là giám đốc tài chính của công ty X?"*).
+  * Nhưng Vector RAG **hoàn toàn thất bại** trước các câu hỏi tổng thể mang tính bao quát (Global Queries, ví dụ: *"Các chủ đề chính được thảo luận xuyên suốt toàn bộ kho 1,000 tài liệu này là gì?"* hoặc *"Hãy tổng hợp các rủi ro hệ thống được ghi nhận trong ngành trong 5 năm qua"*).
+  * Lý do: Vector Search chỉ nhặt được vài chunk có độ tương đồng từ ngữ cao nhất, không thể tổng hợp tri thức phân tán trên hàng nghìn trang văn bản.
+* **Kiến trúc GraphRAG của Microsoft:**
+  1. **Trích xuất Đồ thị Tri thức (Entity & Relationship Extraction):** Dùng LLM duyệt qua toàn bộ văn bản để bóc tách các Thực thể (Nodes), Mối quan hệ giữa các thực thể (Edges), và các Luận điểm thực chứng (Claims).
+  2. **Phát hiện cộng đồng phân cấp (Leiden Community Detection):** Áp dụng giải thuật đồ thị **Leiden** để phân nhóm các thực thể có liên kết mật thiết thành các cụm cộng đồng phân cấp đa tầng (từ cộng đồng vĩ mô Level 0 đến các tiểu cộng đồng vi mô Level 1, Level 2).
+  3. **Biên soạn báo cáo tóm tắt cộng đồng (Community Summaries):** LLM tạo báo cáo tổng quan độc lập cho từng cụm cộng đồng ngay trong quá trình Offline Indexing.
+  4. **Thực thi truy vấn Global Search:** Khi nhận câu hỏi bao quát, hệ thống không tìm kiếm chunk nữa mà gửi câu hỏi song song đến toàn bộ các bản tóm tắt cộng đồng (Map phase), sau đó tổng hợp các câu trả lời cục bộ thành báo cáo chiến lược toàn diện (Reduce phase).
+
+```mermaid
+flowchart TD
+    RawDocs["Kho Văn Bản Lớn (Hàng nghìn tài liệu)"] --> Extraction["1. LLM Entity & Relation Extraction"]
+    Extraction --> KnowledgeGraph["2. Đồ thị Tri thức (Entities + Relationships)"]
+    KnowledgeGraph --> Leiden["3. Giải thuật Phân cụm Đồ thị Leiden"]
+    Leiden --> Communities["4. Các Cụm Cộng đồng Phân Cấp (Level 0, 1, 2)"]
+    Communities --> Summaries["5. LLM viết Báo cáo Tóm tắt Cộng đồng (Offline)"]
+    
+    subgraph QueryExecution["Giai đoạn Truy Vấn (Online)"]
+        UserGlobal["Query Toàn Cục: 'Những rủi ro chính trong toàn bộ dự án là gì?'"] --> MapStep["Map: Gửi Query đến các Báo cáo Tóm tắt Cộng đồng"]
+        Summaries --> MapStep
+        MapStep --> ReduceStep["Reduce: LLM tổng hợp báo cáo chiến lược vĩ mô"]
+        ReduceStep --> FinalGlobalAnswer["Câu trả lời bao quát 100% dữ liệu"]
+    end
+```
+
+---
+
+### 9.5. Kỹ thuật hậu truy xuất (Post-Retrieval Optimization)
+
+Sau khi lấy về danh sách ứng viên sơ bộ từ nhiều nguồn tìm kiếm khác nhau, bước hậu xử lý đảm bảo thông tin đưa vào LLM đạt độ tinh khiết tối đa:
+
+#### 1. Reciprocal Rank Fusion (RRF)
+Khi kết hợp Tìm kiếm Từ khóa (BM25) và Tìm kiếm Ngữ nghĩa (Dense Vector Search) thành hệ thống **Hybrid Search**, ta đối mặt với vấn đề: Điểm số BM25 (chạy từ $0 \to \infty$) và điểm Cosine Similarity (chạy từ $-1 \to 1$) có thang đo hoàn toàn khác biệt, không thể cộng trực tiếp.
+
+Giải thuật **RRF (Cormack et al., 2009)** giải quyết triệt để vấn đề này bằng cách chỉ quan tâm đến **thứ hạng vị trí (Rank)** của tài liệu trong từng danh sách, bỏ qua giá trị điểm số tuyệt đối:
+
+$$
+RRF\_Score(d) = \sum_{m \in M} \frac{1}{k + r_m(d)}
+$$
+
+* $M$: Tập hợp các hệ thống tìm kiếm (ví dụ: $M = \{\text{BM25}, \text{Dense Vector}\}$).
+* $r_m(d)$: Thứ vị trí của tài liệu $d$ trong hệ thống $m$ (bắt đầu từ $1, 2, 3 \dots$).
+* $k$: Hằng số làm mịn (Smoothing constant, chuẩn thực nghiệm thường chọn $k = 60$). Hằng số này đảm bảo các tài liệu đứng đầu danh sách không tạo ra sự chênh lệch điểm quá áp đảo so với các tài liệu kế tiếp.
+
+#### 2. Cross-Encoder Re-ranking
+* Đã phân tích chi tiết tại [[#4-giải-phẫu-kiến-trúc-bi-encoder-vs-cross-encoder|Mục 4]]: Cross-Encoder chấm điểm tương tác sâu giữa toàn bộ câu hỏi và từng đoạn văn qua cơ chế Full Self-Attention, lọc sạch các đoạn văn "tưởng là liên quan" của Bi-Encoder.
+
+#### 3. Contextual Compression & Semantic Trimming
+* Sau khi Re-ranker chọn ra Top-5 đoạn văn, nhiều đoạn văn vẫn chứa hàng loạt câu rác rưởi (disclaimers, chữ ký email, câu mở bài rườm rà).
+* Áp dụng mô hình nén ngữ cảnh (như LLMLingua của Microsoft) hoặc một prompt trích xuất nhanh để gọt giũa, chỉ giữ lại đúng các câu văn trực tiếp chứa đựng câu trả lời, giúp tiết kiệm $40\% - 70\%$ chi phí token và ngăn ngừa hiện tượng pha loãng sự chú ý.
+
+---
+
+### 9.6. RAG Tác tử & Tự phản tư (Agentic RAG)
+
+Thế hệ RAG hiện đại nhất phá bỏ hoàn toàn quy trình tuyến tính cứng nhắc, trao cho AI Agent khả năng **tự đánh giá, tự sửa sai và phân luồng động**:
+
+```mermaid
+flowchart TD
+    UserQuery["Query của người dùng"] --> Router{"1. Bộ định tuyến (Adaptive Router)<br>Phân loại độ phức tạp"}
+    
+    Router -->|"Đơn giản / Tri thức chung"| DirectLLM["Zero-shot LLM (Không cần truy xuất)"]
+    Router -->|"Truy vấn đơn lẻ"| StandardRAG["Two-Stage Hybrid RAG Pipeline"]
+    Router -->|"Phức tạp / Suy luận đa bước"| AgenticLoop["Agentic ReAct / Plan-and-Solve Loop"]
+
+    StandardRAG --> Evaluator{"2. Retrieval Evaluator (CRAG)<br>Đánh giá độ tin cậy"}
+    Evaluator -->|"Chính xác (High Confidence)"| Refine["Knowledge Refinement (Trích lọc lõi)"]
+    Evaluator -->|"Mơ hồ (Ambiguous)"| WebFallback["Tìm kiếm Web bổ trợ (Brave/Google)"]
+    Evaluator -->|"Sai hoàn toàn (Incorrect)"| RewriteQuery["Query Rewriting & Web Search độc lập"]
+
+    Refine --> Generate["LLM Generation"]
+    WebFallback --> Generate
+    RewriteQuery --> Generate
+
+    Generate --> SelfReflect{"3. Self-RAG Reflection<br>Kiểm định luận điểm"}
+    SelfReflect -->|"Đạt chuẩn chứng thực"| FinalAnswer["Trả về câu trả lời đã xác thực"]
+    SelfReflect -->|"Bị ảo giác / Thiếu chứng cứ"| Retry["Kích hoạt truy xuất vòng lặp mới"]
+```
+
+#### 1. Self-RAG (Self-Reflective Retrieval-Augmented Generation - Asai et al., 2023)
+* **Khác biệt cốt lõi:** Thay vì luôn luôn thực hiện truy xuất một cách máy móc cho mọi câu hỏi, mô hình Self-RAG được huấn luyện để sinh ra 4 nhóm **Token Phản tư (Special Reflection Tokens)**:
+  1. `[Retrieve]`: Quyết định khi nào CẦN truy xuất tri thức mới. Giá trị: `{yes, no, continue}`. Nếu câu hỏi thuộc tri thức sẵn có của LLM, mô hình tự trả lời mà không tốn chi phí truy xuất.
+  2. `[IsRel]`: Đánh giá từng đoạn tài liệu vừa lấy về có thực sự chứa thông tin giải quyết câu hỏi hay không. Giá trị: `{relevant, irrelevant}`.
+  3. `[IsSup]`: Đánh giá câu trả lời mà LLM vừa soạn thảo có **thực sự được bảo chứng bởi tài liệu** hay không. Giá trị: `{fully supported, partially supported, no support}`. Đây là "vũ khí tối thượng" triệt tiêu ảo giác (Hallucination elimination).
+  4. `[IsUse]`: Chấm điểm mức độ hữu ích thực tế của câu trả lời đối với người dùng (thang điểm từ $1$ đến $5$).
+
+#### 2. Corrective RAG (CRAG - Yan et al., 2024)
+* **Ý tưởng:** Nhận diện và sửa sai khi hệ thống truy xuất lấy về dữ liệu sai lạc.
+* **Cơ chế 3 vùng tự tin (Three-Confidence Regions):**
+  * Tích hợp một bộ đánh giá nhẹ (**Retrieval Evaluator**) tính toán điểm số tin cậy $\mathcal{C}$ của kho tài liệu trích xuất:
+    * **Vùng Đúng ($\mathcal{C} \ge \theta_{\text{high}}$):** Kích hoạt giải thuật *Knowledge Refinement* – bẻ nhỏ đoạn văn thành các dải văn bản (strips), lọc bỏ thông tin thừa và chỉ giữ lại dải văn bản chứa dữ kiện mấu chốt.
+    * **Vùng Sai ($\mathcal{C} < \theta_{\text{low}}$):** Nhận diện kho dữ liệu nội bộ không có thông tin $\to$ Tự động chuyển hướng kích hoạt **Công cụ Tìm kiếm Web ngoài (External Web Search)** để tìm kiếm thông tin tươi mới trên Internet.
+    * **Vùng Mơ hồ ($\theta_{\text{low}} \le \mathcal{C} < \theta_{\text{high}}$):** Kết hợp cả dữ liệu nội bộ tinh lọc và kết quả tìm kiếm web bổ trợ.
+
+#### 3. Adaptive RAG
+* **Ý tưởng:** Không áp dụng một giải pháp "one-size-fits-all" cho mọi người dùng.
+* **Bộ phân loại truy vấn (Query Classifier):**
+  * **Cấp độ 1 (Truy vấn đơn giản):** *"Thủ đô của nước Pháp là gì?"* $\to$ LLM nội suy trực tiếp trong $100\text{ms}$ (0 token chi phí truy xuất).
+  * **Cấp độ 2 (Truy vấn thực tế một chặng):** *"Quy định nghỉ phép năm của công ty là gì?"* $\to$ Two-Stage RAG (Single-hop).
+  * **Cấp độ 3 (Truy vấn suy luận phức tạp nhiều bước):** *"Hãy phân tích tác động của biến đổi khí hậu lên chuỗi cung ứng linh kiện ô tô tại Đông Nam Á trong thập kỷ tới và đề xuất chiến lược phòng ngừa"* $\to$ Kích hoạt Đồ thị Tác tử đa chặng (Iterative Agent Loop với ReAct / GraphRAG).
+
+---
+
+### 9.7. Bảng ma trận so sánh toàn diện 9 kỹ thuật RAG hàng đầu
+
+Dưới đây là bảng phân tích định lượng và so sánh kỹ thuật giữa các trường phái RAG hiện nay:
+
+| Kỹ thuật RAG | Ý tưởng cốt lõi | Điểm mạnh (Pros) | Điểm yếu / Đánh đổi (Cons) | Chi phí Token | Độ trễ (Latency) | Kịch bản tối ưu (When to use) |
+| :--- | :--- | :--- | :--- | :---: | :---: | :--- |
+| **Naive RAG** | Vector search cơ bản $\to$ Nối Top-K chunks $\to$ LLM | Đơn giản, triển khai trong 30 phút, chi phí thấp | Dễ ảo giác, mất bối cảnh, dính lỗi *Lost in the Middle* | ⭐ (Rất thấp) | ⚡ ($< 300\text{ms}$) | Thử nghiệm PoC nhanh, dữ liệu tài liệu cực ngắn và đồng nhất |
+| **Two-Stage RAG** *(Bi-Encoder + Cross-Encoder)* | Dùng Vector DB thu hồi Top-50, dùng Cross-Encoder re-rank lấy Top-3 | Tăng vọt độ chính xác Recall@1 từ 50% lên 83%, triệt tiêu *Lost in the Middle* | Tốn thêm năng lực tính toán GPU của Cross-Encoder lúc query | ⭐⭐ (Thấp) | ⏱️ ($300 - 600\text{ms}$) | **Chuẩn mực vàng mặc định** cho mọi hệ thống RAG doanh nghiệp |
+| **HyDE** | LLM sinh câu trả lời giả định $\to$ Lấy vector đó tìm kiếm Doc-to-Doc | Biến Asymmetric thành Symmetric Search, cực mạnh với câu hỏi trừu tượng | Thêm 1 lượt gọi LLM; dễ bị lệch hướng nếu LLM giả định sai | ⭐⭐⭐ (Trung bình) | 🐢 ($800 - 1500\text{ms}$) | Search học thuật, người dùng không biết thuật ngữ chuyên ngành |
+| **Parent Document Retrieval** | Lập chỉ mục Child Chunks nhỏ (128t), khi trúng thì nạp Parent Chunk lớn (1024t) | Cân bằng hoàn hảo: Vector search siêu nét + LLM đọc trọn vẹn ngữ cảnh | Tốn gấp đôi dung lượng lưu trữ (vừa lưu Vector DB vừa lưu DocStore) | ⭐⭐ (Thấp) | ⚡ ($300 - 500\text{ms}$) | Tài liệu có cấu trúc phân cấp, hợp đồng pháp lý, sách hướng dẫn |
+| **Contextual Retrieval** *(Anthropic)* | Dùng LLM nhỏ sinh 50-100 từ bối cảnh trước mỗi chunk $\to$ Embed + BM25 | Giảm tới 49% lỗi truy xuất trượt; giữ vững ngữ cảnh cho mọi mảnh vụn | Tốn chi phí LLM một lần duy nhất lúc Offline Indexing | ⭐⭐⭐ (Lúc Index) / ⭐⭐ (Lúc Query) | ⚡ ($350 - 550\text{ms}$) | Cơ sở tri thức tài chính, y tế, báo cáo thường niên phức tạp |
+| **GraphRAG** *(Microsoft)* | Trích xuất Knowledge Graph $\to$ Phân cụm Leiden $\to$ Tóm tắt cộng đồng | Trả lời xuất sắc câu hỏi bao quát toàn cục (*Global Sensemaking*) | Chi phí Indexing bằng LLM rất đắt đỏ; cấu trúc phức tạp | ⭐⭐⭐⭐⭐ (Rất cao lúc Index) | 🐢 ($1 - 3\text{s}$) | Nghiên cứu tổng quan toàn ngành, phân tích hàng nghìn báo cáo |
+| **Self-RAG** | Huấn luyện LLM sinh Reflection Tokens (`[Retrieve]`, `[IsRel]`, `[IsSup]`) | Tự động hóa hoàn toàn; triệt tiêu ảo giác nhờ kiểm chứng bảo chứng | Đòi hỏi mô hình chuyên biệt đã fine-tune các token phản tư | ⭐⭐ (Trung bình) | ⏱️ ($400 - 800\text{ms}$) | Hệ thống trợ lý AI tự chủ yêu cầu độ tin cậy tuyệt đối |
+| **Corrective RAG (CRAG)** | Bộ đánh giá tin cậy $\to$ Correct (Tinh lọc) / Incorrect (Web Search) | Không bao giờ bị bế tắc khi dữ liệu nội bộ thiếu; tự sửa sai linh hoạt | Phụ thuộc vào chất lượng API tìm kiếm ngoài (Google/Brave) | ⭐⭐⭐ (Biến thiên) | 🐢 ($800 - 2000\text{ms}$ khi gọi Web) | Chatbot dịch vụ khách hàng, sản phẩm tiêu dùng công cộng |
+| **Adaptive RAG** | Classifier định tuyến câu hỏi theo độ khó: Zero-shot vs Single-hop vs Agent | Tối ưu hóa chi phí và độ trễ: Câu dễ trả lời ngay, câu khó phân tích sâu | Cần xây dựng và bảo trì bộ phân loại định tuyến chính xác | ⭐ $\to$ ⭐⭐⭐⭐ (Tối ưu theo ca) | ⚡ $\to$ 🐢 (Linh hoạt) | Hệ thống quy mô lớn hàng triệu người dùng với câu hỏi đa dạng |
+
+---
+
+### 9.8. Cây quyết định kiến trúc RAG thực chiến (Practical Decision Tree)
+
+Để lựa chọn đúng kiến trúc RAG cho dự án thực tế của doanh nghiệp, hãy áp dụng cây quyết định kỹ thuật dưới đây:
+
+```mermaid
+flowchart TD
+    Start["Bắt đầu: Thiết kế hệ thống RAG mới"] --> Q_Type{"Người dùng hỏi câu hỏi dạng gì là chủ yếu?"}
+    
+    Q_Type -->|"Câu hỏi tổng thể bao quát<br>(Global Sensemaking / 'Các chủ đề chính là gì?')"| Check_Budget{"Ngân sách Indexing có dồi dào không?"}
+    Check_Budget -->|"Có ngân sách"| Arch_GraphRAG["LỰA CHỌN: GraphRAG<br>(Microsoft Leiden Community Extraction)"]
+    Check_Budget -->|"Ngân sách hạn hẹp"| Arch_MapReduce["LỰA CHỌN: Map-Reduce Summarization<br>trên Document-level"]
+
+    Q_Type -->|"Câu hỏi tra cứu thực thể & dữ kiện cụ thể<br>(Factoid / Local Q&A)"| Q_Latency{"Ngân sách độ trễ (Latency Budget)?"}
+    
+    Q_Latency -->|"Cực gắt (< 100ms)"| Arch_BiOnly["LỰA CHỌN: Fine-tuned Bi-Encoder thuần túy<br>+ HNSW Index (Không Re-ranker)"]
+    Q_Latency -->|"Tiêu chuẩn (300ms - 800ms)"| Q_DocType{"Cấu trúc và tính toàn vẹn của tài liệu?"}
+    
+    Q_DocType -->|"Hợp đồng, báo cáo tài chính dài, dễ đứt ngữ cảnh"| Arch_Contextual["LỰA CHỌN: Anthropic Contextual Retrieval<br>hoặc Parent Document Retrieval + Re-ranking"]
+    Q_DocType -->|"Văn bản phổ thông, hỏi trừu tượng"| Arch_HyDE["LỰA CHỌN: HyDE + Two-Stage Reranking"]
+    Q_DocType -->|"Văn bản chuẩn mực tiêu chuẩn"| Arch_TwoStage["LỰA CHỌN: Two-Stage Hybrid Pipeline<br>(Dense + BM25 + Cross-Encoder)"]
+
+    Q_Latency -->|"Linh hoạt (> 1.5s), ưu tiên chống ảo giác 100%"| Arch_Agentic["LỰA CHỌN: Agentic RAG<br>(CRAG với Web Search Fallback + Self-RAG Verification)"]
+
+    style Arch_TwoStage fill:#d4edda,stroke:#28a745,stroke-width:2px
+    style Arch_Contextual fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px
+    style Arch_GraphRAG fill:#fff3cd,stroke:#ffc107,stroke-width:2px
+    style Arch_Agentic fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+```
+
+---
+
+## 10. BẢNG MA TRẬN RA QUYẾT ĐỊNH KIẾN TRÚC TÌM KIẾM (SEARCH DECISION MATRIX)
 
 Dưới đây là cẩm nang hướng dẫn kỹ sư lựa chọn giải pháp Semantic Search phù hợp với từng bài toán thực tế:
 
@@ -724,7 +1076,7 @@ Dưới đây là cẩm nang hướng dẫn kỹ sư lựa chọn giải pháp S
 
 ## 11. TÀI LIỆU NGHIÊN CỨU & BÀI BÁO KHOA HỌC CỐT LÕI (ACADEMIC REFERENCES)
 
-Dưới đây là danh mục các bài báo khoa học nền tảng định hình toàn bộ lĩnh vực Semantic Search, Dense Retrieval và Re-ranking hiện đại:
+Dưới đây là danh mục các bài báo khoa học nền tảng định hình toàn bộ lĩnh vực Semantic Search, Dense Retrieval, Embedding Space Geometry và các Kiến Trúc RAG Tiên Tiến:
 
 1. **Sentence-BERT (SBERT):**
    * *Bài báo:* Reimers, N., & Gurevych, I. (2019). **"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks"**. *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP-IJCNLP)*, 3982–3992.
@@ -750,6 +1102,38 @@ Dưới đây là danh mục các bài báo khoa học nền tảng định hìn
    * *Bài báo:* Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2023). **"Lost in the Middle: How Language Models Use Long Contexts"**. *Transactions of the Association for Computational Linguistics (TACL 2024)*, 12, 157–173.
    * *Liên kết:* [arXiv:2307.03172](https://arxiv.org/abs/2307.03172)
    * *Ý nghĩa:* Chứng minh bằng thực nghiệm đường cong chú ý hình chữ U của LLM, lý giải nguyên nhân khoa học vì sao việc Re-ranking đưa tài liệu đúng lên vị trí số 1 là điều kiện tiên quyết chống ảo giác trong RAG.
+7. **HyDE (Hypothetical Document Embeddings):**
+   * *Bài báo:* Gao, L., Dai, X., Lin, J., & Callan, J. (2022). **"Precise Zero-Shot Dense Retrieval without Relevance Labels"**. *arXiv preprint*.
+   * *Liên kết:* [arXiv:2212.10496](https://arxiv.org/abs/2212.10496)
+   * *Ý nghĩa:* Đột phá biến đổi truy vấn không đối xứng thành đối xứng Doc-to-Doc bằng văn bản giả định của LLM, tăng vọt độ chính xác tìm kiếm zero-shot.
+8. **Contextual Retrieval:**
+   * *Bài báo:* Anthropic Research. (2024). **"Introducing Contextual Retrieval: Contextual Embeddings and BM25"**. *Anthropic Engineering Whitepaper*.
+   * *Liên kết:* [anthropic.com/news/contextual-retrieval](https://www.anthropic.com/news/contextual-retrieval)
+   * *Ý nghĩa:* Tiêm 50-100 từ bối cảnh trước mỗi chunk kết hợp Contextual Embeddings, BM25 và Re-ranking giúp giảm 49% tỷ lệ lỗi truy xuất trượt.
+9. **GraphRAG (Microsoft Research):**
+   * *Bài báo:* Edge, D., Trinh, H., Cheng, N., Bradley, J., Chao, A., Mody, A., Truitt, C., & Larson, J. (2024). **"From Local to Global: A Graph RAG Approach to Query-Focused Summarization"**. *arXiv preprint*.
+   * *Liên kết:* [arXiv:2404.16130](https://arxiv.org/abs/2404.16130)
+   * *Ý nghĩa:* Khắc phục điểm mù Global Sensemaking của Vector RAG bằng phân cụm cộng đồng Leiden và báo cáo tóm tắt cộng đồng phân cấp.
+10. **Self-RAG (Self-Reflective Retrieval-Augmented Generation):**
+    * *Bài báo:* Asai, A., Sewon, M., Hajishirzi, H., et al. (2023). **"Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection"**. *International Conference on Learning Representations (ICLR 2024)*.
+    * *Liên kết:* [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)
+    * *Ý nghĩa:* Đề xuất 4 token phản tư (`[Retrieve]`, `[IsRel]`, `[IsSup]`, `[IsUse]`) trao quyền cho LLM tự quyết định truy xuất và tự kiểm định chống ảo giác.
+11. **Corrective RAG (CRAG):**
+    * *Bài báo:* Yan, S. Q., Gu, J. C., Zhu, Y., & Ling, Z. H. (2024). **"Corrective Retrieval Augmented Generation"**. *arXiv preprint*.
+    * *Liên kết:* [arXiv:2401.15884](https://arxiv.org/abs/2401.15884)
+    * *Ý nghĩa:* Cơ chế đánh giá mức độ tin cậy với 3 vùng quyết định, tự động chuyển hướng sang Web Search khi dữ liệu nội bộ không đáp ứng.
+12. **Embedding Space Anisotropy (Hiện tượng dị hướng hình nón hẹp):**
+    * *Bài báo:* Ethayarajh, K. (2019). **"How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings"**. *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)*, 55–65.
+    * *Liên kết:* [arXiv:1909.00512](https://arxiv.org/abs/1909.00512)
+    * *Ý nghĩa:* Phát hiện và chứng minh toán học hiện tượng không gian embedding Transformer bị co cụm trong một hình nón hẹp (Anisotropy).
+13. **BERT-Whitening Transformation:**
+    * *Bài báo:* Su, J., Cao, J., Liu, W., & Li, Y. (2021). **"Whitening Sentence Representations for Better Inductive Bias and Faster Retrieval"**. *arXiv preprint*.
+    * *Liên kết:* [arXiv:2103.15316](https://arxiv.org/abs/2103.15316)
+    * *Ý nghĩa:* Ứng dụng biến đổi SVD làm trắng vector embedding, khôi phục tính đẳng hướng (Isotropy) và mở rộng biên độ phân biệt mà không cần huấn luyện lại.
+14. **Alignment and Uniformity on the Hypersphere:**
+    * *Bài báo:* Wang, T., & Isola, P. (2020). **"Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere"**. *International Conference on Machine Learning (ICML 2020)*, 9929–9939.
+    * *Liên kết:* [arXiv:2005.10242](https://arxiv.org/abs/2005.10242)
+    * *Ý nghĩa:* Thiết lập nền tảng lý thuyết hình học cho học tương phản, chứng minh rằng sự phân bố đều (Uniformity) trên mặt cầu là chìa khóa triệt tiêu dị hướng.
 
 ---
 

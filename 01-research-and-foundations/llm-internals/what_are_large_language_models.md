@@ -28,6 +28,9 @@ updated: 2026-09-21
 ## MỤC LỤC
 1. [Khái niệm cốt lõi: Language Model (LM) là gì?](#1-khái-niệm-cốt-lõi-language-model-lm-là-gì)
 2. [Biểu diễn ngôn ngữ: Từ Word đến Tokenization](#2-biểu-diễn-ngôn-ngữ-từ-word-đến-tokenization)
+   - [2.1. Phân biệt Word, Character vs. Subword Tokenization](#21-phân-biệt-word-character-vs-subword-tokenization)
+   - [2.2. Giải phẫu 3 giải thuật Subword: BPE, WordPiece và Unigram/SentencePiece](#22-giải-phẫu-3-giải-thuật-subword-bpe-wordpiece-và-unigramsentencepiece)
+   - [2.3. Các thất bại hệ thống của Tokenizer: Nghịch lý "Strawberry" & Bất bình đẳng ngôn ngữ](#23-các-thất-bại-hệ-thống-của-tokenizer-nghịch-lý-strawberry--bất-bình-đẳng-ngôn-ngữ)
 3. [Dòng thời gian tiến hóa (2001 – Nay): 4 bước nhảy vọt định hình NLP](#3-dòng-thời-gian-tiến-hóa-2001--nay-4-bước-nhảy-vọt-định-hình-nlp)
 4. [Ba trường phái kiến trúc: Autoencoding vs. Seq2Seq vs. Autoregressive](#4-ba-trường-phái-kiến-trúc-autoencoding-vs-seq2seq-vs-autoregressive)
 5. [Hồ sơ giải phẫu các họ mô hình hiện đại tiêu biểu (Case Studies)](#5-hồ-sơ-giải-phẫu-các-họ-mô-hình-hiện-đại-tiêu-biểu-case-studies)
@@ -81,7 +84,7 @@ Con người khi đọc hiểu văn bản cũng liên tục đưa ra các phán 
 
 ## 2. BIỂU DIỄN NGÔN NGỮ: TỪ WORD ĐẾN TOKENIZATION
 
-Máy tính là thiết bị xử lý số học thuần túy; nó không có khái niệm trực tiếp về chữ cái, ngữ nghĩa hay văn phạm. Do đó, văn bản thô (raw text) bắt buộc phải được mã hóa thành các con số trước khi đưa vào mô hình.
+Máy tính là thiết bị xử lý số học thuần túy; nó không có khái niệm trực tiếp về chữ cái, ngữ nghĩa hay văn phạm. Do đó, văn bản thô (raw text) bắt buộc phải được mã hóa thành các chuỗi chỉ số rời rạc (**Token IDs**) trước khi được ánh xạ vào không gian vector liên tục (**Vector Embeddings**) bên trong mô hình.
 
 ```mermaid
 flowchart TD
@@ -94,21 +97,169 @@ flowchart TD
     Raw --> Tokenizer --> Tokens --> TokenIDs --> Embeddings
 ```
 
-### Phân biệt Word vs. Token: Tại sao Token không đồng nhất với Word?
-* **Word (Từ ngữ học):** Đơn vị ngôn ngữ hoàn chỉnh (ví dụ: *"anthropology"*, *"chạy bộ"*).
-* **Token (Đơn vị tính toán):** Là các mảnh ký tự (subwords), từ đơn, hoặc thậm chí là ký tự đơn lẻ tùy thuộc vào bộ từ vựng (**Vocabulary**) cố định của mô hình (thường dao động từ 32,000 đến 128,000 token IDs).
+---
 
-#### Cơ chế tách từ (Subword Tokenization - BPE):
-1. **Từ thông dụng:** Giữ nguyên thành 1 token duy nhất (ví dụ: `"apple"` $\rightarrow$ `["apple"]`).
-2. **Từ hiếm, từ chuyên ngành, từ ghép:** Bị tách thành các tiền tố, căn tố và hậu tố:
-   * `"unbelievable"` $\rightarrow$ `["un", "believ", "able"]` (3 tokens).
-   * `"tokenization"` $\rightarrow$ `["token", "ization"]` (2 tokens).
-3. **Mã nguồn lập trình & Dấu câu:** Khoảng trắng thụt lề, dấu ngoặc, dấu chấm câu đều có token riêng:
-   * `"\n    def "` $\rightarrow$ có thể là 1 token đặc thù chứa cả ký tự xuống dòng và thụt 4 khoảng trắng.
+### 2.1. Phân biệt Word, Character vs. Subword Tokenization
 
-> [!NOTE] Quy tắc ước lượng thực tế
-> Trong tiếng Anh: **100 từ $\approx$ 130 – 135 tokens** (hoặc 1 token $\approx$ 0.75 từ / 4 ký tự).  
-> Đối với tiếng Việt hoặc các ngôn ngữ giàu dấu thanh điệu, nếu tokenizer chưa được huấn luyện đủ dữ liệu bản địa, một từ có thể bị bẻ nhỏ thành nhiều byte tokens, làm tăng chi phí tính toán và làm hẹp cửa sổ ngữ cảnh thực tế.
+Trong lịch sử xử lý ngôn ngữ tự nhiên (NLP), các nhà nghiên cứu đã thử nghiệm ba cấp độ phân rã văn bản:
+
+```mermaid
+flowchart LR
+    Word["Word-level<br>['unbelievable', 'results']<br>❌ Từ điển bùng nổ (|V| > 1M)<br>❌ Out-Of-Vocabulary (OOV)"]
+    Char["Character-level<br>['u','n','b','e','l','i','e',...]<br>❌ Chuỗi quá dài (L x 5)<br>❌ O(L^2) Attention bùng nổ<br>❌ Nghèo nàn ngữ nghĩa"]
+    Subword["Subword-level (Chuẩn hiện đại)<br>['Un', 'believ', 'able']<br>✅ |V| tối ưu (32K - 128K)<br>✅ 0% OOV với Byte-level<br>✅ Giữ trọn ngữ nghĩa căn tố"]
+```
+
+#### 1. Phân rã cấp độ từ (Word-level Tokenization)
+* **Ý tưởng:** Mỗi từ nguyên vẹn được phân cách bởi khoảng trắng là một token độc lập (ví dụ: `"apple"`, `"unbelievable"`).
+* **Điểm yếu chí mạng:**
+  * **Bùng nổ kích thước từ điển ($|V| \to \infty$):** Ngôn ngữ tự nhiên có hàng trăm nghìn đến hàng triệu từ vựng khác nhau. Ma trận nhúng từ điển $E \in \mathbb{R}^{|V| \times d}$ sẽ chiếm dụng dung lượng VRAM khổng lồ chỉ để lưu bảng tra cứu từ.
+  * **Thất bại trước từ chưa từng thấy (Out-Of-Vocabulary - OOV):** Bất kỳ từ mới nào phát sinh, thuật ngữ tiếng lóng, từ ghép hay lỗi chính tả (typo như `"unbelievvable"`) đều bị gán thành ký hiệu lạ `<UNK>` (Unknown), làm mất sạch ngữ nghĩa.
+
+#### 2. Phân rã cấp độ ký tự (Character-level Tokenization)
+* **Ý tưởng:** Bẻ nhỏ mọi từ thành từng chữ cái đơn lẻ (`['c', 'a', 't']`).
+* **Ưu điểm:** Bộ từ điển siêu nhỏ gọn ($|V| \approx 256$ ký tự mã ASCII/Unicode), không bao giờ gặp lỗi OOV.
+* **Điểm yếu chí mạng:**
+  * **Bùng nổ chiều dài chuỗi ($L$):** Một văn bản 1,000 từ có thể biến thành 5,000 đến 8,000 ký tự. Vì cơ chế Self-Attention có độ phức tạp tính toán và bộ nhớ tỷ lệ bậc hai với chiều dài chuỗi $\mathcal{O}(L^2)$, việc tăng chiều dài chuỗi lên 5 lần khiến chi phí bộ nhớ KV Cache và tính toán tăng gấp **25 lần**!
+  * **Nghèo nàn ngữ nghĩa:** Từng chữ cái đứng riêng lẻ (như chữ `"a"` hay `"t"`) hầu như không mang tải trọng ngữ nghĩa độc lập.
+
+#### 3. Phân rã cấp độ từ con (Subword Tokenization - Chuẩn mực vàng hiện đại)
+* Phân tích các từ thông dụng thành một token hoàn chỉnh (ví dụ: `"the"`, `"cat"`, `"apple"`).
+* Bẻ các từ phức tạp, từ ghép, từ hiếm hoặc từ mới thành các mảnh căn tố, tiền tố, hậu tố ngữ nghĩa (morphemes), ví dụ: `"unbelievable"` $\to$ `["un", "believ", "able"]`.
+* Giữ kích thước từ vựng ở mức tối ưu ($|V| \in [32\,000, 128\,000]$), cân bằng hoàn hảo giữa độ dài chuỗi và độ giàu ngữ nghĩa.
+
+---
+
+### 2.2. Giải phẫu 3 giải thuật Subword: BPE, WordPiece và Unigram/SentencePiece
+
+Toàn bộ thế giới LLM hiện nay vận hành dựa trên 3 thuật toán phân tách Subword cốt lõi:
+
+```mermaid
+classDiagram
+    class SubwordAlgorithms {
+        +Byte-Pair Encoding (BPE / BBPE)
+        +WordPiece
+        +SentencePiece / Unigram LM
+    }
+    class BPE {
+        OpenAI GPT-2/3/4, Meta LLaMA
+        Cơ chế: Tần suất ghép cặp tham lam (Frequency-based merge)
+        Đặc tính: Bắt đầu từ ký tự/byte, ghép dần lên
+    }
+    class WordPiece {
+        Google BERT, DistilBERT
+        Cơ chế: Tối đa hóa Likelihood / Mutual Information
+        Đặc tính: Dùng ký hiệu tiền tố '##'
+    }
+    class SentencePiece_Unigram {
+        Google T5, ALBERT, Gemma
+        Cơ chế: Cắt tỉa xác suất (Top-down pruning)
+        Đặc tính: Coi khoảng trắng là ký hiệu thường (U+2581)
+    }
+    SubwordAlgorithms <|-- BPE
+    SubwordAlgorithms <|-- WordPiece
+    SubwordAlgorithms <|-- SentencePiece_Unigram
+```
+
+#### 1. Byte-Pair Encoding (BPE) & Byte-level BPE (BBPE)
+* **Xuất xứ & Ứng dụng:** Đề xuất cho nén dữ liệu bởi Philip Gage (1994), sau đó được Sennrich et al. (2016) áp dụng vào dịch máy nơ-ron; hiện là nền tảng của toàn bộ dòng mô hình **OpenAI (GPT-2, GPT-3, GPT-4)** và **Meta (LLaMA 1/2/3)**.
+* **Quy trình huấn luyện thuật toán BPE (Bottom-Up Greedy Merge):**
+  1. **Khởi tạo:** Bộ từ vựng $V$ chứa toàn bộ các ký tự đơn lẻ xuất hiện trong kho ngữ liệu huấn luyện. Mỗi từ trong dữ liệu được phân rã thành chuỗi các ký tự kèm ký hiệu kết thúc từ:
+     $$\text{Corpus: } \{\text{'l o w </w>'}: 5, \text{'l o w e s t </w>'}: 2, \text{'n e w e r </w>'}: 6, \text{'w i d e r </w>'}: 3\}$$
+  2. **Đếm tần suất:** Duyệt qua toàn bộ corpus và đếm tần suất xuất hiện của mọi cặp ký hiệu liền kề nhau:
+     * Cặp `('e', 'r')` xuất hiện $6 + 3 = 9$ lần.
+     * Cặp `('l', 'o')` xuất hiện $5 + 2 = 7$ lần.
+  3. **Ghép cặp tham lam (Merge):** Chọn cặp có tần suất cao nhất (ở đây là `('e', 'r')`), ghép lại thành một token mới `'er'`, và thêm `'er'` vào từ điển $V$. Cập nhật lại kho ngữ liệu:
+     $$\text{'n e w er </w>'}, \text{'w i d er </w>'}$$
+  4. **Lặp lại:** Thực hiện quy trình đếm và ghép cho đến khi từ vựng $V$ đạt đúng kích thước mục tiêu quy định trước (ví dụ: $50\,000$ merges).
+* **Byte-level BPE (BBPE):**
+  * Thay vì khởi tạo từ ký tự Unicode (vốn có hàng trăm nghìn ký tự trên toàn thế giới), BBPE khởi tạo từ đúng **256 giá trị byte cơ bản (0x00 đến 0xFF)** của bảng mã UTF-8.
+  * **Ưu điểm tuyệt đối:** Bất kỳ chuỗi văn bản nào, bằng bất kỳ ngôn ngữ nào, kể cả emoji hay mã nhị phân, đều có thể biểu diễn được mà **hoàn toàn không bao giờ phát sinh ký tự lỗi `<UNK>`**.
+* **Regex Pre-tokenization:**
+  * Để ngăn BPE gộp các ký tự qua ranh giới khoảng trắng hoặc gộp từ với dấu câu (ví dụ biến `"hello."` thành một token duy nhất), các tokenizer như của GPT-2 hay GPT-4 áp dụng biểu thức chính quy (Regex Pattern) để tiền phân đoạn văn bản trước khi thực hiện merge:
+  ```python
+  # Regex pre-tokenization pattern trong GPT-4 (cl100k_base):
+  # Tách riêng các dạng rút gọn ('s, 't, 're), chữ cái, số, dấu câu và khoảng trắng
+  import regex as re
+  GPT4_SPLIT_REGEX = re.compile(
+      r"""'(?i:[sdmt]|ll|ve|re)|[^\r\n\p{L}\p{N}]?+\p{L}+|\p{N}{1,3}| ?[^\s\p{L}\p{N}]++[\r\n]*|\s*[\r\n]|\s+(?!\S)|\s+"""
+  )
+  ```
+
+#### 2. WordPiece (Schuster & Nakajima, 2012; Devlin et al., 2018)
+* **Ứng dụng:** Là tokenizer chính của họ mô hình **BERT**, **DistilBERT**, và hệ thống nhận diện giọng nói Google Voice Search.
+* **Điểm khác biệt cốt lõi với BPE:**
+  * BPE chọn cặp token để ghép dựa trên **tần suất thô (Frequency)**.
+  * WordPiece chọn cặp token $(u, v)$ để ghép dựa trên **mức độ tăng hàm khả năng (Likelihood)** của tập dữ liệu huấn luyện theo mô hình ngôn ngữ Unigram.
+  * Điểm số ghép cặp (Scoring formula):
+    $$
+    \text{Score}(u, v) = \frac{\text{Count}(u, v)}{\text{Count}(u) \times \text{Count}(v)}
+    $$
+  * Tỉ số này chính là phép đo **Thông tin tương hỗ (Pointwise Mutual Information - PMI)**: Nó chỉ ưu tiên ghép hai token nếu tần suất chúng xuất hiện cùng nhau cao hơn đáng kể so với kỳ vọng ngẫu nhiên khi hai token xuất hiện độc lập.
+* **Quy ước tiền tố Subword:** Các mảnh từ con nằm ở giữa hoặc cuối từ được gắn tiền tố đặc biệt `##` để phân biệt với từ đứng đầu:
+  * Từ `"playing"` được tách thành: `['play', '##ing']`.
+  * Từ `"unbelievable"` được tách thành: `['un', '##beli', '##eva', '##ble']`.
+
+#### 3. SentencePiece & Unigram Language Model (Kudo & Richardson, 2018)
+* **Ứng dụng:** Sử dụng rộng rãi trong **Google T5**, **ALBERT**, **Gemma**, và bộ tokenizer gốc của Meta **LLaMA** (dùng SentencePiece chạy BPE/Unigram).
+* **Đột phá "Không phụ thuộc ngôn ngữ" (Language-Independent & Lossless):**
+  * Hầu hết các tokenizer truyền thống giả định rằng văn bản có thể tách từ sơ bộ dựa vào khoảng trắng (`split(' ')`). Giả định này hoàn toàn sụp đổ đối với các ngôn ngữ không dùng dấu cách giữa các từ như tiếng Trung, tiếng Nhật, tiếng Thái.
+  * **SentencePiece** xử lý chuỗi văn bản thô như một dòng ký tự liên tục. Khoảng trắng được xem như một ký tự bình thường và được thay thế bằng ký hiệu đặc biệt `_` (ký tự Unicode `U+2581`).
+  * Nhờ đó, việc giải mã (**Detokenization**) trở nên cực kỳ tinh gọn và không bao giờ mất thông tin (Lossless): chỉ cần nối toàn bộ các token lại với nhau và thay thế ký hiệu `_` thành khoảng trắng.
+* **Thuật toán Unigram Language Model (Top-Down Pruning):**
+  * Khác hoàn toàn với BPE (đi từ dưới lên bằng cách ghép cặp), Unigram LM đi từ trên xuống (**Top-Down**):
+    1. Khởi tạo một bộ từ vựng $V$ khổng lồ (chứa toàn bộ từ đơn và các chuỗi con phổ biến xuất hiện trong ngữ liệu).
+    2. Sử dụng thuật toán EM (Expectation-Maximization) để ước lượng phân phối xác suất unigram $P(x)$ cho từng token $x \in V$.
+    3. Với mỗi token $x$, tính toán lượng suy giảm độ hợp lý (Loss) của kho ngữ liệu nếu token đó bị loại bỏ khỏi $V$.
+    4. Cắt tỉa (prune) $10\% - 20\%$ các token có mức độ ảnh hưởng ít nhất tới tổng thể Loss.
+    5. Lặp lại chu trình cho tới khi kích thước từ vựng giảm xuống đúng ngưỡng $V$ mục tiêu.
+
+---
+
+### 2.3. Các thất bại hệ thống của Tokenizer: Nghịch lý "Strawberry" & Bất bình đẳng ngôn ngữ
+
+Vì Tokenizer đóng vai trò là "lăng kính" duy nhất để LLM nhìn thấy thế giới chữ viết, những sai lệch cố hữu trong quá trình phân rã token là nguồn gốc gây ra hàng loạt hành vi kỳ quặc của LLM mà người dùng thường tưởng lầm là "LLM bị mất trí":
+
+```mermaid
+flowchart TD
+    subgraph Failures["Hậu quả của trừu tượng hóa Token rời rạc"]
+        F1["Nghịch lý 'Strawberry'<br>Không đếm được ký tự r<br>Không đảo ngược được chuỗi"]
+        F2["Lỗi số học đa chữ số<br>Số '12345' bị xẻ vụn kỳ dị<br>Làm hỏng phép cộng cột"]
+        F3["Thuế Token đa ngôn ngữ<br>Tiếng Việt tốn 2x - 4x tokens<br>Context hẹp hơn, đắt hơn"]
+    end
+```
+
+#### 1. Nghịch lý đếm chữ cái: "How many 'r's are in 'strawberry'?" & Đảo chuỗi
+* **Hiện tượng:** Khi được hỏi *"Trong từ 'strawberry' có bao nhiêu chữ 'r'?"*, các LLM thông minh nhất (như GPT-4 trước bản cập nhật hoặc các mô hình không dùng CoT) thường trả lời tự tin là **2** thay vì **3**. Nếu yêu cầu LLM đảo ngược chuỗi từ: *"Reverse the word 'programming'"*, mô hình sinh ra kết quả sai lệch hoàn toàn.
+* **Bản chất kỹ thuật:**
+  * LLM **hoàn toàn không nhìn thấy** từng chữ cái `s-t-r-a-w-b-e-r-r-y`.
+  * Trong bộ tokenizer `cl100k_base` của OpenAI, từ `"strawberry"` được mã hóa thành đúng 1 hoặc 2 Token ID:
+    ```python
+    import tiktoken
+    enc = tiktoken.get_encoding("cl100k_base")
+    print(enc.encode("strawberry"))  # Output: [496] hoặc kết hợp [16091, 19163]
+    ```
+  * Sau khi qua ma trận Embedding, Transformer chỉ nhận được một vector $4096$ chiều đại diện cho khái niệm quả dâu tây. Bên trong các tầng Attention, **không có bất kỳ cơ chế nào cho phép mô hình bóc tách cấu trúc vi mô bên trong một token**.
+  * **Giải pháp khắc phục:** Khi ta yêu cầu mô hình *"Hãy phát âm từng chữ cái trước khi đếm: s - t - r - a - w - b - e - r - r - y"*, mỗi chữ cái bị ép phải biến thành một token độc lập, lúc này cơ chế Self-Attention mới có thể "nhìn thấy" và đếm chính xác số lượng chữ `'r'`.
+
+#### 2. Thất bại trong số học đa chữ số (Multi-digit Arithmetic)
+* **Hiện tượng:** LLM thực hiện phép nhân hay cộng các số lớn (như $38492 \times 7491$) thường đưa ra kết quả sai lệch ở các hàng đơn vị hoặc hàng chục.
+* **Nguyên nhân:** Tokenizer không có khái niệm về hệ thập phân (hàng đơn vị, hàng chục, hàng trăm).
+  * Chuỗi `"12345"` có thể bị tách thành `["12", "345"]`.
+  * Chuỗi `"67890"` có thể bị tách thành `["678", "90"]`.
+  * Sự phân mảnh ngẫu nhiên này khiến mạng Transformer không thể học được quy luật gióng cột cộng có nhớ (carrying) như toán học cơ bản. Các kiến trúc mới (như LLaMA 3) khắc phục một phần bằng cách đưa quy tắc ép buộc mọi chữ số $0-9$ phải là một token riêng lẻ.
+
+#### 3. "Thuế Token" & Bất bình đẳng ngôn ngữ (Tokenization Inequity)
+* BPE và WordPiece được tối ưu hóa dựa trên tần suất dữ liệu của kho ngữ liệu huấn luyện (trong đó tiếng Anh chiếm từ $80\% - 90\%$).
+* **So sánh thực tế:**
+  * Tiếng Anh: Trung bình 1 từ $\approx 1.2 - 1.3$ token.
+  * Tiếng Việt: Các từ có thanh điệu (như `"tiếng"`, `"nghiên"`, `"khuếch"`) bị xé nhỏ thành các mảnh byte UTF-8 rời rạc, khiến trung bình 1 từ tốn từ **2.5 đến 4 tokens**.
+* **Hậu quả hệ thống:**
+  1. **Chi phí API đắt gấp 2 – 3 lần:** Để truyền tải cùng một lượng thông tin tri thức, người dùng tiếng Việt hoặc các ngôn ngữ phi Latinh (Thái, Ả Rập, Hindi) phải chi trả chi phí token gấp nhiều lần so với tiếng Anh.
+  2. **Cửa sổ ngữ cảnh bị teo nhỏ:** Cùng một context window $8\text{K}$ tokens, một bài báo tiếng Anh có thể dài 6,000 từ, nhưng với tiếng Việt chỉ chứa được khoảng 2,000 – 2,500 từ trước khi bị tràn context.
+
+> [!TIP] Đúc kết cho kỹ sư AI Agent
+> Khi xây dựng Agent xử lý các tác vụ kiểm tra xâu chuỗi, mã số căn cước, mã định danh thẻ tín dụng, hoặc lập trình chi tiết: **Tuyệt đối không để LLM đoán mò chuỗi thô.** Hãy luôn chèn bước tiền xử lý bẻ nhỏ chuỗi thành từng ký tự cách nhau bởi khoảng trắng (`"A B C 1 2 3"`) hoặc sử dụng công cụ Regex/Code Interpreter để xử lý logic xâu ký tự thay vì phụ thuộc vào xác suất Tokenizer.
 
 ---
 
