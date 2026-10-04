@@ -1043,8 +1043,9 @@ Tài liệu này là nền tảng khởi đầu cho toàn bộ hệ thống RAG 
 flowchart TD
     CurrentNode["⭐ Inside RAG: Kiến Trúc 4 Cấu Phần<br>(Bài học hiện tại)"]
 
-    subgraph DeepDive1["1. Lý Thuyết Tầng Sâu & Toán Học"]
+    subgraph DeepDive1["1. Lý Thuyết Tầng Sâu & Cơ Sở Dữ Liệu"]
         SS_Note["01. Semantic Search & Reranking<br>Toán học Bi-Encoder, Cross-Encoder & Advanced RAG"]
+        VDB_Note["03. Embeddings & Vector Databases<br>HNSW, FAISS, ChromaDB, Milvus, Pinecone"]
     end
 
     subgraph DeepDive2["2. Quản Trị Ngữ Cảnh & Bộ Nhớ Agent"]
@@ -1057,18 +1058,21 @@ flowchart TD
     end
 
     CurrentNode --> SS_Note
+    CurrentNode --> VDB_Note
     CurrentNode --> Ctx_Note
     CurrentNode --> Mem_Note
     CurrentNode --> Ent_Note
 
     style CurrentNode fill:#fef08a,stroke:#ca8a04,stroke-width:2px,color:#000000
     style SS_Note fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000000
+    style VDB_Note fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000000
     style Ctx_Note fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#000000
     style Mem_Note fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#000000
     style Ent_Note fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 * **Nghiên cứu sâu về toán học vector & mô hình:** [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng (Bi-Encoder vs Cross-Encoder)]]
+* **Cơ sở dữ liệu Vector & Thuật toán Indexing HNSW:** [[03_embeddings_and_vector_databases|Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector (FAISS, Chroma, Milvus, Pinecone)]]
 * **Quản trị rủi ro ngữ cảnh:** [[03-building-agents/01-harness-and-memory/02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
 * **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [[03-building-agents/01-harness-and-memory/03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
 * **Thiết kế tổng thể hệ thống doanh nghiệp:** [[03-building-agents/06_how_to_build_enterprise_ai_agents|Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp]]

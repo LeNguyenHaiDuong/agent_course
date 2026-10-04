@@ -1147,6 +1147,8 @@ Dưới đây là danh mục các bài báo khoa học nền tảng định hìn
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG TRONG VAULT
 
+* [[02_rag_architecture_and_components|Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)]]: Thực thi pipeline 4 nhịp Retrieve-Rank-Generate-Orchestrate và 9 mẫu thiết kế RAG chiến lược.
+* [[03_embeddings_and_vector_databases|Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector]]: So sánh FAISS, ChromaDB, Milvus, Pinecone, giải phẫu HNSW Index và quản trị vòng đời vector.
 * [[what_are_large_language_models|Bản chất Mô hình Ngôn ngữ Lớn (LLM Internals)]]: Phân tích cơ chế Self-Attention của Transformer, sự khác biệt giữa Encoder (BERT) và Decoder (GPT).
 * [[neural_networks_and_classifications|Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc]]: Nền tảng toán học của Backpropagation, hàm kích hoạt và không gian tiềm ẩn.
 * [[advanced_prompt_engineering_techniques|Kỹ Thuật Prompt Engineering Nâng Cao]]: Cách tối ưu hóa context sau khi đã trích xuất thành công tài liệu từ Semantic Search.
