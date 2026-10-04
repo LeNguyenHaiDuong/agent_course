@@ -75,3 +75,6 @@ build/
 scratch/
 tmp/
 temp/
+audio/
+*.mp3
+chroma_db*/
