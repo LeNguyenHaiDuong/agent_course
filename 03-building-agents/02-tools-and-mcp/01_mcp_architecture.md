@@ -36,7 +36,7 @@ updated: 2026-09-27
 ## 1. BỐI CẢNH LỊCH SỬ & BÀI TOÁN TÍCH HỢP $N \times M$
 
 ### 1.1. Cơn Khủng Hoảng Phân Mảnh Trước Tháng 11/2024
-Như đã khảo sát trong bài [[ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], bản chất cốt lõi của Large Language Model là **tĩnh (static)** và **bị cô lập (isolated)** trong không gian tham số đóng băng tại thời điểm hoàn tất pre-training. Để LLM có thể thực hiện công việc thực tế, chúng ta phải trang bị cho mô hình khả năng tương tác với thế giới thực thông qua các công cụ ngoài: truy vấn cơ sở dữ liệu SQL, đọc tệp tin cục bộ, gọi Git, tìm kiếm Web, hay gửi tin nhắn Slack.
+Như đã khảo sát trong bài [[00_ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], bản chất cốt lõi của Large Language Model là **tĩnh (static)** và **bị cô lập (isolated)** trong không gian tham số đóng băng tại thời điểm hoàn tất pre-training. Để LLM có thể thực hiện công việc thực tế, chúng ta phải trang bị cho mô hình khả năng tương tác với thế giới thực thông qua các công cụ ngoài: truy vấn cơ sở dữ liệu SQL, đọc tệp tin cục bộ, gọi Git, tìm kiếm Web, hay gửi tin nhắn Slack.
 
 Tuy nhiên, trong giai đoạn 2023 – giữa 2024, cộng đồng AI rơi vào tình trạng phân mảnh nghiêm trọng được gọi là **Bài toán bế tắc tích hợp $N \times M$ (The $N \times M$ Integration Bottleneck)**:
 
@@ -727,9 +727,9 @@ flowchart TD
 Tài liệu này là viên gạch nền móng đầu tiên của Tầng 2 trong Trụ cột 3. Hãy tiếp tục nghiên cứu các mối liên kết chặt chẽ trong Vault:
 
 * 🔙 **Nền tảng tiền đề:**
-  * [[ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tìm hiểu về tầng Harness và tại sao LLM cần công cụ ngoài.
+  * [[00_ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tìm hiểu về tầng Harness và tại sao LLM cần công cụ ngoài.
   * [[advanced_prompt_engineering_techniques|Kỹ Thuật Prompt Nâng Cao]]: Cách tối ưu hóa prompt templates và chuỗi suy luận trong MCP Prompts.
-  * [[semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]: Công nghệ truy xuất tài nguyên phía sau các MCP Resource Servers phức tạp.
+  * [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]: Công nghệ truy xuất tài nguyên phía sau các MCP Resource Servers phức tạp.
 * 🔜 **Bài học thực hành kế tiếp trong Trụ cột 3:**
   * [[02_constrained_decoding_and_structured_outputs|Constrained Decoding & Structured Outputs]]: Bảo đảm cú pháp Tool Calling ở tầng Logit Masking.
   * [[01_loop_fundamentals|Nền Tảng Loop Engineering]]: Cách kết hợp MCP Tools vào các vòng lặp tự trị **ReAct** và **Plan-and-Execute**.

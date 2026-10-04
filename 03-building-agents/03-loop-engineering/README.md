@@ -24,7 +24,7 @@ Thư mục này dành riêng để lưu trữ các tài liệu nghiên cứu và
 
 * **Loop Engineering là gì?** Là việc thiết kế các vòng lặp phản hồi có kiểm soát (Feedback Loops) cho phép mô hình AI tự prompt chính nó, tự quan sát kết quả hành động và tiếp tục lặp lại cho đến khi đạt được tiêu chí hoàn thành mục tiêu mà không cần con người can thiệp thủ công ở từng bước.
 * **Tài liệu tham chiếu dẫn nhập:**
-  * [[ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]]: Tổng quan về Tầng 4 - Loop Engineering trong tiến trình phát triển của AI.
+  * [[00_ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]]: Tổng quan về Tầng 4 - Loop Engineering trong tiến trình phát triển của AI.
 
 ---
 

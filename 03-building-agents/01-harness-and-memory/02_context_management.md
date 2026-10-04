@@ -39,7 +39,7 @@ updated: 2026-09-27
 
 ## 1. BẢN CHẤT CỦA CONTEXT WINDOW & NGUYÊN LÝ "RÁC VÀO - RÁC RA"
 
-Trong các hệ thống tác tử AI tự hành (Autonomous Agents), **Cửa sổ ngữ cảnh (Context Window)** là vùng RAM duy nhất mà mô hình ngôn ngữ (LLM Core) có quyền truy cập trực tiếp tại thời điểm suy luận. Như đã phân tích trong [[ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], LLM là một hàm tính toán không trạng thái (stateless function):
+Trong các hệ thống tác tử AI tự hành (Autonomous Agents), **Cửa sổ ngữ cảnh (Context Window)** là vùng RAM duy nhất mà mô hình ngôn ngữ (LLM Core) có quyền truy cập trực tiếp tại thời điểm suy luận. Như đã phân tích trong [[00_ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], LLM là một hàm tính toán không trạng thái (stateless function):
 
 $$
 y_{t} = f_{\theta}(x_{\text{system}} \circ x_{\text{history}} \circ x_{\text{retrieved}} \circ x_{\text{user}})
@@ -151,7 +151,7 @@ flowchart LR
   5. **Orchestrate:** Tầng điều phối tự động kết nối toàn bộ chuỗi theo vũ điệu: $\textbf{Retrieve} \to \textbf{Rank} \to \textbf{Generate} \to \textbf{Orchestrate}$.
 
 > [!tip] Xem chi tiết kiến trúc & triển khai mã nguồn:
-> Xem cẩm nang chuyên sâu: [[rag_architecture_and_components|Inside RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối]] và [[semantic_search_and_reranking|Tìm kiếm Ngữ nghĩa & Tái xếp hạng]].
+> Xem cẩm nang chuyên sâu: [[02_rag_architecture_and_components|Inside RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối]] và [[01_semantic_search_and_reranking|Tìm kiếm Ngữ nghĩa & Tái xếp hạng]].
 
 ### 4 Giá Trị Đột Phá RAG Mang Lại Cho Context:
 1. **Triệt tiêu ảo giác (Anti-Hallucination):** Ép mô hình chỉ được suy luận dựa trên tài liệu cung cấp (*"Dựa trên tài liệu đính kèm, hãy cho biết..."*).
@@ -362,8 +362,8 @@ Tôi cần soạn thảo một email công việc chính thức xin nghỉ phép
 
 ### 🔗 Bản Đồ Liên Kết Kiến Thức (Knowledge Graph Links)
 * 🔙 **Nền tảng liên quan:**
-  * [[ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tổng quan về bộ khung AI Harness và cơ chế Context Drift.
-  * [[semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]: Hạ tầng tìm kiếm vector nền tảng giúp RAG truy xuất tài liệu chính xác, tránh Poisoning.
+  * [[00_ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tổng quan về bộ khung AI Harness và cơ chế Context Drift.
+  * [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]: Hạ tầng tìm kiếm vector nền tảng giúp RAG truy xuất tài liệu chính xác, tránh Poisoning.
   * [[advanced_prompt_engineering_techniques|Kỹ Thuật Prompt Nâng Cao]]: Cách kết hợp CoT và Directional Stimulus để định hướng context.
 * 🔜 **Bài học kế tiếp:**
   * [[01_harness_architecture|Kiến Trúc Phần Mềm AI Harness]]: Cách code bộ lọc Context Pruning và Quarantine trong thực tế.

@@ -45,7 +45,7 @@ Thư mục này nghiên cứu và lưu trữ các chuẩn mực đo lường đ�
 ---
 
 ## 🔗 Điều Hướng Nhanh
-* Bản thiết kế doanh nghiệp: [[how_to_build_enterprise_ai_agents|🏗️ Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp]]
+* Bản thiết kế doanh nghiệp: [[06_how_to_build_enterprise_ai_agents|🏗️ Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp]]
 * Trở về mục lục Trụ cột 3: [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
 * Trở về trang chủ Vault: [[README|🏠 Vault Home MOC]]
 * Xem bản đồ Canvas: [[Agent-Course-Overview.canvas|🗺️ Mở Visual Canvas]]

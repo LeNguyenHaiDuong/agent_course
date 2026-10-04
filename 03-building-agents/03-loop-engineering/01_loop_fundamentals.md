@@ -367,7 +367,7 @@ Hãy chấm điểm trên thang từ 1 đến 5 theo các tiêu chí sau:
 ## 8. BẢN ĐỒ LIÊN KẾT HỆ THỐNG
 
 * 🔙 **Nền tảng liên quan:**
-  * [[ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tổng quan về Tầng 4 - Loop Engineering.
+  * [[00_ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tổng quan về Tầng 4 - Loop Engineering.
   * [[01_harness_architecture|Kiến Trúc Phần Mềm AI Harness]]: Nơi vòng lặp điều khiển vận hành.
   * [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh]]: Phòng chống Context Decay khi vòng lặp kéo dài qua nhiều bước.
   * [[01_mcp_architecture|Kiến Trúc Giao Thức MCP]]: Cung cấp công cụ chuẩn cho pha Execute.

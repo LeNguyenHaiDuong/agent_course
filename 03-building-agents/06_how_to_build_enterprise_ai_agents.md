@@ -173,7 +173,7 @@ Mỗi khối trong sơ đồ kiến trúc trên đều đại diện cho một c
 | **Agent Harness & Core Orchestrator** | Quản lý vòng đời phiên, điều hướng ý định, ngắt mạch lặp vô tận, kiểm soát cửa sổ ngữ cảnh | [[01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]] & [[01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]] |
 | **Context Management & Hygiene** | Chống tràn token, giải quyết *Lost in the Middle*, cô lập dữ liệu rác (Quarantine) | [[02_context_management|Quản Trị Ngữ Cảnh: Bệnh Lý, Tỉa Nhánh & Cô Lập]] |
 | **Multi-tier Memory System** | Bộ nhớ ngắn hạn (Session), bộ nhớ làm việc (Scratchpad), bộ nhớ dài hạn & Consolidation | [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]] |
-| **Enterprise Knowledge & RAG** | Truy xuất lai (Hybrid Search), làm trắng vector (Whitening), Re-ranking, GraphRAG vĩ mô | [[semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa, Re-ranking & Cẩm Nang RAG Tiên Tiến]] |
+| **Enterprise Knowledge & RAG** | Truy xuất lai (Hybrid Search), làm trắng vector (Whitening), Re-ranking, GraphRAG vĩ mô | [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa, Re-ranking & Cẩm Nang RAG Tiên Tiến]] |
 | **Tools Integration via MCP** | Chuẩn hóa kết nối công cụ, phân tách Host-Client-Server qua JSON-RPC 2.0 | [[01_mcp_architecture|Kiến Trúc Giao Thức Model Context Protocol (MCP)]] |
 | **Loop Engineering & Patterns** | Vòng lặp tự trị: ReAct, Plan-and-Execute, Evaluator-Optimizer, Multi-Agent Teams | [[02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]] & [[03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]] |
 | **Observability & LLM-as-a-Judge** | Tracing phân tán (OpenTelemetry/Langfuse), bộ ba chỉ số Ragas, G-Eval, SWE-bench & GAIA | [[01_agent_evals_and_tracing|Hệ Thống Giám Sát, Đo Lường & Đánh Giá Tác Tử AI]] |
@@ -601,7 +601,7 @@ Dưới đây là các công trình học thuật nền tảng và tài liệu k
   * [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng]]: Short-term, Working và Long-term Memory.
 * **Tầng Kết Nối Công Cụ & Tri Thức:**
   * [[01_mcp_architecture|Kiến Trúc Giao Thức Model Context Protocol (MCP)]]: Chuẩn kết nối công cụ qua JSON-RPC 2.0.
-  * [[semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Cẩm Nang RAG Tiên Tiến]]: Hybrid Search, Reranking, GraphRAG và Semantic Memory.
+  * [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Cẩm Nang RAG Tiên Tiến]]: Hybrid Search, Reranking, GraphRAG và Semantic Memory.
 * **Tầng Vòng Lặp & Đa Tác Tử:**
   * [[01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]]: Kiểm soát vòng lặp và bộ ngắt mạch.
   * [[02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]]: Phân tích sâu ReAct, Plan-and-Execute, Evaluator-Optimizer.

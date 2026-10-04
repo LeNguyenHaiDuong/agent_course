@@ -719,7 +719,7 @@ Tại sao chúng ta phải dành nhiều công sức nghiên cứu tầng sâu c
 
 #### Chất lượng truy xuất là "Trần hiệu năng" (Performance Ceiling) của Chatbot
 
-Trong bất kỳ kiến trúc [[ai_chat_systems_and_prompt_engineering|RAG (Retrieval-Augmented Generation)]] hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
+Trong bất kỳ kiến trúc [[00_ai_chat_systems_and_prompt_engineering|RAG (Retrieval-Augmented Generation)]] hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
 
 $$
 \text{Output Quality} \le \text{Quality of Retrieved Context}
@@ -774,7 +774,7 @@ xychart-beta
 
 > [!tip] Chuyên Khảo Chi Tiết: Kiến Trúc 4 Cấu Phần Của RAG (Inside RAG)
 > Để tìm hiểu chi tiết về từng khối kiến trúc, cơ chế tải chỉ mục FAISS, cấu hình bộ lọc Contextual Compression với Cohere Rerank, tầng điều phối RetrievalQA và ca nghiên cứu thực chiến gọi vốn Nông nghiệp thẳng đứng (Vertical Farming), xem chuyên khảo riêng:
-> 👉 [[rag_architecture_and_components|Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)]].
+> 👉 [[02_rag_architecture_and_components|Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)]].
 
 ---
 
@@ -1150,5 +1150,5 @@ Dưới đây là danh mục các bài báo khoa học nền tảng định hìn
 * [[what_are_large_language_models|Bản chất Mô hình Ngôn ngữ Lớn (LLM Internals)]]: Phân tích cơ chế Self-Attention của Transformer, sự khác biệt giữa Encoder (BERT) và Decoder (GPT).
 * [[neural_networks_and_classifications|Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc]]: Nền tảng toán học của Backpropagation, hàm kích hoạt và không gian tiềm ẩn.
 * [[advanced_prompt_engineering_techniques|Kỹ Thuật Prompt Engineering Nâng Cao]]: Cách tối ưu hóa context sau khi đã trích xuất thành công tài liệu từ Semantic Search.
-* [[ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tích hợp Semantic Memory và Vector DB vào AI Harness.
+* [[00_ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tích hợp Semantic Memory và Vector DB vào AI Harness.
 * Về trang chủ khóa học: [[README|🏠 Vault Home MOC]]

@@ -63,7 +63,7 @@ updated: 2026-09-27
 
 ## 1. NGHỊCH LÝ MẤT TRÍ NHỚ & CƠ SỞ KHOA HỌC NHẬN THỨC (COGNITIVE PSYCHOLOGY FOUNDATIONS)
 
-Như đã giải thích trong [[ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], một mô hình ngôn ngữ lớn (LLM) thuần túy là một hàm ánh xạ tĩnh không trạng thái (**Stateless Function**):
+Như đã giải thích trong [[00_ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], một mô hình ngôn ngữ lớn (LLM) thuần túy là một hàm ánh xạ tĩnh không trạng thái (**Stateless Function**):
 
 $$f_{\theta}: \text{Tokens}_{\text{in}} \to \text{Tokens}_{\text{out}}$$
 
@@ -194,7 +194,7 @@ flowchart TD
 
 ### Tầng 4: Semantic External Memory (Kho tri thức vĩnh viễn & RAG đa phương thức)
 * Lưu trữ toàn bộ kho tài liệu, cẩm nang quy trình công ty, và lịch sử các ticket hỗ trợ.
-* Sử dụng hệ thống tìm kiếm vector kết hợp đồ thị tri thức ([[semantic_search_and_reranking|Semantic Search & Advanced RAG]]).
+* Sử dụng hệ thống tìm kiếm vector kết hợp đồ thị tri thức ([[01_semantic_search_and_reranking|Semantic Search & Advanced RAG]]).
 
 ---
 
@@ -595,6 +595,6 @@ if __name__ == "__main__":
 ## 🔗 BẢN ĐỒ LIÊN KẾT KIẾN THỨC
 * **Quản trị rò rỉ ngữ cảnh:** [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý, Tỉa Nhánh & Cô Lập]]
 * **Kiến trúc AI Harness:** [[01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]
-* **Tìm kiếm ngữ nghĩa RAG:** [[semantic_search_and_reranking|Semantic Search & Advanced RAG Architectures]]
+* **Tìm kiếm ngữ nghĩa RAG:** [[01_semantic_search_and_reranking|Semantic Search & Advanced RAG Architectures]]
 * **Vòng lặp tự trị ReAct:** [[01_loop_fundamentals|Nền Tảng Loop Engineering: Vòng Lặp Tự Trị, Điều Kiện Dừng & Circuit Breakers]]
 * **Trang chủ Trụ Cột 3:** [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]

@@ -606,10 +606,10 @@ flowchart LR
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG TRONG VAULT
 
-* [[how_to_build_enterprise_ai_agents|Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp]]: Bản thiết kế kiến trúc khối 6 tầng và thích ứng từng phòng ban.
+* [[06_how_to_build_enterprise_ai_agents|Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp]]: Bản thiết kế kiến trúc khối 6 tầng và thích ứng từng phòng ban.
 * [[01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]]: Vòng lặp phản hồi, điều kiện dừng và các bộ ngắt mạch.
 * [[02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]]: Phân tích sâu ReAct, Plan-and-Execute, Evaluator-Optimizer.
 * [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]: Quản trị bộ nhớ ngắn hạn và dài hạn.
-* [[semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Cẩm Nang RAG Tiên Tiến]]: Đánh giá tầng truy xuất và đo lường Re-ranking.
+* [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Cẩm Nang RAG Tiên Tiến]]: Đánh giá tầng truy xuất và đo lường Re-ranking.
 * Trở về mục lục Trụ cột 3: [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
 * Trở về trang chủ Vault: [[README|🏠 Vault Home MOC]]

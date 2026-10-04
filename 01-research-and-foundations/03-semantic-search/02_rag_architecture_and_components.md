@@ -217,7 +217,7 @@ flowchart TD
 * Người dùng hỏi về **chế độ nghỉ mát của nhân viên**.
 * Retriever quét vector DB và tìm thấy một đoạn văn nhắc nhiều lần đến *"kỳ nghỉ, du lịch, ngày nghỉ"*. Tuy nhiên, đoạn văn đó lại quy định về **lịch nghỉ lễ của đối tác và khách hàng** chứ không phải chính sách dành cho nhân viên nội bộ!
 * Nếu đưa trực tiếp đoạn văn đó vào LLM, mô hình sẽ nhầm lẫn chính sách khách hàng thành chính sách nhân viên.
-* **Bộ Tái Xếp Hạng (Ranker)** xuất hiện để giải quyết đúng bài toán này: Nó sử dụng mô hình Cross-Encoder chuyên biệt (như [[semantic_search_and_reranking#cross-encoder-bộ-mã-hóa-giao-thoa-đỉnh-cao-độ-chính-xác-qua-full-self-attention|Cohere Rerank]]) đọc đồng thời cả câu hỏi và đoạn trích, tính toán lại điểm liên quan (re-score), loại bỏ các đoạn văn nhiễu lệch đề và **đẩy tài liệu chứa câu trả lời thực sự lên vị trí số 1**.
+* **Bộ Tái Xếp Hạng (Ranker)** xuất hiện để giải quyết đúng bài toán này: Nó sử dụng mô hình Cross-Encoder chuyên biệt (như [[01_semantic_search_and_reranking#cross-encoder-bộ-mã-hóa-giao-thoa-đỉnh-cao-độ-chính-xác-qua-full-self-attention|Cohere Rerank]]) đọc đồng thời cả câu hỏi và đoạn trích, tính toán lại điểm liên quan (re-score), loại bỏ các đoạn văn nhiễu lệch đề và **đẩy tài liệu chứa câu trả lời thực sự lên vị trí số 1**.
 
 ---
 
@@ -521,18 +521,18 @@ flowchart LR
   * **Chỉ mục kết hợp thời gian (Temporal Metadata Filtering):** Gắn nhãn thời gian `created_at` và `valid_until` vào metadata của vector để lọc các tài liệu đã hết hiệu lực.
 
 ### 2. Áp lực trần Context Window & Nén ngữ cảnh (Context Limits & Compression)
-* **Thách thức:** Dù các LLM hiện đại có Context Window lên tới 1M hoặc 2M tokens, việc nhồi hàng chục chunks thô vào Prompt không chỉ làm tăng vọt chi phí tiền bạc và độ trễ suy luận, mà còn kích hoạt hiện tượng [[semantic_search_and_reranking#hiện-tượng-lost-in-the-middle-liu-et-al-2023--vai-trò-sống-còn-của-re-ranker|Lost in the Middle]] khiến LLM bỏ sót thông tin quan trọng ở giữa.
+* **Thách thức:** Dù các LLM hiện đại có Context Window lên tới 1M hoặc 2M tokens, việc nhồi hàng chục chunks thô vào Prompt không chỉ làm tăng vọt chi phí tiền bạc và độ trễ suy luận, mà còn kích hoạt hiện tượng [[01_semantic_search_and_reranking#hiện-tượng-lost-in-the-middle-liu-et-al-2023--vai-trò-sống-còn-của-re-ranker|Lost in the Middle]] khiến LLM bỏ sót thông tin quan trọng ở giữa.
 * **Giải pháp hiện đại:**
   * **Contextual Compression & Selective Extraction:** Sử dụng các thuật toán như *LLMLingua* hoặc bộ lọc nén ngữ cảnh của Cohere để lược bỏ các token thừa, chỉ giữ lại các câu mang mật độ thông tin cao nhất trước khi đưa vào Generator.
-  * **Hierarchical Retrieval (Parent-Child Chunking):** Chỉ lưu embedding của các mẩu nhỏ để tìm kiếm chính xác, sau đó nạp đoạn văn cha có cấu trúc hoàn chỉnh vào LLM (xem chi tiết tại [[semantic_search_and_reranking#1-hierarchical--parent-document-retrieval-sentence-window--auto-merging|Hierarchical Retrieval]]).
+  * **Hierarchical Retrieval (Parent-Child Chunking):** Chỉ lưu embedding của các mẩu nhỏ để tìm kiếm chính xác, sau đó nạp đoạn văn cha có cấu trúc hoàn chỉnh vào LLM (xem chi tiết tại [[01_semantic_search_and_reranking#1-hierarchical--parent-document-retrieval-sentence-window--auto-merging|Hierarchical Retrieval]]).
 
 ### 3. Truy vấn mơ hồ & Suy luận đa chặng (Ambiguous Queries & Multi-hop Reasoning)
 * **Thách thức:** Khi người dùng đặt câu hỏi quá ngắn, đa nghĩa (ví dụ: *"Chính sách thế nào?"*) hoặc câu hỏi đòi hỏi phải thu thập dữ kiện từ 3-4 tài liệu khác nhau mới kết luận được, một lượt truy xuất duy nhất (Single-turn RAG) chắc chắn thất bại.
 * **Giải pháp hiện đại:**
   * **Agentic RAG & Tự phản tư (Self-Reflective Loops):** Chuyển dịch từ đường ống tuyến tính sang vòng lặp tác tử tự trị:
-    * [[semantic_search_and_reranking#1-self-rag-self-reflective-retrieval-augmented-generation-asai-et-al-2023|Self-RAG]]: Tác tử tự đánh giá xem mình có cần truy xuất thêm hay không qua các reflection tokens.
-    * [[semantic_search_and_reranking#2-corrective-rag-crag-yan-et-al-2024|Corrective RAG (CRAG)]]: Tự động kích hoạt Web Search dự phòng nếu điểm tin cậy của tài liệu nội bộ quá thấp.
-    * [[02_react_and_planning|ReAct & Multi-hop Planning]]: Phân rã câu hỏi lớn thành nhiều câu hỏi con và thực hiện truy xuất tuần tự từng bước.
+    * [[01_semantic_search_and_reranking#1-self-rag-self-reflective-retrieval-augmented-generation-asai-et-al-2023|Self-RAG]]: Tác tử tự đánh giá xem mình có cần truy xuất thêm hay không qua các reflection tokens.
+    * [[01_semantic_search_and_reranking#2-corrective-rag-crag-yan-et-al-2024|Corrective RAG (CRAG)]]: Tự động kích hoạt Web Search dự phòng nếu điểm tin cậy của tài liệu nội bộ quá thấp.
+    * [[03-building-agents/03-loop-engineering/02_react_and_planning|ReAct & Multi-hop Planning]]: Phân rã câu hỏi lớn thành nhiều câu hỏi con và thực hiện truy xuất tuần tự từng bước.
 
 ---
 
@@ -542,19 +542,19 @@ Tài liệu này là nền tảng khởi đầu cho toàn bộ hệ thống RAG 
 
 ```mermaid
 flowchart TD
-    CurrentNode["⭐ Inside RAG: Kiến Trúc 4 Cấu Phần (Bài học hiện tại)"]
+    CurrentNode["⭐ Inside RAG: Kiến Trúc 4 Cấu Phần<br>(Bài học hiện tại)"]
 
-    subgraph DeepDive1["Lý Thuyết Tầng Sâu & Toán Học"]
-        SS_Note["[[semantic_search_and_reranking]]<br>Toán học Bi-Encoder, Cross-Encoder, Anisotropy & Cẩm nang Advanced RAG"]
+    subgraph DeepDive1["1. Lý Thuyết Tầng Sâu & Toán Học"]
+        SS_Note["01. Semantic Search & Reranking<br>Toán học Bi-Encoder, Cross-Encoder & Advanced RAG"]
     end
 
-    subgraph DeepDive2["Quản Trị Ngữ Cảnh & Bộ Nhớ Agent"]
-        Ctx_Note["[[02_context_management]]<br>Chữa trị Context Poisoning & Lost in the Middle"]
-        Mem_Note["[[03_memory_systems]]<br>Kiến trúc Bộ nhớ Đa tầng & Semantic Memory"]
+    subgraph DeepDive2["2. Quản Trị Ngữ Cảnh & Bộ Nhớ Agent"]
+        Ctx_Note["02. Quản Trị Ngữ Cảnh (Context Management)<br>Chữa trị Context Poisoning & Lost in the Middle"]
+        Mem_Note["03. Hệ Thống Bộ Nhớ (Memory Systems)<br>Kiến trúc Bộ nhớ Đa tầng & Semantic Memory"]
     end
 
-    subgraph DeepDive3["Ứng Dụng Thực Chiến Doanh Nghiệp"]
-        Ent_Note["[[how_to_build_enterprise_ai_agents]]<br>Blueprint Thiết kế Tác tử AI Doanh nghiệp Toàn diện"]
+    subgraph DeepDive3["3. Ứng Dụng Thực Chiến Doanh Nghiệp"]
+        Ent_Note["06. Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp<br>Blueprint Thiết kế Tác tử Toàn diện"]
     end
 
     CurrentNode --> SS_Note
@@ -562,10 +562,14 @@ flowchart TD
     CurrentNode --> Mem_Note
     CurrentNode --> Ent_Note
 
-    style CurrentNode fill:#fef08a,stroke:#ca8a04,stroke-width:3px,color:#000000
+    style CurrentNode fill:#fef08a,stroke:#ca8a04,stroke-width:2px,color:#000000
+    style SS_Note fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000000
+    style Ctx_Note fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#000000
+    style Mem_Note fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#000000
+    style Ent_Note fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
-* **Nghiên cứu sâu về toán học vector & mô hình:** [[semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng (Bi-Encoder vs Cross-Encoder)]]
-* **Quản trị rủi ro ngữ cảnh:** [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
-* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
-* **Thiết kế tổng thể hệ thống doanh nghiệp:** [[how_to_build_enterprise_ai_agents|Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp]]
+* **Nghiên cứu sâu về toán học vector & mô hình:** [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng (Bi-Encoder vs Cross-Encoder)]]
+* **Quản trị rủi ro ngữ cảnh:** [[03-building-agents/01-harness-and-memory/02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
+* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [[03-building-agents/01-harness-and-memory/03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
+* **Thiết kế tổng thể hệ thống doanh nghiệp:** [[03-building-agents/06_how_to_build_enterprise_ai_agents|Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp]]
