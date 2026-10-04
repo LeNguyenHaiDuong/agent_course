@@ -532,6 +532,7 @@ Trước khi đưa ra bất kỳ quyết định thay đổi chỉ mục hay mô
 * **Giải phẫu cấu phần & 9 Mẫu thiết kế RAG:** [[02_rag_architecture_and_components|02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược]]
 * **Lý thuyết toàn diện về Embeddings & Khung FICE:** [[03_embeddings_and_vector_databases|03. Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector]]
 * **Phòng thí nghiệm thực hành lâm sàng:** [[04_how_database_and_embedding_choices_affect_rag|04. Thực Hành Đánh Giá Mô Hình Embedding & Cơ Sở Dữ Liệu Vector (Lab BGE vs. MiniLM & FAISS IVF)]]
+* **Duy trì & Vận hành chỉ mục Vector:** [[06_maintaining_vector_indices_in_rag|06. Duy Trì & Vận Hành Chỉ Mục Vector Trong Hệ Thống RAG (Drift Management)]]
 * **Quản trị rủi ro ngữ cảnh:** [[02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
 * **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [[03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
 * **Đánh giá và quan sát Agent:** [[01_agent_evals_and_tracing|01. Đánh Giá & Quan Sát Hệ Thống Tác Tử (Agent Evals & Tracing)]]

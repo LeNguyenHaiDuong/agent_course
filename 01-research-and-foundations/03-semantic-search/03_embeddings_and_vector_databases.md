@@ -1198,5 +1198,6 @@ flowchart TD
 * **Kiến trúc RAG & 9 Mẫu thiết kế chiến lược:** [[02_rag_architecture_and_components|02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược]]
 * **Thực hành Lab & Điển cứu Y tế:** [[04_how_database_and_embedding_choices_affect_rag|04. Thực Hành Đánh Giá Embedding & Cơ Sở Dữ Liệu Vector (Clinical Policy Assistant)]]
 * **Cẩm nang kỹ nghệ vận hành RAG Production:** [[05_theory_to_practice_making_rag_work|05. Từ Lý Thuyết Đến Thực Tiễn: Làm Cho RAG Hoạt Động Hiệu Quả]]
+* **Duy trì & Vận hành chỉ mục Vector:** [[06_maintaining_vector_indices_in_rag|06. Duy Trì & Vận Hành Chỉ Mục Vector Trong Hệ Thống RAG (Drift Management)]]
 * **Quản trị cửa sổ ngữ cảnh:** [[02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
 * **Ứng dụng vào Bộ nhớ Tác tử AI:** [[03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
