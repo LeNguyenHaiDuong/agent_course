@@ -1174,24 +1174,28 @@ Tài liệu này là nhịp cầu liên kết giữa lý thuyết toán học ve
 flowchart TD
     PrevNode1["01. Semantic Search & Reranking<br>Toán học Bi-Encoder, Cross-Encoder & Anisotropy"]
     PrevNode2["02. Inside RAG: 4 Cấu Phần<br>Retriever, Ranker, Generator & 9 Design Patterns"]
-    CurrentNode["⭐ 03. Embeddings & Vector Databases<br>(Bài học hiện tại: FICE, HNSW, IVF, Chunking, Weaviate)"]
+    CurrentNode["⭐ 03. Embeddings & Vector Databases<br>(FICE Framework, HNSW, IVF, Chunking, Weaviate)"]
+    NextNode0["04. How Database & Embedding Choices Affect RAG<br>Thực hành Lab: MiniLM vs BGE, FAISS IVF, Clinical Assistant"]
 
     NextNode1["03-building-agents/01-harness-and-memory/02_context_management<br>Quản Trị Ngữ Cảnh: Tránh Ngộ Độc & Lost in the Middle"]
     NextNode2["03-building-agents/01-harness-and-memory/03_memory_systems<br>Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents"]
 
     PrevNode1 --> CurrentNode
     PrevNode2 --> CurrentNode
-    CurrentNode --> NextNode1
-    CurrentNode --> NextNode2
+    CurrentNode --> NextNode0
+    NextNode0 --> NextNode1
+    NextNode0 --> NextNode2
 
     style CurrentNode fill:#fef08a,stroke:#ca8a04,stroke-width:2px,color:#000000
     style PrevNode1 fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000000
     style PrevNode2 fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000000
+    style NextNode0 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
     style NextNode1 fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#000000
-    style NextNode2 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style NextNode2 fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#000000
 ```
 
 * **Nền tảng toán học & Re-ranking:** [[01_semantic_search_and_reranking|01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]
 * **Kiến trúc RAG & 9 Mẫu thiết kế chiến lược:** [[02_rag_architecture_and_components|02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược]]
+* **Thực hành Lab & Điển cứu Y tế:** [[04_how_database_and_embedding_choices_affect_rag|04. Thực Hành Đánh Giá Embedding & Cơ Sở Dữ Liệu Vector (Clinical Policy Assistant)]]
 * **Quản trị cửa sổ ngữ cảnh:** [[02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
 * **Ứng dụng vào Bộ nhớ Tác tử AI:** [[03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
