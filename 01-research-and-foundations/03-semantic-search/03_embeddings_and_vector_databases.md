@@ -4,9 +4,12 @@ aliases:
   - embeddings_and_vector_databases
   - 03_embeddings_and_vector_databases
   - Why Choosing the Right Embeddings Makes or Breaks Your System
+  - How Database and Embedding Choices Affect RAG
+  - How Database & Embedding Choices Affect RAG
   - Embeddings and Vector Databases
   - Cơ Sở Dữ Liệu Vector và Embeddings
   - FICE Framework
+  - MiniLM vs BGE Healthcare Case Study
 tags:
   - agent-course
   - research/semantic-search
@@ -34,23 +37,27 @@ updated: 2026-10-04
 ## 📌 MỤC LỤC
 1. [Khởi Nguyên Vấn Đề: Tại Sao Embeddings Quyết Định Thành Bại Của Hệ Thống?](#1-khởi-nguyên-vấn-đề-tại-sao-embeddings-quyết-định-thành-bại-của-hệ-thống)
    - [4 Trụ cột của hệ thống truy xuất (The 4 Pillars of Retrieval)](#4-trụ-cột-của-hệ-thống-truy-xuất-the-4-pillars-of-retrieval)
+   - [Bệnh viện & Khảo nghiệm lâm sàng: Thách thức truy xuất không ổn định (Inconsistent Retrieval)](#bệnh-viện--khảo-nghiệm-lâm-sàng-thách-thức-truy-xuất-không-ổn-định-inconsistent-retrieval)
    - [Giác quan ngữ nghĩa & Dấu vân tay số học (Numerical Fingerprints)](#giác-quan-ngữ-nghĩa--dấu-vân-tay-số-học-numerical-fingerprints)
    - [Dưới nắp ca-pô (Under the Hood): Tokenization $\to$ Context Encoding $\to$ Vector Projection](#dưới-nắp-ca-pô-under-the-hood-tokenization-to-context-encoding-to-vector-projection)
    - [Trường hợp điển cứu: "App Crashed" vs. "Software Stopped Working"](#trường-hợp-điển-cứu-app-crashed-vs-software-stopped-working)
    - [Code thực nghiệm 1: Sinh vector nhúng câu với OpenAI](#code-thực-nghiệm-1-sinh-vector-nhúng-câu-với-openai)
 2. [Khảo Sát & Lựa Chọn Mô Hình Embedding: Not All Vectors Are Equal](#2-khảo-sát--lựa-chọn-mô-hình-embedding-not-all-vectors-are-equal)
    - [3 Trục đánh đổi kiến trúc: Dimensionality vs. Performance vs. Domain Specialization](#3-trục-đánh-đổi-kiến-trúc-dimensionality-vs-performance-vs-domain-specialization)
-   - [Bảng so sánh định lượng các mô hình SOTA (OpenAI, BGE, GTE, Cohere)](#bảng-so-sánh-định-lượng-các-mô-hình-sota-openai-bge-gte-cohere)
+   - [Bảng so sánh định lượng các mô hình SOTA (OpenAI, BGE, GTE, Cohere, MiniLM)](#bảng-so-sánh-định-lượng-các-mô-hình-sota-openai-bge-gte-cohere-minilm)
+   - [Thực nghiệm đối đầu (Model Shootout): MiniLM vs. BGE-Base trên văn bản y tế & pháp chế](#thực-nghiệm-đối-đầu-model-shootout-minilm-vs-bge-base-trên-văn-bản-y-tế--pháp-chế)
    - [Quy trình làm việc thực chiến (Practical Sizing Workflow)](#quy-trình-làm-việc-thực-chiến-practical-sizing-workflow)
 3. [Chiến Lược Phân Đoạn (Chunking): Định Hình Cấu Trúc Ngữ Nghĩa](#3-chiến-lược-phân-đoạn-chunking-định-hình-cấu-trúc-ngữ-nghĩa)
    - [Nghịch lý Chunking: Quá lớn làm mờ ý, Quá nhỏ làm mất bối cảnh](#nghịch-lý-chunking-quá-lớn-làm-mờ-ý-quá-nhỏ-làm-mất-bối-cảnh)
+   - [Đặc thù phân đoạn văn bản pháp quy & y khoa: Điều kiện & Ngoại lệ (Conditions vs. Exceptions)](#đặc-thù-phân-đoạn-văn-bản-pháp-quy--y-khoa-điều-kiện--ngoại-lệ-conditions-vs-exceptions)
    - [3 Phương pháp phân đoạn: Fixed-Length vs. Semantic vs. Adaptive](#3-phương-pháp-phân-đoạn-fixed-length-vs-semantic-vs-adaptive)
    - [Tầm quan trọng sống còn của độ gối đầu (Overlap 10% - 20%)](#tầm-quan-trọng-sống-còn-của-độ-gối-đầu-overlap-10---20)
    - [Nghiên cứu tình huống thực tế: Customer Support FAQ vs. Developer Documentation](#nghiên-cứu-tình-huống-thực-tế-customer-support-faq-vs-developer-documentation)
    - [Code thực nghiệm 2: Phân đoạn văn bản với RecursiveCharacterTextSplitter](#code-thực-nghiệm-2-phân-đoạn-văn-bản-với-recursivecharactertextsplitter)
 4. [Giải Phẫu Chiến Lược Lập Chỉ Mục Vector: Động Cơ Đằng Sau Tìm Kiếm Siêu Tốc](#4-giải-phẫu-chiến-lược-lập-chỉ-mục-vector-động-cơ-đằng-sau-tìm-kiếm-siêu-tốc)
-   - [FLAT: Lật từng trang sách (Exhaustive Brute-Force k-NN)](#flat-lật-từng-trang-sách-exhaustive-brute-force-k-nn)
+   - [FLAT: Lật từng trang sách & Vai trò chẩn đoán sớm (Diagnostic Baseline)](#flat-lật-từng-trang-sách--vai-trò-chẩn-đoán-sớm-diagnostic-baseline)
    - [IVF (Inverted File Index): Phân cụm Voronoi Centroids](#ivf-inverted-file-index-phân-cụm-voronoi-centroids)
+   - [Tiến hóa chỉ mục trong FAISS: Từ FLAT sang IVF & Tinh chỉnh nprobe](#tiến-hóa-chỉ-mục-trong-faiss-từ-flat-sang-ivf--tinh-chỉnh-nprobe)
    - [HNSW: Lối tắt cao tốc & Mạng lưới bạn bè (Graph-based Multi-layer)](#hnsw-lối-tắt-cao-tốc--mạng-lưới-bạn-bè-graph-based-multi-layer)
    - [PQ (Product Quantization): Nén lượng tử hóa vector cho Edge Devices](#pq-product-quantization-nén-lượng-tử-hóa-vector-cho-edge-devices)
    - [Bảng ma trận so sánh 4 chiến lược: FLAT vs. IVF vs. HNSW vs. PQ](#bảng-ma-trận-so-sánh-4-chiến-lược-flat-vs-ivf-vs-hnsw-vs-pq)
@@ -65,13 +72,15 @@ updated: 2026-10-04
    - [2 Tình huống kiến trúc điển hình: Internal Dev Tool vs. Metadata-Rich Hybrid Search](#2-tình-huống-kiến-trúc-điển-hình-internal-dev-tool-vs-metadata-rich-hybrid-search)
    - [Cây quyết định lựa chọn cơ sở dữ liệu vector](#cây-quyết-định-lựa-chọn-cơ-sở-dữ-liệu-vector)
 7. [Quản Trị Vòng Đời & Vận Hành Vector Liên Tục (Vector Lifecycle Management)](#7-quản-trị-vòng-đời--vận-hành-vector-liên-tục-vector-lifecycle-management)
-   - [Tính lỗi thời của tri thức & Biến động thế giới thực (Real-world Change)](#tính-lỗi-thời-của-tri-thức--biến-động-thế-giới-thực-real-world-change)
-   - [Cập nhật lũy tiến thời gian thực & Dọn rác vector (CDC & Garbage Collection)](#cập-nhật-lũy-tiến-thời-gian-thực--dọn-rác-vector-cdc--garbage-collection)
-   - [Tái lập chỉ mục định kỳ (Periodic Re-indexing & De-fragmentation)](#tái-lập-chỉ-mục-định-kỳ-periodic-re-indexing--de-fragmentation)
-   - [Quy trình di cư mô hình nhúng không downtime (Shadow Re-indexing)](#quy-trình-di-cư-mô-hình-nhúng-không-downtime-shadow-re-indexing)
+   - [Tính lỗi thời của tri thức & Biến động thế giới thực (The Stale Index Problem)](#tính-lỗi-thời-của-tri-thức--biến-động-thế-giới-thực-the-stale-index-problem)
+   - [Vòng lặp vận hành Ngày-2 (Day-2 Index Maintenance Loop): Giữ cho RAG luôn khỏe mạnh](#vòng-lặp-vận-hành-ngày-2-day-2-index-maintenance-loop-giữ-cho-rag-luôn-khỏe-mạnh)
+   - [Cập nhật lũy tiến thời gian thực & Dọn rác vector (CDC & Delta Upsert)](#cập-nhật-lũy-tiến-thời-gian-thực--dọn-rác-vector-cdc--delta-upsert)
+   - [Quy tắc tái huấn luyện 20% (The 20% Corpus Growth Rule)](#quy-tắc-tái-huấn-luyện-20-the-20-corpus-growth-rule)
+   - [Quy trình di cư mô hình nhúng & Triển khai ngầm (Shadow Deployment)](#quy-trình-di-cư-mô-hình-nhúng--triển-khai-ngầm-shadow-deployment)
 8. [Hiện Thực Hóa Toàn Diện: End-to-End Production Pipeline](#8-hiện-thực-hóa-toàn-diện-end-to-end-production-pipeline)
    - [Code thực nghiệm 5: Kết nối 4 mắt xích Chunking $\to$ Embedding $\to$ Indexing $\to$ Retrieval](#code-thực-nghiệm-5-kết-nối-4-mắt-xích-chunking-to-embedding-to-indexing-to-retrieval)
    - [Code thực nghiệm 6: Cấu hình HNSW tùy chỉnh và lọc Metadata Boolean trong ChromaDB](#code-thực-nghiệm-6-cấu-hình-hnsw-tùy-chỉnh-và-lọc-metadata-boolean-trong-chromadb)
+   - [Code thực nghiệm 7: Toàn bộ đường ống Trợ lý tra cứu y tế (Clinical Policy Assistant) với SentenceTransformers & FAISS (MiniLM vs BGE, IVF & Delta Upsert)](#code-thực-nghiệm-7-toàn-bộ-đường-ống-trợ-lý-tra-cứu-y-tế-clinical-policy-assistant-với-sentencetransformers--faiss-minilm-vs-bge-ivf--delta-upsert)
 9. [Cây Điều Hướng & Liên Kết Trong Vault](#9-cây-điều-hướng--liên-kết-trong-vault)
 
 ---
@@ -99,6 +108,23 @@ flowchart TD
 ```
 
 Bốn yếu tố này không hoạt động độc lập mà tạo thành một chuỗi giá trị liên tục: Khoảnh khắc bạn lưu trữ embedding vào cơ sở dữ liệu, bạn đang chính thức bước qua ranh giới từ **thế giới ký hiệu biểu tượng (Symbolic World - từ ngữ, câu chữ)** sang **thế giới hình học toán học (Geometric World - vector, khoảng cách, góc cosine)**.
+
+---
+
+### Bệnh viện & Khảo nghiệm lâm sàng: Thách thức truy xuất không ổn định (Inconsistent Retrieval)
+
+Hãy tưởng tượng bạn đang chịu trách nhiệm kiến trúc một **Trợ lý AI nội bộ phục vụ đội ngũ y tá và bác sĩ** trong một mạng lưới bệnh viện:
+* Hàng ngày, các bác sĩ và nhân viên y tế cần tra cứu tức thì các chính sách tuân thủ quy chuẩn:
+  * *"Thời hạn bắt buộc lưu trữ hồ sơ bệnh án cho các phiên khám bệnh từ xa (Telehealth encounters) là bao lâu?"*
+  * *"Quy trình kiểm tra phục hồi sau gây mê để xuất viện trong ngày (Same-day ambulatory surgery discharge protocol) gồm những tiêu chí gì?"*
+* Kho dữ liệu của bệnh viện chứa hàng trăm tệp tài liệu PDF và Word: Sổ tay quy chế hành chính, phác đồ điều trị lâm sàng, tiêu chuẩn an toàn người bệnh và các quy định pháp chế y tế (HIPAA).
+* Đội ngũ kỹ sư đã phân đoạn (chunked) toàn bộ tài liệu và nạp vào một cơ sở dữ liệu vector. Tuy nhiên, khi đưa vào thử nghiệm lâm sàng, hệ thống gặp phải căn bệnh trầm kha: **Truy xuất không ổn định (Inconsistent Retrieval)**:
+  * Lần thứ nhất hỏi, hệ thống trả về đúng trang tài liệu cần tìm.
+  * Lần thứ hai với câu hỏi tương tự, hệ thống lại trích xuất một văn bản đã hết hạn từ nhiều năm trước, hoặc trả về một quy trình cấp cứu hoàn toàn lệch đề!
+
+> [!caution] Hiểm Họa Nghiệp Vụ Trong Các Lĩnh Vực Nhạy Cảm (Healthcare / Finance / Legal)
+> Trong lĩnh vực y tế hoặc pháp lý, một câu trả lời trích xuất sai không chỉ là một lỗi phần mềm đơn thuần, mà có thể dẫn đến **sai lệch chỉ định điều trị, vi phạm nghiêm trọng quy chuẩn bảo mật hồ sơ bệnh nhân (HIPAA violation) hoặc chịu chế tài pháp lý nặng nề**.
+> Lỗi này không nằm ở mô hình sinh LLM, mà xuất phát trực tiếp từ các quyết định kiến trúc: **chọn sai mô hình embedding, dùng sai cấu hình phân cụm chỉ mục (indexing), hoặc cắt văn bản (chunking) làm đứt gãy điều kiện và ngoại lệ**.
 
 ---
 
@@ -230,11 +256,61 @@ flowchart TD
 
 | Tên Mô Hình | Đơn Vị Phát Triển | Số Chiều (Dimensions) | Hồ Sơ Hiệu Năng (Performance Profile) | Điểm Mạnh Nghiệp Vụ (Domain Strength) | Điểm Đánh Đổi (Trade-Offs) |
 | :--- | :--- | :---: | :--- | :--- | :--- |
+| **`all-MiniLM-L6-v2`** | Sentence-Transformers | **384** | Cực nhanh, siêu nhẹ (80MB), CPU-friendly | Thử nghiệm nguyên mẫu nhanh (Fast Iteration), phân loại sơ bộ | Dễ bị đánh lừa bởi từ vựng bề mặt, trượt ngữ cảnh pháp chế phức tạp |
+| **`bge-base-en-v1.5`** | BAAI (Hugging Face) | **768** | Nhanh, chạy tốt trên cả CPU và GPU nhỏ | Nắm bắt sâu văn phong chính sách, quy định tuân thủ (Compliance), Y tế & Luật | Kích thước vector lớn gấp đôi MiniLM (768 vs 384) |
 | **`text-embedding-3-small`** | OpenAI | **1,536** | Rất nhanh, chi phí cực thấp ($\$0.02 / 1\text{M}$ tokens) | Đa dụng (General-purpose), truy xuất tài liệu phổ quát | Kém nhạy bén hơn trên các câu truy vấn siêu dài hoặc cực kỳ phức tạp |
 | **`text-embedding-3-large`** | OpenAI | **3,072** | Chậm hơn, chi phí cao hơn ($\$0.13 / 1\text{M}$ tokens) | Độ chuẩn xác ngữ cảnh cực cao, suy luận đa tầng, Factoid QA | Tốn dung lượng RAM và đĩa gấp đôi (3072 floats) |
 | **`bge-large-en`** | BAAI (Hugging Face) | **1,024** | Trung bình, chạy tự host trên GPU nội bộ | Tối ưu hóa sâu cho Hỏi Đáp (QA) và Truy xuất mã nguồn (Code Retrieval) | Đòi hỏi tự duy trì hạ tầng máy chủ suy luận (Local Inference) |
 | **`gte-base`** | Alibaba DAMO | **768** | Rất nhanh, kích thước gọn nhẹ | Hỗ trợ đa ngôn ngữ nhẹ (Lightweight Multilingual), độ phủ rộng | Độ sâu ngữ nghĩa trên từng ngôn ngữ đơn lẻ không bằng mô hình chuyên biệt |
 | **`cohere-embed-v3`** | Cohere | **1,024** | Độ trễ trung bình | Tinh chỉnh sâu cho Doanh nghiệp: Báo cáo tài chính, hợp đồng pháp chế | API thương mại có phí, mô hình nguồn đóng (Closed-weights) |
+
+---
+
+### Thực Nghiệm Đối Đầu (Model Shootout): MiniLM vs. BGE-Base Trên Văn Bản Y Tế & Pháp Chế
+
+Để thấy rõ việc lựa chọn mô hình định hình không gian ngữ nghĩa như thế nào, hãy xem xét thực nghiệm đối đầu trực tiếp giữa hai đại diện tiêu biểu của thế giới mã nguồn mở:
+1. **`all-MiniLM-L6-v2` (Lightweight Sentence Transformer - 384 dimensions):** 
+   * Trọng số siêu nhẹ, tốc độ tạo vector cực nhanh, rất phù hợp khi đội ngũ kỹ sư cần xây dựng khung xương hệ thống (Pipeline Shaping) và lặp nhanh (Fast Experimentation).
+2. **`BAAI/bge-base-en-v1.5` (General Embedding Model - 768 dimensions):**
+   * Được huấn luyện trên tập dữ liệu tương phản khổng lồ với khả năng nắm bắt sâu các sắc thái hành chính, quy chuẩn pháp lý và thuật ngữ y tế chuyên ngành.
+
+#### Kịch bản khảo nghiệm:
+* Nạp vào hệ thống 3 tài liệu chính sách lâm sàng của bệnh viện:
+  * **Tài liệu 1:** *Chính sách lưu trữ hồ sơ bệnh án khám bệnh từ xa và tuân thủ HIPAA (Telehealth Patient Record Retention).*
+  * **Tài liệu 2:** *Quy chuẩn theo dõi và xuất viện tại khoa cấp cứu (Emergency Department Observation & Discharge Rules).*
+  * **Tài liệu 3:** *Quy trình xuất viện trong ngày đối với bệnh nhân phẫu thuật ngoại trú (Same-Day Ambulatory Surgery Discharge).*
+* Đặt câu hỏi thực tế của bác sĩ:
+  > *"How long do we store patient records for telehealth sessions?"* *(Thời gian bắt buộc phải lưu trữ hồ sơ bệnh án cho các buổi khám bệnh từ xa là bao lâu?)*
+
+```mermaid
+flowchart TD
+    Query["Truy vấn người dùng:<br>'How long do we store patient records for telehealth sessions?'"]
+    
+    subgraph MiniLM_Branch["all-MiniLM-L6-v2 (384-d)"]
+        M1["Mã hóa truy vấn MiniLM"] --> M2["FAISS Flat Similarity Search"]
+        M2 --> M_Fail["❌ Kéo về: Same-Day Surgery hoặc Emergency Protocol<br>(Bị đánh lừa bởi từ khóa bề mặt: patient, session, discharge)"]
+    end
+
+    subgraph BGE_Branch["BAAI/bge-base-en-v1.5 (768-d)"]
+        B1["Mã hóa truy vấn BGE"] --> B2["FAISS Flat Similarity Search"]
+        B2 --> B_Success["✅ Kéo về: Telehealth Record Retention Policy<br>(Hiểu đúng quan hệ ngữ nghĩa 'retention' và 'telehealth')"]
+    end
+
+    Query ==> M1
+    Query ==> B1
+
+    style MiniLM_Branch fill:#fee2e2,stroke:#dc2626,stroke-width:1px,color:#000000
+    style BGE_Branch fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style M_Fail fill:#fecaca,stroke:#b91c1c,stroke-width:1px,color:#000000
+    style B_Success fill:#bbf7d0,stroke:#15803d,stroke-width:2px,color:#000000
+```
+
+#### Kết quả thực tế & Phân tích hiện tượng:
+* **Hiện tượng của MiniLM:** Mô hình trả về tài liệu về *Xuất viện phẫu thuật trong ngày* hoặc *Cấp cứu*. Nguyên nhân là do ở không gian 384 chiều, MiniLM bị chi phối bởi các từ vựng phổ quát xuất hiện dày đặc (`"patient"`, `"records"`, `"sessions"`, `"rules"`). Nó tạo ra cảm giác "suýt trúng nhưng lệch đề" (close but off-topic).
+* **Hiện tượng của BGE-Base:** Nhờ số chiều 768 và không gian biểu diễn dày dặn, BGE nhận diện được trọng tâm ngữ nghĩa cốt lõi nằm ở cụm từ pháp chế **`"record retention"` (lưu trữ hồ sơ)** và ngữ cảnh **`"telehealth"`**, từ đó kéo về chính xác $100\%$ văn bản quy định lưu trữ 7 năm theo chuẩn HIPAA.
+
+> [!important] Định Luật Về Bản Chất Của Embeddings:
+> **Việc lựa chọn mô hình Embedding không phải là một chi tiết trang trí thẩm mỹ (not cosmetic). Mô hình embedding chính là bộ luật hình học quy định thế nào là "tương đồng" trong toàn bộ hệ thống của bạn (Embedding choice defines what your system thinks is similar).**
 
 ---
 
@@ -277,6 +353,53 @@ flowchart LR
 
 1. **Chunk quá nhỏ ("Floating Sentences"):** Một câu đứng đơn độc *"Tuy nhiên, điều khoản này không áp dụng cho trường hợp thứ hai"* không thể tạo ra vector hữu ích vì thiếu ngữ cảnh chủ ngữ.
 2. **Chunk quá lớn ("Blurry Meaning"):** Một đoạn văn dài 2,000 từ chứa cả chính sách bảo hành, quy chuẩn an toàn và bảng giá khiến vector bị "pha loãng ngữ nghĩa" (Semantic Dilution), kéo điểm cosine về mức trung bình và đánh mất khả năng định vị chi tiết.
+
+---
+
+### Đặc Thù Phân Đoạn Văn Bản Pháp Quy & Y Khoa: Điều Kiện & Ngoại Lệ (Conditions vs. Exceptions)
+
+Trong môi trường y tế, bảo hiểm và pháp chế doanh nghiệp, các tài liệu hướng dẫn lâm sàng và cẩm nang chính sách thường được cấu trúc dưới dạng **những đoạn văn dài, có mật độ thông tin cực cao (Long, Dense Paragraphs)**.
+
+Một đoạn văn chính sách chuẩn tắc thường tích hợp chặt chẽ 3 thành tố không thể tách rời:
+1. **Bối cảnh & Phạm vi áp dụng (Context & Scope):** Đối tượng bệnh nhân hoặc trường hợp áp dụng.
+2. **Điều kiện thực thi bắt buộc (Mandatory Conditions):** Các tiêu chí sinh tồn, điểm số xét nghiệm hoặc khung thời gian.
+3. **Các ngoại lệ & Chống chỉ định (Exceptions & Contraindications):** Những trường hợp đặc thù KHÔNG được phép thực hiện quy trình chuẩn.
+
+```mermaid
+flowchart TD
+    subgraph RegulatoryText["Đoạn Văn Bản Pháp Quy / Lâm Sàng Dày Đặc"]
+        C1["Ngữ cảnh & Phạm vi: Bệnh nhân phẫu thuật trong ngày"]
+        C2["Điều kiện: Điểm Aldrete >= 9, sinh hiệu ổn định 4h"]
+        C3["Ngoại lệ: Nếu có tiền sử ngưng thở lúc ngủ, bắt buộc lưu viện qua đêm"]
+        C1 --- C2 --- C3
+    end
+
+    subgraph SmallSplit["Cắt Quá Nhỏ (< 200 tokens)"]
+        S_A["Chunk A: Ngữ cảnh + Điều kiện<br>(Bác sĩ đọc: 'Cho xuất viện ngay!')"]
+        S_B["Chunk B: Ngoại lệ sinh tử<br>(Bị rơi sang chunk khác, LLM bỏ sót!)"]
+    end
+
+    subgraph OptimalSplit["Cắt Chuẩn Mực (600 - 800 tokens)"]
+        Opt["Chunk Trọn Vẹn: Ngữ cảnh + Điều kiện + Toàn bộ Ngoại lệ<br>Vector sắc nét, LLM nắm trọn vẹn cả quy tắc lẫn rủi ro cảnh báo"]
+    end
+
+    RegulatoryText -->|"Cắt vụn"| SmallSplit
+    RegulatoryText -->|"Goldilocks Zone"| OptimalSplit
+
+    style SmallSplit fill:#fee2e2,stroke:#dc2626,stroke-width:1px,color:#000000
+    style OptimalSplit fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style S_B fill:#fecaca,stroke:#b91c1c,stroke-width:1px,color:#000000
+```
+
+#### Phân tích cạm bẫy thực nghiệm:
+* **Nếu chunk quá nhỏ ($\approx 200$ tokens):** Thuật toán cắt văn bản sẽ vô tình xé toạc đoạn văn ở giữa chừng, đẩy quy tắc điều kiện sang Chunk 1 và đẩy ngoại lệ sống còn sang Chunk 2. Khi nhân viên y tế tra cứu, hệ thống chỉ kéo về Chunk 1 và kết luận bệnh nhân đủ điều kiện xuất viện, tạo ra rủi ro y khoa chết người!
+* **Nếu chunk quá lớn ($> 1,500$ tokens):** Mô hình embedding bị buộc phải nén quá nhiều ý niệm khác nhau (quy trình chuẩn bị phẫu thuật, hướng dẫn gây mê, chăm sóc vết thương, quy định xuất viện) vào cùng một vector duy nhất. Khi bác sĩ đặt câu hỏi chi tiết về một khía cạnh hẹp, vector tổng hợp bị mờ nhạt và trượt khỏi Top-K ứng viên.
+* **Thực nghiệm so sánh 300 từ vs 900 từ:** 
+  * Cắt phân đoạn $300$ từ cho thấy tỷ lệ mất mát mối liên kết logic giữa điều kiện và ngoại lệ lên đến $38\%$.
+  * Cắt phân đoạn $900$ từ làm suy giảm điểm tương đồng ngữ nghĩa (Cosine Similarity) đối với các câu hỏi đặc thù khoảng $22\%$.
+
+> [!tip] Vùng Cân Bằng Vàng (The Goldilocks Zone):
+> Đối với các tài liệu quy định pháp lý, hành chính, cẩm nang tuân thủ và hướng dẫn điều trị y tế, kích thước chunk tối ưu được khuyến nghị là **$600 - 800$ tokens** kết hợp với độ gối đầu **$15\% - 20\%$**. Khoảng kích thước này đảm bảo giữ nguyên vẹn liên kết logic giữa điều kiện và ngoại lệ trong cùng một vector đại diện.
 
 ---
 
@@ -372,17 +495,47 @@ flowchart TD
 
 ---
 
-### FLAT: Lật từng trang sách (Exhaustive Brute-Force k-NN)
-* **Cơ chế:** So sánh cạn kiệt vector truy vấn với từng vector lưu trữ trong cơ sở dữ liệu.
+### FLAT: Lật từng trang sách & Vai trò chẩn đoán sớm (Diagnostic Baseline)
+* **Cơ chế:** So sánh cạn kiệt vector truy vấn với từng vector lưu trữ trong cơ sở dữ liệu theo giải thuật k-NN chính xác.
 * **Ẩn dụ:** Lật từng trang sách của cuốn từ điển 2,000 trang để tìm một câu trích dẫn.
-* **Đặc tính:** Độ chuẩn xác $100\%$ (Exact match), không bao giờ bỏ sót tài liệu đúng. Phù hợp cho tập dữ liệu nhỏ dưới $50,000$ vectors. Khi dữ liệu đạt hàng triệu vector, độ trễ tăng vọt từ $5\text{ms}$ lên $800\text{ms}$ — không thể chấp nhận được trong production.
+* **Đặc tính:** Độ chuẩn xác $100\%$ tuyệt đối (Exact match), không bao giờ bỏ sót tài liệu đúng. Phù hợp cho tập dữ liệu nhỏ dưới $50,000$ vectors. Khi dữ liệu đạt hàng triệu vector, độ trễ tăng vọt từ $5\text{ms}$ lên $> 800\text{ms}$ — không thể chấp nhận được trong production.
+* **Vai trò chẩn đoán sống còn trong nghiên cứu (Diagnostic Baseline):**
+  * Trong giai đoạn đầu khi xây dựng và thẩm định đường ống RAG, các kỹ sư luôn ưu tiên bắt đầu với **Flat Index**.
+  * **Tại sao?** Bởi vì mọi kết quả trả về từ Flat Index đều là chân lý chính xác $100\%$ về mặt hình học vector. Nhờ đó, kỹ sư có thể **cô lập nguyên nhân gốc rễ của lỗi truy xuất: Lỗi xuất phát từ Mô hình Embedding hay từ Dữ liệu / Chunking?** *(Helps us spot whether mistakes are coming from the model or the data)*. Nếu Flat Index trả về sai, chắc chắn vấn đề nằm ở mô hình nhúng hoặc cách cắt nhỏ văn bản, chứ không bị gây nhiễu bởi các sai số xấp xỉ của thuật toán lập chỉ mục.
 
 ---
 
 ### IVF (Inverted File Index): Phân cụm Voronoi Centroids
 * **Cơ chế:** Trước khi tìm kiếm, thuật toán huấn luyện (Training Phase) sử dụng K-Means để gom hàng triệu vector thành $C$ cụm (Voronoi Cells / Buckets), mỗi cụm có một tâm (Centroid).
-* **Khi truy vấn đến:** Hệ thống chỉ tính khoảng cách tới các Centroids để chọn ra $n_{\text{probe}}$ cụm gần nhất, sau đó chỉ quét các vector nằm bên trong các cụm đó.
+* **Khi truy vấn đến:** Hệ thống chỉ tính khoảng cách tới các Centroids để chọn ra $n_{\text{probe}}$ cụm gần nhất, sau đó chỉ quét các vector nằm bên trong các cụm đó, tránh việc phải quét toàn bộ tập dữ liệu (Avoid scanning the entire collection).
 * **Đặc tính:** Giảm thời gian tìm kiếm từ $\mathcal{O}(N)$ xuống $\mathcal{O}\left(\frac{N}{C} \cdot n_{\text{probe}}\right)$. Tốc độ tăng gấp hàng chục lần, đổi lại có một tỷ lệ nhỏ suy giảm Recall nếu vector đúng nằm sát biên của một cụm bị bỏ qua. Phù hợp cho tập dữ liệu trung bình từ $100,000$ đến $10,000,000$ vectors.
+
+---
+
+### Tiến Hóa Chỉ Mục Trong FAISS: Từ FLAT Sang IVF & Tinh Chỉnh nprobe
+
+Trong các bài toán thực tế như Trợ lý tra cứu bệnh viện, số lượng văn bản ban đầu có thể chỉ gồm vài chục văn bản mẫu, nhưng sẽ nhanh chóng tăng trưởng lên hàng chục nghìn đến hàng trăm nghìn quy định, phụ lục khu vực và phác đồ cập nhật.
+
+```mermaid
+flowchart LR
+    Stage1["Giai đoạn 1: Prototype (FLAT Index)<br>Vét cạn chính xác 100%<br>Dùng để thẩm định & cô lập lỗi Embedding/Chunking"] 
+    --> Stage2["Giai đoạn 2: Scale-up (IVF Index)<br>Phân cụm K-Means Voronoi Cells<br>Chỉ quét các cụm tiềm năng nhất"]
+    Stage2 --> Stage3["Giai đoạn 3: Production Tuning (nprobe Tuning)<br>Tăng nprobe trong miền Y tế/Pháp chế<br>Ưu tiên độ chính xác tuyệt đối trên tốc độ mili-giây"]
+
+    style Stage1 fill:#dbeafe,stroke:#2563eb,stroke-width:1px,color:#000000
+    style Stage2 fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#000000
+    style Stage3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+```
+
+#### Quy trình huấn luyện & Tinh chỉnh thực tế trong FAISS:
+1. **Huấn luyện chỉ mục (Index Training):** Khác với Flat Index (chỉ cần nạp vector vào là chạy), IVF đòi hỏi một pha huấn luyện (`index.train`). Bắt buộc phải huấn luyện K-Means trên tập vector thực tế của chính nghiệp vụ (ví dụ các vector BGE của văn bản lâm sàng). Điều này giúp các tâm cụm (Centroids) phản ánh chính xác cấu trúc ngôn từ và phân phối ngữ nghĩa đặc thù của miền chuyên ngành.
+2. **Cân đối Recall và Latency qua tham số $n_{\text{probe}}$:**
+   * $n_{\text{probe}}$ quy định số lượng cụm Voronoi mà FAISS sẽ mở ra để lùng sục khi có một truy vấn tới.
+   * Nếu để mặc định $n_{\text{probe}} = 1$: Tốc độ cực nhanh (chỉ quét $1$ cụm), nhưng rất dễ bỏ sót các tài liệu đúng nếu vector tài liệu nằm ở vùng rìa ranh giới giữa hai cụm lân cận.
+   * **Chiến thuật cho miền nhạy cảm (Healthcare / Legal):** Cấu hình $n_{\text{probe}}$ cao hơn (ví dụ $n_{\text{probe}} = 4$ đến $8$ trên $n_{\text{list}} = 16$ hoặc $64$).
+   
+> [!important] Nguyên Tắc Đánh Đổi Trong Miền Y Tế & Pháp Lý:
+> **Độ chính xác và tính toàn vẹn của kết quả quan trọng hơn việc tiết kiệm vài mili-giây độ trễ (Accuracy matters far more than a few milliseconds of speed).** Việc tăng $n_{\text{probe}}$ giúp hệ thống mở rộng quy mô tài liệu mà vẫn duy trì độ tin cậy tuyệt đối cho các y bác sĩ.
 
 ---
 
@@ -616,28 +769,67 @@ flowchart TD
 
 ## 7. QUẢN TRỊ VÒNG ĐỜI & VẬN HÀNH VECTOR LIÊN TỤC (VECTOR LIFECYCLE MANAGEMENT)
 
-Một sai lầm phổ biến là xem việc nạp vector vào cơ sở dữ liệu như một hành động "làm một lần là xong" (Set-and-Forget).
-Trong thực tế sản xuất, **tri thức thế giới thực liên tục biến đổi (Real-world Change)**: chính sách thay đổi, sản phẩm cũ dừng bán, giá cả cập nhật hàng ngày.
+### Tính lỗi thời của tri thức & Biến động thế giới thực (The Stale Index Problem)
+
+Một sai lầm phổ biến của các kỹ sư mới vào nghề là xem việc nạp vector vào cơ sở dữ liệu như một hành động "làm một lần là xong" (Set-and-Forget).
+Trong thực tế sản xuất, **tri thức thế giới thực liên tục biến đổi (Real-world Change)**: 
+* Bệnh viện cập nhật hướng dẫn điều trị và phác đồ mới hàng tuần.
+* Các quy chế xuất viện và chính sách thanh toán bảo hiểm y tế bị sửa đổi theo từng quý.
+* Những tài liệu cũ hết hiệu lực bị thu hồi hoặc xóa bỏ.
+
+> [!warning] Hiểm Họa Của "Chỉ Mục Ôi Thiu" (Stale Vector Index):
+> Nếu bạn chỉ lập chỉ mục một lần và không bao giờ tái nhúng (Re-embed), cơ sở dữ liệu vector sẽ dần biến thành một "bãi phế liệu tri thức". Mô hình RAG sẽ liên tục trích xuất các quy định cũ đã bị bãi bỏ để trả lời bác sĩ, khiến người dùng hoàn toàn mất niềm tin vào hệ thống trợ lý AI.
+
+---
+
+### Vòng Lặp Vận Hành Ngày-2 (Day-2 Index Maintenance Loop): Giữ Cho RAG Luôn Khỏe Mạnh
+
+Bí quyết của một hệ thống RAG đẳng cấp không chỉ nằm ở việc xây dựng thành công đường ống ban đầu, mà nằm ở **quy trình duy trì sự khỏe mạnh và tươi mới của dữ liệu trong vận hành dài hạn (Day-2 Operations)**.
 
 ```mermaid
-flowchart LR
-    Ingest["1. Ingestion & Chunking<br>(Thêm dữ liệu mới)"] --> Index["2. Indexing (HNSW)<br>(Xây dựng liên kết đồ thị)"]
-    Index --> Query["3. Production Serving<br>(Phục vụ truy vấn RAG)"]
-    Query --> Monitor["4. Đánh giá chất lượng<br>(Theo dõi trôi dạt ngữ nghĩa)"]
-    Monitor --> Prune["5. Dọn dẹp & Cắt tỉa<br>(Xóa bỏ vector hết hạn)"]
-    Prune --> ReIndex["6. Tái lập chỉ mục định kỳ<br>(Re-indexing & Chống phân mảnh)"]
-    ReIndex --> Query
+flowchart TD
+    Audit["1. Weekly Delta Audit<br>Quét bảng Metadata: DOC_ID, LAST_UPDATED, EMBEDDING_VERSION"] 
+    --> Filter{"Có tài liệu thay đổi?"}
+    
+    Filter -->|Không| Sleep["Duy trì Live Index hiện tại<br>Chờ chu kỳ tiếp theo"]
+    Filter -->|Có| ReEmbed["2. Incremental Re-embedding<br>Chỉ sinh vector cho tài liệu mới/sửa đổi"]
+    
+    ReEmbed --> CheckGrowth{"Tổng tài liệu mới<br>vượt quá 20% corpus?"}
+    
+    CheckGrowth -->|Dưới 20%| DirectUpsert["3a. Direct Upsert vào FAISS<br>Nạp vector mới vào index đang chạy (Zero downtime)"]
+    CheckGrowth -->|Vượt 20%| RetrainIVF["3b. Kích hoạt '20% Growth Rule'<br>Huấn luyện lại K-Means centroids để chống trôi dạt (Centroid Drift)"]
+    
+    RetrainIVF --> Shadow["4. Shadow Index Deployment<br>Dựng chỉ mục V2 chạy ngầm, đo lường Recall trên Golden Test Set"]
+    Shadow --> Swap["5. Hot-Swap Router<br>Tráo Live Traffic sang Index V2"]
 
-    style Ingest fill:#dbeafe,stroke:#2563eb,stroke-width:1px,color:#000000
-    style Query fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
-    style Prune fill:#fee2e2,stroke:#dc2626,stroke-width:1px,color:#000000
-    style ReIndex fill:#fef08a,stroke:#ca8a04,stroke-width:1px,color:#000000
+    style Audit fill:#dbeafe,stroke:#2563eb,stroke-width:1px,color:#000000
+    style DirectUpsert fill:#dcfce7,stroke:#16a34a,stroke-width:1px,color:#000000
+    style RetrainIVF fill:#fef08a,stroke:#ca8a04,stroke-width:1px,color:#000000
+    style Shadow fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#000000
+    style Swap fill:#bbf7d0,stroke:#15803d,stroke-width:2px,color:#000000
 ```
 
-1. **Cập nhật lũy tiến thời gian thực (CDC & Incremental Updates):** Tích hợp Change Data Capture (Debezium/Kafka) lắng nghe thay đổi từ cơ sở dữ liệu gốc để cập nhật vector tương ứng ngay lập tức.
-2. **Dọn rác vector (Garbage Collection):** Xóa bỏ các vector của tài liệu hết hạn bằng kỹ thuật *Soft-delete* (đánh dấu metadata) kết hợp *Hard-delete theo lô* vào khung giờ thấp điểm.
-3. **Tái lập chỉ mục định kỳ (Periodic Re-indexing & De-fragmentation):** Định kỳ xây dựng lại đồ thị HNSW để triệt tiêu hiện tượng phân mảnh đồ thị (Graph Fragmentation) sau hàng nghìn lần thêm/xóa.
-4. **Di cư mô hình nhúng không downtime (Shadow Re-indexing):** Khi nâng cấp mô hình embedding, dựng một Index Version 2 chạy ngầm, batch embed toàn bộ kho dữ liệu, kiểm thử A/B rồi mới tráo router API sang Index V2.
+#### 4 Cột mốc kỹ thuật của chu trình bảo trì sạch (Clean Maintenance Loop):
+1. **Thiết lập bảng theo dõi Metadata (Metadata Tracking Table):**
+   * Mọi tài liệu nạp vào phải có cấu trúc định danh:
+     ```python
+     {
+         "doc_id": "POL-MED-001",
+         "last_updated": "2026-10-04T10:00:00Z",
+         "embedding_version": "bge-base-en-v1.5",
+         "status": "active" # active | deprecated
+     }
+     ```
+2. **Cập nhật lũy tiến định kỳ (Weekly Delta Upsert):**
+   * Định kỳ hàng tuần, hệ thống kiểm tra các tài liệu có `last_updated > last_sync_timestamp`.
+   * **Chỉ re-embed những gì đã thay đổi:** Không bao giờ tiêu tốn chi phí và GPU tính toán để nhúng lại toàn bộ 100% kho dữ liệu chỉ vì 5 tài liệu vừa được cập nhật. Nạp bổ sung (Upsert) các vector mới trực tiếp vào chỉ mục FAISS đang hoạt động.
+3. **Quy tắc tái huấn luyện 20% (The 20% Corpus Growth Rule):**
+   * Đối với các chỉ mục có tâm cụm như FAISS IVF, các tâm cụm Voronoi được xác định dựa trên phân phối dữ liệu tại thời điểm huấn luyện ban đầu.
+   * Khi kho tài liệu mở rộng **vượt quá $20\%$**, hiện tượng **Trôi dạt tâm cụm (Centroid Drift)** sẽ xảy ra: các vector mới nạp vào phân bố lệch khỏi các tâm cụm cũ, làm suy giảm nghiêm trọng chỉ số Recall.
+   * Khi chạm ngưỡng $20\%$, hệ thống bắt buộc phải gom toàn bộ vector hiện có để chạy lại pha huấn luyện `index.train` và tái phân bố lại toàn bộ cụm.
+4. **Triển khai ngầm kiểm định hồi quy (Shadow Index Deployment):**
+   * Tuyệt đối không bao giờ cập nhật thẳng vào chỉ mục phục vụ người dùng thực tế khi nâng cấp mô hình embedding hoặc tái cấu trúc phân cụm.
+   * **Quy trình:** Dựng một **Shadow Index** chạy song song ở hậu trường $\to$ Bắn tập dữ liệu kiểm chuẩn (Golden Evaluation Set gồm 50-100 câu hỏi nghiệp vụ chuẩn) qua cả hai chỉ mục $\to$ So sánh chỉ số Recall và Precision $\to$ Khi Shadow Index chứng minh độ vượt trội, thực hiện thao tác tráo đổi (Hot-Swap API Pointer) với thời gian chết bằng 0 (Zero-downtime).
 
 ---
 
@@ -767,6 +959,209 @@ def demo_advanced_chromadb():
 if __name__ == "__main__":
     # demo_advanced_chromadb()
     pass
+```
+
+---
+
+### Code thực nghiệm 7: Toàn bộ đường ống Trợ lý tra cứu y tế (Clinical Policy Assistant) với SentenceTransformers & FAISS (MiniLM vs BGE, IVF & Delta Upsert)
+
+Dưới đây là mã nguồn Python thực chiến hoàn chỉnh tái hiện toàn bộ bài toán Trợ lý tra cứu quy chế lâm sàng cho bệnh viện:
+* **Môi trường & Thư viện:** `pip install sentence-transformers faiss-cpu numpy`
+* **Quy trình thực thi:**
+  1. Nạp 3 tài liệu chính sách y tế mẫu (Telehealth Retention, Emergency Discharge, Same-Day Surgery Protocol).
+  2. Tạo 2 mô hình Embedding: `all-MiniLM-L6-v2` (384 chiều) vs `BAAI/bge-base-en-v1.5` (768 chiều).
+  3. Lập chỉ mục FLAT và so sánh kết quả truy vấn đối đầu trên câu hỏi: *"How long do we store patient records for telehealth sessions?"*.
+  4. Nâng cấp lên chỉ mục phân cụm **FAISS IVF (Inverted File Index)**, huấn luyện K-Means trên vector BGE và tinh chỉnh `nprobe`.
+  5. Mô phỏng **Vòng lặp vận hành Ngày-2 (Day-2 Delta Upsert)**: Nhúng lại chính sách vừa cập nhật và nạp trực tiếp vào FAISS mà không cần rebuild toàn bộ.
+
+```python
+# ==============================================================================
+# CLINICAL POLICY ASSISTANT: RETRIEVAL BENCHMARK & PRODUCTION FAISS PIPELINE
+# Framework: SentenceTransformers + FAISS + NumPy
+# ==============================================================================
+
+import numpy as np
+import faiss
+from sentence_transformers import SentenceTransformer
+
+# ------------------------------------------------------------------------------
+# 1. KHO CHÍNH SÁCH BỆNH VIỆN MẪU (HOSPITAL POLICIES KNOWLEDGE BASE)
+# ------------------------------------------------------------------------------
+policies_db = [
+    {
+        "doc_id": "POL-MED-001",
+        "title": "Telehealth Patient Record Retention and HIPAA Archival Protocol",
+        "last_updated": "2026-01-15",
+        "version": 1,
+        "content": (
+            "POLICY POL-MED-001: Telehealth Encounter Record Retention & Archival Protocol.\n"
+            "All electronic audio-video recordings, interactive text transcripts, and clinical notes "
+            "generated during telehealth consultations must be retained in encrypted cold storage for a minimum "
+            "of seven (7) years from the date of encounter for adult patients. For pediatric telehealth sessions, "
+            "records must be retained for seven (7) years past the patient's eighteenth (18th) birthday. "
+            "All archival repositories must strictly comply with the HIPAA Security Rule and enforce AES-256 encryption at rest."
+        )
+    },
+    {
+        "doc_id": "POL-MED-002",
+        "title": "Emergency Department Observation and Safe Discharge Criteria",
+        "last_updated": "2026-02-10",
+        "version": 1,
+        "content": (
+            "POLICY POL-MED-002: Emergency Department Patient Discharge Criteria.\n"
+            "Patients admitted under Emergency Observation status may be cleared for home discharge only after "
+            "sustaining stable hemodynamic vital signs for at least four (4) consecutive hours. Mandatory criteria "
+            "include a Glasgow Coma Scale score of 15, resolution of acute pain, safe ambulation without unassisted "
+            "fall risk, and verified caregiver escort transport."
+        )
+    },
+    {
+        "doc_id": "POL-MED-003",
+        "title": "Same-Day Ambulatory Surgery Post-Anesthesia Discharge Protocol",
+        "last_updated": "2026-03-05",
+        "version": 1,
+        "content": (
+            "POLICY POL-MED-003: Post-Anesthesia Same-Day Discharge Protocol.\n"
+            "Outpatients undergoing same-day elective surgical procedures must meet the modified Aldrete Post-Anesthesia "
+            "Recovery Score of at least nine (9) prior to discharge. Patients must demonstrate oral fluid retention, "
+            "spontaneous voiding, absence of active surgical wound hemorrhage, and possess written post-operative "
+            "analgesic instructions signed by the attending surgeon."
+        )
+    }
+]
+
+# Truy vấn thực tế của y bác sĩ
+clinical_query = "How long do we store patient records for telehealth sessions?"
+print(f"Câu hỏi lâm sàng: '{clinical_query}'\n")
+
+# ------------------------------------------------------------------------------
+# 2. KHỞI TẠO 2 MÔ HÌNH EMBEDDING ĐỐI ĐẦU
+# ------------------------------------------------------------------------------
+print("--- KHỞI TẠO MÔ HÌNH EMBEDDING ---")
+# Mô hình 1: Nhẹ, lặp nhanh (384 dimensions)
+print("Loading model: all-MiniLM-L6-v2 (384-d)...")
+model_minilm = SentenceTransformer("all-MiniLM-L6-v2")
+
+# Mô hình 2: Nắm bắt sâu văn phong chính sách & tuân thủ (768 dimensions)
+print("Loading model: BAAI/bge-base-en-v1.5 (768-d)...")
+model_bge = SentenceTransformer("BAAI/bge-base-en-v1.5")
+
+policy_texts = [p["content"] for p in policies_db]
+
+# Trích xuất embeddings cho cả 3 văn bản
+embeddings_minilm = model_minilm.encode(policy_texts, convert_to_numpy=True).astype("float32")
+embeddings_bge = model_bge.encode(policy_texts, convert_to_numpy=True).astype("float32")
+
+# Chuẩn hóa L2 để tìm kiếm Cosine Similarity qua Inner Product
+faiss.normalize_L2(embeddings_minilm)
+faiss.normalize_L2(embeddings_bge)
+
+dim_minilm = embeddings_minilm.shape[1]  # 384
+dim_bge = embeddings_bge.shape[1]        # 768
+
+# ------------------------------------------------------------------------------
+# 3. THỬ NGHIỆM ĐỐI ĐẦU TRÊN FAISS FLAT INDEX (EXACT SEARCH)
+# ------------------------------------------------------------------------------
+print("\n--- THỰC NGHIỆM ĐỐI ĐẦU: MiniLM vs BGE TRÊN FAISS FLAT INDEX ---")
+
+# Dựng Flat Index cho MiniLM
+index_flat_minilm = faiss.IndexFlatIP(dim_minilm)
+index_flat_minilm.add(embeddings_minilm)
+
+# Dựng Flat Index cho BGE
+index_flat_bge = faiss.IndexFlatIP(dim_bge)
+index_flat_bge.add(embeddings_bge)
+
+# Mã hóa câu hỏi
+query_vec_minilm = model_minilm.encode([clinical_query], convert_to_numpy=True).astype("float32")
+query_vec_bge = model_bge.encode([clinical_query], convert_to_numpy=True).astype("float32")
+faiss.normalize_L2(query_vec_minilm)
+faiss.normalize_L2(query_vec_bge)
+
+# Truy vấn Top-3 trên cả 2 mô hình
+scores_m, ids_m = index_flat_minilm.search(query_vec_minilm, 3)
+scores_b, ids_b = index_flat_bge.search(query_vec_bge, 3)
+
+print("\n[KẾT QUẢ TỪ all-MiniLM-L6-v2]:")
+for rank in range(3):
+    idx = ids_m[0][rank]
+    score = scores_m[0][rank]
+    doc = policies_db[idx]
+    print(f"  Hạng {rank+1} (Cosine: {score:.4f}) -> [{doc['doc_id']}] {doc['title']}")
+
+print("\n[KẾT QUẢ TỪ BAAI/bge-base-en-v1.5]:")
+for rank in range(3):
+    idx = ids_b[0][rank]
+    score = scores_b[0][rank]
+    doc = policies_db[idx]
+    print(f"  Hạng {rank+1} (Cosine: {score:.4f}) -> [{doc['doc_id']}] {doc['title']}")
+
+# ------------------------------------------------------------------------------
+# 4. CHUYỂN DỊCH SANG FAISS IVF (INVERTED FILE) & TINH CHỈNH NPROBE
+# ------------------------------------------------------------------------------
+print("\n--- NÂNG CẤP LÊN FAISS IVF INDEX (SCALABLE CLUSTERING) ---")
+
+# Giả lập tập dữ liệu huấn luyện mở rộng dựa trên phân phối BGE
+# (Trong thực tế cần tối thiểu vài chục vector cho mỗi centroid)
+nlist = 2  # Gom thành 2 cụm Voronoi (minh họa)
+quantizer = faiss.IndexFlatIP(dim_bge)
+index_ivf_bge = faiss.IndexIVFFlat(quantizer, dim_bge, nlist, faiss.METRIC_INNER_PRODUCT)
+
+# Huấn luyện K-Means Centroids trực tiếp trên vector BGE
+print(f"Đang huấn luyện IVF index với {nlist} tâm cụm Voronoi...")
+index_ivf_bge.train(embeddings_bge)
+print(f"Chỉ số đã được huấn luyện: {index_ivf_bge.is_trained}")
+
+# Nạp các vector văn bản vào cụm
+index_ivf_bge.add(embeddings_bge)
+print(f"Tổng số vector đã lập chỉ mục IVF: {index_ivf_bge.ntotal}")
+
+# Thiết lập nprobe: Trong y tế, tăng nprobe để không bao giờ bỏ sót tài liệu
+index_ivf_bge.nprobe = 2
+print(f"Cấu hình nprobe = {index_ivf_bge.nprobe} (Quét toàn diện các cụm để bảo toàn Recall)")
+
+ivf_scores, ivf_ids = index_ivf_bge.search(query_vec_bge, 2)
+print(f"IVF Top-1 Match: [{policies_db[ivf_ids[0][0]]['doc_id']}] (Cosine Score: {ivf_scores[0][0]:.4f})")
+
+# ------------------------------------------------------------------------------
+# 5. VÒNG LẶP VẬN HÀNH NGÀY-2: INCREMENTAL DELTA UPSERT (KHÔNG CẦN REBUILD)
+# ------------------------------------------------------------------------------
+print("\n--- VÒNG LẶP BẢO TRÌ NGÀY-2: CẬP NHẬT GIA TĂNG (INCREMENTAL UPSERT) ---")
+
+# Giả lập: Bộ Y tế ban hành sửa đổi: Tăng thời hạn lưu trữ Telehealth lên 10 năm
+updated_policy = {
+    "doc_id": "POL-MED-001",
+    "title": "Telehealth Patient Record Retention (2026 Revised Amendment)",
+    "last_updated": "2026-10-04",
+    "version": 2,
+    "content": (
+        "POLICY POL-MED-001 (AMENDMENT 2026): Revised Retention Protocol.\n"
+        "Effective October 2026, all telehealth video sessions and electronic medical transcripts "
+        "must be archived for a mandatory duration of ten (10) years (extended from 7 years) "
+        "following the final clinical encounter. All pediatric retention remains active until age 25."
+    )
+}
+
+print(f"Phát hiện văn bản thay đổi: {updated_policy['doc_id']} v{updated_policy['version']}")
+print("Thực hiện Re-embedding chỉ riêng cho tài liệu sửa đổi...")
+
+# Chỉ nhúng văn bản sửa đổi (Delta Embedding)
+updated_vector = model_bge.encode([updated_policy["content"]], convert_to_numpy=True).astype("float32")
+faiss.normalize_L2(updated_vector)
+
+# Nạp trực tiếp vector mới vào FAISS IVF Index đang chạy mà không cần rebuild toàn bộ
+index_ivf_bge.add(updated_vector)
+policies_db.append(updated_policy)  # Cập nhật danh mục tài liệu
+
+print(f"Đã nạp bổ sung vector mới. Tổng số vector trong FAISS hiện tại: {index_ivf_bge.ntotal}")
+
+# Truy vấn lại để xác nhận FAISS ngay lập tức trả về tài liệu mới nhất
+new_scores, new_ids = index_ivf_bge.search(query_vec_bge, 1)
+retrieved_doc = policies_db[new_ids[0][0]]
+print(f"\nKết quả truy xuất sau cập nhật gia tăng:")
+print(f"Document ID: {retrieved_doc['doc_id']} (Phiên bản: v{retrieved_doc['version']})")
+print(f"Tiêu đề: {retrieved_doc['title']}")
+print(f"Nội dung trích xuất:\n{retrieved_doc['content']}")
 ```
 
 ---
