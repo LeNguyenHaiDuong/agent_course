@@ -756,12 +756,12 @@ Dưới đây là ma trận tra cứu tham số chuẩn sản xuất cho các ch
 ---
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG BÀI HỌC
-* Kiến trúc bộ khung tác tử: [[03-building-agents/01-harness-and-memory/01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]
-* Quản trị cửa sổ ngữ cảnh & Bệnh lý: [[03-building-agents/01-harness-and-memory/02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh, Bệnh Lý & Cô Lập]]
-* Bộ nhớ nhận thức đa tầng: [[03-building-agents/01-harness-and-memory/03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
-* Vòng lặp tự trị & Điều kiện dừng: [[03-building-agents/03-loop-engineering/01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]]
-* Các mô hình vòng lặp cốt lõi: [[03-building-agents/03-loop-engineering/02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]]
-* Đội ngũ đa tác tử phối hợp: [[03-building-agents/03-loop-engineering/03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]]
-* Thực thi bền vững chống sụp đổ: [[03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows|Durable Agent Execution & Stateful Workflows]]
+* Kiến trúc bộ khung tác tử: [[01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]
+* Quản trị cửa sổ ngữ cảnh & Bệnh lý: [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh, Bệnh Lý & Cô Lập]]
+* Bộ nhớ nhận thức đa tầng: [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
+* Vòng lặp tự trị & Điều kiện dừng: [[01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]]
+* Các mô hình vòng lặp cốt lõi: [[02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]]
+* Đội ngũ đa tác tử phối hợp: [[03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]]
+* Thực thi bền vững chống sụp đổ: [[05_durable_execution_and_stateful_workflows|Durable Agent Execution & Stateful Workflows]]
 * Trở về mục lục chuyên đề: [[03-building-agents/01-harness-and-memory/README|🗄️ Harness & Memory MOC]]
 

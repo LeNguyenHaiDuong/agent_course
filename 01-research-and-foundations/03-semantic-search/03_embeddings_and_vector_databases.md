@@ -798,5 +798,5 @@ flowchart TD
 
 * **Nền tảng toán học & Re-ranking:** [[01_semantic_search_and_reranking|01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]
 * **Kiến trúc RAG & 9 Mẫu thiết kế chiến lược:** [[02_rag_architecture_and_components|02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược]]
-* **Quản trị cửa sổ ngữ cảnh:** [[03-building-agents/01-harness-and-memory/02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
-* **Ứng dụng vào Bộ nhớ Tác tử AI:** [[03-building-agents/01-harness-and-memory/03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
+* **Quản trị cửa sổ ngữ cảnh:** [[02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
+* **Ứng dụng vào Bộ nhớ Tác tử AI:** [[03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
