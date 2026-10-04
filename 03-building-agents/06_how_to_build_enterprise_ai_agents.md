@@ -1,6 +1,8 @@
 ---
 title: "Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp (Enterprise AI Agent Blueprint)"
 aliases:
+  - how_to_build_enterprise_ai_agents
+  - 06_how_to_build_enterprise_ai_agents
   - Enterprise AI Agent Architecture Blueprint
   - How To Build An AI Agent
   - Kien Truc Xay Dung AI Agent Doanh Nghiep

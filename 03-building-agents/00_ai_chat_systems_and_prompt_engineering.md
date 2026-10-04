@@ -1,6 +1,8 @@
 ---
 title: "Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat"
 aliases:
+  - ai_chat_systems_and_prompt_engineering
+  - 00_ai_chat_systems_and_prompt_engineering
   - AI Chat Systems and Architecture
   - AI Harness and Evolution
 tags:

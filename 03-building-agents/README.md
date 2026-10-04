@@ -23,8 +23,7 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
 ```text
 03-building-agents/
 ├── README.md                                    # (Tài liệu này) Giới thiệu tổng quan Trụ cột 3
-├── how_to_build_enterprise_ai_agents.md         # 🏗️ CẨM NANG TOÀN TẬP: Kiến trúc khối, thích ứng từng phòng ban & phòng vệ Production
-├── ai_chat_systems_and_prompt_engineering.md    # 🏛️ Tài liệu kiến trúc dẫn nhập: Harness, Memory & 4 tầng tiến hóa
+├── 00_ai_chat_systems_and_prompt_engineering.md # 🏛️ Bài 00 (Nhập môn): Dẫn nhập kiến trúc Harness, Memory & 4 tầng tiến hóa
 │
 ├── 01-harness-and-memory/                       # 🗄️ Tầng 1: Bộ khung điều khiển, Bộ nhớ & Caching
 │   ├── README.md                                # System Instructions, Context Drift, Dynamic Memory
@@ -50,25 +49,19 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
 │   ├── README.md                                # Distributed Tracing (Langfuse/OpenTelemetry), Ragas, LLM-as-a-Judge
 │   └── 01_agent_evals_and_tracing.md            # Đo lường định lượng, Tracing phân tán & CI/CD Evals
 │
-└── 05-multimodal-gui-agents/                   # 🖥️ Tầng 5: Tác tử đa phương thức & Computer-Use
-    ├── README.md                                # Tổng quan tương tác màn hình, pixels & OS Automation
-    └── 01_multimodal_gui_and_computer_use.md    # Visual UI Grounding (Set-of-Mark/OmniParser) & OSWorld
+├── 05-multimodal-gui-agents/                   # 🖥️ Tầng 5: Tác tử đa phương thức & Computer-Use
+│   ├── README.md                                # Tổng quan tương tác màn hình, pixels & OS Automation
+│   └── 01_multimodal_gui_and_computer_use.md    # Visual UI Grounding (Set-of-Mark/OmniParser) & OSWorld
+│
+└── 06_how_to_build_enterprise_ai_agents.md      # 🏗️ Bài 06 (Tổng kết): CẨM NANG TOÀN TẬP kiến trúc khối, 6 phòng ban & Production
 ```
 
 ---
 
-## 📂 Danh Mục Các Thành Phần Kiến Trúc
+## 📂 Danh Mục Các Thành Phần Kiến Trúc (Theo Tiến Trình Học)
 
-### 🏗️ Cẩm Nang Kiến Trúc Tổng Thể & Thích Ứng Doanh Nghiệp (Master Blueprint)
-* 📖 [[how_to_build_enterprise_ai_agents|Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp (Enterprise AI Agent Blueprint)]]:
-  * **Sơ đồ khối 6 tầng (Block Diagram):** Ingress Gateway, Agent Harness Core, Memory Systems, MCP Tooling, Execution Sandboxes, Observability & Evals.
-  * **Bộ sưu tập AI Agent Design Patterns:** Router/Classifier, ReAct, Plan-and-Execute, Evaluator-Optimizer, Supervisor-Worker & Swarm Handoff.
-  * **Thích ứng chuyên sâu cho 6 phòng ban:** Sales & BD, Nhân sự (HR), Tài chính & Kế toán (3-Way Matching), Pháp chế (Playbook rà soát hợp đồng), Chăm sóc khách hàng & IT Helpdesk (Self-healing), Kỹ thuật phần mềm (SWE-bench paradigm).
-  * **5 Thất bại hệ thống & Chiến lược phòng vệ:** Execution Hallucination (Pydantic/Constrained Decoding), Infinite Loops & Tool Storms (Circuit Breakers), State Drift (Context Hygiene), RBAC/ACL Breaches (Identity Propagation), Indirect Prompt Injection (Context Quarantine & Dual-LLM).
-  * **Quy trình 6 giai đoạn đưa Agent từ Prototype lên Production.**
-
-### 🏛️ Tài Liệu Kiến Trúc Nền Tảng (Foundational Architecture)
-* 📖 [[ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]]:
+### 🏛️ Bài 00: Tài Liệu Kiến Trúc Nền Tảng (Đọc Mở Đầu - Foundational Primer)
+* 📖 [[00_ai_chat_systems_and_prompt_engineering|00_ai_chat_systems_and_prompt_engineering - Kiến trúc & Tiến hóa của các hệ thống AI Chat]]:
   * Phân tích bản chất One-Shot và tính tĩnh (Static) của LLM Core.
   * Giải phẫu một AI Software Harness (System Instructions, Chat History, Memory, SKILLS & Tools).
   * 3 cấu phần của hệ thống Memory (User Profile, Dynamic Memory, Semantic Retrieval).
@@ -128,6 +121,16 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
 * **Nhiệm vụ:**
   * Tự động hóa các phần mềm desktop và web portal không có API.
   * Tương tác tự nhiên qua mắt nhìn (Visual Patches) và tay bấm (OS Input Controller).
+
+---
+
+### 🏗️ Bài 06: Cẩm Nang Kiến Trúc Tổng Thể & Thích Ứng Doanh Nghiệp (Đọc Tổng Hợp - Capstone Blueprint)
+* 📖 [[06_how_to_build_enterprise_ai_agents|06_how_to_build_enterprise_ai_agents - Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp (Enterprise AI Agent Blueprint)]]:
+  * **Sơ đồ khối 6 tầng (Block Diagram):** Ingress Gateway, Agent Harness Core, Memory Systems, MCP Tooling, Execution Sandboxes, Observability & Evals.
+  * **Bộ sưu tập AI Agent Design Patterns:** Router/Classifier, ReAct, Plan-and-Execute, Evaluator-Optimizer, Supervisor-Worker & Swarm Handoff.
+  * **Thích ứng chuyên sâu cho 6 phòng ban:** Sales & BD, Nhân sự (HR), Tài chính & Kế toán (3-Way Matching), Pháp chế (Playbook rà soát hợp đồng), Chăm sóc khách hàng & IT Helpdesk (Self-healing), Kỹ thuật phần mềm (SWE-bench paradigm).
+  * **5 Thất bại hệ thống & Chiến lược phòng vệ:** Execution Hallucination (Pydantic/Constrained Decoding), Infinite Loops & Tool Storms (Circuit Breakers), State Drift (Context Hygiene), RBAC/ACL Breaches (Identity Propagation), Indirect Prompt Injection (Context Quarantine & Dual-LLM).
+  * **Quy trình 6 giai đoạn đưa Agent từ Prototype lên Production.**
 
 ---
 

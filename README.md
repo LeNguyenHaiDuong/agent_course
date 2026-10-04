@@ -54,8 +54,7 @@ agent_course/
 │
 └── 03-building-agents/                                # 🛠️ TRỤ CỘT 3: KỸ THUẬT XÂY DỰNG TÁC TỬ TỰ HÀNH
     ├── README.md                                      # Tổng quan & Lộ trình Trụ cột 3
-    ├── how_to_build_enterprise_ai_agents.md           # 🏗️ Cẩm nang toàn tập kiến trúc Agent Doanh nghiệp
-    ├── ai_chat_systems_and_prompt_engineering.md      # 🏛️ Tài liệu kiến trúc dẫn nhập: Harness, Memory & 4 tầng tiến hóa
+    ├── 00_ai_chat_systems_and_prompt_engineering.md   # 🏛️ Bài 00 (Nhập môn): Dẫn nhập kiến trúc Harness, Memory & 4 tầng tiến hóa
     ├── 01-harness-and-memory/                         # 🗄️ Tầng 1: Bộ khung điều khiển & Hệ thống ghi nhớ
     │   ├── README.md
     │   ├── 01_harness_architecture.md
@@ -76,9 +75,10 @@ agent_course/
     ├── 04-observability-and-evals/                    # 📊 Tầng 4: Giám sát vết & Đánh giá chất lượng
     │   ├── README.md
     │   └── 01_agent_evals_and_tracing.md
-    └── 05-multimodal-gui-agents/                      # 🖥️ Tầng 5: Tác tử đa phương thức & Computer-Use
-        ├── README.md
-        └── 01_multimodal_gui_and_computer_use.md
+    ├── 05-multimodal-gui-agents/                      # 🖥️ Tầng 5: Tác tử đa phương thức & Computer-Use
+    │   ├── README.md
+    │   └── 01_multimodal_gui_and_computer_use.md
+    └── 06_how_to_build_enterprise_ai_agents.md        # 🏗️ Bài 06 (Tổng kết): CẨM NANG TOÀN TẬP kiến trúc khối, 6 phòng ban & Production
 ```
 
 ---
@@ -99,8 +99,7 @@ agent_course/
 * [[02_dspy_and_programmatic_prompting|Lập Trình Hóa Prompt Với DSPy (Stanford NLP) & Tối Ưu Hóa Tự Động]]: Chấm dứt kỷ nguyên Prompt Crafting thủ công; triết lý Compiler cho LLM phân ly Logic và Trọng số; 3 cấu phần Signatures, Modules (`Predict`, `ChainOfThought`, `ReAct`, `ProgramOfThought`) & Optimizers (`BootstrapFewShot`, `MIPROv2` Bayesian Instruction Optimization, `COPRO`/APE); bài tập thực chiến RAG Agent & chưng cất tri thức sang LLaMA-3 cục bộ.
 
 ### 🛠️ [[03-building-agents/README|Trụ cột 3: Building Agents]]
-* [[how_to_build_enterprise_ai_agents|Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp (Enterprise AI Agent Blueprint)]]: **Bản thiết kế tổng thể:** Sơ đồ khối 6 tầng, thích ứng chuyên sâu 6 phòng ban (Sales, HR, Finance, Legal, CS/IT, Engineering), AI Design Patterns (ReAct, Plan-and-Execute, Evaluator-Optimizer, Multi-Agent), 5 thất bại hệ thống kinh điển & chiến lược phòng vệ, quy trình 6 giai đoạn đưa Agent từ Prototype lên Production.
-* [[ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]]: Phân tích bản chất One-shot của LLM Core, giải phẫu AI Harness, cơ chế Memory (Dynamic & Semantic), SKILLS/Tools và 4 tầng tiến hóa từ Prompting đến Loop Engineering.
+* [[00_ai_chat_systems_and_prompt_engineering|00_ai_chat_systems_and_prompt_engineering - Kiến trúc & Tiến hóa của các hệ thống AI Chat]]: **Tài liệu dẫn nhập kiến trúc:** Phân tích bản chất One-shot của LLM Core, giải phẫu AI Harness, cơ chế Memory (Dynamic & Semantic), SKILLS/Tools và 4 tầng tiến hóa từ Prompting đến Loop Engineering.
 * [[03-building-agents/01-harness-and-memory/README|01-harness-and-memory - AI Harness & Memory Architecture]]: Bộ khung phần mềm, quản trị cửa sổ ngữ cảnh và phòng chống Context Drift.
   * [[01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]: Phân tách Lõi tĩnh vs Khung có trạng thái, 5 phân hệ phần mềm và Session Lifecycle.
   * [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý, Tỉa Nhánh, Tóm Tắt & Cô Lập]]: Chẩn đoán 3 bệnh lý (Context Poisoning, Context Decay, Context Starvation), giải pháp RAG, Context Pruning, Summarization và kiến trúc Context Quarantine.
@@ -119,4 +118,5 @@ agent_course/
   * [[01_agent_evals_and_tracing|Hệ Thống Giám Sát, Đo Lường & Đánh Giá Tác Tử AI]]: Chuẩn OpenTelemetry GenAI Semantic Conventions, Cây vết (Trace Tree), tích hợp Langfuse Tracing, bộ chỉ số Ragas Triad, giải phẫu 4 thiên vị LLM-as-a-Judge, kỹ thuật G-Eval xác suất Softmax, benchmark SWE-bench/GAIA và phương pháp sinh tập kiểm thử tổng hợp (Synthetic Testset).
 * [[03-building-agents/05-multimodal-gui-agents/README|05-multimodal-gui-agents - Multimodal GUI Agents & Computer-Use]]: Tác tử đa phương thức nhìn màn hình (Pixels) và tương tác hệ điều hành như người dùng thật.
   * [[01_multimodal_gui_and_computer_use|Kỷ Nguyên Tác Tử Tương Tác Trực Quan Màn Hình & Hệ Điều Hành]]: Nghịch lý "Vật chất tối của API", Visual UI Grounding, Set-of-Mark (SoM) Prompting, OmniParser, Tọa độ chuẩn hóa $[0, 1000] \times [0, 1000]$, Không gian hành động nguyên thủy (Atomic Action Space), phòng chống Render Latency, Frame Differencing tiết kiệm 85% token và đánh giá benchmark OSWorld.
+* [[06_how_to_build_enterprise_ai_agents|06_how_to_build_enterprise_ai_agents - Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp (Enterprise AI Agent Blueprint)]]: **Bản thiết kế tổng hợp & Capstone Production:** Sơ đồ khối 6 tầng, thích ứng chuyên sâu 6 phòng ban (Sales, HR, Finance, Legal, CS/IT, Engineering), AI Design Patterns (ReAct, Plan-and-Execute, Evaluator-Optimizer, Multi-Agent), 5 thất bại hệ thống kinh điển & chiến lược phòng vệ, quy trình 6 giai đoạn đưa Agent từ Prototype lên Production.
 
