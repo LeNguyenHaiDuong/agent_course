@@ -47,9 +47,9 @@ flowchart TD
         P3["3. Evaluator-Optimizer (Self-Refine)\nGenerator -> Evaluator -> Refinement Loop\nĐảm bảo chất lượng nghiêm ngặt (Code, Viết lách)"]
     end
 
-    style P1 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-    style P2 fill:#e0e7ff,stroke:#6366f1,stroke-width:2px
-    style P3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style P1 fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
+    style P2 fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#000000
+    style P3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
 ```
 
 ---
@@ -128,9 +128,9 @@ flowchart TD
     Verifier -- "Thất Bại Nghiêm Trọng" --> Replanner["3. REPLANNER (Tái Lập Kế Hoạch)\nCập nhật lại lộ trình dựa trên lỗi thực tế"]
     Replanner --> PlanChecklist
 
-    style Planner fill:#e0e7ff,stroke:#4338ca,stroke-width:2px
-    style ExecutionEngine fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style Replanner fill:#fee2e2,stroke:#ef4444,stroke-width:2px
+    style Planner fill:#e0e7ff,stroke:#4338ca,stroke-width:2px,color:#000000
+    style ExecutionEngine fill:#f8fafc,stroke:#3b82f6,stroke-width:2px,color:#000000
+    style Replanner fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
 ```
 
 * **Planner:** Sử dụng mô hình suy luận mạnh (như Claude 3.5 Sonnet, GPT-4o) để lập dàn ý chiến lược.
@@ -159,9 +159,9 @@ flowchart TD
 
     Feedback -->|"Tiêm phản hồi vào Context"| Generator
 
-    style Generator fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-    style Evaluator fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style FinalOutput fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style Generator fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
+    style Evaluator fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style FinalOutput fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 ### Cơ Chế Hoạt Động:

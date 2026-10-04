@@ -171,10 +171,10 @@ flowchart TD
     Tier1 <==>|"Dynamic Retrieval & Logging"| Tier3
     Tier1 <==>|"Hybrid Search & Invalidation"| Tier4
 
-    style Tier1 fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style Tier2 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style Tier3 fill:#e0e7ff,stroke:#4338ca,stroke-width:2px
-    style Tier4 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style Tier1 fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style Tier2 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
+    style Tier3 fill:#e0e7ff,stroke:#4338ca,stroke-width:2px,color:#000000
+    style Tier4 fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
 ```
 
 ### Tầng 1: Sliding Working Memory (Ngăn xếp cửa sổ ngữ cảnh hiện hành)
@@ -216,8 +216,8 @@ flowchart TD
         end
     end
 
-    style OS fill:#f8fafc,stroke:#334155
-    style AgentOS fill:#eff6ff,stroke:#1d4ed8
+    style OS fill:#f8fafc,stroke:#334155,color:#000000
+    style AgentOS fill:#eff6ff,stroke:#1d4ed8,color:#000000
 ```
 
 ### Cắt trang ngữ cảnh (Context Paging & Interrupts)
@@ -278,10 +278,10 @@ flowchart TD
         Stream --> PlanEngine["3. PLANNING ENGINE\nDịch chuyển tri thức phản tỉnh thành kế hoạch hành động\nNgày -> Buổi sáng -> Từng khung giờ 15 phút"]
     end
 
-    style Stream fill:#f1f5f9,stroke:#475569
-    style ReflectEngine fill:#fef3c7,stroke:#d97706,stroke-width:2px
-    style HigherMem fill:#dbeafe,stroke:#2563eb
-    style PlanEngine fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style Stream fill:#f1f5f9,stroke:#475569,color:#000000
+    style ReflectEngine fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#000000
+    style HigherMem fill:#dbeafe,stroke:#2563eb,color:#000000
+    style PlanEngine fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 ### Memory Stream: Dòng ký ức liên tục kèm tem thời gian
@@ -364,9 +364,9 @@ graph LR
     User -- "PRIMARY_LANGUAGE<br>[from: 2026-08, to: PRESENT]" --> Python
     User -. "SECONDARY_LANGUAGE<br>[historical]" .-> Java
 
-    style VinAI fill:#dcfce7,stroke:#16a34a,stroke-width:2px
-    style Python fill:#dcfce7,stroke:#16a34a,stroke-width:2px
-    style Grab fill:#fee2e2,stroke:#ef4444,stroke-width:1px
+    style VinAI fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style Python fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style Grab fill:#fee2e2,stroke:#ef4444,stroke-width:1px,color:#000000
 ```
 
 Mỗi cạnh quan hệ (Edge) $E = (u, v, R)$ được gắn kèm 2 mốc thời gian:

@@ -72,9 +72,9 @@ flowchart TD
         C -- "Thành công" --> F[Execute Tool / Action]
     end
     
-    style C fill:#ffcccc,stroke:#ff0000
-    style D fill:#ffe6cc,stroke:#ff9900
-    style F fill:#ccffcc,stroke:#009900
+    style C fill:#ffcccc,stroke:#ff0000,color:#000000
+    style D fill:#ffe6cc,stroke:#ff9900,color:#000000
+    style F fill:#ccffcc,stroke:#009900,color:#000000
 ```
 
 Phương pháp thử-sai này bộc lộ **3 thất bại chí mạng** trong môi trường doanh nghiệp:
@@ -179,9 +179,9 @@ flowchart TD
         Sampler --> NextToken["Token Hợp Lệ Tiếp Theo w_t"]
     end
     
-    style GPUKernel fill:#f9f9fb,stroke:#4a5568,stroke-width:1px
-    style MaskingEngine fill:#edf2f7,stroke:#2b6cb0,stroke-width:2px
-    style KernelOp fill:#feebc8,stroke:#dd6b20,stroke-width:2px
+    style GPUKernel fill:#f9f9fb,stroke:#4a5568,stroke-width:1px,color:#000000
+    style MaskingEngine fill:#edf2f7,stroke:#2b6cb0,stroke-width:2px,color:#000000
+    style KernelOp fill:#feebc8,stroke:#dd6b20,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối: Bộ Lọc Tensor Logit (CUDA Logit Processor Block)
@@ -375,9 +375,9 @@ flowchart LR
         WakeLLM --> LogitMask["Áp Mặt Nạ Logit & Sample Giá Trị Thực"]
     end
 
-    style SGLangEngine fill:#f7fafc,stroke:#2d3748
-    style Inject fill:#c6f6d5,stroke:#22543d,stroke-width:2px
-    style WakeLLM fill:#fed7d7,stroke:#742a2a,stroke-width:2px
+    style SGLangEngine fill:#f7fafc,stroke:#2d3748,color:#000000
+    style Inject fill:#c6f6d5,stroke:#22543d,stroke-width:2px,color:#000000
+    style WakeLLM fill:#fed7d7,stroke:#742a2a,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối: Động Cơ Nhảy Cóc (Jump-Forward Token Insertion Engine)

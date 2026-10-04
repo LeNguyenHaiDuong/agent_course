@@ -88,8 +88,8 @@ flowchart TD
         Sn --> Bill["Hóa đơn API tăng theo hàm bậc hai O(N^2)"]
     end
 
-    style WithoutPromptCaching fill:#fef2f2,stroke:#ef4444,stroke-width:2px
-    style CostConsequence fill:#fff1f2,stroke:#be123c,stroke-width:2px
+    style WithoutPromptCaching fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style CostConsequence fill:#fff1f2,stroke:#be123c,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối:
@@ -148,11 +148,11 @@ flowchart TD
     Session1 --> NewReq1["Request Mới Agent 1: CHỈ TÍNH THÊM 300 TOKENS MỚI<br>(Cache Hit: 13,440 tokens!)"]
     Session2 --> NewReq2["Request Mới Agent 2: CHỈ TÍNH THÊM 500 TOKENS MỚI<br>(Cache Hit: 12,044 tokens!)"]
 
-    style Root fill:#f1f5f9,stroke:#475569
-    style SysPrompt fill:#dbeafe,stroke:#2563eb,stroke-width:2px
-    style ToolsDef fill:#dcfce7,stroke:#16a34a,stroke-width:2px
-    style NewReq1 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style NewReq2 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style Root fill:#f1f5f9,stroke:#475569,color:#000000
+    style SysPrompt fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000000
+    style ToolsDef fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style NewReq1 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
+    style NewReq2 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối:
@@ -285,8 +285,8 @@ flowchart LR
         B5 -.->|Khắc phục| F5["Ghim tĩnh tập Few-shot hoặc đặt dưới Breakpoint"]
     end
 
-    style BadPractices fill:#fef2f2,stroke:#ef4444
-    style FixPractices fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
+    style BadPractices fill:#fef2f2,stroke:#ef4444,color:#000000
+    style FixPractices fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#000000
 ```
 
 1. **Bẫy 1: Chèn Timestamp ở đầu System Prompt:**
@@ -321,10 +321,10 @@ flowchart TD
         StopCheck -->|Chưa chạm| NextToken["Xuất Token kế tiếp"]
     end
 
-    style Logits fill:#f1f5f9,stroke:#475569
-    style TempScale fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style TopPCut fill:#faf5ff,stroke:#a855f7,stroke-width:2px
-    style StopCheck fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style Logits fill:#f1f5f9,stroke:#475569,color:#000000
+    style TempScale fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#000000
+    style TopPCut fill:#faf5ff,stroke:#a855f7,stroke-width:2px,color:#000000
+    style StopCheck fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối:
@@ -756,11 +756,12 @@ Dưới đây là ma trận tra cứu tham số chuẩn sản xuất cho các ch
 ---
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG BÀI HỌC
-* Kiến trúc bộ khung tác tử: [[03-building-agents/harness-and-memory/01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]
-* Quản trị cửa sổ ngữ cảnh & Bệnh lý: [[03-building-agents/harness-and-memory/02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh, Bệnh Lý & Cô Lập]]
-* Bộ nhớ nhận thức đa tầng: [[03-building-agents/harness-and-memory/03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
-* Vòng lặp tự trị & Điều kiện dừng: [[03-building-agents/loop-engineering/01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]]
-* Các mô hình vòng lặp cốt lõi: [[03-building-agents/loop-engineering/02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]]
-* Đội ngũ đa tác tử phối hợp: [[03-building-agents/loop-engineering/03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]]
-* Thực thi bền vững chống sụp đổ: [[03-building-agents/loop-engineering/05_durable_execution_and_stateful_workflows|Durable Agent Execution & Stateful Workflows]]
-* Trở về mục lục chuyên đề: [[03-building-agents/harness-and-memory/README|🗄️ Harness & Memory MOC]]
+* Kiến trúc bộ khung tác tử: [[03-building-agents/01-harness-and-memory/01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]
+* Quản trị cửa sổ ngữ cảnh & Bệnh lý: [[03-building-agents/01-harness-and-memory/02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh, Bệnh Lý & Cô Lập]]
+* Bộ nhớ nhận thức đa tầng: [[03-building-agents/01-harness-and-memory/03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
+* Vòng lặp tự trị & Điều kiện dừng: [[03-building-agents/03-loop-engineering/01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]]
+* Các mô hình vòng lặp cốt lõi: [[03-building-agents/03-loop-engineering/02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]]
+* Đội ngũ đa tác tử phối hợp: [[03-building-agents/03-loop-engineering/03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]]
+* Thực thi bền vững chống sụp đổ: [[03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows|Durable Agent Execution & Stateful Workflows]]
+* Trở về mục lục chuyên đề: [[03-building-agents/01-harness-and-memory/README|🗄️ Harness & Memory MOC]]
+

@@ -426,9 +426,9 @@ flowchart TD
         Top --> Middle --> Bottom
     end
 
-    style Top fill:#dcfce7,stroke:#16a34a,stroke-width:2px
-    style Middle fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style Bottom fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style Top fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style Middle fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style Bottom fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 * **Hiệu ứng Ưu tiên (Primacy Effect):** Mô hình chú ý mạnh vào các token xuất hiện ở đầu prompt nhờ các lớp Positional Encoding ban đầu.

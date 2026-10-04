@@ -1,6 +1,8 @@
 ---
 title: "Tìm Kiếm Ngữ Nghĩa (Semantic Search) & Kỹ Thuật Tái Xếp Hạng (Re-ranking)"
 aliases:
+  - semantic_search_and_reranking
+  - 01_semantic_search_and_reranking
   - Semantic Search
   - Semantic Search and Reranking
   - Bi-Encoder vs Cross-Encoder
@@ -452,9 +454,9 @@ flowchart TD
     Query --> Stage2
     FinalTop --> Deliver["Đưa vào Context Window của LLM / Hiển thị kết quả người dùng"]
 
-    style Stage1 fill:#e6f3ff,stroke:#0066cc
-    style Stage2 fill:#fff0f5,stroke:#cc0066
-    style FinalTop fill:#e6ffe6,stroke:#009933
+    style Stage1 fill:#e6f3ff,stroke:#0066cc,color:#000000
+    style Stage2 fill:#fff0f5,stroke:#cc0066,color:#000000
+    style FinalTop fill:#e6ffe6,stroke:#009933,color:#000000
 ```
 
 ### Triết lý thiết kế: "Bi-Encoder để Recall, Cross-Encoder để Precision"
@@ -741,8 +743,8 @@ flowchart TD
     FailRet --> Hallucination
     SuccessRet --> AccurateAnswer
 
-    style FailRet fill:#ffcccc,stroke:#cc0000
-    style SuccessRet fill:#ccffcc,stroke:#009900
+    style FailRet fill:#ffcccc,stroke:#cc0000,color:#000000
+    style SuccessRet fill:#ccffcc,stroke:#009900,color:#000000
 ```
 
 * Nếu bộ máy truy xuất (Semantic Search) không thể đưa tài liệu đúng vào Top-3 hoặc Top-5, thì dù bạn có sử dụng kỹ thuật [[advanced_prompt_engineering_techniques|Prompt Engineering]] tài tình đến đâu, hay sử dụng mô hình LLM thông minh nhất hành tinh, câu trả lời sinh ra vẫn sẽ là **ảo giác (hallucination)** hoặc câu từ chối sáo rỗng.
@@ -763,6 +765,16 @@ xychart-beta
 * **Bản chất hiện tượng:** Các mô hình ngôn ngữ lớn biểu hiện sự suy giảm khả năng chú ý nghiêm trọng khi dữ liệu ngữ cảnh nằm ở khoảng giữa cửa sổ ngữ cảnh (đường cong hiệu năng hình chữ **U** - *U-shaped performance curve*).
 * Mô hình xử lý tốt nhất thông tin xuất hiện ở **đầu ngữ cảnh** (hiệu ứng ưu tiên - *Primacy Bias*) hoặc ở **cuối ngữ cảnh** (hiệu ứng gần nhất - *Recency Bias*). Khi dữ liệu quan trọng nằm kẹt ở vị trí từ thứ 10 đến 40 trong danh sách 50 tài liệu được lấy về từ Bi-Encoder, độ chính xác của LLM **lao dốc hơn 30% đến 40%**, dẫn tới hiện tượng bỏ sót dữ kiện hoặc bịa đặt câu trả lời.
 * **Vai trò cứu cánh của Cross-Encoder:** Cross-Encoder sắp xếp lại độ ưu tiên và đẩy văn bản chính xác nhất lên vị trí số 1 (`index 0` - ngay đầu danh sách context). Điều này trực tiếp đưa thông tin chuẩn xác vào "điểm rơi vàng" của cơ chế Self-Attention của LLM, triệt tiêu hoàn toàn điểm mù "Lost in the Middle".
+
+#### Mô hình tư duy "Kỳ thi mở sách" & Vũ điệu 4 nhịp của RAG
+* **Thi đóng sách vs. Thi mở sách:** Một mô hình LLM thông thường giống như một học sinh cố gắng làm bài thi từ trí nhớ thuần túy (Parametric Memory) — có lúc nhớ đúng, nhưng nhiều lúc bịa đặt (Hallucination) đầy tự tin. Một hệ thống RAG hoạt động giống như việc cho phép học sinh đó **mở sách ghi chép (Open-Book Exam)**: giở đúng trang, đọc đoạn dữ liệu thực chứng và dùng lời văn của mình để giải thích.
+* **Bộ ba phân vai:** Nếu xem **Retriever** và **Ranker** là *những nhà nghiên cứu (Researchers)* đi lục tìm và tuyển chọn ghi chú đáng giá nhất từ thư viện kiến thức, thì **Generator** chính là *nhà văn (Writer)* đọc các ghi chú đó để viết nên câu trả lời mạch lạc, chính xác với nhiệt độ thấp (`temperature=0.0`).
+* **Vòng điệp 4 nhịp hoàn chỉnh:** Mọi hệ thống RAG định hướng dữ liệu (Grounded AI) đều vận hành theo nhịp điệu:
+  $$\boxed{\textbf{Retrieve} \xrightarrow{\quad} \textbf{Rank} \xrightarrow{\quad} \textbf{Generate} \xrightarrow{\quad} \textbf{Orchestrate}}$$
+
+> [!tip] Chuyên Khảo Chi Tiết: Kiến Trúc 4 Cấu Phần Của RAG (Inside RAG)
+> Để tìm hiểu chi tiết về từng khối kiến trúc, cơ chế tải chỉ mục FAISS, cấu hình bộ lọc Contextual Compression với Cohere Rerank, tầng điều phối RetrievalQA và ca nghiên cứu thực chiến gọi vốn Nông nghiệp thẳng đứng (Vertical Farming), xem chuyên khảo riêng:
+> 👉 [[rag_architecture_and_components|Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)]].
 
 ---
 
@@ -1048,10 +1060,10 @@ flowchart TD
 
     Q_Latency -->|"Linh hoạt (> 1.5s), ưu tiên chống ảo giác 100%"| Arch_Agentic["LỰA CHỌN: Agentic RAG<br>(CRAG với Web Search Fallback + Self-RAG Verification)"]
 
-    style Arch_TwoStage fill:#d4edda,stroke:#28a745,stroke-width:2px
-    style Arch_Contextual fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px
-    style Arch_GraphRAG fill:#fff3cd,stroke:#ffc107,stroke-width:2px
-    style Arch_Agentic fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+    style Arch_TwoStage fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#000000
+    style Arch_Contextual fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px,color:#000000
+    style Arch_GraphRAG fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000000
+    style Arch_Agentic fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000000
 ```
 
 ---

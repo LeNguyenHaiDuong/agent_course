@@ -67,8 +67,8 @@ flowchart LR
         t2 <===> t4
     end
 
-    style RNN fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style Transformer fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style RNN fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style Transformer fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
 ```
 
 ### Hai Tử Huyệt Của Mô Hình Tuần Tự (RNN):
@@ -98,10 +98,10 @@ flowchart TD
     V --> WeightedSum
     WeightedSum --> OutputAttention["Attention Context Vector"]
 
-    style ProjQ fill:#e0e7ff,stroke:#4338ca,stroke-width:1px
-    style ProjK fill:#fef3c7,stroke:#d97706,stroke-width:1px
-    style ProjV fill:#ecfdf5,stroke:#10b981,stroke-width:1px
-    style OutputAttention fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style ProjQ fill:#e0e7ff,stroke:#4338ca,stroke-width:1px,color:#000000
+    style ProjK fill:#fef3c7,stroke:#d97706,stroke-width:1px,color:#000000
+    style ProjV fill:#ecfdf5,stroke:#10b981,stroke-width:1px,color:#000000
+    style OutputAttention fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 Công thức toán học kinh điển:
@@ -285,10 +285,10 @@ flowchart TD
     Concat --> LinearOut["Phép Chiếu Cuối Cùng . W^O"]
     LinearOut --> MHA_Out["Multi-Head Attention Output Vector"]
 
-    style Head1 fill:#e0e7ff,stroke:#4338ca,stroke-width:1px
-    style Head2 fill:#fef3c7,stroke:#d97706,stroke-width:1px
-    style HeadH fill:#ecfdf5,stroke:#10b981,stroke-width:1px
-    style MHA_Out fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style Head1 fill:#e0e7ff,stroke:#4338ca,stroke-width:1px,color:#000000
+    style Head2 fill:#fef3c7,stroke:#d97706,stroke-width:1px,color:#000000
+    style HeadH fill:#ecfdf5,stroke:#10b981,stroke-width:1px,color:#000000
+    style MHA_Out fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 ---
@@ -318,9 +318,9 @@ flowchart TD
         Q_GQA2["Q_5, Q_6, Q_7, Q_8 (Group 2)"] <--> KV_GQA2["(K_2, V_2) (Shared Group 2)"]
     end
 
-    style MHA_Arch fill:#fee2e2,stroke:#ef4444,stroke-width:1px
-    style MQA_Arch fill:#fef3c7,stroke:#f59e0b,stroke-width:1px
-    style GQA_Arch fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style MHA_Arch fill:#fee2e2,stroke:#ef4444,stroke-width:1px,color:#000000
+    style MQA_Arch fill:#fef3c7,stroke:#f59e0b,stroke-width:1px,color:#000000
+    style GQA_Arch fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 | Tiêu Chí So Sánh | Multi-Head Attention (MHA) | Multi-Query Attention (MQA) | Grouped-Query Attention (GQA) |
@@ -363,9 +363,9 @@ flowchart LR
     Split2D --> Rotate["Nhân với ma trận quay R_{theta, m}\nXoay một góc m * theta_i"]
     Rotate --> RotatedVec["Vector RoPE đã mã hóa vị trí"]
 
-    style Split2D fill:#e0e7ff,stroke:#4338ca,stroke-width:1px
-    style Rotate fill:#fef3c7,stroke:#d97706,stroke-width:1px
-    style RotatedVec fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style Split2D fill:#e0e7ff,stroke:#4338ca,stroke-width:1px,color:#000000
+    style Rotate fill:#fef3c7,stroke:#d97706,stroke-width:1px,color:#000000
+    style RotatedVec fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 #### Biểu diễn toán học trong không gian 2 chiều:
@@ -459,8 +459,8 @@ flowchart TD
         Core2 -->|"Ghi trực tiếp kết quả O_i (O(N))"| HBM2
     end
 
-    style StandardAttention fill:#fee2e2,stroke:#ef4444,stroke-width:1px
-    style FlashAttentionArc fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style StandardAttention fill:#fee2e2,stroke:#ef4444,stroke-width:1px,color:#000000
+    style FlashAttentionArc fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 ---
@@ -529,8 +529,8 @@ flowchart TD
         LLaMA3["LLaMA-3 8B (GQA: 8 kv_heads)\n2 x 2 x 32 x 8 x 128 x 2 = 0.26 MB/token\n=> 32K Tokens = 8.38 GB VRAM! (Giảm 75%)"]
     end
 
-    style LLaMA2 fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style LLaMA3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style LLaMA2 fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style LLaMA3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 #### Bảng đối chiếu định lượng dung lượng KV-Cache trên các mô hình phổ biến:

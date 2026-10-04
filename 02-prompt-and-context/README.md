@@ -22,7 +22,7 @@ Trụ cột này đóng vai trò là **cầu nối nhận thức** giữa mô h�
 ```text
 02-prompt-and-context/
 ├── README.md                                    # (Tài liệu này) Giới thiệu tổng quan Trụ cột 2
-└── prompt-engineering/                          # 🎯 Toàn tập kỹ thuật Prompt & Context Engineering
+└── 01-prompt-engineering/                       # 🎯 Toàn tập kỹ thuật Prompt & Context Engineering
     ├── README.md                                # Danh mục các kỹ thuật & Lộ trình
     ├── advanced_prompt_engineering_techniques.md# Cẩm nang 10 kỹ thuật (CoT, ToT, Lost-in-Middle, Meta-Prompting)
     └── 02_dspy_and_programmatic_prompting.md    # Lập trình hóa Prompt với DSPy (Stanford NLP) & Tối ưu hóa tự động

@@ -60,8 +60,8 @@ flowchart LR
         S4 -- "Hoàn tất" --> O2["Báo cáo kết quả cuối cùng"]
     end
 
-    style OneShot fill:#f1f5f9,stroke:#64748b,stroke-width:2px
-    style LoopEng fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style OneShot fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#000000
+    style LoopEng fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
 ```
 
 ---
@@ -94,8 +94,8 @@ flowchart TD
 
     P3 -- "Trả lời Người Dùng (Final Answer)" --> Success
 
-    style ControlLoop fill:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style CriteriaCheck fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style ControlLoop fill:#f8fafc,stroke:#3b82f6,stroke-width:2px,color:#000000
+    style CriteriaCheck fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
 ```
 
 ### Các Bước Cấu Thành Chi Tiết:
@@ -128,10 +128,10 @@ flowchart TD
     C4 -- "Hết giờ" --> AbortTime["DỪNG KHẨN CẤP\n(Timeout Reached)"]
     C4 -- "Chưa hết" --> ContinueLoop["Tiếp Tục Lượt Lặp Tiếp Theo (i + 1)"]
 
-    style TerminateOK fill:#dcfce7,stroke:#16a34a,stroke-width:2px
-    style AbortSteps fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style AbortCost fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style AbortTime fill:#fee2e2,stroke:#ef4444,stroke-width:2px
+    style TerminateOK fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style AbortSteps fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style AbortCost fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style AbortTime fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
 ```
 
 1. **Điều kiện hoàn thành mục tiêu (Goal-driven Termination):**
@@ -170,7 +170,7 @@ flowchart TD
     TripCheck -- "YES" --> TripAction["NGẮT MẠCH (CIRCUIT TRIPPED)\n1. Dừng ngay lập tức\n2. Tiêm hướng dẫn cảnh báo vào Context:\n'Bạn đang bị kẹt trong vòng lặp! Hãy đổi chiến lược hoàn toàn!'\n3. Hoặc chuyển giao quyền cho Con Người (Escalate to Human)"]
     TripCheck -- "NO" --> NormalExec["Thực thi bình thường"]
 
-    style TripAction fill:#fee2e2,stroke:#ef4444,stroke-width:2px
+    style TripAction fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
 ```
 
 ---
@@ -327,9 +327,9 @@ flowchart TD
         E3["3. Standardized Task Benchmarks\nĐo lường năng lực hoàn thành nhiệm vụ thực tế\n(SWE-bench, GAIA, HumanEval, WebArena)"]
     end
 
-    style E1 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-    style E2 fill:#e0e7ff,stroke:#6366f1,stroke-width:2px
-    style E3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style E1 fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
+    style E2 fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#000000
+    style E3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
 ```
 
 ### 7.1. Các Benchmark Tiêu Chuẩn Quốc Tế

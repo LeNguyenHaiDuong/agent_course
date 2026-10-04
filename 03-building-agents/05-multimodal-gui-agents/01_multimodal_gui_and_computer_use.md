@@ -148,10 +148,10 @@ flowchart TD
         Merge --> StructDOM["2. Structured Screen Hierarchy (JSON)\n{'id': 14, 'type': 'button', 'text': 'Login', 'bbox': [x,y,w,h]}"]
     end
     
-    style OmniParserPipeline fill:#f8fafc,stroke:#334155,stroke-width:1px
-    style Merge fill:#fef3c7,stroke:#d97706,stroke-width:2px
-    style OverlayImg fill:#dcfce7,stroke:#15803d,stroke-width:2px
-    style StructDOM fill:#e0e7ff,stroke:#4338ca,stroke-width:2px
+    style OmniParserPipeline fill:#f8fafc,stroke:#334155,stroke-width:1px,color:#000000
+    style Merge fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#000000
+    style OverlayImg fill:#dcfce7,stroke:#15803d,stroke-width:2px,color:#000000
+    style StructDOM fill:#e0e7ff,stroke:#4338ca,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối: Bộ Phát Hiện Phần Tử Tương Tác (UI Bounding Box Detector)

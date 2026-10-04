@@ -32,7 +32,7 @@ Thư mục này nghiên cứu cơ chế vận hành nội tại và bản chất
 ---
 
 ## 🔗 Liên Kết Điều Hướng
-* Chuyên đề nền tảng: [[01-research-and-foundations/neural-networks/README|🧠 Neural Networks & Architecture Classifications]]
-* Chuyên đề truy xuất: [[01-research-and-foundations/semantic-search/README|🔍 Semantic Search & Re-ranking]]
+* Chuyên đề nền tảng: [[01-research-and-foundations/01-neural-networks/README|🧠 01-neural-networks - Neural Networks & Architecture Classifications]]
+* Chuyên đề truy xuất: [[01-research-and-foundations/03-semantic-search/README|🔍 03-semantic-search - Semantic Search & Re-ranking]]
 * Trở về mục lục Trụ cột 1: [[01-research-and-foundations/README|🔬 Trụ Cột 1: Research & Foundations]]
 * Trở về trang chủ Vault: [[README|🏠 Vault Home MOC]]

@@ -86,8 +86,8 @@ flowchart LR
         SelfPlay --> Alignment["Căn Chỉnh Tùy Biến Trực Tiếp<br>(DPO / ORPO Tool Distillation)"]
     end
 
-    style DataExhaustion fill:#fef2f2,stroke:#ef4444,stroke-width:2px
-    style SolutionPath fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
+    style DataExhaustion fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style SolutionPath fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối:
@@ -152,11 +152,11 @@ flowchart TD
     Filter -->|Đạt chuẩn| CleanSet["Bộ Dữ Liệu Huấn Luyện Chuẩn (Evolved Dataset)"]
     Filter -->|Thất bại / Vô nghĩa| Trash["Hủy bỏ mẫu dữ liệu"]
 
-    style Seed fill:#f1f5f9,stroke:#475569
-    style InDepth fill:#eff6ff,stroke:#3b82f6
-    style InBreadth fill:#faf5ff,stroke:#a855f7
-    style CleanSet fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
-    style Trash fill:#fef2f2,stroke:#ef4444
+    style Seed fill:#f1f5f9,stroke:#475569,color:#000000
+    style InDepth fill:#eff6ff,stroke:#3b82f6,color:#000000
+    style InBreadth fill:#faf5ff,stroke:#a855f7,color:#000000
+    style CleanSet fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#000000
+    style Trash fill:#fef2f2,stroke:#ef4444,color:#000000
 ```
 
 > [!note] Giải thích Khối:
@@ -318,10 +318,10 @@ flowchart TD
     Decision -->|Score(A) >> Score(B)| Pair["Tạo cặp tương phản: (x, yw = A, yl = B)"]
     Decision -->|Score(A) ~ Score(B)| Discard["Bỏ qua (Khoảng cách điểm quá hẹp)"]
 
-    style Trajectory fill:#eff6ff,stroke:#3b82f6
-    style Judge fill:#faf5ff,stroke:#a855f7
-    style Pair fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
-    style Discard fill:#fef2f2,stroke:#ef4444
+    style Trajectory fill:#eff6ff,stroke:#3b82f6,color:#000000
+    style Judge fill:#faf5ff,stroke:#a855f7,color:#000000
+    style Pair fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#000000
+    style Discard fill:#fef2f2,stroke:#ef4444,color:#000000
 ```
 
 > [!note] Giải thích Khối:
@@ -581,9 +581,9 @@ flowchart TD
 
     Phase2 --> Student["Deploy SLM Cục Bộ (LLaMA-3-8B-Tool-Master)"]
 
-    style Teacher fill:#faf5ff,stroke:#a855f7
-    style DistillationPipeline fill:#eff6ff,stroke:#3b82f6
-    style Student fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
+    style Teacher fill:#faf5ff,stroke:#a855f7,color:#000000
+    style DistillationPipeline fill:#eff6ff,stroke:#3b82f6,color:#000000
+    style Student fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối:
@@ -885,4 +885,4 @@ Dưới đây là bảng đánh giá so sánh tổng thể các phương pháp c
 * Vòng lặp suy luận tác tử: [[02_react_and_planning|Kỹ Thuật Vòng Lặp Suy Luận ReAct]]
 * Tự sửa lỗi mã nguồn bằng AST: [[04_ast_self_healing_code_agents|AST-Guided Self-Healing Code Agents]]
 * Workflow trạng thái bền vững: [[05_durable_execution_and_stateful_workflows|Durable Agent Execution & Stateful Workflows]]
-* Trở về mục lục chuyên đề: [[01-research-and-foundations/llm-internals/README|📚 LLM Internals MOC]]
+* Trở về mục lục chuyên đề: [[01-research-and-foundations/02-llm-internals/README|📚 LLM Internals MOC]]

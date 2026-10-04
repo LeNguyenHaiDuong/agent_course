@@ -39,8 +39,8 @@ flowchart LR
     User["Người dùng / Hệ thống ngoài"] <===> Harness["AI Software Harness\n(Bộ khung phần mềm điều khiển có trạng thái)"]
     Harness <===>|"Gửi 1 Context Window khép kín\\nNhận 1 Token Completion"| Model["LLM Core\n(Mô hình tĩnh, không trạng thái)"]
 
-    style Harness fill:#ecfdf5,stroke:#10b981,stroke-width:3px
-    style Model fill:#f1f5f9,stroke:#64748b,stroke-width:2px
+    style Harness fill:#ecfdf5,stroke:#10b981,stroke-width:3px,color:#000000
+    style Model fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#000000
 ```
 
 > [!important] Định Nghĩa AI Harness
@@ -99,9 +99,9 @@ flowchart TD
     Sub3 --> Sub5
     Sub5 --> OutputResponse["Câu Trả Lời Cuối Cùng Cho Người Dùng"]
 
-    style Sub2 fill:#e0e7ff,stroke:#4338ca,stroke-width:2px
-    style Sub4 fill:#fef3c7,stroke:#d97706,stroke-width:2px
-    style Harness fill:#f8fafc,stroke:#334155,stroke-width:2px
+    style Sub2 fill:#e0e7ff,stroke:#4338ca,stroke-width:2px,color:#000000
+    style Sub4 fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#000000
+    style Harness fill:#f8fafc,stroke:#334155,stroke-width:2px,color:#000000
 ```
 
 ### Chi Tiết Từng Phân Hệ:
@@ -184,7 +184,7 @@ flowchart TD
     Execution --> D4
     D4 --> UserResponse["Trả kết quả cho người dùng"]
 
-    style MultiLayerDefense fill:#fffbeb,stroke:#d97706,stroke-width:2px
+    style MultiLayerDefense fill:#fffbeb,stroke:#d97706,stroke-width:2px,color:#000000
 ```
 
 ### 4.1. Phòng Chống Indirect Prompt Injection

@@ -64,8 +64,8 @@ flowchart LR
     C3 -.->|"Ad-hoc tool class"| T4
     C4 -.->|"Bespoke wrapper"| T5
 
-    style Clients fill:#f0f4f8,stroke:#3b82f6,stroke-width:2px
-    style Tools fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style Clients fill:#f0f4f8,stroke:#3b82f6,stroke-width:2px,color:#000000
+    style Tools fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
 ```
 
 * Nếu có $N$ nền tảng AI Client và $M$ dịch vụ dữ liệu/công cụ, cộng đồng kỹ sư phải viết và duy trì $N \times M$ đoạn mã kết nối (glue code) riêng biệt.
@@ -106,7 +106,7 @@ flowchart LR
     MCP_BUS ===> S3
     MCP_BUS ===> S4
 
-    style MCP_BUS fill:#ecfdf5,stroke:#10b981,stroke-width:3px
+    style MCP_BUS fill:#ecfdf5,stroke:#10b981,stroke-width:3px,color:#000000
 ```
 
 ---
@@ -616,7 +616,7 @@ if __name__ == "__main__":
     "vault-helper": {
       "command": "python",
       "args": [
-        "/home/duongle/agent_course/03-building-agents/tools-and-mcp/vault_helper_server.py"
+        "/home/duongle/agent_course/03-building-agents/02-tools-and-mcp/vault_helper_server.py"
       ],
       "env": {
         "PYTHONUNBUFFERED": "1"
@@ -705,7 +705,7 @@ flowchart TD
     L2 -->|"Người dùng xác nhận OK"| L3
     L3 -->|"Thực thi an toàn"| OS["Hệ Thống Tệp / Mạng / CSDL"]
 
-    style SecurityShield fill:#fffbeb,stroke:#d97706,stroke-width:2px
+    style SecurityShield fill:#fffbeb,stroke:#d97706,stroke-width:2px,color:#000000
 ```
 
 ### 8.1. Kiểm Soát Ranh Giới (Roots Boundary Control)

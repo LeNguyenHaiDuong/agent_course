@@ -265,8 +265,8 @@ flowchart TD
         Q <-->|"Context Precision / Recall (Độ nét truy xuất)"| C
     end
 
-    style A fill:#d4edda,stroke:#28a745,stroke-width:2px
-    style C fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px
+    style A fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#000000
+    style C fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px,color:#000000
 ```
 
 ---

@@ -26,23 +26,31 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
 ├── how_to_build_enterprise_ai_agents.md         # 🏗️ CẨM NANG TOÀN TẬP: Kiến trúc khối, thích ứng từng phòng ban & phòng vệ Production
 ├── ai_chat_systems_and_prompt_engineering.md    # 🏛️ Tài liệu kiến trúc dẫn nhập: Harness, Memory & 4 tầng tiến hóa
 │
-├── harness-and-memory/                          # 🗄️ Tầng 1: Bộ khung điều khiển, Bộ nhớ & Caching
+├── 01-harness-and-memory/                       # 🗄️ Tầng 1: Bộ khung điều khiển, Bộ nhớ & Caching
 │   ├── README.md                                # System Instructions, Context Drift, Dynamic Memory
+│   ├── 01_harness_architecture.md               # Giải phẫu kiến trúc Harness & Session Lifecycle
+│   ├── 02_context_management.md                 # Quản trị cửa sổ ngữ cảnh, bệnh lý & cô lập
+│   ├── 03_memory_systems.md                     # Kiến trúc bộ nhớ nhận thức đa tầng (MemGPT/Zep)
 │   └── 04_agent_runtime_parameters_and_prompt_caching.md # Siêu tham số suy luận, TTFT & Prompt Caching
 │
-├── tools-and-mcp/                               # 🔌 Tầng 2: Giao thức kết nối công cụ & thế giới thực
+├── 02-tools-and-mcp/                            # 🔌 Tầng 2: Giao thức kết nối công cụ & thế giới thực
 │   ├── README.md                                # Model Context Protocol (MCP), Function Calling, Tools
+│   ├── 01_mcp_architecture.md                   # Kiến trúc giao thức MCP & FastMCP Python
 │   └── 02_constrained_decoding_and_structured_outputs.md # Bảo đảm cú pháp Logit qua FSM/CFG & Jump-Forward
 │
-├── loop-engineering/                           # 🔄 Tầng 3: Vòng lặp tự trị & Đội ngũ đa tác tử
+├── 03-loop-engineering/                        # 🔄 Tầng 3: Vòng lặp tự trị & Đội ngũ đa tác tử
 │   ├── README.md                                # ReAct, Plan-and-Execute, Evaluator-Optimizer, Subagents
+│   ├── 01_loop_fundamentals.md                  # Nền tảng vòng lặp tự trị & Circuit Breakers
+│   ├── 02_react_and_planning.md                 # Các mô hình vòng lặp cốt lõi
+│   ├── 03_multi_agent_teams.md                  # Kiến trúc đội ngũ đa tác tử & Phân rã ngữ cảnh
 │   ├── 04_ast_self_healing_code_agents.md       # Tác tử lập trình tự sửa lỗi qua Cây cú pháp AST & ACI
 │   └── 05_durable_execution_and_stateful_workflows.md # Máy trạng thái bền vững, Checkpointing & Time-Travel Debugging
 │
-├── observability-and-evals/                    # 📊 Tầng 4: Giám sát vết, Đánh giá chất lượng & Quản trị
-│   └── README.md                                # Distributed Tracing (Langfuse/OpenTelemetry), Ragas, LLM-as-a-Judge
+├── 04-observability-and-evals/                 # 📊 Tầng 4: Giám sát vết, Đánh giá chất lượng & Quản trị
+│   ├── README.md                                # Distributed Tracing (Langfuse/OpenTelemetry), Ragas, LLM-as-a-Judge
+│   └── 01_agent_evals_and_tracing.md            # Đo lường định lượng, Tracing phân tán & CI/CD Evals
 │
-└── multimodal-gui-agents/                      # 🖥️ Tầng 5: Tác tử đa phương thức & Computer-Use
+└── 05-multimodal-gui-agents/                   # 🖥️ Tầng 5: Tác tử đa phương thức & Computer-Use
     ├── README.md                                # Tổng quan tương tác màn hình, pixels & OS Automation
     └── 01_multimodal_gui_and_computer_use.md    # Visual UI Grounding (Set-of-Mark/OmniParser) & OSWorld
 ```
@@ -68,7 +76,7 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
 
 ---
 
-### 1. [[03-building-agents/harness-and-memory/README|AI Harness & Memory Architecture]]
+### 1. [[03-building-agents/01-harness-and-memory/README|01-harness-and-memory - AI Harness & Memory Architecture]]
 * **Trọng tâm:** Bộ khung phần mềm quản lý tương tác giữa người dùng và LLM Core.
 * **Tài liệu chi tiết:**
   * [[01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]: Phân tách Lõi tĩnh vs Khung có trạng thái, 5 phân hệ phần mềm và Session Lifecycle.
@@ -80,7 +88,7 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
   * Cơ chế bộ nhớ động (Dynamic Memory Extraction) và truy vấn lịch sử qua Semantic Search.
   * Phân quyền thực thi và cô lập môi trường (Sandboxing).
 
-### 2. [[03-building-agents/tools-and-mcp/README|Model Context Protocol (MCP) & Tool Integration]]
+### 2. [[03-building-agents/02-tools-and-mcp/README|02-tools-and-mcp - Model Context Protocol (MCP) & Tool Integration]]
 * **Trọng tâm:** Giao thức chuẩn mở của Anthropic kết nối LLM với thế giới thực và kỹ thuật bảo đảm cú pháp cuộc gọi công cụ.
 * **Tài liệu chi tiết:**
   * [[01_mcp_architecture|Kiến Trúc Giao Thức Model Context Protocol (MCP)]]: Khảo sát bài toán $N \times M$, tam giác Host-Client-Server, 3 cấu phần nguyên thủy (Tools, Resources, Prompts), cơ chế truyền tải stdio/SSE, giải phẫu JSON-RPC 2.0 và code mẫu FastMCP Python.
@@ -90,7 +98,7 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
   * Xây dựng và tích hợp MCP Tools (chạy lệnh, gọi API, thao tác tệp tin) và Resources (truy xuất database, tài liệu).
   * Bảo đảm tính đúng đắn kiểu dữ liệu (Type-Safety) cấp độ Logit khi Agent xuất tham số gọi hàm.
 
-### 3. [[03-building-agents/loop-engineering/README|Loop Engineering & Autonomous Workflows]]
+### 3. [[03-building-agents/03-loop-engineering/README|03-loop-engineering - Loop Engineering & Autonomous Workflows]]
 * **Trọng tâm:** Thiết kế các vòng lặp phản hồi (Feedback Loops) tự động hóa và tác tử tự sửa lỗi.
 * **Tài liệu chi tiết:**
   * [[01_loop_fundamentals|Nền Tảng Loop Engineering: Vòng Lặp Tự Trị, Điều Kiện Dừng & Circuit Breakers]]: Từ One-shot sang Recursive Execution, chu trình OODA 5 bước, 4 tầng Stopping Criteria và bộ ngắt mạch chống lặp vô tận.
@@ -104,7 +112,7 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
   * Luồng **Evaluator-Optimizer & AST Self-Healing**: Đánh giá $\rightarrow$ Phản biện $\rightarrow$ Tự sửa lỗi mã nguồn.
   * Phối hợp đa tác tử (Multi-agent teams, Subagent delegation).
 
-### 4. [[03-building-agents/observability-and-evals/README|Agent Observability, Evals & Governance]]
+### 4. [[03-building-agents/04-observability-and-evals/README|04-observability-and-evals - Agent Observability, Evals & Governance]]
 * **Trọng tâm:** Đo lường định lượng, giám sát phân tán và thẩm định tự động chất lượng Agent trên môi trường Production.
 * **Tài liệu chi tiết:**
   * [[01_agent_evals_and_tracing|Hệ Thống Giám Sát, Đo Lường & Đánh Giá Tác Tử AI]]: Chuẩn OpenTelemetry GenAI Semantic Conventions, Cây vết (Trace Tree), tích hợp Langfuse Tracing, bộ chỉ số Ragas Triad, giải phẫu 4 thiên vị LLM-as-a-Judge, kỹ thuật G-Eval xác suất Softmax, benchmark SWE-bench/GAIA và phương pháp sinh tập kiểm thử tổng hợp (Synthetic Testset).
@@ -113,7 +121,7 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
   * Theo dõi chi phí token, độ trễ từng bước và phát hiện trôi dạt ngữ nghĩa (Semantic Drift).
   * Đo lường độ chính xác tham số công cụ (Tool Calling Accuracy) và tỷ lệ hoàn thành tác vụ (TCR).
 
-### 5. [[03-building-agents/multimodal-gui-agents/README|Multimodal GUI Agents & Computer-Use]]
+### 5. [[03-building-agents/05-multimodal-gui-agents/README|05-multimodal-gui-agents - Multimodal GUI Agents & Computer-Use]]
 * **Trọng tâm:** Tác tử đa phương thức nhìn màn hình (Pixels) và điều khiển hệ điều hành thông qua chuột và bàn phím ảo.
 * **Tài liệu chi tiết:**
   * [[01_multimodal_gui_and_computer_use|Kỷ Nguyên Tác Tử Tương Tác Trực Quan Màn Hình & Hệ Điều Hành]]: Nghịch lý "Vật chất tối của API", Visual UI Grounding, Set-of-Mark (SoM) Prompting, OmniParser, Không gian tọa độ chuẩn hóa $[0, 1000] \times [0, 1000]$, Không gian hành động nguyên thủy (Atomic Action Space), phòng chống Render Latency, Frame Differencing tiết kiệm 85% token và đánh giá benchmark OSWorld.

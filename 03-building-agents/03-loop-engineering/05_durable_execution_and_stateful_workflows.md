@@ -79,8 +79,8 @@ flowchart LR
         Tool2 --> Done["Hoàn Thành Tác Vụ"]
     end
 
-    style WebAPI fill:#f8fafc,stroke:#64748b
-    style AgentWorkflow fill:#eff6ff,stroke:#2563eb,stroke-width:2px
+    style WebAPI fill:#f8fafc,stroke:#64748b,color:#000000
+    style AgentWorkflow fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#000000
 ```
 
 ### Hiểm họa "Bóng ma sụp đổ tiến trình" (The Process Crash Nightmare)
@@ -123,10 +123,10 @@ flowchart TD
         HumanNode --> EndNode
     end
 
-    style StartNode fill:#dcfce7,stroke:#16a34a
-    style EndNode fill:#fee2e2,stroke:#ef4444
-    style HumanNode fill:#fef3c7,stroke:#d97706,stroke-width:2px
-    style PlannerNode fill:#e0e7ff,stroke:#4338ca
+    style StartNode fill:#dcfce7,stroke:#16a34a,color:#000000
+    style EndNode fill:#fee2e2,stroke:#ef4444,color:#000000
+    style HumanNode fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#000000
+    style PlannerNode fill:#e0e7ff,stroke:#4338ca,color:#000000
 ```
 
 ### Định nghĩa toán học của Trạng Thái Tác Tử (Agent State Schema)
@@ -237,10 +237,10 @@ graph LR
     C3 -.->|"Time Travel & Fork"| C4_Fixed["Step 4' (Sửa Prompt / State)"]
     C4_Fixed --> C5_Good["Step 5' (Thành Công!)"]
 
-    style C4_Bad fill:#fee2e2,stroke:#ef4444
-    style C5_Bad fill:#fee2e2,stroke:#ef4444
-    style C4_Fixed fill:#dcfce7,stroke:#16a34a,stroke-width:2px
-    style C5_Good fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style C4_Bad fill:#fee2e2,stroke:#ef4444,color:#000000
+    style C5_Bad fill:#fee2e2,stroke:#ef4444,color:#000000
+    style C4_Fixed fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
+    style C5_Good fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 ### Điểm ngắt phê duyệt (Human-in-the-Loop Interrupts & Resumes)

@@ -22,26 +22,30 @@ Trụ cột này tập trung vào việc nghiên cứu bản chất toán học,
 ```text
 01-research-and-foundations/
 ├── README.md                                    # (Tài liệu này) Giới thiệu tổng quan Trụ cột 1
-├── neural-networks/                             # 🧠 Nền tảng Mạng Nơ-ron & Học sâu (ANN, CNN, RNN, Transformers, MoE)
+├── 01-neural-networks/                          # 🧠 Chuyên đề 1: Nền tảng Mạng Nơ-ron & Học sâu (ANN, CNN, RNN, MoE)
 │   ├── README.md
 │   └── neural_networks_and_classifications.md   # Giải phẫu nơ-ron, Backpropagation, Hàm kích hoạt, Bản đồ phân loại
-├── llm-internals/                               # 📚 Bản chất Mô hình Ngôn ngữ Lớn (LLM Core & Pre-training)
+├── 02-llm-internals/                            # 📚 Chuyên đề 2: Bản chất Mô hình Ngôn ngữ Lớn (LLM Core & Transformer)
 │   ├── README.md
-│   └── what_are_large_language_models.md        # Thí nghiệm điền từ, Transformer, AR vs AE, Scaling, Reasoning
-└── semantic-search/                             # 🔍 Tìm kiếm Ngữ nghĩa, Không gian Vector & Tái xếp hạng (Re-ranking)
-    ├── README.md
-    └── semantic_search_and_reranking.md         # Bi-Encoder vs Cross-Encoder, Two-stage Retrieval, Chunking & Benchmarks
+│   ├── what_are_large_language_models.md        # Thí nghiệm điền từ, Transformer, AR vs AE, Scaling, Reasoning
+│   ├── 04_transformer_math_deep_dive.md         # Toán học Scaled Dot-Product, FlashAttention & KV-Cache
+│   ├── 05_scaling_laws_and_quantization.md      # Định luật Chinchilla, Lượng tử hóa GPTQ/AWQ & GGUF
+│   └── 06_synthetic_data_and_agent_alignment.md # Dữ liệu tổng hợp, Multi-Agent Self-Play & DPO/ORPO
+└── 03-semantic-search/                          # 🔍 Chuyên đề 3: Tìm kiếm Ngữ nghĩa, Không gian Vector & Tái xếp hạng
+    ├── README.md                                # Hướng dẫn chuyên đề & thứ tự đọc
+    ├── 01_semantic_search_and_reranking.md      # Bài 1: Bi-Encoder vs Cross-Encoder, Two-Stage Pipeline & Advanced RAG
+    └── 02_rag_architecture_and_components.md    # Bài 2: Giải phẫu 4 cấu phần RAG (Inside RAG) & Vòng lặp điều phối
 ```
 
 ---
 
 ## 📂 Danh Mục Chuyên Đề
 
-### 1. [[01-research-and-foundations/neural-networks/README|Neural Networks & Architecture Classifications]]
+### 1. [[01-research-and-foundations/01-neural-networks/README|01-neural-networks - Neural Networks & Architecture Classifications]]
 * **Trọng tâm:** Toán học nơ-ron nhân tạo (Perceptron), Forward/Backpropagation, các hàm kích hoạt (ReLU, GELU, SwiGLU), các giải thuật tối ưu (SGD, AdamW), và bản đồ phân loại kiến trúc: MLP, CNN, RNN/LSTM/GRU, Transformer, GNN, Autoencoders, GAN, Diffusion Models, và Mixture of Experts (MoE).
 * **Tài liệu chi tiết:** [[neural_networks_and_classifications|neural_networks_and_classifications.md]]
 
-### 2. [[01-research-and-foundations/llm-internals/README|LLM Internals & Mechanisms]]
+### 2. [[01-research-and-foundations/02-llm-internals/README|02-llm-internals - LLM Internals & Mechanisms]]
 * **Trọng tâm:** Bản chất toán học của Language Modeling (Fill-in-the-blank), Subword Tokenization toàn diện (BPE/BBPE, WordPiece, SentencePiece/Unigram LM), các lỗi hệ thống kinh điển (nghịch lý đếm chữ "Strawberry", số học đa chữ số, thuế token đa ngôn ngữ), 4 bước nhảy vọt lịch sử (2001–2017), so sánh chuyên sâu Autoregressive (GPT) vs. Autoencoding (BERT) vs. Seq2Seq (T5), quy mô tham số & VRAM, siêu tham số suy luận (`temperature`, `top_p`), và bản chất "Reasoning Machine".
 * **Tài liệu chi tiết:**
   * [[what_are_large_language_models|What Are Large Language Models?]]: Tổng quan bản chất mô hình ngôn ngữ lớn, giải phẫu Tokenization, căn chỉnh Alignment và đạo đức dữ liệu.
@@ -49,9 +53,11 @@ Trụ cột này tập trung vào việc nghiên cứu bản chất toán học,
   * [[05_scaling_laws_and_quantization|Định Luật Tỷ Lệ & Kỹ Thuật Lượng Tử Hóa]]: Định luật Chinchilla ($D \approx 20N$), xu hướng Over-training của LLaMA-3, toán học Quantization Affine, giải thuật GPTQ, AWQ, và chuẩn GGUF/llama.cpp.
   * [[06_synthetic_data_and_agent_alignment|Dữ Liệu Tổng Hợp & Căn Chỉnh Tác Tử]]: Khủng hoảng The Data Wall 2026-2028, giải thuật tiến hóa Evol-Instruct (WizardLM), Multi-Agent Self-Play tạo quỹ đạo công cụ, UltraFeedback, chứng minh toán học giải tích DPO, thuật toán ORPO và chắt lọc năng lực Tool Distillation cho mô hình 8B.
 
-### 3. [[01-research-and-foundations/semantic-search/README|Semantic Search & Advanced RAG Architectures]]
-* **Trọng tâm:** Nghịch lý khớp từ khóa (Vintage Magic Card vs Kit), Vector Embeddings & Lời nguyền số chiều, hiện tượng Dị hướng không gian (Anisotropy "hình nón hẹp") & giải pháp làm trắng BERT-Whitening, Asymmetric vs Symmetric Search, so sánh chuyên sâu Bi-Encoder vs Cross-Encoder, quy trình phễu 2 giai đoạn (Two-Stage Pipeline), chiến lược Chunking, thực nghiệm định lượng Recall@K (OpenAI vs Open-source), và **Cẩm nang toàn tập Kiến trúc RAG Tiên tiến** (HyDE, Parent Document Retrieval, Anthropic Contextual Retrieval, Microsoft GraphRAG, Reciprocal Rank Fusion, Self-RAG, Corrective RAG / CRAG, Adaptive RAG, Ma trận so sánh định lượng và Cây quyết định kiến trúc thực chiến).
-* **Tài liệu chi tiết:** [[semantic_search_and_reranking|semantic_search_and_reranking.md]]
+### 3. [[01-research-and-foundations/03-semantic-search/README|03-semantic-search - Semantic Search & Advanced RAG Architectures]]
+* **Trọng tâm:** Khắc phục ảo giác tự tin với mô hình "Kỳ thi mở sách" (Open-Book Exam), 4 cấu phần RAG (Retriever, Ranker, Generator, Orchestrator), vũ điệu $\textbf{Retrieve} \to \textbf{Rank} \to \textbf{Generate} \to \textbf{Orchestrate}$, Nghịch lý khớp từ khóa (Vintage Magic Card vs Kit), Vector Embeddings & Lời nguyền số chiều, hiện tượng Dị hướng không gian (Anisotropy "hình nón hẹp") & giải pháp làm trắng BERT-Whitening, Asymmetric vs Symmetric Search, so sánh chuyên sâu Bi-Encoder vs Cross-Encoder, quy trình phễu 2 giai đoạn (Two-Stage Pipeline), chiến lược Chunking, thực nghiệm định lượng Recall@K (OpenAI vs Open-source), và **Cẩm nang toàn tập Kiến trúc RAG Tiên tiến** (HyDE, Parent Document Retrieval, Anthropic Contextual Retrieval, Microsoft GraphRAG, Reciprocal Rank Fusion, Self-RAG, Corrective RAG / CRAG, Adaptive RAG, Ma trận so sánh định lượng và Cây quyết định kiến trúc thực chiến).
+* **Tài liệu chi tiết (Theo thứ tự đọc):**
+  * 📖 **Bài 1:** [[01_semantic_search_and_reranking|01_semantic_search_and_reranking.md]]: Chuyên khảo toàn diện về không gian vector, Bi-Encoder vs Cross-Encoder, Two-Stage Pipeline và 9 kiến trúc RAG hiện đại.
+  * 📖 **Bài 2:** [[02_rag_architecture_and_components|02_rag_architecture_and_components.md]]: Phân tích chuyên sâu 4 cấu phần cốt lõi (Inside RAG), pipeline LangChain/FAISS/Cohere/ChatOpenAI, case study Nông nghiệp thẳng đứng và các thách thức vận hành.
 
 ---
 

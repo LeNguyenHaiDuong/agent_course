@@ -52,8 +52,8 @@ flowchart LR
     ComputeBudget --> Kaplan["Định Luật Kaplan (OpenAI 2020)\nThiên về tăng Parameter N\nN tăng nhanh hơn D gấp 3 lần\n=> Dẫn tới GPT-3 175B bị 'bỏ đói' token"]
     ComputeBudget --> Chinchilla["Định Luật Chinchilla (DeepMind 2022)\nCân bằng tuyệt đối N và D\nN và D tăng cùng tốc độ (tỷ lệ 1:1)\n=> D ~ 20 * N"]
 
-    style Kaplan fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style Chinchilla fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style Kaplan fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style Chinchilla fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 ---
@@ -217,9 +217,9 @@ flowchart LR
     INT8_Branch & FP16_Branch --> MatMul["Thực hiện phép nhân ma trận song song"]
     MatMul --> Recombine["Cộng hợp kết quả đầu ra"]
 
-    style INT8_Branch fill:#ecfdf5,stroke:#10b981,stroke-width:1px
-    style FP16_Branch fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style Recombine fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style INT8_Branch fill:#ecfdf5,stroke:#10b981,stroke-width:1px,color:#000000
+    style FP16_Branch fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style Recombine fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 ---

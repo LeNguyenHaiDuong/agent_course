@@ -70,9 +70,9 @@ flowchart TD
     CD -->|"Nguyên nhân: Hội thoại kéo dài, Pha loãng token, Trôi dạt ngữ cảnh"| Res2["Hậu quả: Quên mục tiêu ban đầu, Trả lời vòng vo, Lặp code lỗi"]
     CS -->|"Nguyên nhân: Prompt cụt lủn, Thiếu dữ liệu biên, Bỏ sót ràng buộc"| Res3["Hậu quả: Phản hồi chung chung, Mẫu template vô hồn, Phải đoán mò"]
 
-    style CP fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style CD fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style CS fill:#e0e7ff,stroke:#6366f1,stroke-width:2px
+    style CP fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style CD fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
+    style CS fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#000000
 ```
 
 ---
@@ -136,18 +136,22 @@ flowchart LR
     Injector -->|"Augmented Prompt\n(Query + Fresh Evidence)"| LLM["Lõi LLM (ChatGPT / Gemini / Claude)"]
     LLM --> Out["Câu trả lời chính xác, có dẫn nguồn (Citations)"]
 
-    style KB fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style Injector fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-    style LLM fill:#e0e7ff,stroke:#6366f1,stroke-width:2px
+    style KB fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
+    style Injector fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
+    style LLM fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#000000
 ```
 
 ### Triết Lý "Kỳ Thi Mở Sách" (The Open-Book Exam)
 * **Kỷ nguyên Zero-RAG (Thi đóng sách):** Mô hình chỉ dựa vào "trí nhớ sinh học" (trọng số tham số pre-training). Khi được hỏi về doanh thu quý trước của công ty bạn, nó không biết nhưng vẫn cố trả lời bằng cách bịa đặt số liệu (Hallucination).
 * **Kỷ nguyên RAG (Thi mở sách):** 
   1. Người dùng đặt câu hỏi.
-  2. Hệ thống chuyển query thành vector embedding, tìm kiếm ngữ nghĩa theo cơ chế Bi-Encoder / Cross-Encoder đã học trong bài [[semantic_search_and_reranking|Tìm kiếm Ngữ nghĩa & Tái xếp hạng]].
-  3. Trích xuất đúng đoạn văn bản chứa câu trả lời từ tài liệu mới nhất.
-  4. Đắp đoạn văn bản đó trực tiếp vào Cửa sổ ngữ cảnh trước khi gọi LLM.
+  2. **Retrieve:** Hệ thống chuyển query thành vector embedding, tìm kiếm ngữ nghĩa trong Vector DB (như FAISS) để thu hồi các chunks tương đồng nhất.
+  3. **Rank:** Bộ tái xếp hạng (như Cohere Rerank) thẩm định lại tính xác đáng ngữ cảnh, loại bỏ các đoạn trùng từ khóa nhưng lạc đề (ví dụ: kỳ nghỉ khách hàng vs nghỉ phép nhân viên) và đẩy dữ liệu chuẩn xác lên đầu context window.
+  4. **Generate:** Lõi LLM (được cấu hình với `temperature=0.0`) đóng vai trò nhà văn, đọc ngữ cảnh thực chứng và tổng hợp câu trả lời tự nhiên.
+  5. **Orchestrate:** Tầng điều phối tự động kết nối toàn bộ chuỗi theo vũ điệu: $\textbf{Retrieve} \to \textbf{Rank} \to \textbf{Generate} \to \textbf{Orchestrate}$.
+
+> [!tip] Xem chi tiết kiến trúc & triển khai mã nguồn:
+> Xem cẩm nang chuyên sâu: [[rag_architecture_and_components|Inside RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối]] và [[semantic_search_and_reranking|Tìm kiếm Ngữ nghĩa & Tái xếp hạng]].
 
 ### 4 Giá Trị Đột Phá RAG Mang Lại Cho Context:
 1. **Triệt tiêu ảo giác (Anti-Hallucination):** Ép mô hình chỉ được suy luận dựa trên tài liệu cung cấp (*"Dựa trên tài liệu đính kèm, hãy cho biết..."*).
@@ -177,7 +181,7 @@ flowchart TD
 
     P1 & P2 & P3 & S1 & S2 --> CleanContext["Cửa Sổ Ngữ Cảnh Tối Ưu (Compact, High SNR Context)"]
 
-    style CleanContext fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style CleanContext fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
 ### 4.1. Context Pruning (Tỉa Nhánh Thông Minh)
@@ -240,10 +244,10 @@ flowchart TD
     Firewall -.->|"CHẶN TRUY CẬP (Access Denied)"| Q_Finance
     Firewall -.->|"CHẶN TRUY CẬP (Access Denied)"| Q_HR
 
-    style Q_Finance fill:#fee2e2,stroke:#ef4444,stroke-width:2px
-    style Q_HR fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-    style Q_Public fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-    style Firewall fill:#e0e7ff,stroke:#6366f1,stroke-width:3px
+    style Q_Finance fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
+    style Q_HR fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
+    style Q_Public fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
+    style Firewall fill:#e0e7ff,stroke:#6366f1,stroke-width:3px,color:#000000
 ```
 
 ### 5.1. Context Quarantine Là Gì?
@@ -280,8 +284,8 @@ flowchart LR
         LLM2 --> Out2["Email xuất sắc, thấu đáo, tạo dựng uy tín tuyệt đối"]
     end
 
-    style BadWay fill:#fee2e2,stroke:#ef4444,stroke-width:1px
-    style GoodWay fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style BadWay fill:#fee2e2,stroke:#ef4444,stroke-width:1px,color:#000000
+    style GoodWay fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
 ```
 
 ---

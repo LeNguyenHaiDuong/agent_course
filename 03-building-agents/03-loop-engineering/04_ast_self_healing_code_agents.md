@@ -72,7 +72,7 @@ flowchart TD
         E --> B
     end
     
-    style NaiveLoop fill:#fff0f0,stroke:#cc0000
+    style NaiveLoop fill:#fff0f0,stroke:#cc0000,color:#000000
 ```
 
 Phương pháp này tạo ra **3 hậu quả tai hại**:
@@ -182,11 +182,11 @@ flowchart TD
     
     L4 -- "All Tests Pass" --> Final["Bản Vá Được Xác Thực (Verified Patch)"]
     
-    style L1 fill:#e6f3ff,stroke:#0066cc
-    style L2 fill:#e6ffe6,stroke:#009900
-    style L3 fill:#fff0e6,stroke:#ff6600
-    style L4 fill:#ffe6e6,stroke:#cc0000
-    style Final fill:#ccffcc,stroke:#008800,stroke-width:2px
+    style L1 fill:#e6f3ff,stroke:#0066cc,color:#000000
+    style L2 fill:#e6ffe6,stroke:#009900,color:#000000
+    style L3 fill:#fff0e6,stroke:#ff6600,color:#000000
+    style L4 fill:#ffe6e6,stroke:#cc0000,color:#000000
+    style Final fill:#ccffcc,stroke:#008800,stroke-width:2px,color:#000000
 ```
 
 ### Chi tiết các tầng kiểm định:
@@ -256,9 +256,9 @@ flowchart TD
         BudgetFilter --> MarkdownMap["Compact Repo Skeleton (~1500 tokens)\nclass UserService:\n  def get_user(id: int) -> User\n  def update_role(...)"]
     end
     
-    style RepoMapPipeline fill:#f8fafc,stroke:#334155
-    style PR fill:#fef3c7,stroke:#b45309,stroke-width:2px
-    style MarkdownMap fill:#dcfce7,stroke:#15803d,stroke-width:2px
+    style RepoMapPipeline fill:#f8fafc,stroke:#334155,color:#000000
+    style PR fill:#fef3c7,stroke:#b45309,stroke-width:2px,color:#000000
+    style MarkdownMap fill:#dcfce7,stroke:#15803d,stroke-width:2px,color:#000000
 ```
 
 > [!note] Giải thích Khối: Bộ Nén Bản Đồ Mã Nguồn (Repo Map Compressor)

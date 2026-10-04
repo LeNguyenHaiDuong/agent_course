@@ -58,9 +58,9 @@ flowchart TD
         M3["3. Swarm & Dynamic Handoffs\n(Chuyển giao tiếp sức phi tập trung)\nAgent A xong việc tự chuyển quyền cho Agent B"]
     end
 
-    style M1 fill:#ecfdf5,stroke:#10b981,stroke-width:2px
-    style M2 fill:#e0e7ff,stroke:#6366f1,stroke-width:2px
-    style M3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style M1 fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
+    style M2 fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#000000
+    style M3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000000
 ```
 
 ---
@@ -186,7 +186,7 @@ flowchart LR
     MessageBus -->|"Được kiểm duyệt & làm sạch"| Ctx_B
     Ctx_B --> LLM_B
 
-    style MessageBus fill:#ecfdf5,stroke:#10b981,stroke-width:2px
+    style MessageBus fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
 ```
 
 * **Nguyên tắc "Tường Lửa Cách Ly":** Áp dụng nguyên tắc [[02_context_management|Context Quarantine]] (giữ thuốc xa thực phẩm). Mỗi Subagent sở hữu một không gian nhớ hoàn toàn biệt lập.

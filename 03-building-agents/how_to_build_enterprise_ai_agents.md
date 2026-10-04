@@ -363,8 +363,8 @@ flowchart TD
     CheckDiff -->|"Khớp 100%"| AutoPay["Tự động tạo lệnh chi trên SAP (Status: Ready to Pay)"]
     CheckDiff -->|"Sai lệch bất thường"| FlagDispute["Đánh cờ Cảnh báo (Flag Dispute) & Gửi Kế toán trưởng"]
 
-    style AutoPay fill:#ccffcc,stroke:#009900
-    style FlagDispute fill:#ffcccc,stroke:#cc0000
+    style AutoPay fill:#ccffcc,stroke:#009900,color:#000000
+    style FlagDispute fill:#ffcccc,stroke:#cc0000,color:#000000
 ```
 
 #### 3. Bộ công cụ MCP Tài chính
@@ -514,8 +514,8 @@ flowchart TD
     Sanitized --> Privileged["Tác tử Điều khiển (Privileged Controller)<br>✅ Có quyền gọi Tools SAP/CRM<br>Không đọc trực tiếp mã thô"]
     Privileged --> Action["Thực thi hành động an toàn"]
 
-    style Untrusted fill:#ffe6e6,stroke:#cc0000
-    style Privileged fill:#e6ffe6,stroke:#009900
+    style Untrusted fill:#ffe6e6,stroke:#cc0000,color:#000000
+    style Privileged fill:#e6ffe6,stroke:#009900,color:#000000
 ```
 
 ---
