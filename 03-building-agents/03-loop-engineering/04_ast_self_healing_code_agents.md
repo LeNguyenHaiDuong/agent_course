@@ -78,7 +78,7 @@ flowchart TD
 Phương pháp này tạo ra **3 hậu quả tai hại**:
 
 1. **Hiện tượng Sụp đổ Hồi quy (Cascading Regressions):** Khi buộc phải sinh lại toàn bộ tệp hoặc một hàm lớn, LLM có xu hướng "quên" các điều kiện biên đã được tối ưu trước đó, tự ý thay đổi tên biến nội bộ, xóa bỏ các dòng comment giải thích nghiệp vụ, hoặc làm gãy interface của các hàm phụ thuộc.
-2. **Context Poisoning & Bùng nổ Token:** Gửi toàn bộ file hàng nghìn dòng qua lại giữa các vòng lặp sửa lỗi làm cạn kiệt ngân sách token và đẩy các chỉ thị quan trọng vào vùng chết chú ý theo hiện tượng [[advanced_prompt_engineering_techniques#quản-trị-cửa-sổ-ngữ-cảnh--khắc-phục-lost-in-the-middle|Lost-in-the-Middle]].
+2. **Context Poisoning & Bùng nổ Token:** Gửi toàn bộ file hàng nghìn dòng qua lại giữa các vòng lặp sửa lỗi làm cạn kiệt ngân sách token và đẩy các chỉ thị quan trọng vào vùng chết chú ý theo hiện tượng [[advanced_prompt_engineering_techniques#5. QUẢN TRỊ CỬA SỔ NGỮ CẢNH, TOKEN BUDGETING & KHẮC PHỤC "LOST IN THE MIDDLE"|Lost-in-the-Middle]].
 3. **Ảo giác Cú pháp Lặp lại (Syntactic Fixation):** Khi gặp các cấu trúc lồng ngoặc phức tạp hoặc thụt đầu dòng (Indentation), mô hình thường bị "mắc kẹt" trong việc thêm bớt khoảng trắng vô nghĩa mà không nhận ra lỗi logic cốt lõi.
 
 > [!important]

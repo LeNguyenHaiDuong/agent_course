@@ -320,7 +320,7 @@ sequenceDiagram
 Mỗi ảnh chụp Full HD gửi vào Claude 3.5 Sonnet hoặc GPT-4o tiêu tốn xấp xỉ **$1,600 - 2,500$ visual tokens**. 
 * Nếu một tác vụ kéo dài 20 bước, lượng token tiêu tốn chỉ riêng cho hình ảnh lịch sử là:
   $$20 \times 2,000 \approx 40,000 \text{ tokens}$$
-* Điều này nhanh chóng làm nghẽn Context Window, tăng chi phí và gây suy giảm khả năng chú ý theo hiện tượng [[advanced_prompt_engineering_techniques#quản-trị-cửa-sổ-ngữ-cảnh--khắc-phục-lost-in-the-middle|Lost-in-the-Middle]].
+* Điều này nhanh chóng làm nghẽn Context Window, tăng chi phí và gây suy giảm khả năng chú ý theo hiện tượng [[advanced_prompt_engineering_techniques#5. QUẢN TRỊ CỬA SỔ NGỮ CẢNH, TOKEN BUDGETING & KHẮC PHỤC "LOST IN THE MIDDLE"|Lost-in-the-Middle]].
 
 #### Giải pháp Frame Differencing (Crop vùng biến đổi)
 Thay vì gửi toàn bộ ảnh màn hình ở mỗi bước:
