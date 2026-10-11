@@ -65,26 +65,13 @@ Tài liệu này hệ thống hóa toàn bộ các kỹ thuật Prompt Engineeri
 
 ## 2. BẢN ĐỒ PHÂN LOẠI KỸ THUẬT (PROMPT TAXONOMY)
 
-```text
-┌────────────────────────────────────────────────────────────────────────────┐
-│                    HỆ THỐNG 8 KỸ THUẬT PROMPT NÂNG CAO                     │
-├─────────────────┬──────────────────────────────────────────────────────────┤
-│ Nhóm 1: Cơ bản  │ • Zero-Shot Prompting                                    │
-│                 │ • Few-Shot Prompting (In-Context Learning)               │
-├─────────────────┼──────────────────────────────────────────────────────────┤
-│ Nhóm 2: Suy luận│ • Zero-Shot Chain-of-Thought (Zero-Shot CoT)             │
-│ chuỗi tuyến tính│ • Few-Shot Chain-of-Thought (Few-Shot CoT)               │
-│                 │ • Zero + Few-Shot Chain-of-Thought (Hybrid CoT)          │
-│                 │ • Tối ưu hóa câu lệnh ("Take a deep breath" / OPRO)      │
-├─────────────────┼──────────────────────────────────────────────────────────┤
-│ Nhóm 3: Tri thức│ • Generated Knowledge Prompting                          │
-├─────────────────┼──────────────────────────────────────────────────────────┤
-│ Nhóm 4: Cây luận│ • Tree of Thoughts (ToT - Đa chuyên gia phản biện)       │
-├─────────────────┼──────────────────────────────────────────────────────────┤
-│ Nhóm 5: Tinh lọc│ • Directional Stimulus Prompting (DSP)                   │
-│ và Nén thông tin│ • Chain of Density (CoD - Nén thực thể đệ quy)           │
-└─────────────────┴──────────────────────────────────────────────────────────┘
-```
+| Phân Nhóm Kỹ Thuật | Danh Mục Kỹ Thuật Prompting | Đặc Trưng Cốt Lõi |
+| :--- | :--- | :--- |
+| **Nhóm 1: Cơ bản** | • Zero-Shot Prompting<br>• Few-Shot Prompting (In-Context Learning) | Tận dụng năng lực tổng quát hóa không cần huấn luyện lại |
+| **Nhóm 2: Suy luận chuỗi tuyến tính** | • Zero-Shot Chain-of-Thought (CoT)<br>• Few-Shot Chain-of-Thought<br>• Zero + Few-Shot Hybrid CoT<br>• Tối ưu hóa câu lệnh kích hoạt (OPRO) | Kích hoạt chuỗi suy luận từng bước qua token trung gian |
+| **Nhóm 3: Khởi tạo tri thức** | • Generated Knowledge Prompting | Sinh tri thức tiền đề trước khi trả lời câu hỏi chính |
+| **Nhóm 4: Cây suy luận phi tuyến** | • Tree of Thoughts (ToT - Đa chuyên gia phản biện) | Tìm kiếm không gian trạng thái (BFS/DFS) và tự đánh giá |
+| **Nhóm 5: Tinh lọc & Nén thông tin**| • Directional Stimulus Prompting (DSP)<br>• Chain of Density (CoD) | Điều hướng sinh văn bản và nén mật độ thực thể đệ quy |
 
 ---
 

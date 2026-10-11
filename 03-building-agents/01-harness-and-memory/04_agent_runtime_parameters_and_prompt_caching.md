@@ -64,7 +64,7 @@ updated: 2026-09-27
 
 ### Nghịch lý Prefill Computation trong vòng lặp đa bước
 
-Một tác tử tự trị (Autonomous Agent) hoạt động dựa trên cơ chế vòng lặp phản hồi nhận thức ([[01_loop_fundamentals|Loop Fundamentals]] & [[02_react_and_planning|ReAct Loops]]):
+Một tác tử tự trị (Autonomous Agent) hoạt động dựa trên cơ chế vòng lặp phản hồi nhận thức (khảo sát tại [[01_loop_fundamentals|Loop Fundamentals]] & [[02_react_and_planning|ReAct Loops]]):
 $$\text{Thought}_t \longrightarrow \text{Action}_t \longrightarrow \text{Observation}_t \longrightarrow \text{Thought}_{t+1}$$
 
 Mỗi khi vòng lặp chuyển sang bước $t+1$, toàn bộ ngữ cảnh từ bước $1$ đến $t$ phải được gửi lại vào mô hình ngôn ngữ lớn để làm tiền đề suy luận. Trong một ứng dụng doanh nghiệp thực tế:
@@ -224,44 +224,19 @@ $$
 > [!important] Định Luật Rách Cache (Cache Invalidation Law):
 > *"Nếu bạn thay đổi dù chỉ một khoảng trắng, một dấu câu, hoặc một ký tự ngẫu nhiên ở token thứ 10 của một System Prompt dài 10,000 tokens, toàn bộ 9,990 tokens phía sau lập tức bị Cache Miss hoàn toàn!"*
 
-Để bảo đảm Cache Hit Rate đạt ngưỡng tối ưu ($> 90\%$), kiến trúc **AI Harness** ([[01_harness_architecture|Harness Architecture]]) bắt buộc phải tuân thủ nghiêm ngặt **Quy tắc Bất Biến Tiền Tố (Prefix Invariance)**.
+Để bảo đảm Cache Hit Rate đạt ngưỡng tối ưu ($> 90\%$), kiến trúc **AI Harness** (xem [[01_harness_architecture|Harness Architecture]]) bắt buộc phải tuân thủ nghiêm ngặt **Quy tắc Bất Biến Tiền Tố (Prefix Invariance)**.
 
 ---
 
 ### Giải phẫu kiến trúc cấu trúc mảng tin nhắn tối ưu cho Agent
 
-```markdown
-┌────────────────────────────────────────────────────────────────────────┐
-│ [VÙNG 1: TĨNH BẤT BIẾN] - System Prompt Cốt Lõi                        │
-│ - Persona tác tử, triết lý suy luận, giới hạn đạo đức                  │
-│ - Chuỗi ký tự cố định 100%, không chứa bất kỳ biến số nào             │
-├────────────────────────────────────────────────────────────────────────┤
-│ [VÙNG 2: TĨNH BẤT BIẾN] - Toàn Bộ Định Nghĩa Công Cụ (MCP Tool Schemas)│
-│ - Danh sách JSON Schemas của 30 tools hệ thống                         │
-│ - Sắp xếp theo thứ tự bảng chữ cái cố định (Alphabetical Sort by Name) │
-├────────────────────────────────────────────────────────────────────────┤
-│ [VÙNG 3: TĨNH BẤT BIẾN] - Few-shot Demonstrations & Playbooks          │
-│ - Các mẫu ví dụ hoàn hảo về chuỗi Thought -> Action -> Observation     │
-│ ══════════════════════════════════════════════════════════════════════ │
-│ 📍 [ĐIỂM NGẮT CACHE 1: ANTHROPIC CACHE_CONTROL EPHEMERAL]              │
-│ ══════════════════════════════════════════════════════════════════════ │
-├────────────────────────────────────────────────────────────────────────┤
-│ [VÙNG 4: NỬA ĐỘNG - CHỈ GHI NỐI TIẾP (APPEND-ONLY HISTORY)]           │
-│ - User Task ban đầu                                                    │
-│ - Lượt 1: Assistant Thought + Action 1                                 │
-│ - Lượt 1: Tool Observation 1                                           │
-│ - Lượt 2: Assistant Thought + Action 2                                 │
-│ - Lượt 2: Tool Observation 2                                           │
-│ ══════════════════════════════════════════════════════════════════════ │
-│ 📍 [ĐIỂM NGẮT CACHE 2: ĐẶT Ở TOOL OBSERVATION CỦA LƯỢT GẦN NHẤT]       │
-│ ══════════════════════════════════════════════════════════════════════ │
-├────────────────────────────────────────────────────────────────────────┤
-│ [VÙNG 5: HOÀN TOÀN ĐỘNG - ĐẨY XUỐNG CUỐI CÙNG]                         │
-│ - Timestamp hiện tại: datetime.now()                                   │
-│ - Tải CPU/RAM hiện tại của sandbox                                     │
-│ - Lời nhắc bổ sung (Dynamic Ephemeral Hints)                           │
-└────────────────────────────────────────────────────────────────────────┘
-```
+| Phân Vùng Ngữ Cảnh | Đặc Tính Biến Thiên | Nội Dung & Trách Nhiệm Chi Tiết | Điểm Đặt Cache (`cache_control`) |
+| :--- | :--- | :--- | :--- |
+| **Vùng 1: System Prompt Cốt Lõi** | Tĩnh bất biến ($100\%$) | Persona tác tử, triết lý suy luận, giới hạn đạo đức; chuỗi ký tự cố định hoàn toàn, không chứa biến số | Nằm trong vùng tiền tố tĩnh |
+| **Vùng 2: Định Nghĩa Công Cụ (MCP)** | Tĩnh bất biến ($100\%$) | Danh sách JSON Schemas của 30 tools hệ thống; sắp xếp theo thứ tự bảng chữ cái cố định (`Alphabetical Sort by Name`) | Nằm trong vùng tiền tố tĩnh |
+| **Vùng 3: Few-shot & Playbooks** | Tĩnh bất biến ($100\%$) | Các mẫu ví dụ hoàn hảo về chuỗi `Thought` $\to$ `Action` $\to$ `Observation` | 📍 **Điểm ngắt Cache 1** (Anthropic `cache_control: {"type": "ephemeral"}`) |
+| **Vùng 4: Lịch Sử Chỉ Ghi Nối Tiếp** | Nửa động (Append-Only) | User Task ban đầu; Lượt 1 (`Thought` + `Action` + `Observation`); Lượt 2, ... | 📍 **Điểm ngắt Cache 2** (Đặt tại Tool Observation của lượt gần nhất) |
+| **Vùng 5: Biến Số Động (Ephemeral)** | Hoàn toàn động ($100\%$) | Timestamp hiện tại (`datetime.now()`), tải CPU/RAM của sandbox, gợi ý động | Không cache (Đẩy xuống cuối cùng để tránh rách cache tiền tố) |
 
 ---
 
@@ -378,7 +353,7 @@ Tham số `max_tokens` (hoặc `max_completion_tokens`) xác định số token 
 
 ### Stop Sequences: Ranh giới trao quyền cho Tool Dispatcher
 
-Một trong những tính năng bị lãng quên nhiều nhất nhưng là cốt lõi của ReAct Loop ([[02_react_and_planning|ReAct Loops]]) là **Stop Sequences**:
+Một trong những tính năng bị lãng quên nhiều nhất nhưng là cốt lõi của ReAct Loop (xem [[02_react_and_planning|ReAct Loops]]) là **Stop Sequences**:
 * Trong các mô hình mã nguồn mở chạy cục bộ hoặc các mô hình không hỗ trợ Native Function Calling, Agent tự sinh văn bản theo cấu trúc:
   ```markdown
   Thought: Tôi cần kiểm tra tệp tin README.md.
@@ -412,7 +387,7 @@ Trong cú pháp lập trình và cấu trúc dữ liệu JSON:
 
 * Tham số `seed` (số nguyên, ví dụ: `seed = 42`) yêu cầu Inference Engine khởi tạo cùng một bộ sinh số ngẫu nhiên cho quá trình lấy mẫu.
 * Kết hợp với `temperature = 0.0`, `seed` cho phép đạt được **Tính tất định tái lập (Deterministic Replayability)**:
-  * Khi Agent gặp lỗi ở bước 18 trên môi trường kiểm thử, lập trình viên có thể nạp lại chính xác `seed` đó để tái hiện lại lỗi $100\%$ phục vụ cho **Time-Travel Debugging** ([[05_durable_execution_and_stateful_workflows|Durable Execution]]).
+  * Khi Agent gặp lỗi ở bước 18 trên môi trường kiểm thử, lập trình viên có thể nạp lại chính xác `seed` đó để tái hiện lại lỗi $100\%$ phục vụ cho **Time-Travel Debugging** trong [[05_durable_execution_and_stateful_workflows|Durable Execution]].
 
 ---
 
@@ -427,7 +402,7 @@ Khi truyền danh mục công cụ vào API, tham số `tool_choice` quyết đ�
 
 ## 5. HỆ THỐNG ĐO LƯỜNG HIỆU NĂNG & CHI PHÍ VẬN HÀNH (OPERATIONAL METRICS)
 
-Để vận hành một hệ thống Agent quy mô lớn, kiến trúc sư hệ thống cần theo dõi bảng chỉ số sau thông qua các nền tảng Tracing như Langfuse hoặc OpenTelemetry ([[01_agent_evals_and_tracing|Agent Observability]]):
+Để vận hành một hệ thống Agent quy mô lớn, kiến trúc sư hệ thống cần theo dõi bảng chỉ số sau thông qua các nền tảng Tracing như Langfuse hoặc OpenTelemetry (chi tiết tại [[01_agent_evals_and_tracing|Agent Observability]]):
 
 ### TTFT (Time-To-First-Token) & Chẩn đoán Rách Cache
 
@@ -450,7 +425,7 @@ $$
 \text{TPS} = \frac{1}{\text{TPOT}} \quad (\text{tokens/second})
 $$
 * **Ý nghĩa:** Đo lường tốc độ suy luận thuần túy trong pha Decode của GPU.
-* Với các tác vụ Agent điều khiển màn hình máy tính ([[01_multimodal_gui_and_computer_use|GUI Computer-Use]]), $\text{TPS}$ phải đạt tối thiểu $60 - 100\text{ tokens/s}$ để người dùng không cảm nhận thấy độ trễ giao diện.
+* Với các tác vụ Agent điều khiển màn hình máy tính (xem [[01_multimodal_gui_and_computer_use|GUI Computer-Use]]), $\text{TPS}$ phải đạt tối thiểu $60 - 100\text{ tokens/s}$ để người dùng không cảm nhận thấy độ trễ giao diện.
 
 ---
 
@@ -730,11 +705,11 @@ Dưới đây là ma trận tra cứu tham số chuẩn sản xuất cho các ch
 
 | Chuyên Môn Tác Tử | Nhiệt Độ (`temperature`) | `top_p` | `max_tokens` | `stop_sequences` | Chiến Lược Caching Khuyến Nghị |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Code Generation & Self-Healing Agent** ([[04_ast_self_healing_code_agents|AST Agent]]) | `0.0` | `1.0` | $8{,}192$ | `["```\n", "\nObservation:"]` | Ghim toàn bộ Repo Map & AST Schemas vào Cache đầu |
+| **Code Generation & Self-Healing Agent** <br>[[04_ast_self_healing_code_agents|AST Agent]] | `0.0` | `1.0` | $8{,}192$ | `["```\n", "\nObservation:"]` | Ghim toàn bộ Repo Map & AST Schemas vào Cache đầu |
 | **SQL & Database Retrieval Agent** | `0.0` | `1.0` | $2{,}048$ | `[";", "\nObservation:"]` | Ghim Schema bảng DB (DDL) vào Static Prefix |
-| **Long-Horizon Planner Agent** ([[02_react_and_planning|Plan-and-Execute]]) | `0.5 - 0.7` | `0.95` | $4{,}096$ | Không bắt buộc | Ghim mục tiêu tổng thể và danh sách ràng buộc nghiệp vụ |
-| **Multi-Agent Orchestrator** ([[03_multi_agent_teams|Multi-Agent Teams]]) | `0.1` | `1.0` | $3{,}000$ | `["\nWorker:"]` | Ghim bảng phân quyền Subagents và JSON Dispatch Protocol |
-| **GUI & OS Computer-Use Agent** ([[01_multimodal_gui_and_computer_use|GUI Agent]]) | `0.0` | `1.0` | $1{,}500$ | `["\nAction_Done"]` | Khó Cache hình ảnh màn hình liên tục; chỉ cache System & Tool Space |
+| **Long-Horizon Planner Agent** <br>[[02_react_and_planning|Plan-and-Execute]] | `0.5 - 0.7` | `0.95` | $4{,}096$ | Không bắt buộc | Ghim mục tiêu tổng thể và danh sách ràng buộc nghiệp vụ |
+| **Multi-Agent Orchestrator** <br>[[03_multi_agent_teams|Multi-Agent Teams]] | `0.1` | `1.0` | $3{,}000$ | `["\nWorker:"]` | Ghim bảng phân quyền Subagents và JSON Dispatch Protocol |
+| **GUI & OS Computer-Use Agent** <br>[[01_multimodal_gui_and_computer_use|GUI Agent]] | `0.0` | `1.0` | $1{,}500$ | `["\nAction_Done"]` | Khó Cache hình ảnh màn hình liên tục; chỉ cache System & Tool Space |
 
 ---
 

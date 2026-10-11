@@ -53,7 +53,8 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
 │   ├── README.md                                # Tổng quan tương tác màn hình, pixels & OS Automation
 │   └── 01_multimodal_gui_and_computer_use.md    # Visual UI Grounding (Set-of-Mark/OmniParser) & OSWorld
 │
-└── 06_how_to_build_enterprise_ai_agents.md      # 🏗️ Bài 06 (Tổng kết): CẨM NANG TOÀN TẬP kiến trúc khối, 6 phòng ban & Production
+├── 06_how_to_build_enterprise_ai_agents.md      # 🏗️ Bài 06 (Tổng kết): CẨM NANG TOÀN TẬP kiến trúc khối, 6 phòng ban & Production
+└── 07_fullstack_agent_mern_architecture.md      # 🌐 Bài 07 (Thực chiến Full-stack): Kiến trúc MERN Stack, Atlas Vector Search & React Generative UI
 ```
 
 ---
@@ -131,6 +132,16 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
   * **Thích ứng chuyên sâu cho 6 phòng ban:** Sales & BD, Nhân sự (HR), Tài chính & Kế toán (3-Way Matching), Pháp chế (Playbook rà soát hợp đồng), Chăm sóc khách hàng & IT Helpdesk (Self-healing), Kỹ thuật phần mềm (SWE-bench paradigm).
   * **5 Thất bại hệ thống & Chiến lược phòng vệ:** Execution Hallucination (Pydantic/Constrained Decoding), Infinite Loops & Tool Storms (Circuit Breakers), State Drift (Context Hygiene), RBAC/ACL Breaches (Identity Propagation), Indirect Prompt Injection (Context Quarantine & Dual-LLM).
   * **Quy trình 6 giai đoạn đưa Agent từ Prototype lên Production.**
+
+---
+
+### 🌐 Bài 07: Kiến Trúc Ứng Dụng Tác Tử Toàn Diện Với MERN Stack (Full-Stack Agent Blueprint)
+* 📖 [**07_fullstack_agent_mern_architecture.md - Kiến Trúc Ứng Dụng Tác Tử Toàn Diện Với MERN Stack**](07_fullstack_agent_mern_architecture.md):
+  * **Sự chuyển dịch kiến trúc:** Từ Web 2.0 CRUD sang Modern Agentic MERN (MongoDB Atlas Vector Search + Express Ingress Gateway + React Generative UI + Node.js MCP Orchestrator).
+  * **MongoDB Atlas kép:** HNSW Vector Indexing, Hybrid Search kết hợp $BM25$ và Dense Vectors qua Reciprocal Rank Fusion (RRF), Checkpoint Store lưu trữ máy trạng thái bền vững (`langgraph-checkpoint-mongodb`).
+  * **Express & Node.js MCP Runtime:** Thiết kế Server-Sent Events (SSE) streaming cho ReAct Thought Traces, tích hợp TypeScript MCP Client (`@modelcontextprotocol/sdk`) và bộ ngắt mạch Circuit Breaker.
+  * **React Generative UI:** Scratchpad Visualizer, Human-in-the-Loop Confirmation Modals chặn tác vụ nhạy cảm, render UI Component động theo JSON output.
+  * **Mã nguồn thực chiến mẫu:** TypeScript Mongoose Vector Schema, Express SSE Controller, và React Chat Workspace.
 
 ---
 

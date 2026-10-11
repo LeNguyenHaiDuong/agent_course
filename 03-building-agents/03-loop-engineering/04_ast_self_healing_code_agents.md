@@ -137,7 +137,7 @@ Mỗi nút $u \in V$ mang một kiểu cú pháp cụ thể (Node Type) kèm the
 > * **Giải thuật duyệt cây:**
 >   - Duyệt cây AST theo chiều sâu (Depth-First Search) để tìm nút nhỏ nhất bao hàm đoạn dòng `[start_line, end_line]` chứa $L_{\text{err}}$ thỏa mãn nút đó là `FunctionDef` hoặc `AsyncFunctionDef` hoặc `ClassDef`.
 >   - Cắt cây con (Subtree) đó ra khỏi cây lớn.
-> * **Đầu ra:** Chỉ duy nhất đoạn mã của hàm bị lỗi (ví dụ 15 dòng) kèm theo các type signature liên quan, loại bỏ $99\%$ mã nguồn xung quanh để tránh làm độc hại cửa sổ ngữ cảnh ([[02_context_management|Context Quarantine]]).
+> * **Đầu ra:** Chỉ duy nhất đoạn mã của hàm bị lỗi (ví dụ 15 dòng) kèm theo các type signature liên quan, loại bỏ $99\%$ mã nguồn xung quanh để tránh làm độc hại cửa sổ ngữ cảnh theo cơ chế [[02_context_management|Context Quarantine]].
 
 ### Tại sao AST là "Chiếc la bàn cấu trúc" cho Coding Agents?
 

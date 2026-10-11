@@ -97,7 +97,7 @@ flowchart LR
 
 ### Tại sao dữ liệu con người lại hạ chuẩn đối với Autonomous Agents?
 
-Nhiều kỹ sư nhầm tưởng rằng: *"Thu thập dữ liệu lập trình viên thao tác hoặc người dùng tương tác công cụ là cách tốt nhất để huấn luyện Agent."* Thực tế nghiên cứu chứng minh dữ liệu hành vi của con người bộc lộ $4$ khiếm khuyết chết người khi áp dụng cho mô hình suy luận vòng lặp ([[02_react_and_planning|ReAct and Reasoning Loops]]):
+Nhiều kỹ sư nhầm tưởng rằng: *"Thu thập dữ liệu lập trình viên thao tác hoặc người dùng tương tác công cụ là cách tốt nhất để huấn luyện Agent."* Thực tế nghiên cứu chứng minh dữ liệu hành vi của con người bộc lộ $4$ khiếm khuyết chết người khi áp dụng cho mô hình suy luận vòng lặp (chi tiết tại [[02_react_and_planning|ReAct and Reasoning Loops]]):
 
 1. **Thiếu vắng vết tư duy nháp (Missing Scratchpad / Inner Monologue):**
    Con người suy nghĩ trong não bộ và chỉ gõ ra lệnh cuối cùng. Họ không ghi chép tường minh: *"Tại sao tôi chọn API này? Những phương án nào đã bị loại trừ? Rủi ro nào cần phòng ngừa?"*. Khi huấn luyện Supervised Fine-Tuning (SFT) trên chuỗi thao tác của người, mô hình bị ép học bước nhảy nhận thức (Cognitive leaps), dẫn đến suy đoán mò và mất tính nhất quán logic.
@@ -112,7 +112,7 @@ Nhiều kỹ sư nhầm tưởng rằng: *"Thu thập dữ liệu lập trình v
 
 ### Kỷ nguyên Dữ liệu Tổng hợp Siêu nhân (Superhuman Synthetic Data)
 
-Để xây dựng các Agent tự trị có khả năng tự sửa lỗi AST ([[04_ast_self_healing_code_agents|AST-Guided Self-Healing]]) hoặc điều phối workflow bền vững ([[05_durable_execution_and_stateful_workflows|Durable Execution Workflows]]), chúng ta cần **Dữ liệu Tổng hợp Siêu nhân**:
+Để xây dựng các Agent tự trị có khả năng tự sửa lỗi AST với [[04_ast_self_healing_code_agents|AST-Guided Self-Healing]] hoặc điều phối workflow bền vững với [[05_durable_execution_and_stateful_workflows|Durable Execution Workflows]], chúng ta cần **Dữ liệu Tổng hợp Siêu nhân**:
 * Dữ liệu được sinh ra với độ phức tạp nhận thức vượt qua câu hỏi thông thường của người dùng thông qua các toán tử tiến hóa (Evolutionary Operators).
 * Dữ liệu chứa đầy đủ các tình huống lỗi hỏng giả lập và đường dẫn tự phục hồi (Self-correction pathways).
 * Mọi mẫu dữ liệu được thẩm định toán học và xác thực bằng môi trường thực thi (Execution-guided verification), triệt tiêu hoàn toàn ảo giác (Hallucination).

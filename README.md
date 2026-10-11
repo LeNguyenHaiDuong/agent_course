@@ -19,6 +19,10 @@ Kho tài liệu học tập, nghiên cứu và thực hành toàn diện về **
 > * 📚 **Blog / Knowledge Base:** Toàn bộ nội dung là các bài viết Markdown chuẩn hóa, phân cấp logic, dễ dàng đọc trực tiếp trên GitHub hoặc mở bằng bất kỳ trình đọc Markdown / Static Site Generator nào.
 > * 🏷️ **Tags phân loại:** `#agent-course` `#research/neural-networks` `#research/llm` `#prompt-engineering` `#building-agents`
 
+> [!important] 🏛️ Bản Đồ Kiến Trúc Toàn Cảnh (The Master Architecture Blueprint)
+> Để hiểu rõ bức tranh vĩ mô và mối liên hệ nhân - quả ngầm giữa **toàn bộ các thành phần** trong repository (từ Transformer Math, 4 thế hệ Chunking, Hybrid RAG, DSPy, Cognitive Memory, MCP 4 bước, ReAct Loops, AST Self-Healing cho đến MERN Stack & Evals), hãy xem cẩm nang tổng hợp:
+> 👉 [**MASTER_ARCHITECTURE_AND_COMPONENTS.md - Bản Đồ Kiến Trúc Toàn Cảnh AI Agent**](MASTER_ARCHITECTURE_AND_COMPONENTS.md)
+
 ---
 
 ## 🗺️ Bản Đồ Kiến Trúc Kho Tài Liệu (3 Trụ Cột)
@@ -78,7 +82,8 @@ agent_course/
     ├── 05-multimodal-gui-agents/                      # 🖥️ Tầng 5: Tác tử đa phương thức & Computer-Use
     │   ├── README.md
     │   └── 01_multimodal_gui_and_computer_use.md
-    └── 06_how_to_build_enterprise_ai_agents.md        # 🏗️ Bài 06 (Tổng kết): CẨM NANG TOÀN TẬP kiến trúc khối, 6 phòng ban & Production
+    ├── 06_how_to_build_enterprise_ai_agents.md        # 🏗️ Bài 06 (Tổng kết): CẨM NANG TOÀN TẬP kiến trúc khối, 6 phòng ban & Production
+    └── 07_fullstack_agent_mern_architecture.md        # 🌐 Bài 07 (Thực chiến Full-stack): Kiến trúc MERN Stack, Atlas Vector Search & React Generative UI
 ```
 
 ---
@@ -119,4 +124,5 @@ agent_course/
 * [[03-building-agents/05-multimodal-gui-agents/README|05-multimodal-gui-agents - Multimodal GUI Agents & Computer-Use]]: Tác tử đa phương thức nhìn màn hình (Pixels) và tương tác hệ điều hành như người dùng thật.
   * [[01_multimodal_gui_and_computer_use|Kỷ Nguyên Tác Tử Tương Tác Trực Quan Màn Hình & Hệ Điều Hành]]: Nghịch lý "Vật chất tối của API", Visual UI Grounding, Set-of-Mark (SoM) Prompting, OmniParser, Tọa độ chuẩn hóa $[0, 1000] \times [0, 1000]$, Không gian hành động nguyên thủy (Atomic Action Space), phòng chống Render Latency, Frame Differencing tiết kiệm 85% token và đánh giá benchmark OSWorld.
 * [[06_how_to_build_enterprise_ai_agents|06_how_to_build_enterprise_ai_agents - Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp (Enterprise AI Agent Blueprint)]]: **Bản thiết kế tổng hợp & Capstone Production:** Sơ đồ khối 6 tầng, thích ứng chuyên sâu 6 phòng ban (Sales, HR, Finance, Legal, CS/IT, Engineering), AI Design Patterns (ReAct, Plan-and-Execute, Evaluator-Optimizer, Multi-Agent), 5 thất bại hệ thống kinh điển & chiến lược phòng vệ, quy trình 6 giai đoạn đưa Agent từ Prototype lên Production.
+* [**07_fullstack_agent_mern_architecture.md - Kiến Trúc Ứng Dụng Tác Tử Toàn Diện Với MERN Stack**](03-building-agents/07_fullstack_agent_mern_architecture.md): **Bản thiết kế Full-stack Agentic Application:** Tiến hóa từ CRUD sang Modern Agentic MERN, MongoDB Atlas Vector Search (HNSW) & Hybrid Search với Reciprocal Rank Fusion (RRF), Durable State Checkpointer, Express Streaming SSE Endpoint, tích hợp Node.js MCP Client (`@modelcontextprotocol/sdk`), React Generative UI & Human-in-the-Loop Confirmation Modals, và mã nguồn TypeScript thực chiến mẫu.
 

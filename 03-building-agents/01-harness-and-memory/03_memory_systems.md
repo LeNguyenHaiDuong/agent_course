@@ -194,7 +194,7 @@ flowchart TD
 
 ### Tầng 4: Semantic External Memory (Kho tri thức vĩnh viễn & RAG đa phương thức)
 * Lưu trữ toàn bộ kho tài liệu, cẩm nang quy trình công ty, và lịch sử các ticket hỗ trợ.
-* Sử dụng hệ thống tìm kiếm vector kết hợp đồ thị tri thức ([[01_semantic_search_and_reranking|Semantic Search & Advanced RAG]]).
+* Sử dụng hệ thống tìm kiếm vector kết hợp đồ thị tri thức (chi tiết tại [[01_semantic_search_and_reranking|Semantic Search & Advanced RAG]]).
 
 ---
 

@@ -23,6 +23,9 @@ updated: 2026-09-27
 ## 📑 MỤC LỤC
 1. [Bối Cảnh Lịch Sử & Bài Toán Tích Hợp $N \times M$](#1-bối-cảnh-lịch-sử--bài-toán-tích-hợp-n-times-m)
 2. [Kiến Trúc Tổng Thể: Tam Giác Tác Tử (Host - Client - Server)](#2-kiến-trúc-tổng-thể-tam-giác-tác-tử-host---client---server)
+   - [2.1. Phân Định Trách Nhiệm Từng Thành Phần](#21-phân-định-trách-nhiệm-từng-thành-phần)
+   - [2.2. Cơ Chế Vận Hành 4 Bước Thực Chiến (The 4-Step Working Pipeline)](#22-cơ-chế-vận-hành-4-bước-thực-chiến-the-4-step-working-pipeline-of-mcp)
+   - [2.3. Nghiên Cứu Điển Hình Thực Chiến: Trợ Lý Thời Tiết (London Weather Walkthrough)](#23-nghiên-cứu-điển-hình-thực-chiến-trợ-lý-thời-tiết-london-weather-walkthrough)
 3. [Ba Cột Trụ Nguyên Thủy (The Three Core Primitives)](#3-ba-cột-trụ-nguyên-thủy-the-three-core-primitives)
 4. [Tầng Truyền Tải & Định Dạng Tin Nhắn (Transport & Wire Protocol)](#4-tầng-truyền-tải--định-dạng-tin-nhắn-transport--wire-protocol)
 5. [Vòng Đời Phiên Làm Việc & Cơ Chế Thương Thảo (Lifecycle & Negotiation)](#5-vòng-đời-phiên-làm-việc--cơ-chế-thương-thảo-lifecycle--negotiation)
@@ -155,6 +158,111 @@ sequenceDiagram
    * Là một tiến trình (process) độc lập, gọn nhẹ, chạy trên máy cục bộ hoặc máy chủ từ xa.
    * Chuyên biệt hóa: Một server chỉ nên đảm nhận một phạm vi nhiệm vụ (ví dụ: `filesystem-server`, `brave-search-server`, `git-server`).
    * Phơi bày 3 loại năng lực nguyên thủy ra ngoài: **Tools**, **Resources**, và **Prompts**.
+
+---
+
+### 2.2. Cơ Chế Vận Hành 4 Bước Thực Chiến (The 4-Step Working Pipeline of MCP)
+
+Để hiểu rõ cách MCP hoạt động ngầm (behind the scenes), các kỹ sư cần nắm vững **quy trình tuần tự 4 bước** từ lúc khởi tạo server cho đến khi dữ liệu hiển thị mượt mà trên giao diện người dùng:
+
+```mermaid
+flowchart LR
+    Step1["1. Đăng Ký Công Cụ\n(Register Tools)"] --> Step2["2. Thiết Lập Kênh\n(Set up Transport)"]
+    Step2 --> Step3["3. Xử Lý Yêu Cầu\n(Handle Requests)"]
+    Step3 --> Step4["4. Tích Hợp UI\n(UI Integration)"]
+
+    style Step1 fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000
+    style Step2 fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#000
+    style Step3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000
+    style Step4 fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#000
+```
+
+#### Bước 1: Đăng Ký Công Cụ (Register Tools & Expose Schemas)
+* **Bản chất:** Ngay khi khởi động, nhiệm vụ đầu tiên của MCP Server là phơi bày danh mục các hàm nghiệp vụ (ví dụ: `get_weather`, `fetch_stock_price`, `search_database`) để mô hình ngôn ngữ lớn (LLM) biết được nó có quyền năng gì.
+* **Nguồn dữ liệu đa dạng:** Các công cụ này có thể trích xuất dữ liệu từ bất kỳ đâu — Live REST APIs, cơ sở dữ liệu SQL/NoSQL, tệp tin đĩa cứng, hay các mảng dữ liệu tính toán nội bộ trong RAM.
+* **Hợp đồng giao diện (Metadata Contract):** MCP Server công bố 3 thông số bắt buộc:
+  1. **Tên hàm (`name`):** Định danh duy nhất (ví dụ: `get_weather`).
+  2. **Mô tả nghiệp vụ (`description`):** Giải thích rõ mục đích sử dụng. LLM dựa hoàn toàn vào mô tả ngữ nghĩa này để quyết định xem prompt của người dùng có cần kích hoạt công cụ này hay không.
+  3. **Lược đồ tham số (`inputSchema`):** Chuẩn hóa bằng JSON Schema, quy định rõ tên tham số, kiểu dữ liệu (`string`, `number`, `boolean`), các trường bắt buộc (`required`) và ràng buộc giá trị.
+
+#### Bước 2: Thiết Lập Kênh Truyền Tải (Set up Transport & Endpoints)
+* **Bản chất:** Tạo kênh liên lạc tiêu chuẩn hóa giữa LLM Host/Client và MCP Server để hai bên có thể trao đổi các gói tin JSON-RPC 2.0 qua lại một cách đáng tin cậy.
+* **Hai phương thức truyền dẫn chủ đạo:**
+  1. **Kênh Cục Bộ (`stdio`):** Host khởi tạo MCP Server như một tiến trình con (Subprocess) và truyền thông qua Standard Input/Output. Đây là giải pháp an toàn tuyệt đối, không mở cổng mạng ra ngoài và có độ trễ cực thấp ($< 1\text{ms}$).
+  2. **Kênh Mạng Từ Xa (HTTP qua Server-Sent Events - SSE):** MCP Server mở một HTTP Endpoint trên mạng (ví dụ: `http://api.company.com/sse`). Host gửi request bằng HTTP POST và nhận dòng sự kiện liên tục từ Server qua luồng SSE.
+* **Quản trị Phiên làm việc (Session Management):**
+  * **Stateful (Có phiên):** Quản lý qua `sessionId` (hoặc header kết nối), cho phép server lưu lại ngữ cảnh tạm thời giữa các lượt tương tác của một người dùng cụ thể.
+  * **Stateless (Phi trạng thái):** Xử lý độc lập từng request mà không cần lưu phiên, lý tưởng cho mô hình mở rộng ngang (Horizontal Scaling) phía sau API Gateway.
+
+#### Bước 3: Xử Lý Lời Gọi & Đóng Gói Phản Hồi Chuẩn (Handle Requests & Return Structured Responses)
+* **Bản chất:** Lắng nghe chỉ thị từ LLM, thực thi logic nghiệp vụ ngoài đời thực và đóng gói dữ liệu đầu ra đúng định dạng mà mô hình mong đợi.
+* **Quy trình xử lý nội bộ:**
+  1. **Tiếp nhận Tool Call:** Khi LLM quyết định cần dữ liệu ngoài, nó phát sinh cấu trúc gọi hàm. MCP Client chuyển tiếp thành gói tin JSON-RPC `tools/call` đến Server qua kênh Transport.
+  2. **Thực thi Logic Nghiệp vụ:** Server giải nén tham số, thực hiện các tác vụ tính toán hoặc gọi API ngoại vi (ví dụ: gọi OpenWeather API hoặc truy vấn MongoDB).
+  3. **Chuẩn hóa khuôn mẫu phản hồi (Pattern Matching):** LLM không thể đọc trực tiếp các luồng dữ liệu tùy tiện; nó đòi hỏi dữ liệu phải được bọc trong cấu trúc chuẩn của giao thức MCP:
+     ```json
+     {
+       "content": [
+         {
+           "type": "text",
+           "text": "{\"city\": \"London\", \"temperature\": 14, \"condition\": \"Cloudy\", \"humidity\": 78}"
+         }
+       ]
+     }
+     ```
+     Nếu kết quả trả về sai quy cách, mô hình sẽ không hiểu được kết quả quan sát (Observation) và sinh ra ảo giác.
+
+#### Bước 4: Tích Hợp Giao Diện Người Dùng (UI / Frontend Integration)
+* **Bản chất:** Đưa kết quả hoàn chỉnh từ vòng lặp AI về giao diện ứng dụng (React, Angular, Vue, Web Chat, Mobile App) để người dùng có trải nghiệm trực quan.
+* **Hai phương thức hiển thị song song:**
+  1. **Phản hồi ngôn ngữ tự nhiên (Natural Language Response):** LLM đọc dữ liệu có cấu trúc từ tool và sinh ra câu trả lời đàm thoại mượt mà cho người dùng (ví dụ: *"Thời tiết hiện tại ở London là 14°C, trời nhiều mây và độ ẩm 78%"*).
+  2. **Thành phần giao diện động (Generative UI / Rich Widgets):** Giao diện (React/Angular) có thể bắt trực tiếp sự kiện công cụ để hiển thị các widget chuyên dụng: Thẻ thời tiết trực quan có icon, biểu đồ dự báo 24h, hoặc bảng dữ liệu tương tác thay vì chỉ in văn bản thuần túy.
+
+---
+
+### 2.3. Nghiên Cứu Điển Hình Thực Chiến: Trợ Lý Thời Tiết (London Weather Walkthrough)
+
+Để hình dung tường minh toàn bộ quy trình, hãy xem xét kịch bản người dùng gửi yêu cầu:  
+> *"Nhiệt độ hiện tại ở London là bao nhiêu?"*
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Người dùng
+    participant UI as Giao diện (React / Angular)
+    participant Host as MCP Host (LLM Engine)
+    participant Server as Weather MCP Server
+    participant ExtAPI as Weather API (OpenWeather)
+
+    Note over Host,Server: BƯỚC 1 & 2: Đăng Ký Tool & Thiết Lập Transport
+    Host->>Server: Handshake khởi tạo qua HTTP SSE / stdio
+    Server-->>Host: tools/list: Đăng ký `get_weather(city: string)`
+
+    Note over User,UI: BƯỚC 3: Người Dùng Đặt Câu Hỏi & Kích Hoạt Tool
+    User->>UI: "Nhiệt độ ở London hiện tại là bao nhiêu?"
+    UI->>Host: Gửi prompt
+    Host->>Host: LLM suy luận: Cần gọi `get_weather` với `city="London"`
+    Host->>Server: JSON-RPC tools/call { name: "get_weather", arguments: { city: "London" } }
+    
+    Server->>ExtAPI: GET https://api.weather.com/v1/london
+    ExtAPI-->>Server: Raw JSON: { temp_c: 14.2, desc: "Light clouds", wind: 12 }
+    Server-->>Host: Trả về Structured Content: [{ type: "text", text: "..." }]
+
+    Note over Host,UI: BƯỚC 4: Sinh Phản Hồi & Tích Hợp UI
+    Host->>Host: LLM đọc kết quả tool và tổng hợp câu trả lời tự nhiên
+    Host->>UI: Stream câu trả lời + Rich Metadata
+    UI-->>User: Hiển thị câu trả lời: "Nhiệt độ tại London là 14°C, nhiều mây" kèm Weather Card trực quan!
+```
+
+#### Bảng Đối Chiếu Định Dạng Dữ Liệu Qua Từng Bước:
+
+| Giai đoạn | Bên gửi $\to$ Bên nhận | Định dạng / Nội dung gói tin |
+| :--- | :--- | :--- |
+| **Bước 1 (Tool Schema)** | MCP Server $\to$ LLM Host | `{ "name": "get_weather", "description": "Lấy thông tin thời tiết thời gian thực theo tên thành phố", "inputSchema": { "type": "object", "properties": { "city": { "type": "string" } }, "required": ["city"] } }` |
+| **Bước 2 (Transport)** | Cấu hình mạng | `http://localhost:8000/sse` (Remote HTTP/SSE) hoặc `stdio: python weather_server.py` |
+| **Bước 3 (Tool Request)** | LLM $\to$ MCP Server | `{ "jsonrpc": "2.0", "method": "tools/call", "params": { "name": "get_weather", "arguments": { "city": "London" } } }` |
+| **Bước 3 (Tool Response)**| MCP Server $\to$ LLM | `{ "content": [{ "type": "text", "text": "{\"temp\": 14, \"condition\": \"Cloudy\", \"city\": \"London\"}" }] }` |
+| **Bước 4 (Frontend UI)** | React/Angular $\to$ User | **Text:** *"Hiện tại London đang có nhiệt độ 14°C với thời tiết nhiều mây..."*<br>**Component:** `<WeatherWidget temp={14} city="London" icon="cloudy" />` |
 
 ---
 
@@ -543,7 +651,7 @@ from mcp.server.fastmcp import FastMCP
 # 1. Khởi tạo MCP Server với tên định danh
 mcp = FastMCP("VaultHelperServer")
 
-WORKSPACE_DIR = "/home/duongle/agent_course"
+WORKSPACE_DIR = os.getenv("WORKSPACE_DIR", ".")
 
 # ==============================================================================
 # CỘT TRỤ 1: TOOLS (Hành động có tham số và logic tính toán)
@@ -616,7 +724,7 @@ if __name__ == "__main__":
     "vault-helper": {
       "command": "python",
       "args": [
-        "/home/duongle/agent_course/03-building-agents/02-tools-and-mcp/vault_helper_server.py"
+        "./03-building-agents/02-tools-and-mcp/vault_helper_server.py"
       ],
       "env": {
         "PYTHONUNBUFFERED": "1"
@@ -652,7 +760,7 @@ Bạn có thể ghép nối đồng thời nhiều MCP Server vào một tệp c
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/home/duongle/agent_course"
+        "/path/to/project_or_vault"
       ]
     },
     "github": {

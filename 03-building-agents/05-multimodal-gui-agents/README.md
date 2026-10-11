@@ -23,7 +23,7 @@ Thư mục này lưu trữ các nghiên cứu kiến trúc, kỹ thuật nhận 
 
 ## 📌 Khái Niệm Cốt Lõi Về Computer-Use
 
-* **Vượt qua giới hạn của API:** Trong khi các Agent truyền thống yêu cầu các API có cấu trúc ([[01_mcp_architecture|MCP]]), phần lớn các phần mềm doanh nghiệp cũ và ứng dụng desktop không có API. Tác tử GUI giải quyết vấn đề này bằng cách nhìn màn hình và tương tác như một con người thực sự.
+* **Vượt qua giới hạn của API:** Trong khi các Agent truyền thống yêu cầu các API có cấu trúc qua [[01_mcp_architecture|MCP]], phần lớn các phần mềm doanh nghiệp cũ và ứng dụng desktop không có API. Tác tử GUI giải quyết vấn đề này bằng cách nhìn màn hình và tương tác như một con người thực sự.
 * **3 Cột Trụ Kỹ Thuật:**
   1. **Visual UI Grounding:** Căn chỉnh không gian để nhận diện các nút bấm, icon, input field nhỏ qua **Set-of-Mark (SoM) Prompting** và **OmniParser**.
   2. **VLA (Vision-Language-Action):** Chuyển dịch chuỗi suy luận thị giác thành các hành động nguyên thủy trên OS (`click`, `double_click`, `type`, `hotkey`, `scroll`).
