@@ -99,9 +99,9 @@ flowchart TD
 ```
 
 ### Các Bước Cấu Thành Chi Tiết:
-1. **Perceive (Quan sát):** Nhận diện trạng thái hiện tại từ [[03_memory_systems|Working Memory]] (những việc đã làm, lỗi vừa xảy ra).
-2. **Orient (Định hướng):** Kiểm soát Cửa sổ ngữ cảnh bằng các kỹ thuật [[02_context_management|Context Pruning & Summarization]] để tránh hiện tượng **Context Decay** sau 20 - 30 lượt lặp.
-3. **Decide (Quyết định):** LLM lựa chọn công cụ phù hợp từ danh mục [[01_mcp_architecture|MCP Tools]] hoặc tuyên bố đã hoàn thành nhiệm vụ.
+1. **Perceive (Quan sát):** Nhận diện trạng thái hiện tại từ [Working Memory](../01-harness-and-memory/03_memory_systems.md) (những việc đã làm, lỗi vừa xảy ra).
+2. **Orient (Định hướng):** Kiểm soát Cửa sổ ngữ cảnh bằng các kỹ thuật [Context Pruning & Summarization](../01-harness-and-memory/02_context_management.md) để tránh hiện tượng **Context Decay** sau 20 - 30 lượt lặp.
+3. **Decide (Quyết định):** LLM lựa chọn công cụ phù hợp từ danh mục [MCP Tools](../02-tools-and-mcp/01_mcp_architecture.md) hoặc tuyên bố đã hoàn thành nhiệm vụ.
 4. **Execute (Thực thi):** Chạy hàm trong môi trường sandbox an toàn.
 5. **Reflect (Phản biện):** Đọc kết quả thực thi, kiểm tra xem có lỗi cú pháp (SyntaxError, 404, Timeout) hay không. Nếu có lỗi, tự động lập kế hoạch sửa lỗi ở lượt lặp tiếp theo (**Self-Healing**).
 
@@ -367,10 +367,10 @@ Hãy chấm điểm trên thang từ 1 đến 5 theo các tiêu chí sau:
 ## 8. BẢN ĐỒ LIÊN KẾT HỆ THỐNG
 
 * 🔙 **Nền tảng liên quan:**
-  * [[00_ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tổng quan về Tầng 4 - Loop Engineering.
-  * [[01_harness_architecture|Kiến Trúc Phần Mềm AI Harness]]: Nơi vòng lặp điều khiển vận hành.
-  * [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh]]: Phòng chống Context Decay khi vòng lặp kéo dài qua nhiều bước.
-  * [[01_mcp_architecture|Kiến Trúc Giao Thức MCP]]: Cung cấp công cụ chuẩn cho pha Execute.
+  * [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md): Tổng quan về Tầng 4 - Loop Engineering.
+  * [Kiến Trúc Phần Mềm AI Harness](../01-harness-and-memory/01_harness_architecture.md): Nơi vòng lặp điều khiển vận hành.
+  * [Quản Trị Cửa Sổ Ngữ Cảnh](../01-harness-and-memory/02_context_management.md): Phòng chống Context Decay khi vòng lặp kéo dài qua nhiều bước.
+  * [Kiến Trúc Giao Thức MCP](../02-tools-and-mcp/01_mcp_architecture.md): Cung cấp công cụ chuẩn cho pha Execute.
 * 🔜 **Mô hình kiến trúc nâng cao:**
-  * [[02_react_and_planning|Các Mô Hình Vòng Lặp Cốt Lõi (ReAct, Plan-and-Execute, Evaluator-Optimizer)]]: Khảo sát chi tiết 3 thiết kế thuật toán vòng lặp hàng đầu.
-  * [[03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]]: Phối hợp nhiều vòng lặp giữa các Agent chuyên biệt.
+  * [Các Mô Hình Vòng Lặp Cốt Lõi (ReAct, Plan-and-Execute, Evaluator-Optimizer)](./02_react_and_planning.md): Khảo sát chi tiết 3 thiết kế thuật toán vòng lặp hàng đầu.
+  * [Kiến Trúc Đội Ngũ Đa Tác Tử](./03_multi_agent_teams.md): Phối hợp nhiều vòng lặp giữa các Agent chuyên biệt.

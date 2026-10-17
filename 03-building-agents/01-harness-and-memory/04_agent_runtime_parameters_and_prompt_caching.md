@@ -64,7 +64,7 @@ updated: 2026-09-27
 
 ### Nghịch lý Prefill Computation trong vòng lặp đa bước
 
-Một tác tử tự trị (Autonomous Agent) hoạt động dựa trên cơ chế vòng lặp phản hồi nhận thức (khảo sát tại [[01_loop_fundamentals|Loop Fundamentals]] & [[02_react_and_planning|ReAct Loops]]):
+Một tác tử tự trị (Autonomous Agent) hoạt động dựa trên cơ chế vòng lặp phản hồi nhận thức (khảo sát tại [Loop Fundamentals](../03-loop-engineering/01_loop_fundamentals.md) & [ReAct Loops](../03-loop-engineering/02_react_and_planning.md)):
 $$\text{Thought}_t \longrightarrow \text{Action}_t \longrightarrow \text{Observation}_t \longrightarrow \text{Thought}_{t+1}$$
 
 Mỗi khi vòng lặp chuyển sang bước $t+1$, toàn bộ ngữ cảnh từ bước $1$ đến $t$ phải được gửi lại vào mô hình ngôn ngữ lớn để làm tiền đề suy luận. Trong một ứng dụng doanh nghiệp thực tế:
@@ -124,7 +124,7 @@ Một tác vụ người dùng duy nhất nuốt trọn hơn **$600{,}000$ token
 Cần phân biệt rõ hai tầng Caching thường bị nhầm lẫn trong cộng đồng AI:
 
 1. **Hardware KV-Cache (Tầng GPU Inference Engine):**
-   * Được nghiên cứu chi tiết tại [[04_transformer_math_deep_dive|Giải Phẫu Toán Học Transformer]].
+   * Được nghiên cứu chi tiết tại [Giải Phẫu Toán Học Transformer](../../01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md).
    * Là tensor chứa ma trận Key ($K$) và Value ($V$) lưu trực tiếp trong bộ nhớ VRAM của GPU trong suốt pha giải mã tuần tự (**Autoregressive Decode Phase**) của một request duy nhất để tránh tính lại các token vừa sinh ra.
    * Mang tính cục bộ (Ephemeral), gắn liền với vòng đời của một tiến trình sinh token và bị giải phóng ngay khi hoàn tất request.
 2. **API-Level Prompt Caching / Prefix Caching (Tầng Serving / Multi-Turn):**
@@ -224,7 +224,7 @@ $$
 > [!important] Định Luật Rách Cache (Cache Invalidation Law):
 > *"Nếu bạn thay đổi dù chỉ một khoảng trắng, một dấu câu, hoặc một ký tự ngẫu nhiên ở token thứ 10 của một System Prompt dài 10,000 tokens, toàn bộ 9,990 tokens phía sau lập tức bị Cache Miss hoàn toàn!"*
 
-Để bảo đảm Cache Hit Rate đạt ngưỡng tối ưu ($> 90\%$), kiến trúc **AI Harness** (xem [[01_harness_architecture|Harness Architecture]]) bắt buộc phải tuân thủ nghiêm ngặt **Quy tắc Bất Biến Tiền Tố (Prefix Invariance)**.
+Để bảo đảm Cache Hit Rate đạt ngưỡng tối ưu ($> 90\%$), kiến trúc **AI Harness** (xem [Harness Architecture](./01_harness_architecture.md)) bắt buộc phải tuân thủ nghiêm ngặt **Quy tắc Bất Biến Tiền Tố (Prefix Invariance)**.
 
 ---
 
@@ -274,7 +274,7 @@ flowchart LR
    * Không bao giờ chèn `Session-ID: 80ae627f` vào nội dung văn bản của System Prompt. Hãy chuyển toàn bộ thông tin quan trắc đó vào **HTTP Headers** (`X-Session-ID`, `X-Trace-ID`).
 4. **Bẫy 4: Sửa đổi thông điệp trong quá khứ (Retroactive Mutation):**
    * Nếu ở bước 5, bạn muốn tóm tắt lại bước 1 và sửa nội dung `messages[1]`, toàn bộ cache từ bước 1 trở đi sẽ biến mất.
-   * *Đúng:* Chỉ được phép thao tác **Append-Only (Chỉ thêm vào cuối)**. Nếu muốn nén ngữ cảnh, hãy dùng cơ chế tóm tắt có phân vùng (Context Quarantine) như trình bày tại [[02_context_management|Context Management]].
+   * *Đúng:* Chỉ được phép thao tác **Append-Only (Chỉ thêm vào cuối)**. Nếu muốn nén ngữ cảnh, hãy dùng cơ chế tóm tắt có phân vùng (Context Quarantine) như trình bày tại [Context Management](./02_context_management.md).
 
 ---
 
@@ -353,7 +353,7 @@ Tham số `max_tokens` (hoặc `max_completion_tokens`) xác định số token 
 
 ### Stop Sequences: Ranh giới trao quyền cho Tool Dispatcher
 
-Một trong những tính năng bị lãng quên nhiều nhất nhưng là cốt lõi của ReAct Loop (xem [[02_react_and_planning|ReAct Loops]]) là **Stop Sequences**:
+Một trong những tính năng bị lãng quên nhiều nhất nhưng là cốt lõi của ReAct Loop (xem [ReAct Loops](../03-loop-engineering/02_react_and_planning.md)) là **Stop Sequences**:
 * Trong các mô hình mã nguồn mở chạy cục bộ hoặc các mô hình không hỗ trợ Native Function Calling, Agent tự sinh văn bản theo cấu trúc:
   ```markdown
   Thought: Tôi cần kiểm tra tệp tin README.md.
@@ -387,7 +387,7 @@ Trong cú pháp lập trình và cấu trúc dữ liệu JSON:
 
 * Tham số `seed` (số nguyên, ví dụ: `seed = 42`) yêu cầu Inference Engine khởi tạo cùng một bộ sinh số ngẫu nhiên cho quá trình lấy mẫu.
 * Kết hợp với `temperature = 0.0`, `seed` cho phép đạt được **Tính tất định tái lập (Deterministic Replayability)**:
-  * Khi Agent gặp lỗi ở bước 18 trên môi trường kiểm thử, lập trình viên có thể nạp lại chính xác `seed` đó để tái hiện lại lỗi $100\%$ phục vụ cho **Time-Travel Debugging** trong [[05_durable_execution_and_stateful_workflows|Durable Execution]].
+  * Khi Agent gặp lỗi ở bước 18 trên môi trường kiểm thử, lập trình viên có thể nạp lại chính xác `seed` đó để tái hiện lại lỗi $100\%$ phục vụ cho **Time-Travel Debugging** trong [Durable Execution](../03-loop-engineering/05_durable_execution_and_stateful_workflows.md).
 
 ---
 
@@ -402,7 +402,7 @@ Khi truyền danh mục công cụ vào API, tham số `tool_choice` quyết đ�
 
 ## 5. HỆ THỐNG ĐO LƯỜNG HIỆU NĂNG & CHI PHÍ VẬN HÀNH (OPERATIONAL METRICS)
 
-Để vận hành một hệ thống Agent quy mô lớn, kiến trúc sư hệ thống cần theo dõi bảng chỉ số sau thông qua các nền tảng Tracing như Langfuse hoặc OpenTelemetry (chi tiết tại [[01_agent_evals_and_tracing|Agent Observability]]):
+Để vận hành một hệ thống Agent quy mô lớn, kiến trúc sư hệ thống cần theo dõi bảng chỉ số sau thông qua các nền tảng Tracing như Langfuse hoặc OpenTelemetry (chi tiết tại [Agent Observability](../04-observability-and-evals/01_agent_evals_and_tracing.md)):
 
 ### TTFT (Time-To-First-Token) & Chẩn đoán Rách Cache
 
@@ -425,7 +425,7 @@ $$
 \text{TPS} = \frac{1}{\text{TPOT}} \quad (\text{tokens/second})
 $$
 * **Ý nghĩa:** Đo lường tốc độ suy luận thuần túy trong pha Decode của GPU.
-* Với các tác vụ Agent điều khiển màn hình máy tính (xem [[01_multimodal_gui_and_computer_use|GUI Computer-Use]]), $\text{TPS}$ phải đạt tối thiểu $60 - 100\text{ tokens/s}$ để người dùng không cảm nhận thấy độ trễ giao diện.
+* Với các tác vụ Agent điều khiển màn hình máy tính (xem [GUI Computer-Use](../05-multimodal-gui-agents/01_multimodal_gui_and_computer_use.md)), $\text{TPS}$ phải đạt tối thiểu $60 - 100\text{ tokens/s}$ để người dùng không cảm nhận thấy độ trễ giao diện.
 
 ---
 
@@ -705,11 +705,11 @@ Dưới đây là ma trận tra cứu tham số chuẩn sản xuất cho các ch
 
 | Chuyên Môn Tác Tử | Nhiệt Độ (`temperature`) | `top_p` | `max_tokens` | `stop_sequences` | Chiến Lược Caching Khuyến Nghị |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Code Generation & Self-Healing Agent** <br>[[04_ast_self_healing_code_agents|AST Agent]] | `0.0` | `1.0` | $8{,}192$ | `["```\n", "\nObservation:"]` | Ghim toàn bộ Repo Map & AST Schemas vào Cache đầu |
+| **Code Generation & Self-Healing Agent** <br>[AST Agent](../03-loop-engineering/04_ast_self_healing_code_agents.md) | `0.0` | `1.0` | $8{,}192$ | `["```\n", "\nObservation:"]` | Ghim toàn bộ Repo Map & AST Schemas vào Cache đầu |
 | **SQL & Database Retrieval Agent** | `0.0` | `1.0` | $2{,}048$ | `[";", "\nObservation:"]` | Ghim Schema bảng DB (DDL) vào Static Prefix |
-| **Long-Horizon Planner Agent** <br>[[02_react_and_planning|Plan-and-Execute]] | `0.5 - 0.7` | `0.95` | $4{,}096$ | Không bắt buộc | Ghim mục tiêu tổng thể và danh sách ràng buộc nghiệp vụ |
-| **Multi-Agent Orchestrator** <br>[[03_multi_agent_teams|Multi-Agent Teams]] | `0.1` | `1.0` | $3{,}000$ | `["\nWorker:"]` | Ghim bảng phân quyền Subagents và JSON Dispatch Protocol |
-| **GUI & OS Computer-Use Agent** <br>[[01_multimodal_gui_and_computer_use|GUI Agent]] | `0.0` | `1.0` | $1{,}500$ | `["\nAction_Done"]` | Khó Cache hình ảnh màn hình liên tục; chỉ cache System & Tool Space |
+| **Long-Horizon Planner Agent** <br>[Plan-and-Execute](../03-loop-engineering/02_react_and_planning.md) | `0.5 - 0.7` | `0.95` | $4{,}096$ | Không bắt buộc | Ghim mục tiêu tổng thể và danh sách ràng buộc nghiệp vụ |
+| **Multi-Agent Orchestrator** <br>[Multi-Agent Teams](../03-loop-engineering/03_multi_agent_teams.md) | `0.1` | `1.0` | $3{,}000$ | `["\nWorker:"]` | Ghim bảng phân quyền Subagents và JSON Dispatch Protocol |
+| **GUI & OS Computer-Use Agent** <br>[GUI Agent](../05-multimodal-gui-agents/01_multimodal_gui_and_computer_use.md) | `0.0` | `1.0` | $1{,}500$ | `["\nAction_Done"]` | Khó Cache hình ảnh màn hình liên tục; chỉ cache System & Tool Space |
 
 ---
 
@@ -731,12 +731,12 @@ Dưới đây là ma trận tra cứu tham số chuẩn sản xuất cho các ch
 ---
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG BÀI HỌC
-* Kiến trúc bộ khung tác tử: [[01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]
-* Quản trị cửa sổ ngữ cảnh & Bệnh lý: [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh, Bệnh Lý & Cô Lập]]
-* Bộ nhớ nhận thức đa tầng: [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
-* Vòng lặp tự trị & Điều kiện dừng: [[01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]]
-* Các mô hình vòng lặp cốt lõi: [[02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]]
-* Đội ngũ đa tác tử phối hợp: [[03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]]
-* Thực thi bền vững chống sụp đổ: [[05_durable_execution_and_stateful_workflows|Durable Agent Execution & Stateful Workflows]]
-* Trở về mục lục chuyên đề: [[03-building-agents/01-harness-and-memory/README|🗄️ Harness & Memory MOC]]
+* Kiến trúc bộ khung tác tử: [Giải Phẫu Kiến Trúc AI Harness](./01_harness_architecture.md)
+* Quản trị cửa sổ ngữ cảnh & Bệnh lý: [Quản Trị Cửa Sổ Ngữ Cảnh, Bệnh Lý & Cô Lập](./02_context_management.md)
+* Bộ nhớ nhận thức đa tầng: [Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](./03_memory_systems.md)
+* Vòng lặp tự trị & Điều kiện dừng: [Nền Tảng Loop Engineering & Circuit Breakers](../03-loop-engineering/01_loop_fundamentals.md)
+* Các mô hình vòng lặp cốt lõi: [Các Mô Hình Vòng Lặp ReAct & Planning](../03-loop-engineering/02_react_and_planning.md)
+* Đội ngũ đa tác tử phối hợp: [Kiến Trúc Đội Ngũ Đa Tác Tử](../03-loop-engineering/03_multi_agent_teams.md)
+* Thực thi bền vững chống sụp đổ: [Durable Agent Execution & Stateful Workflows](../03-loop-engineering/05_durable_execution_and_stateful_workflows.md)
+* Trở về mục lục chuyên đề: [🗄️ Harness & Memory MOC](./README.md)
 

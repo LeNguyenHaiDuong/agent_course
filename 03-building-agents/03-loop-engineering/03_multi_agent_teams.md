@@ -39,7 +39,7 @@ Khi giải quyết các bài toán công nghệ thông tin quy mô lớn (như x
 1. **Quá Tải Nhận Thức (Cognitive Overload):**
    * Nếu bắt một Agent vừa phải làm kiến trúc sư hệ thống, vừa viết mã backend, vừa thiết kế giao diện frontend, vừa làm kiểm thử QA, System Prompt sẽ trở nên khổng lồ, khiến mô hình bị "loãng vai" (Persona Drift) và hành động thiếu nhất quán.
 2. **Context Poisoning Lây Lan:**
-   * Như đã nghiên cứu tại [[02_context_management|Quản trị Ngữ cảnh & Bệnh lý]], nếu một đoạn code backend gặp lỗi debug kéo dài, toàn bộ các đoạn log rác đó sẽ đầu độc Cửa sổ ngữ cảnh, khiến Agent không còn sự sáng suốt khi chuyển sang viết code frontend.
+   * Như đã nghiên cứu tại [Quản trị Ngữ cảnh & Bệnh lý](../01-harness-and-memory/02_context_management.md), nếu một đoạn code backend gặp lỗi debug kéo dài, toàn bộ các đoạn log rác đó sẽ đầu độc Cửa sổ ngữ cảnh, khiến Agent không còn sự sáng suốt khi chuyển sang viết code frontend.
 3. **Mất Khả Năng Song Song Hóa (No Parallelism):**
    * Một tác tử đơn lẻ chỉ có thể thực thi tuần tự từng lệnh một, khiến thời gian hoàn thành nhiệm vụ kéo dài hàng tiếng đồng hồ.
 
@@ -189,7 +189,7 @@ flowchart LR
     style MessageBus fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#000000
 ```
 
-* **Nguyên tắc "Tường Lửa Cách Ly":** Áp dụng nguyên tắc [[02_context_management|Context Quarantine]] (giữ thuốc xa thực phẩm). Mỗi Subagent sở hữu một không gian nhớ hoàn toàn biệt lập.
+* **Nguyên tắc "Tường Lửa Cách Ly":** Áp dụng nguyên tắc [Context Quarantine](../01-harness-and-memory/02_context_management.md) (giữ thuốc xa thực phẩm). Mỗi Subagent sở hữu một không gian nhớ hoàn toàn biệt lập.
 * **Giao tiếp qua Thông điệp (Message Passing):** Các tác tử chỉ trao đổi các bản tóm tắt có cấu trúc (Structured JSON Payload), triệt tiêu hoàn toàn nguy cơ lây lan rác ngữ cảnh.
 
 ---
@@ -273,10 +273,10 @@ if __name__ == "__main__":
 ## 6. BẢN ĐỒ LIÊN KẾT HỆ THỐNG
 
 * 🔙 **Nền tảng liên quan:**
-  * [[01_loop_fundamentals|Nền Tảng Loop Engineering]]: Nguyên lý vòng lặp điều khiển cơ sở cho từng Agent.
-  * [[02_react_and_planning|Các Mô Hình Vòng Lặp Cốt Lõi]]: Cách từng Subagent ứng dụng ReAct hoặc Plan-and-Execute.
-  * [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh]]: Triết lý Context Quarantine bảo vệ các Subagents không làm nhiễm độc lẫn nhau.
-  * [[01_mcp_architecture|Kiến Trúc Giao Thức MCP]]: Cung cấp bộ công cụ chuyên biệt cho từng Worker Agent.
+  * [Nền Tảng Loop Engineering](./01_loop_fundamentals.md): Nguyên lý vòng lặp điều khiển cơ sở cho từng Agent.
+  * [Các Mô Hình Vòng Lặp Cốt Lõi](./02_react_and_planning.md): Cách từng Subagent ứng dụng ReAct hoặc Plan-and-Execute.
+  * [Quản Trị Cửa Sổ Ngữ Cảnh](../01-harness-and-memory/02_context_management.md): Triết lý Context Quarantine bảo vệ các Subagents không làm nhiễm độc lẫn nhau.
+  * [Kiến Trúc Giao Thức MCP](../02-tools-and-mcp/01_mcp_architecture.md): Cung cấp bộ công cụ chuyên biệt cho từng Worker Agent.
 * 🏠 **Điều hướng:**
-  * Trở về mục lục Trụ cột 3: [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
-  * Trở về trang chủ Vault: [[README|🏠 Vault Home MOC]]
+  * Trở về mục lục Trụ cột 3: [🛠️ Trụ Cột 3: Building Agents](../README.md)
+  * Trở về trang chủ Vault: [🏠 Vault Home MOC](../../README.md)

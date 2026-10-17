@@ -32,7 +32,7 @@ Trụ cột này đóng vai trò là **cầu nối nhận thức** giữa mô h�
 
 ## 📂 Danh Mục Chuyên Đề Cốt Lõi
 
-### 📖 [[advanced_prompt_engineering_techniques|Các Kỹ Thuật Prompt & Context Engineering Nâng Cao (Toàn Tập)]]
+### 📖 [Các Kỹ Thuật Prompt & Context Engineering Nâng Cao (Toàn Tập)](./01-prompt-engineering/advanced_prompt_engineering_techniques.md)
 * **Định hình phong cách & dữ liệu:** Zero-Shot, Few-Shot (In-Context Learning qua Induction Heads).
 * **Chuỗi suy luận (Chain-of-Thought):** Zero-shot CoT (`Let's think step by step`), Few-shot CoT, Hybrid CoT, Optimization Prompting (OPRO / "Take a deep breath").
 * **Tăng cường tri thức & Lập luận đa nhánh:** Generated Knowledge Prompting, **Tree of Thoughts (ToT)** với cơ chế đa chuyên gia phản biện và tỉa cành (*pruning*).
@@ -41,7 +41,7 @@ Trụ cột này đóng vai trò là **cầu nối nhận thức** giữa mô h�
 * **Thiết kế System Instructions Chuẩn Hóa:** Cấu trúc thẻ XML phân tách ngữ nghĩa (`<role>`, `<context>`, `<rules>`, `<output_format>`), phân cấp thứ bậc chỉ thị chống Jailbreak.
 * **Meta-Prompting:** Phương pháp sử dụng AI làm Kiến Trúc Sư Prompt tự sinh System Prompt đẳng cấp sản xuất.
 
-### 🔬 [[02_dspy_and_programmatic_prompting|Lập Trình Hóa Prompt Với DSPy (Stanford NLP): Kỷ Nguyên Tối Ưu Hóa Tự Động]]
+### 🔬 [Lập Trình Hóa Prompt Với DSPy (Stanford NLP): Kỷ Nguyên Tối Ưu Hóa Tự Động](./01-prompt-engineering/02_dspy_and_programmatic_prompting.md)
 * **Chấm dứt kỷ nguyên Prompting thủ công:** Giải quyết 3 điểm nghẽn chí mạng (Tính giòn/Brittleness, Model Lock-in, Thử-sai mò mẫm vô hướng); tương đồng lịch sử với bước chuyển từ Assembly sang Trình biên dịch C/Python.
 * **Ba trụ cột kiến trúc DSPy:**
   * **Signatures:** Phân ly hoàn toàn đặc tả Input/Output khỏi ngôn ngữ hiển thị (Prompt Template).
@@ -56,6 +56,6 @@ Trụ cột này đóng vai trò là **cầu nối nhận thức** giữa mô h�
 ---
 
 ## 🔗 Điều Hướng Nhanh
-* Trở về trang chủ: [[README|🏠 Vault Home MOC]]
-* Chuyển sang Trụ cột 3: [[03-building-agents/README|🛠️ Trụ cột 3: Building Agents]]
-* Mở bản đồ trực quan: [[Agent-Course-Overview.canvas|🗺️ Visual Canvas]]
+* Trở về trang chủ: [🏠 Vault Home MOC](../README.md)
+* Chuyển sang Trụ cột 3: [🛠️ Trụ cột 3: Building Agents](../03-building-agents/README.md)
+* Mở bản đồ trực quan: [🗺️ Visual Canvas](../Agent-Course-Overview.canvas)

@@ -606,10 +606,10 @@ flowchart LR
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG TRONG VAULT
 
-* [[06_how_to_build_enterprise_ai_agents|Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp]]: Bản thiết kế kiến trúc khối 6 tầng và thích ứng từng phòng ban.
-* [[01_loop_fundamentals|Nền Tảng Loop Engineering & Circuit Breakers]]: Vòng lặp phản hồi, điều kiện dừng và các bộ ngắt mạch.
-* [[02_react_and_planning|Các Mô Hình Vòng Lặp ReAct & Planning]]: Phân tích sâu ReAct, Plan-and-Execute, Evaluator-Optimizer.
-* [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]: Quản trị bộ nhớ ngắn hạn và dài hạn.
-* [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Cẩm Nang RAG Tiên Tiến]]: Đánh giá tầng truy xuất và đo lường Re-ranking.
-* Trở về mục lục Trụ cột 3: [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
-* Trở về trang chủ Vault: [[README|🏠 Vault Home MOC]]
+* [Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](../06_how_to_build_enterprise_ai_agents.md): Bản thiết kế kiến trúc khối 6 tầng và thích ứng từng phòng ban.
+* [Nền Tảng Loop Engineering & Circuit Breakers](../03-loop-engineering/01_loop_fundamentals.md): Vòng lặp phản hồi, điều kiện dừng và các bộ ngắt mạch.
+* [Các Mô Hình Vòng Lặp ReAct & Planning](../03-loop-engineering/02_react_and_planning.md): Phân tích sâu ReAct, Plan-and-Execute, Evaluator-Optimizer.
+* [Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../01-harness-and-memory/03_memory_systems.md): Quản trị bộ nhớ ngắn hạn và dài hạn.
+* [Tìm Kiếm Ngữ Nghĩa & Cẩm Nang RAG Tiên Tiến](../../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md): Đánh giá tầng truy xuất và đo lường Re-ranking.
+* Trở về mục lục Trụ cột 3: [🛠️ Trụ Cột 3: Building Agents](../README.md)
+* Trở về trang chủ Vault: [🏠 Vault Home MOC](../../README.md)

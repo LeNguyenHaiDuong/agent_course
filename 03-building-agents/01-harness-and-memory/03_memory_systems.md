@@ -63,7 +63,7 @@ updated: 2026-09-27
 
 ## 1. NGHỊCH LÝ MẤT TRÍ NHỚ & CƠ SỞ KHOA HỌC NHẬN THỨC (COGNITIVE PSYCHOLOGY FOUNDATIONS)
 
-Như đã giải thích trong [[00_ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], một mô hình ngôn ngữ lớn (LLM) thuần túy là một hàm ánh xạ tĩnh không trạng thái (**Stateless Function**):
+Như đã giải thích trong [Kiến trúc & Tiến hóa của các hệ thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md), một mô hình ngôn ngữ lớn (LLM) thuần túy là một hàm ánh xạ tĩnh không trạng thái (**Stateless Function**):
 
 $$f_{\theta}: \text{Tokens}_{\text{in}} \to \text{Tokens}_{\text{out}}$$
 
@@ -180,7 +180,7 @@ flowchart TD
 ### Tầng 1: Sliding Working Memory (Ngăn xếp cửa sổ ngữ cảnh hiện hành)
 * Nằm trực tiếp trong RAM của phiên suy luận (Context Window).
 * Chứa System Prompt, Scratchpad của chuỗi ReAct, và lịch sử đàm thoại của vài lượt gần nhất.
-* Bắt buộc phải áp dụng kỹ thuật tỉa nhánh (Pruning) và tóm tắt cuốn chiếu (Rolling Summarization) được mô tả tại [[02_context_management|Quản trị Ngữ cảnh]] để tránh **Context Poisoning**.
+* Bắt buộc phải áp dụng kỹ thuật tỉa nhánh (Pruning) và tóm tắt cuốn chiếu (Rolling Summarization) được mô tả tại [Quản trị Ngữ cảnh](./02_context_management.md) để tránh **Context Poisoning**.
 
 ### Tầng 2: Core Memory / Working Context (L1 Cache: Persona & User Profile)
 * Là một block văn bản có kích thước cố định (khoảng $1,000 - 2,000\text{ tokens}$) được **ghim vĩnh viễn** ở đầu System Prompt.
@@ -194,7 +194,7 @@ flowchart TD
 
 ### Tầng 4: Semantic External Memory (Kho tri thức vĩnh viễn & RAG đa phương thức)
 * Lưu trữ toàn bộ kho tài liệu, cẩm nang quy trình công ty, và lịch sử các ticket hỗ trợ.
-* Sử dụng hệ thống tìm kiếm vector kết hợp đồ thị tri thức (chi tiết tại [[01_semantic_search_and_reranking|Semantic Search & Advanced RAG]]).
+* Sử dụng hệ thống tìm kiếm vector kết hợp đồ thị tri thức (chi tiết tại [Semantic Search & Advanced RAG](../../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md)).
 
 ---
 
@@ -593,8 +593,8 @@ if __name__ == "__main__":
 ---
 
 ## 🔗 BẢN ĐỒ LIÊN KẾT KIẾN THỨC
-* **Quản trị rò rỉ ngữ cảnh:** [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý, Tỉa Nhánh & Cô Lập]]
-* **Kiến trúc AI Harness:** [[01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]
-* **Tìm kiếm ngữ nghĩa RAG:** [[01_semantic_search_and_reranking|Semantic Search & Advanced RAG Architectures]]
-* **Vòng lặp tự trị ReAct:** [[01_loop_fundamentals|Nền Tảng Loop Engineering: Vòng Lặp Tự Trị, Điều Kiện Dừng & Circuit Breakers]]
-* **Trang chủ Trụ Cột 3:** [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
+* **Quản trị rò rỉ ngữ cảnh:** [Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý, Tỉa Nhánh & Cô Lập](./02_context_management.md)
+* **Kiến trúc AI Harness:** [Giải Phẫu Kiến Trúc AI Harness](./01_harness_architecture.md)
+* **Tìm kiếm ngữ nghĩa RAG:** [Semantic Search & Advanced RAG Architectures](../../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md)
+* **Vòng lặp tự trị ReAct:** [Nền Tảng Loop Engineering: Vòng Lặp Tự Trị, Điều Kiện Dừng & Circuit Breakers](../03-loop-engineering/01_loop_fundamentals.md)
+* **Trang chủ Trụ Cột 3:** [🛠️ Trụ Cột 3: Building Agents](../README.md)

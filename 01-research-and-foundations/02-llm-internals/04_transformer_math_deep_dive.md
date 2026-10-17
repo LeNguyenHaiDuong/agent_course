@@ -46,7 +46,7 @@ updated: 2026-09-27
 
 ## 1. BẢN CHẤT CỦA CƠ CHẾ ATTENTION: TỪ RNN SANG SELF-ATTENTION
 
-Trước khi bài báo lịch sử *"Attention Is All You Need"* (Vaswani et al., 2017) ra đời, lĩnh vực xử lý ngôn ngữ tự nhiên (NLP) bị thống trị bởi các kiến trúc tuần tự như **Recurrent Neural Networks (RNN)** và **Long Short-Term Memory (LSTM)** như đã khảo sát tại [[neural_networks_and_classifications|Bản đồ phân loại mạng nơ-ron]].
+Trước khi bài báo lịch sử *"Attention Is All You Need"* (Vaswani et al., 2017) ra đời, lĩnh vực xử lý ngôn ngữ tự nhiên (NLP) bị thống trị bởi các kiến trúc tuần tự như **Recurrent Neural Networks (RNN)** và **Long Short-Term Memory (LSTM)** như đã khảo sát tại [Bản đồ phân loại mạng nơ-ron](../01-neural-networks/neural_networks_and_classifications.md).
 
 ```mermaid
 flowchart LR
@@ -664,10 +664,10 @@ if __name__ == "__main__":
 ## 7. BẢN ĐỒ LIÊN KẾT HỆ THỐNG & TÀI LIỆU THAM KHẢO
 
 * 🔙 **Nền tảng tiền đề:**
-  * [[neural_networks_and_classifications|Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc]]: Khảo sát các tầng Dense, Forward Pass, Backpropagation và Activation Functions.
-  * [[what_are_large_language_models|Bản Chất Mô Hình Ngôn Ngữ Lớn (LLM Internals)]]: Cơ chế Autoregressive Next-Token Prediction và quá trình Pre-training.
+  * [Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc](../01-neural-networks/neural_networks_and_classifications.md): Khảo sát các tầng Dense, Forward Pass, Backpropagation và Activation Functions.
+  * [Bản Chất Mô Hình Ngôn Ngữ Lớn (LLM Internals)](./what_are_large_language_models.md): Cơ chế Autoregressive Next-Token Prediction và quá trình Pre-training.
 * 🔜 **Bài học tiếp theo:**
-  * [[05_scaling_laws_and_quantization|Định Luật Tỷ Lệ Chinchilla & Lượng Tử Hóa Mô Hình]]: Khảo sát tối ưu hóa tham số và nén mô hình để chạy trên phần cứng cá nhân.
+  * [Định Luật Tỷ Lệ Chinchilla & Lượng Tử Hóa Mô Hình](./05_scaling_laws_and_quantization.md): Khảo sát tối ưu hóa tham số và nén mô hình để chạy trên phần cứng cá nhân.
 * 📚 **Tài liệu học thuật tham chiếu (ArXiv Citations):**
   * Vaswani et al. (2017). *Attention Is All You Need*. [arXiv:1706.03762](https://arxiv.org/abs/1706.03762)
   * Su et al. (2021). *RoFormer: Enhanced Transformer with Rotary Position Embedding*. [arXiv:2104.09864](https://arxiv.org/abs/2104.09864)

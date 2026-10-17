@@ -153,7 +153,7 @@ flowchart LR
 
 ### Từ văn bản thô đến Dense Vector Embeddings
 
-Khác với các vector thưa thớt (sparse vectors) khổng lồ chứa hàng chục nghìn chiều của mô hình One-Hot Encoding hay TF-IDF / BM25 (nơi hầu hết các phần tử đều là số 0), các mô hình biểu diễn hiện đại (như [[what_are_large_language_models|BERT]] hay OpenAI Embeddings) ánh xạ văn bản thành các **Vector đậm đặc (Dense Vectors)** trong không gian $\mathbb{R}^d$:
+Khác với các vector thưa thớt (sparse vectors) khổng lồ chứa hàng chục nghìn chiều của mô hình One-Hot Encoding hay TF-IDF / BM25 (nơi hầu hết các phần tử đều là số 0), các mô hình biểu diễn hiện đại (như [BERT](../02-llm-internals/what_are_large_language_models.md) hay OpenAI Embeddings) ánh xạ văn bản thành các **Vector đậm đặc (Dense Vectors)** trong không gian $\mathbb{R}^d$:
 * Mỗi chiều trong vector không đại diện cho một từ đơn lẻ, mà đại diện cho một **đặc trưng ngữ nghĩa tiềm ẩn (latent semantic feature)** trừu tượng được học từ quá trình tiền huấn luyện trên hàng tỷ token.
 * **Cơ sở học thuật:** 
   * Bài báo bước ngoặt của Karpukhin et al. (EMNLP 2020) mang tên *Dense Passage Retrieval for Open-Domain Question Answering* ([arXiv:2004.04906](https://arxiv.org/abs/2004.04906)) đã chứng minh thực nghiệm rằng việc ánh xạ truy vấn và tài liệu vào không gian dense vector chung (Dual-Encoder) giúp tăng từ **9% đến 19% độ chính xác tuyệt đối** trong Top-20 đoạn văn truy xuất so với hệ thống BM25 truyền thống mạnh nhất.
@@ -719,7 +719,7 @@ Tại sao chúng ta phải dành nhiều công sức nghiên cứu tầng sâu c
 
 #### Chất lượng truy xuất là "Trần hiệu năng" (Performance Ceiling) của Chatbot
 
-Trong bất kỳ kiến trúc [[00_ai_chat_systems_and_prompt_engineering|RAG (Retrieval-Augmented Generation)]] hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
+Trong bất kỳ kiến trúc [RAG (Retrieval-Augmented Generation)](../../03-building-agents/00_ai_chat_systems_and_prompt_engineering.md) hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
 
 $$
 \text{Output Quality} \le \text{Quality of Retrieved Context}
@@ -747,7 +747,7 @@ flowchart TD
     style SuccessRet fill:#ccffcc,stroke:#009900,color:#000000
 ```
 
-* Nếu bộ máy truy xuất (Semantic Search) không thể đưa tài liệu đúng vào Top-3 hoặc Top-5, thì dù bạn có sử dụng kỹ thuật [[advanced_prompt_engineering_techniques|Prompt Engineering]] tài tình đến đâu, hay sử dụng mô hình LLM thông minh nhất hành tinh, câu trả lời sinh ra vẫn sẽ là **ảo giác (hallucination)** hoặc câu từ chối sáo rỗng.
+* Nếu bộ máy truy xuất (Semantic Search) không thể đưa tài liệu đúng vào Top-3 hoặc Top-5, thì dù bạn có sử dụng kỹ thuật [Prompt Engineering](../../02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md) tài tình đến đâu, hay sử dụng mô hình LLM thông minh nhất hành tinh, câu trả lời sinh ra vẫn sẽ là **ảo giác (hallucination)** hoặc câu từ chối sáo rỗng.
 * Nói cách khác: **Khả năng của bộ máy Semantic Search chính là chiếc trần nhà giới hạn năng lực tối đa của ứng dụng AI.**
 
 #### Hiện tượng "Lost in the Middle" (Liu et al., 2023) & Vai trò sống còn của Re-ranker
@@ -774,7 +774,7 @@ xychart-beta
 
 > [!tip] Chuyên Khảo Chi Tiết: Kiến Trúc 4 Cấu Phần Của RAG (Inside RAG)
 > Để tìm hiểu chi tiết về từng khối kiến trúc, cơ chế tải chỉ mục FAISS, cấu hình bộ lọc Contextual Compression với Cohere Rerank, tầng điều phối RetrievalQA và ca nghiên cứu thực chiến gọi vốn Nông nghiệp thẳng đứng (Vertical Farming), xem chuyên khảo riêng:
-> 👉 [[02_rag_architecture_and_components|Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)]].
+> 👉 [Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)](./02_rag_architecture_and_components.md).
 
 ---
 
@@ -847,7 +847,7 @@ flowchart LR
 
 #### 2. Multi-Query Expansion & Sub-Question Decomposition
 * **Ý tưởng:** Một câu hỏi của người dùng có thể được diễn đạt bằng nhiều cách khác nhau, hoặc chứa đựng nhiều câu hỏi con lồng ghép (Multi-hop Reasoning).
-  * **Multi-Query Expansion:** Dùng LLM sinh ra $3 - 5$ câu hỏi tương đương mang các biến thể từ vựng và ngữ pháp khác nhau. Thực hiện truy xuất song song cho tất cả các biến thể và hợp nhất kết quả qua giải thuật [[#reciprocal-rank-fusion-rrf|RRF (Reciprocal Rank Fusion)]].
+  * **Multi-Query Expansion:** Dùng LLM sinh ra $3 - 5$ câu hỏi tương đương mang các biến thể từ vựng và ngữ pháp khác nhau. Thực hiện truy xuất song song cho tất cả các biến thể và hợp nhất kết quả qua giải thuật [RRF (Reciprocal Rank Fusion)](#reciprocal-rank-fusion-rrf).
   * **Sub-Question Decomposition:** Bẻ nhỏ câu hỏi phức tạp (ví dụ: *"So sánh doanh thu quý 2 của VinFast và Tesla, hãng nào có biên lợi nhuận cao hơn?"*) thành 3 câu hỏi con độc lập:
     1. *"Doanh thu và biên lợi nhuận Q2 của VinFast là bao nhiêu?"*
     2. *"Doanh thu và biên lợi nhuận Q2 của Tesla là bao nhiêu?"*
@@ -961,7 +961,7 @@ $$
 * $k$: Hằng số làm mịn (Smoothing constant, chuẩn thực nghiệm thường chọn $k = 60$). Hằng số này đảm bảo các tài liệu đứng đầu danh sách không tạo ra sự chênh lệch điểm quá áp đảo so với các tài liệu kế tiếp.
 
 #### 2. Cross-Encoder Re-ranking
-* Đã phân tích chi tiết tại [[#4-giải-phẫu-kiến-trúc-bi-encoder-vs-cross-encoder|Mục 4]]: Cross-Encoder chấm điểm tương tác sâu giữa toàn bộ câu hỏi và từng đoạn văn qua cơ chế Full Self-Attention, lọc sạch các đoạn văn "tưởng là liên quan" của Bi-Encoder.
+* Đã phân tích chi tiết tại [Mục 4](#4-giải-phẫu-kiến-trúc-bi-encoder-vs-cross-encoder): Cross-Encoder chấm điểm tương tác sâu giữa toàn bộ câu hỏi và từng đoạn văn qua cơ chế Full Self-Attention, lọc sạch các đoạn văn "tưởng là liên quan" của Bi-Encoder.
 
 #### 3. Contextual Compression & Semantic Trimming
 * Sau khi Re-ranker chọn ra Top-5 đoạn văn, nhiều đoạn văn vẫn chứa hàng loạt câu rác rưởi (disclaimers, chữ ký email, câu mở bài rườm rà).
@@ -1147,10 +1147,10 @@ Dưới đây là danh mục các bài báo khoa học nền tảng định hìn
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG TRONG VAULT
 
-* [[02_rag_architecture_and_components|Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)]]: Thực thi pipeline 4 nhịp Retrieve-Rank-Generate-Orchestrate và 9 mẫu thiết kế RAG chiến lược.
-* [[03_embeddings_and_vector_databases|Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector]]: So sánh FAISS, ChromaDB, Milvus, Pinecone, giải phẫu HNSW Index và quản trị vòng đời vector.
-* [[what_are_large_language_models|Bản chất Mô hình Ngôn ngữ Lớn (LLM Internals)]]: Phân tích cơ chế Self-Attention của Transformer, sự khác biệt giữa Encoder (BERT) và Decoder (GPT).
-* [[neural_networks_and_classifications|Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc]]: Nền tảng toán học của Backpropagation, hàm kích hoạt và không gian tiềm ẩn.
-* [[advanced_prompt_engineering_techniques|Kỹ Thuật Prompt Engineering Nâng Cao]]: Cách tối ưu hóa context sau khi đã trích xuất thành công tài liệu từ Semantic Search.
-* [[00_ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Tích hợp Semantic Memory và Vector DB vào AI Harness.
-* Về trang chủ khóa học: [[README|🏠 Vault Home MOC]]
+* [Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)](./02_rag_architecture_and_components.md): Thực thi pipeline 4 nhịp Retrieve-Rank-Generate-Orchestrate và 9 mẫu thiết kế RAG chiến lược.
+* [Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector](./03_embeddings_and_vector_databases.md): So sánh FAISS, ChromaDB, Milvus, Pinecone, giải phẫu HNSW Index và quản trị vòng đời vector.
+* [Bản chất Mô hình Ngôn ngữ Lớn (LLM Internals)](../02-llm-internals/what_are_large_language_models.md): Phân tích cơ chế Self-Attention của Transformer, sự khác biệt giữa Encoder (BERT) và Decoder (GPT).
+* [Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc](../01-neural-networks/neural_networks_and_classifications.md): Nền tảng toán học của Backpropagation, hàm kích hoạt và không gian tiềm ẩn.
+* [Kỹ Thuật Prompt Engineering Nâng Cao](../../02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md): Cách tối ưu hóa context sau khi đã trích xuất thành công tài liệu từ Semantic Search.
+* [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../../03-building-agents/00_ai_chat_systems_and_prompt_engineering.md): Tích hợp Semantic Memory và Vector DB vào AI Harness.
+* Về trang chủ khóa học: [🏠 Vault Home MOC](../../README.md)

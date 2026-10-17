@@ -234,7 +234,7 @@ flowchart TD
 * Người dùng hỏi về **chế độ nghỉ mát của nhân viên**.
 * Retriever quét vector DB và tìm thấy một đoạn văn nhắc nhiều lần đến *"kỳ nghỉ, du lịch, ngày nghỉ"*. Tuy nhiên, đoạn văn đó lại quy định về **lịch nghỉ lễ của đối tác và khách hàng** chứ không phải chính sách dành cho nhân viên nội bộ!
 * Nếu đưa trực tiếp đoạn văn đó vào LLM, mô hình sẽ nhầm lẫn chính sách khách hàng thành chính sách nhân viên.
-* **Bộ Tái Xếp Hạng (Ranker)** xuất hiện để giải quyết đúng bài toán này: Nó sử dụng mô hình Cross-Encoder chuyên biệt (như [[01_semantic_search_and_reranking|Cohere Rerank]]) đọc đồng thời cả câu hỏi và đoạn trích, tính toán lại điểm liên quan (re-score), loại bỏ các đoạn văn nhiễu lệch đề và **đẩy tài liệu chứa câu trả lời thực sự lên vị trí số 1**.
+* **Bộ Tái Xếp Hạng (Ranker)** xuất hiện để giải quyết đúng bài toán này: Nó sử dụng mô hình Cross-Encoder chuyên biệt (như [Cohere Rerank](./01_semantic_search_and_reranking.md)) đọc đồng thời cả câu hỏi và đoạn trích, tính toán lại điểm liên quan (re-score), loại bỏ các đoạn văn nhiễu lệch đề và **đẩy tài liệu chứa câu trả lời thực sự lên vị trí số 1**.
 
 ---
 
@@ -538,18 +538,18 @@ flowchart LR
   * **Chỉ mục kết hợp thời gian (Temporal Metadata Filtering):** Gắn nhãn thời gian `created_at` và `valid_until` vào metadata của vector để lọc các tài liệu đã hết hiệu lực.
 
 ### 2. Áp lực trần Context Window & Nén ngữ cảnh (Context Limits & Compression)
-* **Thách thức:** Dù các LLM hiện đại có Context Window lên tới 1M hoặc 2M tokens, việc nhồi hàng chục chunks thô vào Prompt không chỉ làm tăng vọt chi phí tiền bạc và độ trễ suy luận, mà còn kích hoạt hiện tượng [[01_semantic_search_and_reranking|Lost in the Middle]] khiến LLM bỏ sót thông tin quan trọng ở giữa.
+* **Thách thức:** Dù các LLM hiện đại có Context Window lên tới 1M hoặc 2M tokens, việc nhồi hàng chục chunks thô vào Prompt không chỉ làm tăng vọt chi phí tiền bạc và độ trễ suy luận, mà còn kích hoạt hiện tượng [Lost in the Middle](./01_semantic_search_and_reranking.md) khiến LLM bỏ sót thông tin quan trọng ở giữa.
 * **Giải pháp hiện đại:**
   * **Contextual Compression & Selective Extraction:** Sử dụng các thuật toán như *LLMLingua* hoặc bộ lọc nén ngữ cảnh của Cohere để lược bỏ các token thừa, chỉ giữ lại các câu mang mật độ thông tin cao nhất trước khi đưa vào Generator.
-  * **Hierarchical Retrieval (Parent-Child Chunking):** Chỉ lưu embedding của các mẩu nhỏ để tìm kiếm chính xác, sau đó nạp đoạn văn cha có cấu trúc hoàn chỉnh vào LLM (xem chi tiết tại [[01_semantic_search_and_reranking|Hierarchical Retrieval]]).
+  * **Hierarchical Retrieval (Parent-Child Chunking):** Chỉ lưu embedding của các mẩu nhỏ để tìm kiếm chính xác, sau đó nạp đoạn văn cha có cấu trúc hoàn chỉnh vào LLM (xem chi tiết tại [Hierarchical Retrieval](./01_semantic_search_and_reranking.md)).
 
 ### 3. Truy vấn mơ hồ & Suy luận đa chặng (Ambiguous Queries & Multi-hop Reasoning)
 * **Thách thức:** Khi người dùng đặt câu hỏi quá ngắn, đa nghĩa (ví dụ: *"Chính sách thế nào?"*) hoặc câu hỏi đòi hỏi phải thu thập dữ kiện từ 3-4 tài liệu khác nhau mới kết luận được, một lượt truy xuất duy nhất (Single-turn RAG) chắc chắn thất bại.
 * **Giải pháp hiện đại:**
   * **Agentic RAG & Tự phản tư (Self-Reflective Loops):** Chuyển dịch từ đường ống tuyến tính sang vòng lặp tác tử tự trị:
-    * **[[01_semantic_search_and_reranking|Self-RAG]]:** Tác tử tự đánh giá xem mình có cần truy xuất thêm hay không qua các reflection tokens.
-    * **[[01_semantic_search_and_reranking|Corrective RAG (CRAG)]]:** Tự động kích hoạt Web Search dự phòng nếu điểm tin cậy của tài liệu nội bộ quá thấp.
-    * **[[02_react_and_planning|ReAct & Multi-hop Planning]]:** Phân rã câu hỏi lớn thành nhiều câu hỏi con và thực hiện truy xuất tuần tự từng bước.
+    * **[Self-RAG](./01_semantic_search_and_reranking.md):** Tác tử tự đánh giá xem mình có cần truy xuất thêm hay không qua các reflection tokens.
+    * **[Corrective RAG (CRAG)](./01_semantic_search_and_reranking.md):** Tự động kích hoạt Web Search dự phòng nếu điểm tin cậy của tài liệu nội bộ quá thấp.
+    * **[ReAct & Multi-hop Planning](../../03-building-agents/03-loop-engineering/02_react_and_planning.md):** Phân rã câu hỏi lớn thành nhiều câu hỏi con và thực hiện truy xuất tuần tự từng bước.
 
 ---
 
@@ -1071,8 +1071,8 @@ flowchart TD
     style Ent_Note fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000000
 ```
 
-* **Nghiên cứu sâu về toán học vector & mô hình:** [[01_semantic_search_and_reranking|Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng (Bi-Encoder vs Cross-Encoder)]]
-* **Cơ sở dữ liệu Vector & Thuật toán Indexing HNSW:** [[03_embeddings_and_vector_databases|Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector (FAISS, Chroma, Milvus, Pinecone)]]
-* **Quản trị rủi ro ngữ cảnh:** [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
-* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
-* **Thiết kế tổng thể hệ thống doanh nghiệp:** [[06_how_to_build_enterprise_ai_agents|Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp]]
+* **Nghiên cứu sâu về toán học vector & mô hình:** [Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng (Bi-Encoder vs Cross-Encoder)](./01_semantic_search_and_reranking.md)
+* **Cơ sở dữ liệu Vector & Thuật toán Indexing HNSW:** [Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector (FAISS, Chroma, Milvus, Pinecone)](./03_embeddings_and_vector_databases.md)
+* **Quản trị rủi ro ngữ cảnh:** [Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh](../../03-building-agents/01-harness-and-memory/02_context_management.md)
+* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../../03-building-agents/01-harness-and-memory/03_memory_systems.md)
+* **Thiết kế tổng thể hệ thống doanh nghiệp:** [Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp](../../03-building-agents/06_how_to_build_enterprise_ai_agents.md)

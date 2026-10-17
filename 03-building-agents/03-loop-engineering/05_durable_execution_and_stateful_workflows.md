@@ -60,7 +60,7 @@ Trong kỹ thuật phần mềm truyền thống, các dịch vụ web được 
 * Một yêu cầu HTTP gửi đến API Gateway, máy chủ xử lý logic trong vòng $50\text{ms} - 500\text{ms}$, ghi nhận cơ sở dữ liệu và trả về kết quả.
 * Nếu máy chủ gặp sự cố (OOM, restart), tải được tự động chuyển sang máy chủ khác, và client có thể retry ngay lập tức mà không gây tác dụng phụ nghiêm trọng.
 
-Trái lại, một **AI Agent tự trị trong doanh nghiệp** (chẳng hạn như Agent rà soát pháp chế hợp đồng, Agent đối soát tài chính, hay Agent tự sửa lỗi mã nguồn theo paradigm [[04_ast_self_healing_code_agents|AST-Guided Self-Healing]]) mang đặc tính hoàn toàn trái ngược:
+Trái lại, một **AI Agent tự trị trong doanh nghiệp** (chẳng hạn như Agent rà soát pháp chế hợp đồng, Agent đối soát tài chính, hay Agent tự sửa lỗi mã nguồn theo paradigm [AST-Guided Self-Healing](./04_ast_self_healing_code_agents.md)) mang đặc tính hoàn toàn trái ngược:
 1. **Thời gian chạy kéo dài (Long-running processes):** Một tác vụ có thể bao gồm từ $10$ đến $100$ bước suy luận, kéo dài từ vài phút, vài giờ đến hàng tuần.
 2. **Tính bất định cao (Non-deterministic Transitions):** Tại mỗi bước, kết quả đầu ra của LLM phụ thuộc vào xác suất lấy mẫu (Sampling $\tau > 0$), và các công cụ ngoài (Web Search, API bên thứ ba) có thể trả về dữ liệu biến động.
 3. **Tác dụng phụ ngoại vi không thể đảo ngược (Irreversible Side Effects):** Agent có quyền gửi email thật cho đối tác, thực hiện thanh toán ngân hàng, xóa tệp tin hoặc ghi đè nhánh Git.
@@ -85,7 +85,7 @@ flowchart LR
 
 ### Hiểm họa "Bóng ma sụp đổ tiến trình" (The Process Crash Nightmare)
 
-Nếu chúng ta lập trình Agent bằng các vòng lặp trong bộ nhớ RAM thông thường (ví dụ: vòng lặp `while True:` trong Python như khảo sát tại [[01_loop_fundamentals|Nền tảng Loop Engineering]]):
+Nếu chúng ta lập trình Agent bằng các vòng lặp trong bộ nhớ RAM thông thường (ví dụ: vòng lặp `while True:` trong Python như khảo sát tại [Nền tảng Loop Engineering](./01_loop_fundamentals.md)):
 * **Sự cố:** Tại bước thứ 18 của một tiến trình gồm 20 bước, Kubernetes container bị khởi động lại do chạm ngưỡng bộ nhớ, hoặc đường truyền mạng chập chờn gây timeout.
 * **Hậu quả thảm khốc:**
   1. Toàn bộ chuỗi suy luận, các biến trạng thái trung gian, và lịch sử gọi công cụ lưu trong RAM bị **xóa sạch $100\%$**.
@@ -494,8 +494,8 @@ if __name__ == "__main__":
 ---
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG NỘI BỘ
-* **Nguyên lý vòng lặp cơ bản:** [[01_loop_fundamentals|Nền Tảng Loop Engineering & Stopping Criteria]]
-* **Mô hình lập kế hoạch đa bước:** [[02_react_and_planning|Các Mô Hình Vòng Lặp Cốt Lõi: ReAct & Plan-and-Execute]]
-* **Tác tử tự sửa lỗi qua AST:** [[04_ast_self_healing_code_agents|AST-Guided Self-Healing Code Agents]]
-* **Bảo đảm cú pháp Tool Calling:** [[02_constrained_decoding_and_structured_outputs|Constrained Decoding & Structured Outputs]]
-* **Trang chủ Trụ Cột 3:** [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
+* **Nguyên lý vòng lặp cơ bản:** [Nền Tảng Loop Engineering & Stopping Criteria](./01_loop_fundamentals.md)
+* **Mô hình lập kế hoạch đa bước:** [Các Mô Hình Vòng Lặp Cốt Lõi: ReAct & Plan-and-Execute](./02_react_and_planning.md)
+* **Tác tử tự sửa lỗi qua AST:** [AST-Guided Self-Healing Code Agents](./04_ast_self_healing_code_agents.md)
+* **Bảo đảm cú pháp Tool Calling:** [Constrained Decoding & Structured Outputs](../02-tools-and-mcp/02_constrained_decoding_and_structured_outputs.md)
+* **Trang chủ Trụ Cột 3:** [🛠️ Trụ Cột 3: Building Agents](../README.md)

@@ -440,8 +440,8 @@ pie title Phân Bổ Ngân Sách Cửa Sổ Ngữ Cảnh Chuẩn (Token Budgetin
 ```
 
 1. **System & Personality Instructions (10% - 15%):** Cố định, không bao giờ bị cắt tỉa.
-2. **Dynamic Memory & RAG Evidence (40% - 50%):** Chứa các tài liệu truy xuất có chọn lọc thông qua [[01_semantic_search_and_reranking|Re-ranking]].
-3. **Pruned Chat History (20% - 25%):** Áp dụng kỹ thuật Rolling Summary và Redundancy Filtering từ [[02_context_management|Context Pruning]].
+2. **Dynamic Memory & RAG Evidence (40% - 50%):** Chứa các tài liệu truy xuất có chọn lọc thông qua [Re-ranking](../../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md).
+3. **Pruned Chat History (20% - 25%):** Áp dụng kỹ thuật Rolling Summary và Redundancy Filtering từ [Context Pruning](../../03-building-agents/01-harness-and-memory/02_context_management.md).
 4. **Reserved Completion Space (15% - 20%):** Luôn chừa đủ không gian token cho LLM tự do suy luận qua chuỗi Chain-of-Thought mà không bị đứt gãy giữa chừng.
 
 ---

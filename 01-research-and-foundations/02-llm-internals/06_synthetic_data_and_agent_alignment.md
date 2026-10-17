@@ -68,7 +68,7 @@ updated: 2026-09-27
 
 Theo các nghiên cứu định lượng quy mô lớn từ Viện Nghiên cứu Epoch AI (*Villalobos et al., 2022, 2024*), tổng dung lượng dữ liệu văn bản chất lượng cao do con người tạo ra trên toàn bộ Internet (sách báo số, bài báo khoa học, Wikipedia, diễn đàn Reddit, GitHub) ước tính dao động từ $10^{13}$ đến $10^{14}$ tokens.
 
-Khi đối chiếu với **Định luật Chinchilla** ($\text{Tokens} \approx 20 \times \text{Parameters}$) và chiến lược Over-training hiện đại được khảo sát tại [[05_scaling_laws_and_quantization|Định Luật Tỷ Lệ & Lượng Tử Hóa]]:
+Khi đối chiếu với **Định luật Chinchilla** ($\text{Tokens} \approx 20 \times \text{Parameters}$) và chiến lược Over-training hiện đại được khảo sát tại [Định Luật Tỷ Lệ & Lượng Tử Hóa](./05_scaling_laws_and_quantization.md):
 * Mô hình LLaMA-3 (Meta, 2024) đã nuốt trọn hơn $15 \times 10^{12}$ ($15\text{T}$) tokens dữ liệu văn bản.
 * Các thế hệ mô hình Frontier tiếp theo (2025–2026) dự kiến tiêu thụ trên $50\text{T} - 100\text{T}$ tokens.
 * **Hệ quả tất yếu:** Đường cong cung cấp dữ liệu văn bản tự nhiên của nhân loại chạm ngưỡng bão hòa tuyệt đối (**The Data Wall**) trong giai đoạn 2026–2028. Sau điểm này, mô hình không còn dữ liệu con người mới để tiếp tục mở rộng quy mô (Scale-up).
@@ -97,7 +97,7 @@ flowchart LR
 
 ### Tại sao dữ liệu con người lại hạ chuẩn đối với Autonomous Agents?
 
-Nhiều kỹ sư nhầm tưởng rằng: *"Thu thập dữ liệu lập trình viên thao tác hoặc người dùng tương tác công cụ là cách tốt nhất để huấn luyện Agent."* Thực tế nghiên cứu chứng minh dữ liệu hành vi của con người bộc lộ $4$ khiếm khuyết chết người khi áp dụng cho mô hình suy luận vòng lặp (chi tiết tại [[02_react_and_planning|ReAct and Reasoning Loops]]):
+Nhiều kỹ sư nhầm tưởng rằng: *"Thu thập dữ liệu lập trình viên thao tác hoặc người dùng tương tác công cụ là cách tốt nhất để huấn luyện Agent."* Thực tế nghiên cứu chứng minh dữ liệu hành vi của con người bộc lộ $4$ khiếm khuyết chết người khi áp dụng cho mô hình suy luận vòng lặp (chi tiết tại [ReAct and Reasoning Loops](../../03-building-agents/03-loop-engineering/02_react_and_planning.md)):
 
 1. **Thiếu vắng vết tư duy nháp (Missing Scratchpad / Inner Monologue):**
    Con người suy nghĩ trong não bộ và chỉ gõ ra lệnh cuối cùng. Họ không ghi chép tường minh: *"Tại sao tôi chọn API này? Những phương án nào đã bị loại trừ? Rủi ro nào cần phòng ngừa?"*. Khi huấn luyện Supervised Fine-Tuning (SFT) trên chuỗi thao tác của người, mô hình bị ép học bước nhảy nhận thức (Cognitive leaps), dẫn đến suy đoán mò và mất tính nhất quán logic.
@@ -112,7 +112,7 @@ Nhiều kỹ sư nhầm tưởng rằng: *"Thu thập dữ liệu lập trình v
 
 ### Kỷ nguyên Dữ liệu Tổng hợp Siêu nhân (Superhuman Synthetic Data)
 
-Để xây dựng các Agent tự trị có khả năng tự sửa lỗi AST với [[04_ast_self_healing_code_agents|AST-Guided Self-Healing]] hoặc điều phối workflow bền vững với [[05_durable_execution_and_stateful_workflows|Durable Execution Workflows]], chúng ta cần **Dữ liệu Tổng hợp Siêu nhân**:
+Để xây dựng các Agent tự trị có khả năng tự sửa lỗi AST với [AST-Guided Self-Healing](../../03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md) hoặc điều phối workflow bền vững với [Durable Execution Workflows](../../03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md), chúng ta cần **Dữ liệu Tổng hợp Siêu nhân**:
 * Dữ liệu được sinh ra với độ phức tạp nhận thức vượt qua câu hỏi thông thường của người dùng thông qua các toán tử tiến hóa (Evolutionary Operators).
 * Dữ liệu chứa đầy đủ các tình huống lỗi hỏng giả lập và đường dẫn tự phục hồi (Self-correction pathways).
 * Mọi mẫu dữ liệu được thẩm định toán học và xác thực bằng môi trường thực thi (Execution-guided verification), triệt tiêu hoàn toàn ảo giác (Hallucination).
@@ -879,10 +879,10 @@ Dưới đây là bảng đánh giá so sánh tổng thể các phương pháp c
 ---
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG BÀI HỌC
-* Chuyên khảo bản chất mô hình: [[what_are_large_language_models|Bản Chất & Kiến Trúc Mô Hình Ngôn Ngữ Lớn]]
-* Toán học Transformer: [[04_transformer_math_deep_dive|Giải Phẫu Toán Học Của Transformer]]
-* Nén và lượng tử hóa mô hình: [[05_scaling_laws_and_quantization|Định Luật Tỷ Lệ & Lượng Tử Hóa]]
-* Vòng lặp suy luận tác tử: [[02_react_and_planning|Kỹ Thuật Vòng Lặp Suy Luận ReAct]]
-* Tự sửa lỗi mã nguồn bằng AST: [[04_ast_self_healing_code_agents|AST-Guided Self-Healing Code Agents]]
-* Workflow trạng thái bền vững: [[05_durable_execution_and_stateful_workflows|Durable Agent Execution & Stateful Workflows]]
-* Trở về mục lục chuyên đề: [[01-research-and-foundations/02-llm-internals/README|📚 LLM Internals MOC]]
+* Chuyên khảo bản chất mô hình: [Bản Chất & Kiến Trúc Mô Hình Ngôn Ngữ Lớn](./what_are_large_language_models.md)
+* Toán học Transformer: [Giải Phẫu Toán Học Của Transformer](./04_transformer_math_deep_dive.md)
+* Nén và lượng tử hóa mô hình: [Định Luật Tỷ Lệ & Lượng Tử Hóa](./05_scaling_laws_and_quantization.md)
+* Vòng lặp suy luận tác tử: [Kỹ Thuật Vòng Lặp Suy Luận ReAct](../../03-building-agents/03-loop-engineering/02_react_and_planning.md)
+* Tự sửa lỗi mã nguồn bằng AST: [AST-Guided Self-Healing Code Agents](../../03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md)
+* Workflow trạng thái bền vững: [Durable Agent Execution & Stateful Workflows](../../03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md)
+* Trở về mục lục chuyên đề: [📚 LLM Internals MOC](./README.md)

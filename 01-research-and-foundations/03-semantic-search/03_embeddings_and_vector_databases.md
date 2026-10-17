@@ -88,7 +88,7 @@ updated: 2026-10-04
 ## 1. KHỞI NGUYÊN VẤN ĐỀ: TẠI SAO EMBEDDINGS QUYẾT ĐỊNH THÀNH BẠI CỦA HỆ THỐNG?
 
 ### 4 Trụ cột của hệ thống truy xuất (The 4 Pillars of Retrieval)
-Khi xây dựng một hệ thống truy xuất dữ liệu ngữ nghĩa hay đường ống [[02_rag_architecture_and_components|RAG]], có 4 quyết định kỹ thuật cốt lõi định hình nên toàn bộ năng lực hiểu biết, lưu trữ và tìm kiếm tri thức của hệ thống:
+Khi xây dựng một hệ thống truy xuất dữ liệu ngữ nghĩa hay đường ống [RAG](./02_rag_architecture_and_components.md), có 4 quyết định kỹ thuật cốt lõi định hình nên toàn bộ năng lực hiểu biết, lưu trữ và tìm kiếm tri thức của hệ thống:
 
 ```mermaid
 flowchart TD
@@ -154,7 +154,7 @@ flowchart LR
 ```
 
 1. **Tokenization (Phân rã token):** Chuỗi văn bản được phân tách thành các mẩu từ vựng con (sub-words) hoặc token định danh tương ứng trong từ điển của mô hình.
-2. **Context Encoding (Mã hóa ngữ cảnh):** Từng token được đưa qua các tầng Self-Attention của mạng nơ-ron (như đã phân tích tại [[04_transformer_math_deep_dive|Transformer Math Deep Dive]]), nơi mỗi từ tương tác với tất cả các từ còn lại trong câu để nắm bắt ngữ cảnh trọn vẹn.
+2. **Context Encoding (Mã hóa ngữ cảnh):** Từng token được đưa qua các tầng Self-Attention của mạng nơ-ron (như đã phân tích tại [Transformer Math Deep Dive](../02-llm-internals/04_transformer_math_deep_dive.md)), nơi mỗi từ tương tác với tất cả các từ còn lại trong câu để nắm bắt ngữ cảnh trọn vẹn.
 3. **Vector Projection (Chiếu không gian vector):** Tầng cuối cùng của mô hình nén toàn bộ thông tin ngữ cảnh vào một vector cố định trong không gian 1,536 chiều.
 
 > [!note] Mô Hình Tư Duy: Bản Đồ Ý Niệm 1,500 Chiều
@@ -1194,10 +1194,10 @@ flowchart TD
     style NextNode2 fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#000000
 ```
 
-* **Nền tảng toán học & Re-ranking:** [[01_semantic_search_and_reranking|01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]
-* **Kiến trúc RAG & 9 Mẫu thiết kế chiến lược:** [[02_rag_architecture_and_components|02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược]]
-* **Thực hành Lab & Điển cứu Y tế:** [[04_how_database_and_embedding_choices_affect_rag|04. Thực Hành Đánh Giá Embedding & Cơ Sở Dữ Liệu Vector (Clinical Policy Assistant)]]
-* **Cẩm nang kỹ nghệ vận hành RAG Production:** [[05_theory_to_practice_making_rag_work|05. Từ Lý Thuyết Đến Thực Tiễn: Làm Cho RAG Hoạt Động Hiệu Quả]]
-* **Duy trì & Vận hành chỉ mục Vector:** [[06_maintaining_vector_indices_in_rag|06. Duy Trì & Vận Hành Chỉ Mục Vector Trong Hệ Thống RAG (Drift Management)]]
-* **Quản trị cửa sổ ngữ cảnh:** [[02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
-* **Ứng dụng vào Bộ nhớ Tác tử AI:** [[03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
+* **Nền tảng toán học & Re-ranking:** [01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng](./01_semantic_search_and_reranking.md)
+* **Kiến trúc RAG & 9 Mẫu thiết kế chiến lược:** [02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược](./02_rag_architecture_and_components.md)
+* **Thực hành Lab & Điển cứu Y tế:** [04. Thực Hành Đánh Giá Embedding & Cơ Sở Dữ Liệu Vector (Clinical Policy Assistant)](./04_how_database_and_embedding_choices_affect_rag.md)
+* **Cẩm nang kỹ nghệ vận hành RAG Production:** [05. Từ Lý Thuyết Đến Thực Tiễn: Làm Cho RAG Hoạt Động Hiệu Quả](../../audio/05_theory_to_practice_making_rag_work.mp3)
+* **Duy trì & Vận hành chỉ mục Vector:** [06. Duy Trì & Vận Hành Chỉ Mục Vector Trong Hệ Thống RAG (Drift Management)](../../audio/06_maintaining_vector_indices_in_rag.mp3)
+* **Quản trị cửa sổ ngữ cảnh:** [02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh](../../03-building-agents/01-harness-and-memory/02_context_management.md)
+* **Ứng dụng vào Bộ nhớ Tác tử AI:** [03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../../03-building-agents/01-harness-and-memory/03_memory_systems.md)

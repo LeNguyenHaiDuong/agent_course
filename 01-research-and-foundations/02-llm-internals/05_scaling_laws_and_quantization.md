@@ -258,7 +258,7 @@ $$
 
 ## 4. HẠ TẦNG LOCAL LLM CHO AI AGENTS: ĐỊNH DẠNG GGUF & LLAMA.CPP
 
-Khi xây dựng các tác tử AI chạy cục bộ (Local Agents) để đảm bảo tính riêng tư dữ liệu theo nguyên tắc [[02_context_management|Context Quarantine]], **GGUF** và **llama.cpp** là tiêu chuẩn công nghiệp thống trị.
+Khi xây dựng các tác tử AI chạy cục bộ (Local Agents) để đảm bảo tính riêng tư dữ liệu theo nguyên tắc [Context Quarantine](../../03-building-agents/01-harness-and-memory/02_context_management.md), **GGUF** và **llama.cpp** là tiêu chuẩn công nghiệp thống trị.
 
 ### 4.1. Bảng Đánh Đổi Các Mức K-Quants (Q4_K_M vs Q5_K_M vs Q8_0)
 
@@ -369,11 +369,11 @@ if __name__ == "__main__":
 ## 6. BẢN ĐỒ LIÊN KẾT HỆ THỐNG & TÀI LIỆU THAM KHẢO
 
 * 🔙 **Nền tảng tiền đề:**
-  * [[what_are_large_language_models|Bản Chất Mô Hình Ngôn Ngữ Lớn (LLM Internals)]]: Cơ chế Pre-training và quy mô tham số.
-  * [[04_transformer_math_deep_dive|Giải Phẫu Toán Học Transformer]]: Cấu trúc Attention, KV-Cache và cơ chế RoPE mở rộng ngữ cảnh.
+  * [Bản Chất Mô Hình Ngôn Ngữ Lớn (LLM Internals)](./what_are_large_language_models.md): Cơ chế Pre-training và quy mô tham số.
+  * [Giải Phẫu Toán Học Transformer](./04_transformer_math_deep_dive.md): Cấu trúc Attention, KV-Cache và cơ chế RoPE mở rộng ngữ cảnh.
 * 🔜 **Ứng dụng vào hệ thống Agent thực tế:**
-  * [[01_harness_architecture|Kiến Trúc AI Harness]]: Tích hợp các mô hình Local GGUF/AWQ vào bộ khung tác tử.
-  * [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh]]: Tính toán ngân sách Token và kiểm soát bộ nhớ KV-Cache.
+  * [Kiến Trúc AI Harness](../../03-building-agents/01-harness-and-memory/01_harness_architecture.md): Tích hợp các mô hình Local GGUF/AWQ vào bộ khung tác tử.
+  * [Quản Trị Cửa Sổ Ngữ Cảnh](../../03-building-agents/01-harness-and-memory/02_context_management.md): Tính toán ngân sách Token và kiểm soát bộ nhớ KV-Cache.
 * 📚 **Tài liệu học thuật tham chiếu (ArXiv Citations):**
   * Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. [arXiv:2001.08361](https://arxiv.org/abs/2001.08361)
   * Hoffmann et al. (2022). *Training Compute-Optimal Large Language Models (Chinchilla)*. [arXiv:2203.15556](https://arxiv.org/abs/2203.15556)

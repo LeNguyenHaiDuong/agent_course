@@ -34,7 +34,7 @@ Thư mục này nghiên cứu và lưu trữ các chuẩn mực đo lường đ�
 
 ## 📂 Danh Mục Tài Liệu Chuyên Sâu
 
-* 📖 **[[01_agent_evals_and_tracing|01_agent_evals_and_tracing.md - Hệ Thống Giám Sát, Đo Lường & Đánh Giá Tác Tử AI]]**:
+* 📖 **[01_agent_evals_and_tracing.md - Hệ Thống Giám Sát, Đo Lường & Đánh Giá Tác Tử AI](./01_agent_evals_and_tracing.md)**:
   * **Hạ tầng Tracing phân tán:** Chuẩn ngữ nghĩa OpenTelemetry GenAI Semantic Conventions, Cây vết (Trace Tree: Spans, Events), và code mẫu tích hợp Langfuse Python cho ReAct Agent.
   * **Khung đo lường RAG:** Bộ ba chỉ số Ragas Triad (Faithfulness, Answer Relevance, Context Precision, Context Recall) và kiểm thử hồi quy bằng DeepEval.
   * **Giải phẫu chuyên sâu LLM-as-a-Judge:** 4 thiên vị cố hữu (*Position Bias, Verbosity Bias, Self-Enhancement Bias, Leniency Bias*) và chiến lược hóa giải; Kỹ thuật **G-Eval** kết hợp chuỗi tư duy CoT và xác suất Softmax Token; So sánh Pairwise vs. Single-score Rubrics.
@@ -45,7 +45,7 @@ Thư mục này nghiên cứu và lưu trữ các chuẩn mực đo lường đ�
 ---
 
 ## 🔗 Điều Hướng Nhanh
-* Bản thiết kế doanh nghiệp: [[06_how_to_build_enterprise_ai_agents|🏗️ Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp]]
-* Trở về mục lục Trụ cột 3: [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
-* Trở về trang chủ Vault: [[README|🏠 Vault Home MOC]]
-* Xem bản đồ Canvas: [[Agent-Course-Overview.canvas|🗺️ Mở Visual Canvas]]
+* Bản thiết kế doanh nghiệp: [🏗️ Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](../06_how_to_build_enterprise_ai_agents.md)
+* Trở về mục lục Trụ cột 3: [🛠️ Trụ Cột 3: Building Agents](../README.md)
+* Trở về trang chủ Vault: [🏠 Vault Home MOC](../../README.md)
+* Xem bản đồ Canvas: [🗺️ Mở Visual Canvas](../../Agent-Course-Overview.canvas)

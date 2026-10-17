@@ -647,11 +647,11 @@ if __name__ == "__main__":
 
 ### 🔗 Cây Điều Hướng & Liên Kết Trong Vault
 
-* **Nền tảng toán học & Re-ranking:** [[01_semantic_search_and_reranking|01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]
-* **Giải phẫu 4 cấu phần & 9 Mẫu thiết kế RAG:** [[02_rag_architecture_and_components|02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược]]
-* **Lý thuyết toàn diện về Embeddings & Khung FICE:** [[03_embeddings_and_vector_databases|03. Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector (FAISS, Chroma, Milvus, Pinecone)]]
-* **Lab thực hành lâm sàng đối đầu MiniLM vs. BGE:** [[04_how_database_and_embedding_choices_affect_rag|04. Thực Hành Đánh Giá Embedding & Cơ Sở Dữ Liệu Vector (Clinical Policy Assistant)]]
-* **Cẩm nang kỹ nghệ vận hành RAG Production:** [[05_theory_to_practice_making_rag_work|05. Từ Lý Thuyết Đến Thực Tiễn: Làm Cho RAG Hoạt Động Hiệu Quả (Making RAG Work)]]
-* **Quản trị rủi ro ngữ cảnh:** [[02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
-* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [[03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
-* **Đánh giá và kiểm thử tác tử tự động:** [[01_agent_evals_and_tracing|01. Đánh Giá & Quan Sát Hệ Thống Tác Tử (Agent Evals & Tracing)]]
+* **Nền tảng toán học & Re-ranking:** [01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng](./01_semantic_search_and_reranking.md)
+* **Giải phẫu 4 cấu phần & 9 Mẫu thiết kế RAG:** [02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược](./02_rag_architecture_and_components.md)
+* **Lý thuyết toàn diện về Embeddings & Khung FICE:** [03. Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector (FAISS, Chroma, Milvus, Pinecone)](./03_embeddings_and_vector_databases.md)
+* **Lab thực hành lâm sàng đối đầu MiniLM vs. BGE:** [04. Thực Hành Đánh Giá Embedding & Cơ Sở Dữ Liệu Vector (Clinical Policy Assistant)](./04_how_database_and_embedding_choices_affect_rag.md)
+* **Cẩm nang kỹ nghệ vận hành RAG Production:** [05. Từ Lý Thuyết Đến Thực Tiễn: Làm Cho RAG Hoạt Động Hiệu Quả (Making RAG Work)](../../audio/05_theory_to_practice_making_rag_work.mp3)
+* **Quản trị rủi ro ngữ cảnh:** [02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh](../../03-building-agents/01-harness-and-memory/02_context_management.md)
+* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../../03-building-agents/01-harness-and-memory/03_memory_systems.md)
+* **Đánh giá và kiểm thử tác tử tự động:** [01. Đánh Giá & Quan Sát Hệ Thống Tác Tử (Agent Evals & Tracing)](../../03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md)

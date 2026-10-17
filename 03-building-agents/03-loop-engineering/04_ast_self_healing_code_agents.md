@@ -78,7 +78,7 @@ flowchart TD
 Phương pháp này tạo ra **3 hậu quả tai hại**:
 
 1. **Hiện tượng Sụp đổ Hồi quy (Cascading Regressions):** Khi buộc phải sinh lại toàn bộ tệp hoặc một hàm lớn, LLM có xu hướng "quên" các điều kiện biên đã được tối ưu trước đó, tự ý thay đổi tên biến nội bộ, xóa bỏ các dòng comment giải thích nghiệp vụ, hoặc làm gãy interface của các hàm phụ thuộc.
-2. **Context Poisoning & Bùng nổ Token:** Gửi toàn bộ file hàng nghìn dòng qua lại giữa các vòng lặp sửa lỗi làm cạn kiệt ngân sách token và đẩy các chỉ thị quan trọng vào vùng chết chú ý theo hiện tượng [[advanced_prompt_engineering_techniques|Lost-in-the-Middle]].
+2. **Context Poisoning & Bùng nổ Token:** Gửi toàn bộ file hàng nghìn dòng qua lại giữa các vòng lặp sửa lỗi làm cạn kiệt ngân sách token và đẩy các chỉ thị quan trọng vào vùng chết chú ý theo hiện tượng [Lost-in-the-Middle](../../02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md).
 3. **Ảo giác Cú pháp Lặp lại (Syntactic Fixation):** Khi gặp các cấu trúc lồng ngoặc phức tạp hoặc thụt đầu dòng (Indentation), mô hình thường bị "mắc kẹt" trong việc thêm bớt khoảng trắng vô nghĩa mà không nhận ra lỗi logic cốt lõi.
 
 > [!important]
@@ -137,7 +137,7 @@ Mỗi nút $u \in V$ mang một kiểu cú pháp cụ thể (Node Type) kèm the
 > * **Giải thuật duyệt cây:**
 >   - Duyệt cây AST theo chiều sâu (Depth-First Search) để tìm nút nhỏ nhất bao hàm đoạn dòng `[start_line, end_line]` chứa $L_{\text{err}}$ thỏa mãn nút đó là `FunctionDef` hoặc `AsyncFunctionDef` hoặc `ClassDef`.
 >   - Cắt cây con (Subtree) đó ra khỏi cây lớn.
-> * **Đầu ra:** Chỉ duy nhất đoạn mã của hàm bị lỗi (ví dụ 15 dòng) kèm theo các type signature liên quan, loại bỏ $99\%$ mã nguồn xung quanh để tránh làm độc hại cửa sổ ngữ cảnh theo cơ chế [[02_context_management|Context Quarantine]].
+> * **Đầu ra:** Chỉ duy nhất đoạn mã của hàm bị lỗi (ví dụ 15 dòng) kèm theo các type signature liên quan, loại bỏ $99\%$ mã nguồn xung quanh để tránh làm độc hại cửa sổ ngữ cảnh theo cơ chế [Context Quarantine](../01-harness-and-memory/02_context_management.md).
 
 ### Tại sao AST là "Chiếc la bàn cấu trúc" cho Coding Agents?
 
@@ -512,8 +512,8 @@ class ASTSelfHealingEngine:
 ---
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG NỘI BỘ
-* **Nguyên lý vòng lặp cơ bản:** [[01_loop_fundamentals|Nền Tảng Loop Engineering & Stopping Criteria]]
-* **Vòng lặp ReAct và Evaluator-Optimizer:** [[02_react_and_planning|Các Mô Hình Vòng Lặp Cốt Lõi: ReAct, Plan-and-Execute]]
-* **Đội ngũ đa tác tử:** [[03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]]
-* **Bảo đảm cú pháp Logits:** [[02_constrained_decoding_and_structured_outputs|Constrained Decoding & Grammar-Guided Structured Outputs]]
-* **Trang chủ Trụ Cột 3:** [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
+* **Nguyên lý vòng lặp cơ bản:** [Nền Tảng Loop Engineering & Stopping Criteria](./01_loop_fundamentals.md)
+* **Vòng lặp ReAct và Evaluator-Optimizer:** [Các Mô Hình Vòng Lặp Cốt Lõi: ReAct, Plan-and-Execute](./02_react_and_planning.md)
+* **Đội ngũ đa tác tử:** [Kiến Trúc Đội Ngũ Đa Tác Tử](./03_multi_agent_teams.md)
+* **Bảo đảm cú pháp Logits:** [Constrained Decoding & Grammar-Guided Structured Outputs](../02-tools-and-mcp/02_constrained_decoding_and_structured_outputs.md)
+* **Trang chủ Trụ Cột 3:** [🛠️ Trụ Cột 3: Building Agents](../README.md)

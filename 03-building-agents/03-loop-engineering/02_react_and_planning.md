@@ -35,7 +35,7 @@ updated: 2026-09-27
 
 ## 1. BẢN ĐỒ PHÂN HÓA CÁC MÔ HÌNH VÒNG LẶP TÁC TỬ
 
-Khi chuyển từ các hệ thống tương tác One-Shot sang tác tử tự hành theo kỹ thuật [[01_loop_fundamentals|Nền tảng Loop Engineering]], câu hỏi kiến trúc quan trọng nhất được đặt ra: **Làm thế nào để tổ chức chuỗi suy luận và hành động của AI một cách tối ưu nhất?**
+Khi chuyển từ các hệ thống tương tác One-Shot sang tác tử tự hành theo kỹ thuật [Nền tảng Loop Engineering](./01_loop_fundamentals.md), câu hỏi kiến trúc quan trọng nhất được đặt ra: **Làm thế nào để tổ chức chuỗi suy luận và hành động của AI một cách tối ưu nhất?**
 
 Thế giới tác tử AI hiện đại đã hội tụ về 3 mẫu hình kiến trúc (Design Patterns) thống trị:
 
@@ -94,8 +94,8 @@ sequenceDiagram
 2. **Chỉ Hành Động (Act-Only / Direct Function Calling):**
    * Mô hình gọi công cụ ngay lập tức mà không suy nghĩ. Dễ hành động vội vã, thiếu kế hoạch, và khi gặp lỗi API thì không biết cách phân tích nguyên nhân để tự khắc phục.
 3. **ReAct (Kết Hợp Cân Bằng):**
-   * *Thought* đóng vai trò là kim chỉ nam giúp điều hướng, phân tích lỗi và cập nhật [[03_memory_systems|Working Memory]].
-   * *Action* tương tác với thế giới qua [[01_mcp_architecture|MCP Tools]].
+   * *Thought* đóng vai trò là kim chỉ nam giúp điều hướng, phân tích lỗi và cập nhật [Working Memory](../01-harness-and-memory/03_memory_systems.md).
+   * *Action* tương tác với thế giới qua [MCP Tools](../02-tools-and-mcp/01_mcp_architecture.md).
    * *Observation* nạp phản hồi thực tế vào context để kiểm chứng lập luận.
 
 ---
@@ -263,8 +263,8 @@ if __name__ == "__main__":
 ## 7. BẢN ĐỒ LIÊN KẾT HỆ THỐNG
 
 * 🔙 **Nền tảng liên quan:**
-  * [[01_loop_fundamentals|Nền Tảng Loop Engineering]]: Kiến trúc vòng lặp tự trị và các điều kiện dừng an toàn.
-  * [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh]]: Kỹ thuật kiểm soát Context Drift khi chạy qua nhiều bước lặp.
-  * [[01_mcp_architecture|Kiến Trúc Giao Thức MCP]]: Cung cấp công cụ thực thi cho pha Action của ReAct.
+  * [Nền Tảng Loop Engineering](./01_loop_fundamentals.md): Kiến trúc vòng lặp tự trị và các điều kiện dừng an toàn.
+  * [Quản Trị Cửa Sổ Ngữ Cảnh](../01-harness-and-memory/02_context_management.md): Kỹ thuật kiểm soát Context Drift khi chạy qua nhiều bước lặp.
+  * [Kiến Trúc Giao Thức MCP](../02-tools-and-mcp/01_mcp_architecture.md): Cung cấp công cụ thực thi cho pha Action của ReAct.
 * 🔜 **Mở rộng quy mô:**
-  * [[03_multi_agent_teams|Kiến Trúc Đội Ngũ Đa Tác Tử]]: Phối hợp nhiều vòng lặp giữa Orchestrator, Subagents và Swarm.
+  * [Kiến Trúc Đội Ngũ Đa Tác Tử](./03_multi_agent_teams.md): Phối hợp nhiều vòng lặp giữa Orchestrator, Subagents và Swarm.

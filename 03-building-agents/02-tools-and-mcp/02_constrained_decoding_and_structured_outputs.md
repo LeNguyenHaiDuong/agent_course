@@ -55,7 +55,7 @@ updated: 2026-09-27
 
 ### Tại sao Prompting và Post-Validation Retry là giải pháp thất bại?
 
-Trong mọi hệ thống AI Agent hiện đại—đặc biệt khi tương tác với công cụ qua [[01_mcp_architecture|Model Context Protocol (MCP)]] hoặc REST API—mô hình ngôn ngữ lớn (LLM) không chỉ sinh văn bản tự do mà bắt buộc phải sinh ra các đối tượng dữ liệu có cấu trúc nghiêm ngặt (chủ yếu là **JSON**, **SQL**, hoặc các lời gọi hàm **Function Calls**).
+Trong mọi hệ thống AI Agent hiện đại—đặc biệt khi tương tác với công cụ qua [Model Context Protocol (MCP)](./01_mcp_architecture.md) hoặc REST API—mô hình ngôn ngữ lớn (LLM) không chỉ sinh văn bản tự do mà bắt buộc phải sinh ra các đối tượng dữ liệu có cấu trúc nghiêm ngặt (chủ yếu là **JSON**, **SQL**, hoặc các lời gọi hàm **Function Calls**).
 
 Trong nhiều năm, ngành công nghiệp dựa vào phương pháp tiếp cận ngây thơ:
 1. **Prompt Crafting:** Thêm vào System Prompt các chỉ thị khẩn thiết: *"You must respond ONLY with a valid JSON object matching this schema. Do not include markdown codeblocks or explanation."*
@@ -92,7 +92,7 @@ Phương pháp thử-sai này bộc lộ **3 thất bại chí mạng** trong m�
 
 ## 2. GIẢI PHẪU TẦNG SINH TOKEN CỦA TRANSFORMER (LOGIT-LEVEL MECHANICS)
 
-Để hiểu cách cưỡng chế cú pháp tuyệt đối, ta cần giải phẫu bản chất toán học của quá trình giải mã (Decoding) trong Transformer autoregressive như đã giới thiệu tại [[what_are_large_language_models|What Are Large Language Models?]] và [[04_transformer_math_deep_dive|Giải Phẫu Toán Học Của Transformer]].
+Để hiểu cách cưỡng chế cú pháp tuyệt đối, ta cần giải phẫu bản chất toán học của quá trình giải mã (Decoding) trong Transformer autoregressive như đã giới thiệu tại [What Are Large Language Models?](../../01-research-and-foundations/02-llm-internals/what_are_large_language_models.md) và [Giải Phẫu Toán Học Của Transformer](../../01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md).
 
 ### Toán học từ Hidden State đến Xác suất Softmax
 
@@ -580,8 +580,8 @@ quadrantChart
 ---
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG NỘI BỘ
-* **Giao thức công cụ chuẩn mở:** [[01_mcp_architecture|Kiến Trúc Giao Thức Model Context Protocol (MCP)]]
-* **Giải phẫu ngôn ngữ lớn & Tokenization:** [[what_are_large_language_models|What Are Large Language Models?]]
-* **Nền tảng vi tích phân Transformer:** [[04_transformer_math_deep_dive|Giải Phẫu Toán Học Của Transformer]]
-* **Vòng lặp tự trị trong Agent:** [[01_loop_fundamentals|Nền Tảng Loop Engineering & Stopping Criteria]]
-* **Trang chủ Trụ Cột 3:** [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
+* **Giao thức công cụ chuẩn mở:** [Kiến Trúc Giao Thức Model Context Protocol (MCP)](./01_mcp_architecture.md)
+* **Giải phẫu ngôn ngữ lớn & Tokenization:** [What Are Large Language Models?](../../01-research-and-foundations/02-llm-internals/what_are_large_language_models.md)
+* **Nền tảng vi tích phân Transformer:** [Giải Phẫu Toán Học Của Transformer](../../01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md)
+* **Vòng lặp tự trị trong Agent:** [Nền Tảng Loop Engineering & Stopping Criteria](../03-loop-engineering/01_loop_fundamentals.md)
+* **Trang chủ Trụ Cột 3:** [🛠️ Trụ Cột 3: Building Agents](../README.md)

@@ -14,6 +14,6 @@ Thư mục này nghiên cứu cấu trúc, toán học và các phân loại ki�
 
 ## 🔗 Liên Kết Đến Các Chuyên Đề Khác
 
-* Chuyên đề tiếp theo: [[01-research-and-foundations/02-llm-internals/README|📚 02-llm-internals - LLM Internals & Mechanisms]]
-* Quay lại mục lục: [[01-research-and-foundations/README|🔬 Trụ Cột 1: Research & Foundations]]
+* Chuyên đề tiếp theo: [📚 02-llm-internals - LLM Internals & Mechanisms](../02-llm-internals/README.md)
+* Quay lại mục lục: [🔬 Trụ Cột 1: Research & Foundations](../README.md)
 

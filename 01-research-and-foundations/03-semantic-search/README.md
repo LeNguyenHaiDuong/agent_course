@@ -22,7 +22,7 @@ Thư mục này nghiên cứu các cơ chế biểu diễn không gian vector, g
 
 ## 🔗 Liên Kết Đến Các Chuyên Đề Khác
 
-* Chuyên đề mạng nơ-ron: [[01-research-and-foundations/01-neural-networks/README|🧠 01-neural-networks]]
-* Chuyên đề nền tảng LLM: [[01-research-and-foundations/02-llm-internals/README|📚 02-llm-internals]]
-* Chuyển tiếp sang Trụ cột 2: [[02-prompt-and-context/README|✍️ Trụ cột 2: Prompt & Context Engineering]]
-* Ứng dụng sang Trụ cột 3: [[03-building-agents/README|🛠️ Trụ cột 3: Building Agents]]
+* Chuyên đề mạng nơ-ron: [🧠 01-neural-networks](../01-neural-networks/README.md)
+* Chuyên đề nền tảng LLM: [📚 02-llm-internals](../02-llm-internals/README.md)
+* Chuyển tiếp sang Trụ cột 2: [✍️ Trụ cột 2: Prompt & Context Engineering](../../02-prompt-and-context/README.md)
+* Ứng dụng sang Trụ cột 3: [🛠️ Trụ cột 3: Building Agents](../../03-building-agents/README.md)

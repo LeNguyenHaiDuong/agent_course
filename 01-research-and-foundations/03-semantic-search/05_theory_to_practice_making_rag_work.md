@@ -223,7 +223,7 @@ flowchart LR
 #### Nhóm 3: Văn bản pháp quy, quy chuẩn y khoa & hợp đồng (Legal, Compliance & Medical)
 * **Đặc thù dữ liệu:** Cực kỳ dày đặc, mỗi câu chữ đều mang tính ràng buộc pháp lý hoặc sinh tử lâm sàng. Các điều khoản thường có cấu trúc: **Quy định chung $\to$ Điều kiện tiên quyết $\to$ Các trường hợp ngoại lệ nghiêm ngặt**.
 * **Kiến trúc tối ưu:**
-  * **Chunking:** Cửa sổ lớn ($600 - 800$ tokens) với độ gối đầu $20\%$ để tuyệt đối không cắt đôi cặp bài trùng "Điều kiện - Ngoại lệ" (xem chi tiết tại [[04_how_database_and_embedding_choices_affect_rag|04. How Database & Embedding Choices Affect RAG]]).
+  * **Chunking:** Cửa sổ lớn ($600 - 800$ tokens) với độ gối đầu $20\%$ để tuyệt đối không cắt đôi cặp bài trùng "Điều kiện - Ngoại lệ" (xem chi tiết tại [04. How Database & Embedding Choices Affect RAG](./04_how_database_and_embedding_choices_affect_rag.md)).
   * **Embedding:** Mô hình chuyên ngành hoặc mô hình được huấn luyện tương phản mạnh về tính tuân thủ pháp lý.
   * **Index:** FAISS IVF với $n_{\text{probe}}$ cao hoặc HNSW chất lượng cao ($M=64, efConstruction=200$).
 
@@ -521,18 +521,18 @@ Trước khi đưa ra bất kỳ quyết định thay đổi chỉ mục hay mô
 | **Truy xuất nhanh nhưng bỏ sót tài liệu đúng (Low Recall / False Negatives)** | 1. Kích thước chunk quá nhỏ làm phân mảnh ý.<br>2. Giá trị $n_{\text{probe}}$ của IVF quá thấp.<br>3. Mô hình embedding không hiểu thuật ngữ chuyên ngành. | • Tăng kích thước chunk và bổ sung $15\% - 20\%$ overlap.<br>• Tăng $n_{\text{probe}}$ từ 1 lên 8 hoặc 16.<br>• Chuyển sang mô hình embedding chuyên ngành (như BGE-large hoặc Cohere v3). |
 | **Độ trễ truy xuất tăng vọt gấp 3 - 5 lần sau khi tối ưu** | 1. $n_{\text{probe}}$ hoặc $efSearch$ bị đẩy lên quá cao.<br>2. Đang dùng FLAT Index trên tập dữ liệu quá lớn ($> 500\text{k}$).<br>3. Tầng Re-ranker xử lý quá nhiều ứng viên (ví dụ Top-100). | • Giảm $n_{\text{probe}}$ về điểm cân bằng trên đường cong Pareto.<br>• Chuyển từ FLAT sang HNSW hoặc IVF-PQ.<br>• Thu hẹp phễu Re-ranker: chỉ đưa Top-20 vào Cross-Encoder thay vì Top-100. |
 | **LLM trả lời sai dù tài liệu trích xuất có chứa đáp án** | 1. Đoạn văn chứa đáp án bị chìm vào giữa prompt dài (Lost-in-the-Middle).<br>2. Kéo về quá nhiều chunk gây nhiễu context window. | • Đảo vị trí chunk quan trọng lên đầu prompt.<br>• Giảm $K$ (chỉ lấy Top-3 thay vì Top-10).<br>• Áp dụng Contextual Compression để loại bỏ các câu rác trước khi đưa vào LLM. |
-| **Hệ thống trả về các văn bản/chính sách cũ đã hết hạn** | 1. Chỉ mục vector bị ôi thiu (Stale Index).<br>2. Dữ liệu mới được nạp nhưng chưa cập nhật trường thời gian. | • Thiết lập quy trình **Weekly Incremental Delta Upsert** (xem [[04_how_database_and_embedding_choices_affect_rag|04. How Database & Embedding Choices Affect RAG]]).<br>• Bổ sung bộ lọc Metadata Filter: `effective_date <= NOW() AND is_active == True`. |
+| **Hệ thống trả về các văn bản/chính sách cũ đã hết hạn** | 1. Chỉ mục vector bị ôi thiu (Stale Index).<br>2. Dữ liệu mới được nạp nhưng chưa cập nhật trường thời gian. | • Thiết lập quy trình **Weekly Incremental Delta Upsert** (xem [04. How Database & Embedding Choices Affect RAG](./04_how_database_and_embedding_choices_affect_rag.md)).<br>• Bổ sung bộ lọc Metadata Filter: `effective_date <= NOW() AND is_active == True`. |
 | **Mã nguồn và hàm bị cắt ngang, hệ thống giải thích sai code** | Dùng bộ cắt văn bản đếm ký tự thông thường làm đứt gãy cấu trúc cú pháp. | • Chuyển sang **Structure-Aware Chunking (AST Parser)**.<br>• Buộc khối code và docstring/phần giải thích nằm trọn trong cùng một chunk duy nhất. |
 
 ---
 
 ## 10. CÂY ĐIỀU HƯỚNG & LIÊN KẾT TRONG VAULT
 
-* **Nền tảng toán học & Re-ranking:** [[01_semantic_search_and_reranking|01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]
-* **Giải phẫu cấu phần & 9 Mẫu thiết kế RAG:** [[02_rag_architecture_and_components|02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược]]
-* **Lý thuyết toàn diện về Embeddings & Khung FICE:** [[03_embeddings_and_vector_databases|03. Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector]]
-* **Phòng thí nghiệm thực hành lâm sàng:** [[04_how_database_and_embedding_choices_affect_rag|04. Thực Hành Đánh Giá Mô Hình Embedding & Cơ Sở Dữ Liệu Vector (Lab BGE vs. MiniLM & FAISS IVF)]]
-* **Duy trì & Vận hành chỉ mục Vector:** [[06_maintaining_vector_indices_in_rag|06. Duy Trì & Vận Hành Chỉ Mục Vector Trong Hệ Thống RAG (Drift Management)]]
-* **Quản trị rủi ro ngữ cảnh:** [[02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
-* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [[03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
-* **Đánh giá và quan sát Agent:** [[01_agent_evals_and_tracing|01. Đánh Giá & Quan Sát Hệ Thống Tác Tử (Agent Evals & Tracing)]]
+* **Nền tảng toán học & Re-ranking:** [01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng](./01_semantic_search_and_reranking.md)
+* **Giải phẫu cấu phần & 9 Mẫu thiết kế RAG:** [02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược](./02_rag_architecture_and_components.md)
+* **Lý thuyết toàn diện về Embeddings & Khung FICE:** [03. Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector](./03_embeddings_and_vector_databases.md)
+* **Phòng thí nghiệm thực hành lâm sàng:** [04. Thực Hành Đánh Giá Mô Hình Embedding & Cơ Sở Dữ Liệu Vector (Lab BGE vs. MiniLM & FAISS IVF)](./04_how_database_and_embedding_choices_affect_rag.md)
+* **Duy trì & Vận hành chỉ mục Vector:** [06. Duy Trì & Vận Hành Chỉ Mục Vector Trong Hệ Thống RAG (Drift Management)](../../audio/06_maintaining_vector_indices_in_rag.mp3)
+* **Quản trị rủi ro ngữ cảnh:** [02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh](../../03-building-agents/01-harness-and-memory/02_context_management.md)
+* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../../03-building-agents/01-harness-and-memory/03_memory_systems.md)
+* **Đánh giá và quan sát Agent:** [01. Đánh Giá & Quan Sát Hệ Thống Tác Tử (Agent Evals & Tracing)](../../03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md)

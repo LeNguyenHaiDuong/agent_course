@@ -32,7 +32,7 @@ updated: 2026-09-27
 
 ## 1. TẠI SAO CẦN AI HARNESS? SỰ TÁCH BIỆT GIỮA LÕI & KHUNG
 
-Như đã định vị trong bài [[00_ai_chat_systems_and_prompt_engineering|Kiến trúc & Tiến hóa của các hệ thống AI Chat]], **Large Language Model (LLM Core)** chỉ là một cỗ máy tính toán xác suất từ ngữ tĩnh (Static Token Completion Engine). Mô hình không thể tự lưu lịch sử, không thể tự mở kết nối mạng, không có ý thức về thời gian và không tự giác tuân thủ các quy tắc an toàn nếu không có sự điều hướng từ bên ngoài.
+Như đã định vị trong bài [Kiến trúc & Tiến hóa của các hệ thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md), **Large Language Model (LLM Core)** chỉ là một cỗ máy tính toán xác suất từ ngữ tĩnh (Static Token Completion Engine). Mô hình không thể tự lưu lịch sử, không thể tự mở kết nối mạng, không có ý thức về thời gian và không tự giác tuân thủ các quy tắc an toàn nếu không có sự điều hướng từ bên ngoài.
 
 ```mermaid
 flowchart LR
@@ -46,8 +46,8 @@ flowchart LR
 > [!important] Định Nghĩa AI Harness
 > **AI Harness** (hay *Agent Harness / Agent Runtime*) là toàn bộ lớp kiến trúc phần mềm bao bọc bên ngoài LLM Core. Harness chịu trách nhiệm:
 > 1. Chuyển đổi một API không trạng thái (Stateless API) thành một phiên làm việc có trạng thái (Stateful Interactive Session).
-> 2. Quản lý việc nạp và dọn dẹp Cửa sổ ngữ cảnh (Context Window) theo các kỹ thuật trong [[02_context_management|Quản trị Ngữ cảnh & Quarantine]].
-> 3. Tích hợp và điều phối các công cụ thực thi thông qua [[01_mcp_architecture|Model Context Protocol (MCP)]].
+> 2. Quản lý việc nạp và dọn dẹp Cửa sổ ngữ cảnh (Context Window) theo các kỹ thuật trong [Quản trị Ngữ cảnh & Quarantine](./02_context_management.md).
+> 3. Tích hợp và điều phối các công cụ thực thi thông qua [Model Context Protocol (MCP)](../02-tools-and-mcp/01_mcp_architecture.md).
 > 4. Thực thi hàng rào kiểm duyệt an toàn (Guardrails) trước khi dữ liệu được hiển thị cho người dùng.
 
 ---
@@ -113,7 +113,7 @@ flowchart TD
 2. **Cỗ máy Hợp nhất Ngữ cảnh (Context Assembly Engine):**
    * **System Prompt Injection:** Ghim chặt các điều lệ vận hành tối cao của hệ thống.
    * **Memory Retrieval:** Gọi RAG để kéo các đoạn tri thức liên quan từ Vector DB.
-   * **Context Quarantine Firewall:** Áp dụng bộ lọc quyền hạn (RBAC) để đảm bảo dữ liệu mật của phòng ban khác không bị tiêm nhầm vào phiên làm việc hiện tại (áp dụng nguyên tắc trong [[02_context_management|Context Quarantine]]).
+   * **Context Quarantine Firewall:** Áp dụng bộ lọc quyền hạn (RBAC) để đảm bảo dữ liệu mật của phòng ban khác không bị tiêm nhầm vào phiên làm việc hiện tại (áp dụng nguyên tắc trong [Context Quarantine](./02_context_management.md)).
    * **Context Pruner:** Cắt tỉa các lượt chat dư thừa nhằm tối ưu chi phí token và ngăn ngừa hiện tượng **Context Decay**.
 
 3. **Cổng Kết Nối & Định Tuyến LLM (LLM Gateway & Router):**
@@ -121,7 +121,7 @@ flowchart TD
    * Cơ chế tự động thử lại khi gặp lỗi nghẽn mạng (Exponential Backoff Retry) hoặc tự động hạ cấp xuống mô hình rẻ hơn/nhanh hơn khi token budget sắp cạn.
 
 4. **Bộ Điều Phối Công Cụ (Tool Execution & MCP Coordinator):**
-   * Quản lý các kết nối tới MCP Servers theo giao thức đã phân tích tại [[01_mcp_architecture|Kiến trúc Giao thức MCP]].
+   * Quản lý các kết nối tới MCP Servers theo giao thức đã phân tích tại [Kiến trúc Giao thức MCP](../02-tools-and-mcp/01_mcp_architecture.md).
    * Chặn các cuộc gọi có hiệu ứng phụ (Xóa file, chạy bash script) để chờ phê duyệt xác nhận từ người dùng (**Human-in-the-Loop**).
    * Khởi chạy lệnh trong môi trường cô lập an toàn (Docker/gVisor/Sandbox).
 
@@ -342,9 +342,9 @@ if __name__ == "__main__":
 ## 7. BẢN ĐỒ LIÊN KẾT HỆ THỐNG
 
 * 🔙 **Nền tảng liên quan:**
-  * [[00_ai_chat_systems_and_prompt_engineering|Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat]]: Khái niệm dẫn nhập về AI Harness.
-  * [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Cô Lập]]: Các thuật toán Pruning, Summarization và Quarantine mà Harness phải thực thi.
+  * [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md): Khái niệm dẫn nhập về AI Harness.
+  * [Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Cô Lập](./02_context_management.md): Các thuật toán Pruning, Summarization và Quarantine mà Harness phải thực thi.
 * 🔜 **Thành phần tích hợp tiếp theo:**
-  * [[01_mcp_architecture|Kiến Trúc Giao Thức MCP]]: Chuẩn hóa tầng Tool Execution của Harness thông qua giao thức mở.
-  * [[03_memory_systems|Kiến Trúc Bộ Nhớ Đa Tầng Cho Agent]]: Cách Harness lưu trữ ký ức dài hạn của người dùng.
-  * [[01_loop_fundamentals|Nền Tảng Loop Engineering]]: Khi Harness vận hành trong một vòng lặp tự trị đa bước.
+  * [Kiến Trúc Giao Thức MCP](../02-tools-and-mcp/01_mcp_architecture.md): Chuẩn hóa tầng Tool Execution của Harness thông qua giao thức mở.
+  * [Kiến Trúc Bộ Nhớ Đa Tầng Cho Agent](./03_memory_systems.md): Cách Harness lưu trữ ký ức dài hạn của người dùng.
+  * [Nền Tảng Loop Engineering](../03-loop-engineering/01_loop_fundamentals.md): Khi Harness vận hành trong một vòng lặp tự trị đa bước.

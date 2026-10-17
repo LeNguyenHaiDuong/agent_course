@@ -51,7 +51,7 @@ updated: 2026-09-27
 
 ## 1. KHỞI NGUYÊN CUỘC KHỦNG HOẢNG: TẠI SAO PROMPT ENGINEERING THỦ CÔNG LÀ NGÕ CỤT?
 
-Kể từ khi ChatGPT ra đời, thế giới AI chứng kiến sự bùng nổ của nghề "Prompt Engineer". Các kỹ sư dành hàng tuần lễ để thử nghiệm từng câu chữ, chèn thêm các cụm từ ma thuật như *"Take a deep breath and work on this step-by-step"*, *"You are a world-class expert"*, hay cấu trúc hàng chục thẻ XML phức tạp như đã trình bày trong [[advanced_prompt_engineering_techniques|Các Kỹ Thuật Prompt Engineering Nâng Cao]].
+Kể từ khi ChatGPT ra đời, thế giới AI chứng kiến sự bùng nổ của nghề "Prompt Engineer". Các kỹ sư dành hàng tuần lễ để thử nghiệm từng câu chữ, chèn thêm các cụm từ ma thuật như *"Take a deep breath and work on this step-by-step"*, *"You are a world-class expert"*, hay cấu trúc hàng chục thẻ XML phức tạp như đã trình bày trong [Các Kỹ Thuật Prompt Engineering Nâng Cao](./advanced_prompt_engineering_techniques.md).
 
 Tuy nhiên, trong môi trường kỹ thuật phần mềm doanh nghiệp, cách tiếp cận này nhanh chóng bộc lộ **3 thất bại chí mạng**:
 
@@ -506,10 +506,10 @@ Dưới đây là danh mục các bài báo học thuật nền tảng tạo nê
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG TRONG VAULT
 
-* [[advanced_prompt_engineering_techniques|Các Kỹ Thuật Prompt & Context Engineering Nâng Cao]]: Khảo sát các kỹ thuật viết prompt kinh điển (CoT, ToT, XML Framing).
-* [[01_harness_architecture|Giải Phẫu Kiến Trúc AI Harness]]: Tích hợp các DSPy Modules vào bộ khung phần mềm điều khiển.
-* [[01_mcp_architecture|Kiến Trúc Giao Thức Model Context Protocol (MCP)]]: Đóng gói công cụ ngoài cho DSPy ReAct Module.
-* [[01_agent_evals_and_tracing|Hệ Thống Giám Sát, Đo Lường & Đánh Giá Tác Tử AI]]: Xây dựng các hàm Metrics và tích hợp Tracing Langfuse cho chương trình DSPy.
-* [[06_how_to_build_enterprise_ai_agents|Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp]]: Kiến trúc tổng thể đưa DSPy Agent lên môi trường sản xuất.
-* Trở về mục lục Trụ cột 2: [[02-prompt-and-context/README|✍️ Trụ Cột 2: Prompt & Context Engineering]]
-* Trở về trang chủ Vault: [[README|🏠 Vault Home MOC]]
+* [Các Kỹ Thuật Prompt & Context Engineering Nâng Cao](./advanced_prompt_engineering_techniques.md): Khảo sát các kỹ thuật viết prompt kinh điển (CoT, ToT, XML Framing).
+* [Giải Phẫu Kiến Trúc AI Harness](../../03-building-agents/01-harness-and-memory/01_harness_architecture.md): Tích hợp các DSPy Modules vào bộ khung phần mềm điều khiển.
+* [Kiến Trúc Giao Thức Model Context Protocol (MCP)](../../03-building-agents/02-tools-and-mcp/01_mcp_architecture.md): Đóng gói công cụ ngoài cho DSPy ReAct Module.
+* [Hệ Thống Giám Sát, Đo Lường & Đánh Giá Tác Tử AI](../../03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md): Xây dựng các hàm Metrics và tích hợp Tracing Langfuse cho chương trình DSPy.
+* [Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](../../03-building-agents/06_how_to_build_enterprise_ai_agents.md): Kiến trúc tổng thể đưa DSPy Agent lên môi trường sản xuất.
+* Trở về mục lục Trụ cột 2: [✍️ Trụ Cột 2: Prompt & Context Engineering](../README.md)
+* Trở về trang chủ Vault: [🏠 Vault Home MOC](../../README.md)

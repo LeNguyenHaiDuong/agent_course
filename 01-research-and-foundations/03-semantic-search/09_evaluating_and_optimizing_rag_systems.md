@@ -492,14 +492,14 @@ if __name__ == "__main__":
 
 ## 10. CÂY ĐIỀU HƯỚNG & LIÊN KẾT TRONG VAULT
 
-* **Nền tảng toán học & Re-ranking:** [[01_semantic_search_and_reranking|01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng]]
-* **Giải phẫu 4 cấu phần & 9 Mẫu thiết kế RAG:** [[02_rag_architecture_and_components|02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược]]
-* **Lý thuyết toàn diện về Embeddings & Khung FICE:** [[03_embeddings_and_vector_databases|03. Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector]]
-* **Lab thực hành lâm sàng đối đầu MiniLM vs. BGE:** [[04_how_database_and_embedding_choices_affect_rag|04. Thực Hành Đánh Giá Embedding & Cơ Sở Dữ Liệu Vector (Clinical Policy Assistant)]]
-* **Cẩm nang kỹ nghệ vận hành RAG Production:** [[05_theory_to_practice_making_rag_work|05. Từ Lý Thuyết Đến Thực Tiễn: Làm Cho RAG Hoạt Động Hiệu Quả]]
-* **Duy trì & Vận hành chỉ mục Vector:** [[06_maintaining_vector_indices_in_rag|06. Duy Trì & Vận Hành Chỉ Mục Vector Trong Hệ Thống RAG (Drift Management)]]
-* **Tối ưu hóa & Mô đun hóa RAG với LangChain:** [[07_optimizing_and_modularizing_rag_with_langchain|07. Tối Ưu Hóa & Mô Đun Hóa RAG Với LangChain]]
-* **Chiến thuật truy xuất nâng cao:** [[08_advanced_retrieval_tactics_for_rag|08. Chiến Thuật Truy Xuất Nâng Cao Trong RAG (Hybrid Search & Re-ranking)]]
-* **Đánh giá và kiểm thử tác tử AI tự động:** [[01_agent_evals_and_tracing|01. Đánh Giá & Quan Sát Hệ Thống Tác Tử (Agent Evals & Tracing)]]
-* **Quản trị rủi ro ngữ cảnh:** [[02_context_management|02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh]]
-* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [[03_memory_systems|03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents]]
+* **Nền tảng toán học & Re-ranking:** [01. Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng](./01_semantic_search_and_reranking.md)
+* **Giải phẫu 4 cấu phần & 9 Mẫu thiết kế RAG:** [02. Kiến Trúc RAG: 4 Cấu Phần Cốt Lõi & Các Mẫu Thiết Kế Chiến Lược](./02_rag_architecture_and_components.md)
+* **Lý thuyết toàn diện về Embeddings & Khung FICE:** [03. Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector](./03_embeddings_and_vector_databases.md)
+* **Lab thực hành lâm sàng đối đầu MiniLM vs. BGE:** [04. Thực Hành Đánh Giá Embedding & Cơ Sở Dữ Liệu Vector (Clinical Policy Assistant)](./04_how_database_and_embedding_choices_affect_rag.md)
+* **Cẩm nang kỹ nghệ vận hành RAG Production:** [05. Từ Lý Thuyết Đến Thực Tiễn: Làm Cho RAG Hoạt Động Hiệu Quả](../../audio/05_theory_to_practice_making_rag_work.mp3)
+* **Duy trì & Vận hành chỉ mục Vector:** [06. Duy Trì & Vận Hành Chỉ Mục Vector Trong Hệ Thống RAG (Drift Management)](../../audio/06_maintaining_vector_indices_in_rag.mp3)
+* **Tối ưu hóa & Mô đun hóa RAG với LangChain:** [07. Tối Ưu Hóa & Mô Đun Hóa RAG Với LangChain](./07_optimizing_and_modularizing_rag_with_langchain.md)
+* **Chiến thuật truy xuất nâng cao:** [08. Chiến Thuật Truy Xuất Nâng Cao Trong RAG (Hybrid Search & Re-ranking)](./08_advanced_retrieval_tactics_for_rag.md)
+* **Đánh giá và kiểm thử tác tử AI tự động:** [01. Đánh Giá & Quan Sát Hệ Thống Tác Tử (Agent Evals & Tracing)](../../03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md)
+* **Quản trị rủi ro ngữ cảnh:** [02. Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh](../../03-building-agents/01-harness-and-memory/02_context_management.md)
+* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [03. Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../../03-building-agents/01-harness-and-memory/03_memory_systems.md)

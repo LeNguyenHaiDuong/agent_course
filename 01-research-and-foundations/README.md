@@ -41,26 +41,26 @@ Trụ cột này tập trung vào việc nghiên cứu bản chất toán học,
 
 ## 📂 Danh Mục Chuyên Đề
 
-### 1. [[01-research-and-foundations/01-neural-networks/README|01-neural-networks - Neural Networks & Architecture Classifications]]
+### 1. [01-neural-networks - Neural Networks & Architecture Classifications](./01-neural-networks/README.md)
 * **Trọng tâm:** Toán học nơ-ron nhân tạo (Perceptron), Forward/Backpropagation, các hàm kích hoạt (ReLU, GELU, SwiGLU), các giải thuật tối ưu (SGD, AdamW), và bản đồ phân loại kiến trúc: MLP, CNN, RNN/LSTM/GRU, Transformer, GNN, Autoencoders, GAN, Diffusion Models, và Mixture of Experts (MoE).
-* **Tài liệu chi tiết:** [[neural_networks_and_classifications|neural_networks_and_classifications.md]]
+* **Tài liệu chi tiết:** [neural_networks_and_classifications.md](./01-neural-networks/neural_networks_and_classifications.md)
 
-### 2. [[01-research-and-foundations/02-llm-internals/README|02-llm-internals - LLM Internals & Mechanisms]]
+### 2. [02-llm-internals - LLM Internals & Mechanisms](./02-llm-internals/README.md)
 * **Trọng tâm:** Bản chất toán học của Language Modeling (Fill-in-the-blank), Subword Tokenization toàn diện (BPE/BBPE, WordPiece, SentencePiece/Unigram LM), các lỗi hệ thống kinh điển (nghịch lý đếm chữ "Strawberry", số học đa chữ số, thuế token đa ngôn ngữ), 4 bước nhảy vọt lịch sử (2001–2017), so sánh chuyên sâu Autoregressive (GPT) vs. Autoencoding (BERT) vs. Seq2Seq (T5), quy mô tham số & VRAM, siêu tham số suy luận (`temperature`, `top_p`), và bản chất "Reasoning Machine".
 * **Tài liệu chi tiết:**
-  * [[what_are_large_language_models|What Are Large Language Models?]]: Tổng quan bản chất mô hình ngôn ngữ lớn, giải phẫu Tokenization, căn chỉnh Alignment và đạo đức dữ liệu.
-  * [[04_transformer_math_deep_dive|Giải Phẫu Toán Học Của Transformer]]: Vi tích phân Scaled Dot-Product, chứng minh chia cho $\sqrt{d_k}$, phân tích Jacobian của Softmax, MHA/MQA/GQA, và cơ chế quay tọa độ Rotary Position Embedding (RoPE).
-  * [[05_scaling_laws_and_quantization|Định Luật Tỷ Lệ & Kỹ Thuật Lượng Tử Hóa]]: Định luật Chinchilla ($D \approx 20N$), xu hướng Over-training của LLaMA-3, toán học Quantization Affine, giải thuật GPTQ, AWQ, và chuẩn GGUF/llama.cpp.
-  * [[06_synthetic_data_and_agent_alignment|Dữ Liệu Tổng Hợp & Căn Chỉnh Tác Tử]]: Khủng hoảng The Data Wall 2026-2028, giải thuật tiến hóa Evol-Instruct (WizardLM), Multi-Agent Self-Play tạo quỹ đạo công cụ, UltraFeedback, chứng minh toán học giải tích DPO, thuật toán ORPO và chắt lọc năng lực Tool Distillation cho mô hình 8B.
+  * [What Are Large Language Models?](./02-llm-internals/what_are_large_language_models.md): Tổng quan bản chất mô hình ngôn ngữ lớn, giải phẫu Tokenization, căn chỉnh Alignment và đạo đức dữ liệu.
+  * [Giải Phẫu Toán Học Của Transformer](./02-llm-internals/04_transformer_math_deep_dive.md): Vi tích phân Scaled Dot-Product, chứng minh chia cho $\sqrt{d_k}$, phân tích Jacobian của Softmax, MHA/MQA/GQA, và cơ chế quay tọa độ Rotary Position Embedding (RoPE).
+  * [Định Luật Tỷ Lệ & Kỹ Thuật Lượng Tử Hóa](./02-llm-internals/05_scaling_laws_and_quantization.md): Định luật Chinchilla ($D \approx 20N$), xu hướng Over-training của LLaMA-3, toán học Quantization Affine, giải thuật GPTQ, AWQ, và chuẩn GGUF/llama.cpp.
+  * [Dữ Liệu Tổng Hợp & Căn Chỉnh Tác Tử](./02-llm-internals/06_synthetic_data_and_agent_alignment.md): Khủng hoảng The Data Wall 2026-2028, giải thuật tiến hóa Evol-Instruct (WizardLM), Multi-Agent Self-Play tạo quỹ đạo công cụ, UltraFeedback, chứng minh toán học giải tích DPO, thuật toán ORPO và chắt lọc năng lực Tool Distillation cho mô hình 8B.
 
-### 3. [[01-research-and-foundations/03-semantic-search/README|03-semantic-search - Semantic Search & Advanced RAG Architectures]]
+### 3. [03-semantic-search - Semantic Search & Advanced RAG Architectures](./03-semantic-search/README.md)
 * **Trọng tâm:** Khắc phục ảo giác tự tin với mô hình "Kỳ thi mở sách" (Open-Book Exam), 4 cấu phần RAG (Retriever, Ranker, Generator, Orchestrator), vũ điệu $\textbf{Retrieve} \to \textbf{Rank} \to \textbf{Generate} \to \textbf{Orchestrate}$, Nghịch lý khớp từ khóa (Vintage Magic Card vs Kit), Vector Embeddings & Lời nguyền số chiều, hiện tượng Dị hướng không gian (Anisotropy "hình nón hẹp") & giải pháp làm trắng BERT-Whitening, Asymmetric vs Symmetric Search, so sánh chuyên sâu Bi-Encoder vs Cross-Encoder, quy trình phễu 2 giai đoạn (Two-Stage Pipeline), chiến lược Chunking, thực nghiệm định lượng Recall@K (OpenAI vs Open-source), và **Cẩm nang toàn tập Kiến trúc RAG Tiên tiến** (HyDE, Parent Document Retrieval, Anthropic Contextual Retrieval, Microsoft GraphRAG, Reciprocal Rank Fusion, Self-RAG, Corrective RAG / CRAG, Adaptive RAG, Ma trận so sánh định lượng và Cây quyết định kiến trúc thực chiến).
 * **Tài liệu chi tiết (Theo thứ tự đọc):**
-  * 📖 **Bài 1:** [[01_semantic_search_and_reranking|01_semantic_search_and_reranking.md]]: Chuyên khảo toàn diện về không gian vector, Bi-Encoder vs Cross-Encoder, Two-Stage Pipeline và 9 kiến trúc RAG hiện đại.
-  * 📖 **Bài 2:** [[02_rag_architecture_and_components|02_rag_architecture_and_components.md]]: Phân tích chuyên sâu 4 cấu phần cốt lõi (Inside RAG), pipeline LangChain/FAISS/Cohere/ChatOpenAI, case study Nông nghiệp thẳng đứng và các thách thức vận hành.
+  * 📖 **Bài 1:** [01_semantic_search_and_reranking.md](./03-semantic-search/01_semantic_search_and_reranking.md): Chuyên khảo toàn diện về không gian vector, Bi-Encoder vs Cross-Encoder, Two-Stage Pipeline và 9 kiến trúc RAG hiện đại.
+  * 📖 **Bài 2:** [02_rag_architecture_and_components.md](./03-semantic-search/02_rag_architecture_and_components.md): Phân tích chuyên sâu 4 cấu phần cốt lõi (Inside RAG), pipeline LangChain/FAISS/Cohere/ChatOpenAI, case study Nông nghiệp thẳng đứng và các thách thức vận hành.
 
 ---
 
 ## 🔗 Điều Hướng Nhanh
-* Trở về trang chủ: [[README|🏠 Vault Home MOC]]
-* Chuyển sang Trụ cột 2: [[02-prompt-and-context/README|✍️ Trụ cột 2: Prompt & Context Engineering]]
+* Trở về trang chủ: [🏠 Vault Home MOC](../README.md)
+* Chuyển sang Trụ cột 2: [✍️ Trụ cột 2: Prompt & Context Engineering](../02-prompt-and-context/README.md)

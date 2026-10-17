@@ -57,7 +57,7 @@ updated: 2026-09-27
 
 ### Nghịch lý "Vật chất tối của API" (API Dark Matter)
 
-Phần lớn các nghiên cứu Agent thế hệ đầu tập trung vào việc gọi công cụ thông qua giao diện lập trình ứng dụng (API), như đã phân tích trong [[01_mcp_architecture|Model Context Protocol (MCP)]]. Tuy nhiên, khi đưa AI vào môi trường doanh nghiệp thực tế, các kỹ sư vấp phải bức tường **"Vật chất tối của API" (API Dark Matter)**:
+Phần lớn các nghiên cứu Agent thế hệ đầu tập trung vào việc gọi công cụ thông qua giao diện lập trình ứng dụng (API), như đã phân tích trong [Model Context Protocol (MCP)](../02-tools-and-mcp/01_mcp_architecture.md). Tuy nhiên, khi đưa AI vào môi trường doanh nghiệp thực tế, các kỹ sư vấp phải bức tường **"Vật chất tối của API" (API Dark Matter)**:
 
 ```mermaid
 pie title Bản Đồ Khả Năng Tương Tác Phần Mềm Doanh Nghiệp
@@ -320,7 +320,7 @@ sequenceDiagram
 Mỗi ảnh chụp Full HD gửi vào Claude 3.5 Sonnet hoặc GPT-4o tiêu tốn xấp xỉ **$1,600 - 2,500$ visual tokens**. 
 * Nếu một tác vụ kéo dài 20 bước, lượng token tiêu tốn chỉ riêng cho hình ảnh lịch sử là:
   $$20 \times 2,000 \approx 40,000 \text{ tokens}$$
-* Điều này nhanh chóng làm nghẽn Context Window, tăng chi phí và gây suy giảm khả năng chú ý theo hiện tượng [[advanced_prompt_engineering_techniques|Lost-in-the-Middle]].
+* Điều này nhanh chóng làm nghẽn Context Window, tăng chi phí và gây suy giảm khả năng chú ý theo hiện tượng [Lost-in-the-Middle](../../02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md).
 
 #### Giải pháp Frame Differencing (Crop vùng biến đổi)
 Thay vì gửi toàn bộ ảnh màn hình ở mỗi bước:
@@ -558,8 +558,8 @@ def run_computer_use_loop(objective: str, max_steps: int = 15):
 ---
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG NỘI BỘ
-* **Giao thức công cụ cho Agent:** [[01_mcp_architecture|Kiến Trúc Giao Thức Model Context Protocol (MCP)]]
-* **Bảo đảm cú pháp Logits:** [[02_constrained_decoding_and_structured_outputs|Constrained Decoding & Grammar-Guided Structured Outputs]]
-* **Vòng lặp tự trị ReAct:** [[02_react_and_planning|Các Mô Hình Vòng Lặp Cốt Lõi: ReAct, Plan-and-Execute]]
-* **Quản trị bộ nhớ hình ảnh:** [[02_context_management|Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý, Tỉa Nhánh & Cô Lập]]
-* **Trang chủ Trụ Cột 3:** [[03-building-agents/README|🛠️ Trụ Cột 3: Building Agents]]
+* **Giao thức công cụ cho Agent:** [Kiến Trúc Giao Thức Model Context Protocol (MCP)](../02-tools-and-mcp/01_mcp_architecture.md)
+* **Bảo đảm cú pháp Logits:** [Constrained Decoding & Grammar-Guided Structured Outputs](../02-tools-and-mcp/02_constrained_decoding_and_structured_outputs.md)
+* **Vòng lặp tự trị ReAct:** [Các Mô Hình Vòng Lặp Cốt Lõi: ReAct, Plan-and-Execute](../03-loop-engineering/02_react_and_planning.md)
+* **Quản trị bộ nhớ hình ảnh:** [Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý, Tỉa Nhánh & Cô Lập](../01-harness-and-memory/02_context_management.md)
+* **Trang chủ Trụ Cột 3:** [🛠️ Trụ Cột 3: Building Agents](../README.md)
