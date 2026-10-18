@@ -190,7 +190,7 @@ const results = await db.collection("knowledge_chunks").aggregate([
 ```
 
 ### 3.2. Hybrid Search Kết Hợp BM25 & Dense Vectors Với Reciprocal Rank Fusion (RRF)
-Như đã khảo sát trong [Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng](../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md), tìm kiếm vector thuần túy thường thất bại trước các từ khóa kỹ thuật hiếm (mã lỗi `ERR_502`, số hiệu SKU, tên biến). Trong MERN, chúng ta kết hợp **Atlas Full-Text Search ($BM25$)** và **Vector Search** thông qua thuật toán Reciprocal Rank Fusion (RRF):
+Như đã khảo sát trong [Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng](../../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md), tìm kiếm vector thuần túy thường thất bại trước các từ khóa kỹ thuật hiếm (mã lỗi `ERR_502`, số hiệu SKU, tên biến). Trong MERN, chúng ta kết hợp **Atlas Full-Text Search ($BM25$)** và **Vector Search** thông qua thuật toán Reciprocal Rank Fusion (RRF):
 
 Điểm số tổng hợp được tính theo công thức:
 
@@ -230,7 +230,7 @@ export function reciprocalRankFusion(
 ```
 
 ### 3.3. Checkpoint Store Cho Máy Trạng Thái Bền Vững (Durable State)
-Khi Agent vận hành các chuỗi công việc dài hạn hoặc cần dừng lại chờ người dùng phê duyệt theo mô hình [Thực Thi Bền Vững](./03-loop-engineering/05_durable_execution_and_stateful_workflows.md), trạng thái của Agent State Graph cần được lưu lại một cách bền vững. MongoDB đóng vai trò là Checkpoint Store lý tưởng nhờ định dạng Document BSON tương thích hoàn toàn với State Dictionary.
+Khi Agent vận hành các chuỗi công việc dài hạn hoặc cần dừng lại chờ người dùng phê duyệt theo mô hình [Thực Thi Bền Vững](../03-loop-engineering/05_durable_execution_and_stateful_workflows.md), trạng thái của Agent State Graph cần được lưu lại một cách bền vững. MongoDB đóng vai trò là Checkpoint Store lý tưởng nhờ định dạng Document BSON tương thích hoàn toàn với State Dictionary.
 
 ```typescript
 import { MongoDBSaver } from "@langchain/langgraph-checkpoint-mongodb";
@@ -253,7 +253,7 @@ export const checkpointer = new MongoDBSaver({
 ## 4. NODE.JS & EXPRESS: TẦNG ĐIỀU PHỐI LÕI & TÍCH HỢP MODEL CONTEXT PROTOCOL (MCP)
 
 ### 4.1. Kiến Trúc Node.js MCP Client Với `@modelcontextprotocol/sdk`
-Giao thức Model Context Protocol (đã khảo sát tại [Kiến Trúc Giao Thức Model Context Protocol](./02-tools-and-mcp/01_mcp_architecture.md)) do Anthropic công bố cung cấp SDK chính thức cho TypeScript: `@modelcontextprotocol/sdk`. Node.js đóng vai trò **MCP Host/Client**, tự động kết nối và lấy danh sách công cụ từ các MCP Servers độc lập:
+Giao thức Model Context Protocol (đã khảo sát tại [Kiến Trúc Giao Thức Model Context Protocol](../02-tools-and-mcp/01_mcp_architecture.md)) do Anthropic công bố cung cấp SDK chính thức cho TypeScript: `@modelcontextprotocol/sdk`. Node.js đóng vai trò **MCP Host/Client**, tự động kết nối và lấy danh sách công cụ từ các MCP Servers độc lập:
 
 ```mermaid
 sequenceDiagram
@@ -313,7 +313,7 @@ Các kiểu sự kiện chuẩn mực phát ra trong vòng lặp Agent:
 * `done`: Báo hiệu phiên tác tử đã hoàn thành.
 
 ### 4.3. Quản Trị Vòng Lặp ReAct & Ngắt Mạch Circuit Breakers Trên Node.js
-Như đã cảnh báo trong [Nền Tảng Loop Engineering](./03-loop-engineering/01_loop_fundamentals.md), các Agent có thể rơi vào bẫy lặp vô tận (Infinite Loops) hoặc bão gọi công cụ (Tool Storms). Express middleware cần bọc cơ chế Circuit Breaker:
+Như đã cảnh báo trong [Nền Tảng Loop Engineering](../03-loop-engineering/01_loop_fundamentals.md), các Agent có thể rơi vào bẫy lặp vô tận (Infinite Loops) hoặc bão gọi công cụ (Tool Storms). Express middleware cần bọc cơ chế Circuit Breaker:
 
 ```typescript
 export class AgentCircuitBreaker {
@@ -726,14 +726,14 @@ export const AgentChatWorkspace: React.FC = () => {
 ## 8. BẢN ĐỒ LIÊN KẾT KIẾN THỨC (KNOWLEDGE GRAPH LINKS)
 
 * **Nền Tảng Tìm Kiếm & RAG:**
-  * [Tìm Kiếm Ngữ Nghĩa & Kỹ Thuật Tái Xếp Hạng](../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md): Nền tảng toán học Vector, Bi-Encoder và RRF.
-  * [Thực Chiến Xây Dựng RAG](../01-research-and-foundations/03-semantic-search/05_theory_to_practice_making_rag_work.md): 4 thế hệ kỹ thuật Chunking (Gen 1 đến Gen 4 Contextual Retrieval).
-  * [Cơ Sở Dữ Liệu Vector](../01-research-and-foundations/03-semantic-search/03_embeddings_and_vector_databases.md): So sánh cơ chế chỉ mục Flat, IVF, HNSW và PQ.
+  * [Tìm Kiếm Ngữ Nghĩa & Kỹ Thuật Tái Xếp Hạng](../../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md): Nền tảng toán học Vector, Bi-Encoder và RRF.
+  * [Thực Chiến Xây Dựng RAG](../../01-research-and-foundations/03-semantic-search/05_theory_to_practice_making_rag_work.md): 4 thế hệ kỹ thuật Chunking (Gen 1 đến Gen 4 Contextual Retrieval).
+  * [Cơ Sở Dữ Liệu Vector](../../01-research-and-foundations/03-semantic-search/03_embeddings_and_vector_databases.md): So sánh cơ chế chỉ mục Flat, IVF, HNSW và PQ.
 
 * **Kiến Trúc Tác Tử & Giao Thức MCP:**
-  * [Kiến Trúc Giao Thức Model Context Protocol (MCP)](./02-tools-and-mcp/01_mcp_architecture.md): Khảo sát chi tiết đặc tả Anthropic MCP, JSON-RPC 2.0 và Stdio/SSE Transports.
-  * [Giải Phẫu Kiến Trúc AI Harness](./01-harness-and-memory/01_harness_architecture.md): Phân tách Lõi tĩnh vs Khung có trạng thái.
-  * [Nền Tảng Loop Engineering](./03-loop-engineering/01_loop_fundamentals.md): Thiết kế Circuit Breakers và Stopping Criteria.
-  * [Các Mô Hình Vòng Lặp ReAct & Planning](./03-loop-engineering/02_react_and_planning.md): Cơ chế Reason-Act-Observe.
-  * [Thực Thi Bền Vững & Stateful Workflows](./03-loop-engineering/05_durable_execution_and_stateful_workflows.md): Checkpointing và máy trạng thái Event-sourcing.
-  * [Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](./06_how_to_build_enterprise_ai_agents.md): Bản thiết kế tổng thể 6 phân hệ sản xuất.
+  * [Kiến Trúc Giao Thức Model Context Protocol (MCP)](../02-tools-and-mcp/01_mcp_architecture.md): Khảo sát chi tiết đặc tả Anthropic MCP, JSON-RPC 2.0 và Stdio/SSE Transports.
+  * [Giải Phẫu Kiến Trúc AI Harness](../01-harness-and-memory/01_harness_architecture.md): Phân tách Lõi tĩnh vs Khung có trạng thái.
+  * [Nền Tảng Loop Engineering](../03-loop-engineering/01_loop_fundamentals.md): Thiết kế Circuit Breakers và Stopping Criteria.
+  * [Các Mô Hình Vòng Lặp ReAct & Planning](../03-loop-engineering/02_react_and_planning.md): Cơ chế Reason-Act-Observe.
+  * [Thực Thi Bền Vững & Stateful Workflows](../03-loop-engineering/05_durable_execution_and_stateful_workflows.md): Checkpointing và máy trạng thái Event-sourcing.
+  * [Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](01_how_to_build_enterprise_ai_agents.md): Bản thiết kế tổng thể 6 phân hệ sản xuất.

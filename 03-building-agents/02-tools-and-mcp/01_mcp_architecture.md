@@ -39,7 +39,7 @@ updated: 2026-10-18
 ## 1. BỐI CẢNH LỊCH SỬ & BÀI TOÁN TÍCH HỢP $N \times M$
 
 ### 1.1. Cơn Khủng Hoảng Phân Mảnh Trước Tháng 11/2024
-Như đã khảo sát trong bài [Kiến trúc & Tiến hóa của các hệ thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md), bản chất cốt lõi của Large Language Model là **tĩnh (static)** và **bị cô lập (isolated)** trong không gian tham số đóng băng tại thời điểm hoàn tất pre-training. Để LLM có thể thực hiện công việc thực tế, chúng ta phải trang bị cho mô hình khả năng tương tác với thế giới thực thông qua các công cụ ngoài: truy vấn cơ sở dữ liệu SQL, đọc tệp tin cục bộ, gọi Git, tìm kiếm Web, hay gửi tin nhắn Slack.
+Như đã khảo sát trong bài [Kiến trúc & Tiến hóa của các hệ thống AI Chat](../01-harness-and-memory/00_ai_chat_systems_and_prompt_engineering.md), bản chất cốt lõi của Large Language Model là **tĩnh (static)** và **bị cô lập (isolated)** trong không gian tham số đóng băng tại thời điểm hoàn tất pre-training. Để LLM có thể thực hiện công việc thực tế, chúng ta phải trang bị cho mô hình khả năng tương tác với thế giới thực thông qua các công cụ ngoài: truy vấn cơ sở dữ liệu SQL, đọc tệp tin cục bộ, gọi Git, tìm kiếm Web, hay gửi tin nhắn Slack.
 
 Tuy nhiên, trong giai đoạn 2023 – giữa 2024, cộng đồng AI rơi vào tình trạng phân mảnh nghiêm trọng được gọi là **Bài toán bế tắc tích hợp $N \times M$ (The $N \times M$ Integration Bottleneck)**:
 
@@ -829,7 +829,7 @@ flowchart TD
 Tài liệu này là viên gạch nền móng đầu tiên của Tầng 2 trong Trụ cột 3. Hãy tiếp tục nghiên cứu các mối liên kết chặt chẽ trong Vault:
 
 * 🔙 **Nền tảng tiền đề:**
-  * [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md): Tìm hiểu về tầng Harness và tại sao LLM cần công cụ ngoài.
+  * [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../01-harness-and-memory/00_ai_chat_systems_and_prompt_engineering.md): Tìm hiểu về tầng Harness và tại sao LLM cần công cụ ngoài.
   * [Kỹ Thuật Prompt Nâng Cao](../../02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md): Cách tối ưu hóa prompt templates và chuỗi suy luận trong MCP Prompts.
   * [Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng](../../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md): Công nghệ truy xuất tài nguyên phía sau các MCP Resource Servers phức tạp.
 * 🔜 **Bài học thực hành kế tiếp trong Trụ cột 3:**

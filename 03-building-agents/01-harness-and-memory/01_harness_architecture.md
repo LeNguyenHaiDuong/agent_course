@@ -32,7 +32,7 @@ updated: 2026-09-27
 
 ## 1. TẠI SAO CẦN AI HARNESS? SỰ TÁCH BIỆT GIỮA LÕI & KHUNG
 
-Như đã định vị trong bài [Kiến trúc & Tiến hóa của các hệ thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md), **Large Language Model (LLM Core)** chỉ là một cỗ máy tính toán xác suất từ ngữ tĩnh (Static Token Completion Engine). Mô hình không thể tự lưu lịch sử, không thể tự mở kết nối mạng, không có ý thức về thời gian và không tự giác tuân thủ các quy tắc an toàn nếu không có sự điều hướng từ bên ngoài.
+Như đã định vị trong bài [Kiến trúc & Tiến hóa của các hệ thống AI Chat](00_ai_chat_systems_and_prompt_engineering.md), **Large Language Model (LLM Core)** chỉ là một cỗ máy tính toán xác suất từ ngữ tĩnh (Static Token Completion Engine). Mô hình không thể tự lưu lịch sử, không thể tự mở kết nối mạng, không có ý thức về thời gian và không tự giác tuân thủ các quy tắc an toàn nếu không có sự điều hướng từ bên ngoài.
 
 ```mermaid
 flowchart LR
@@ -342,7 +342,7 @@ if __name__ == "__main__":
 ## 7. BẢN ĐỒ LIÊN KẾT HỆ THỐNG
 
 * 🔙 **Nền tảng liên quan:**
-  * [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md): Khái niệm dẫn nhập về AI Harness.
+  * [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](00_ai_chat_systems_and_prompt_engineering.md): Khái niệm dẫn nhập về AI Harness.
   * [Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Cô Lập](./02_context_management.md): Các thuật toán Pruning, Summarization và Quarantine mà Harness phải thực thi.
 * 🔜 **Thành phần tích hợp tiếp theo:**
   * [Kiến Trúc Giao Thức MCP](../02-tools-and-mcp/01_mcp_architecture.md): Chuẩn hóa tầng Tool Execution của Harness thông qua giao thức mở.

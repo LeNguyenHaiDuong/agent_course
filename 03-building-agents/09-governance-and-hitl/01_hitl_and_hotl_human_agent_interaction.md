@@ -565,7 +565,7 @@ Trước khi quyết định lựa chọn HITL, HOTL hay HOOTL cho một tính n
 ---
 
 ## 🔗 LIÊN KẾT HỆ THỐNG
-* Tiếp nối từ: [06_how_to_build_enterprise_ai_agents.md](06_how_to_build_enterprise_ai_agents.md) - Cẩm nang xây dựng tác tử doanh nghiệp toàn tập
-* Hạ tầng Fullstack: [07_fullstack_agent_mern_architecture.md](07_fullstack_agent_mern_architecture.md) - Tích hợp UI Human-in-the-Loop Confirmation Modals & SSE Stream
-* Quản trị vòng lặp: [05_durable_execution_and_stateful_workflows.md](03-loop-engineering/05_durable_execution_and_stateful_workflows.md) - Cơ chế ngắt quãng và phục hồi trạng thái (Durable Execution)
+* Tiếp nối từ: [../10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md](../10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md) - Cẩm nang xây dựng tác tử doanh nghiệp toàn tập
+* Hạ tầng Fullstack: [../10-enterprise-and-production/02_fullstack_agent_mern_architecture.md](../10-enterprise-and-production/02_fullstack_agent_mern_architecture.md) - Tích hợp UI Human-in-the-Loop Confirmation Modals & SSE Stream
+* Quản trị vòng lặp: [05_durable_execution_and_stateful_workflows.md](../03-loop-engineering/05_durable_execution_and_stateful_workflows.md) - Cơ chế ngắt quãng và phục hồi trạng thái (Durable Execution)
 * Trở về mục lục chính: [README.md](../README.md)

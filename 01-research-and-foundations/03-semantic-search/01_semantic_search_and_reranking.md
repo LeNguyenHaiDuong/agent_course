@@ -719,7 +719,7 @@ Tại sao chúng ta phải dành nhiều công sức nghiên cứu tầng sâu c
 
 #### Chất lượng truy xuất là "Trần hiệu năng" (Performance Ceiling) của Chatbot
 
-Trong bất kỳ kiến trúc [RAG (Retrieval-Augmented Generation)](../../03-building-agents/00_ai_chat_systems_and_prompt_engineering.md) hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
+Trong bất kỳ kiến trúc [RAG (Retrieval-Augmented Generation)](../../03-building-agents/01-harness-and-memory/00_ai_chat_systems_and_prompt_engineering.md) hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
 
 $$
 \text{Output Quality} \le \text{Quality of Retrieved Context}
@@ -1152,5 +1152,5 @@ Dưới đây là danh mục các bài báo khoa học nền tảng định hìn
 * [Bản chất Mô hình Ngôn ngữ Lớn (LLM Internals)](../02-llm-internals/what_are_large_language_models.md): Phân tích cơ chế Self-Attention của Transformer, sự khác biệt giữa Encoder (BERT) và Decoder (GPT).
 * [Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc](../01-neural-networks/neural_networks_and_classifications.md): Nền tảng toán học của Backpropagation, hàm kích hoạt và không gian tiềm ẩn.
 * [Kỹ Thuật Prompt Engineering Nâng Cao](../../02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md): Cách tối ưu hóa context sau khi đã trích xuất thành công tài liệu từ Semantic Search.
-* [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../../03-building-agents/00_ai_chat_systems_and_prompt_engineering.md): Tích hợp Semantic Memory và Vector DB vào AI Harness.
+* [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../../03-building-agents/01-harness-and-memory/00_ai_chat_systems_and_prompt_engineering.md): Tích hợp Semantic Memory và Vector DB vào AI Harness.
 * Về trang chủ khóa học: [🏠 Vault Home MOC](../../README.md)

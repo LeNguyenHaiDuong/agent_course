@@ -47,7 +47,7 @@ Thư mục này dành riêng để lưu trữ ghi chú, tài liệu kiến trúc
   * **Tăng tốc Jump-Forward Decoding:** Cơ chế "nhảy cóc" của SGLang tự động chèn token tĩnh, tăng tốc sinh JSON gấp $2\times - 5\times$.
   * **Thực hành Code:** Xây dựng Banking Tool Dispatcher với Outlines và Pydantic schema loại trừ $100\%$ lỗi kiểu.
 
-* 📖 [**07_fullstack_agent_mern_architecture.md - Kiến Trúc Ứng Dụng Tác Tử Toàn Diện Với MERN Stack**](../07_fullstack_agent_mern_architecture.md):
+* 📖 [**07_fullstack_agent_mern_architecture.md - Kiến Trúc Ứng Dụng Tác Tử Toàn Diện Với MERN Stack**](../10-enterprise-and-production/02_fullstack_agent_mern_architecture.md):
   * **TypeScript MCP Client:** Hướng dẫn kết nối `@modelcontextprotocol/sdk` trong backend Node.js / Express để gọi MCP Servers qua `stdio` và `SSE`.
   * **Fullstack Integration:** Tích hợp MCP Tools với MongoDB Atlas Vector Search và giao diện React Streaming ReAct UI có xác nhận Human-in-the-Loop.
 

@@ -63,7 +63,7 @@ updated: 2026-09-27
 
 ## 1. NGHỊCH LÝ MẤT TRÍ NHỚ & CƠ SỞ KHOA HỌC NHẬN THỨC (COGNITIVE PSYCHOLOGY FOUNDATIONS)
 
-Như đã giải thích trong [Kiến trúc & Tiến hóa của các hệ thống AI Chat](../00_ai_chat_systems_and_prompt_engineering.md), một mô hình ngôn ngữ lớn (LLM) thuần túy là một hàm ánh xạ tĩnh không trạng thái (**Stateless Function**):
+Như đã giải thích trong [Kiến trúc & Tiến hóa của các hệ thống AI Chat](00_ai_chat_systems_and_prompt_engineering.md), một mô hình ngôn ngữ lớn (LLM) thuần túy là một hàm ánh xạ tĩnh không trạng thái (**Stateless Function**):
 
 $$f_{\theta}: \text{Tokens}_{\text{in}} \to \text{Tokens}_{\text{out}}$$
 

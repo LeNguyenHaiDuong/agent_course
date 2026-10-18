@@ -1075,4 +1075,4 @@ flowchart TD
 * **Cơ sở dữ liệu Vector & Thuật toán Indexing HNSW:** [Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector (FAISS, Chroma, Milvus, Pinecone)](./03_embeddings_and_vector_databases.md)
 * **Quản trị rủi ro ngữ cảnh:** [Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh](../../03-building-agents/01-harness-and-memory/02_context_management.md)
 * **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../../03-building-agents/01-harness-and-memory/03_memory_systems.md)
-* **Thiết kế tổng thể hệ thống doanh nghiệp:** [Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp](../../03-building-agents/06_how_to_build_enterprise_ai_agents.md)
+* **Thiết kế tổng thể hệ thống doanh nghiệp:** [Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp](../../03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md)

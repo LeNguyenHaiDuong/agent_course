@@ -478,10 +478,10 @@ def verify_token(token):
 ## 8. BẢN ĐỒ LIÊN KẾT HỆ THỐNG (SYSTEM INTEGRATION LINKS)
 
 * 🔙 **Nền tảng cú pháp & Tự sửa lỗi:**
-  * [Tác Tử Lập Trình Tự Sửa Lỗi Qua AST (Tree-sitter)](./03-loop-engineering/04_ast_self_healing_code_agents.md): Nền tảng AST Syntax Gate và kiểm thử khép kín.
-  * [Quản Trị Cửa Sổ Ngữ Cảnh & Pruning](./01-harness-and-memory/02_context_management.md): Kỹ thuật cách ly và tỉa nhánh ngữ cảnh dự án dài.
+  * [Tác Tử Lập Trình Tự Sửa Lỗi Qua AST (Tree-sitter)](../03-loop-engineering/04_ast_self_healing_code_agents.md): Nền tảng AST Syntax Gate và kiểm thử khép kín.
+  * [Quản Trị Cửa Sổ Ngữ Cảnh & Pruning](../01-harness-and-memory/02_context_management.md): Kỹ thuật cách ly và tỉa nhánh ngữ cảnh dự án dài.
 * 🔄 **Lưu trữ trạng thái & Ký ức:**
-  * [Kiến Trúc Bộ Nhớ Đa Tầng (Working, Episodic & Temporal Graph)](./01-harness-and-memory/03_memory_systems.md): Tích hợp đồ thị tri thức thời gian vào bộ nhớ tác tử.
-  * [Máy Trạng Thái Bền Vững & Checkpointing](./03-loop-engineering/05_durable_execution_and_stateful_workflows.md): Cơ chế Event-Sourcing lưu vết trạng thái để phục hồi sau sập nguồn.
+  * [Kiến Trúc Bộ Nhớ Đa Tầng (Working, Episodic & Temporal Graph)](../01-harness-and-memory/03_memory_systems.md): Tích hợp đồ thị tri thức thời gian vào bộ nhớ tác tử.
+  * [Máy Trạng Thái Bền Vững & Checkpointing](../03-loop-engineering/05_durable_execution_and_stateful_workflows.md): Cơ chế Event-Sourcing lưu vết trạng thái để phục hồi sau sập nguồn.
 * 🏛️ **Bản thiết kế kiến trúc toàn cảnh:**
-  * [Bản Đồ Kiến Trúc Toàn Cảnh AI Agent](../MASTER_ARCHITECTURE_AND_COMPONENTS.md): Mắt xích kết nối giữa Code Graph và 7 tầng kiến trúc tác tử.
+  * [Bản Đồ Kiến Trúc Toàn Cảnh AI Agent](../../MASTER_ARCHITECTURE_AND_COMPONENTS.md): Mắt xích kết nối giữa Code Graph và 7 tầng kiến trúc tác tử.

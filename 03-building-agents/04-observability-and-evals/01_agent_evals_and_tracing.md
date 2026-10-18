@@ -606,7 +606,7 @@ flowchart LR
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG TRONG VAULT
 
-* [Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](../06_how_to_build_enterprise_ai_agents.md): Bản thiết kế kiến trúc khối 6 tầng và thích ứng từng phòng ban.
+* [Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](../10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md): Bản thiết kế kiến trúc khối 6 tầng và thích ứng từng phòng ban.
 * [Nền Tảng Loop Engineering & Circuit Breakers](../03-loop-engineering/01_loop_fundamentals.md): Vòng lặp phản hồi, điều kiện dừng và các bộ ngắt mạch.
 * [Các Mô Hình Vòng Lặp ReAct & Planning](../03-loop-engineering/02_react_and_planning.md): Phân tích sâu ReAct, Plan-and-Execute, Evaluator-Optimizer.
 * [Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../01-harness-and-memory/03_memory_systems.md): Quản trị bộ nhớ ngắn hạn và dài hạn.

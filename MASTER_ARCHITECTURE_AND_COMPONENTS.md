@@ -103,16 +103,20 @@ mindmap
       Tác Tử Đa Phương Thức & Màn Hình
         Multimodal GUI Agents & Pixel Grounding
         Normalized Coordinates, OmniParser & Computer-Use
-      Kiến Trúc Triển Khai Doanh Nghiệp & Code Intelligence
+      Trí Tuệ Mã Nguồn & Tối Ưu Hóa Chi Phí
+        Code Graphs, SCIP Indexing & Cross-Session Memory
+        Token Economics, Model Cascading & Prompt Caching
+      Đồng Thuận Bầy Đàn & Quản Trị Rủi Ro
+        Multi-Agent Debate & Borda Count Consensus
+        Human-in-the-Loop & Human-on-the-Loop Governance
+      Kiến Trúc Triển Khai Doanh Nghiệp
         Cẩm Nang Xây Dựng Enterprise AI Agent Toàn Tập
         Full-stack MERN Agent: Realtime Generative UI & SSE Stream
-        Code Graphs, SCIP Indexing & Cross-Session Memory
-        Human-in-the-Loop & Human-on-the-Loop Governance
 ```
 
 ---
 
-## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 32 BÀI GIẢNG THEO 3 TRỤ CỘT
+## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 34 BÀI GIẢNG THEO 3 TRỤ CỘT
 
 ### 🔬 TRỤ CỘT 1: NỀN TẢNG NGHIÊN CỨU & KHAI PHÁ DỮ LIỆU (RESEARCH & FOUNDATIONS)
 
@@ -144,12 +148,12 @@ mindmap
 
 ---
 
-### 🛠️ TRỤ CỘT 3: XÂY DỰNG TÁC TỬ TỰ HÀNH (BUILDING AGENTS)
+### 🛠️ TRỤ CỘT 3: XÂY DỰNG TÁC TỬ TỰ HÀNH (BUILDING AGENTS - 10 MODULES)
 
 | Phân Hệ | Bài Học Cụ Thể | Trọng Tâm Kiến Thức Cốt Lõi |
 | :--- | :--- | :--- |
-| **00. Chat Evolution** | [00_ai_chat_systems_and_prompt_engineering.md](03-building-agents/00_ai_chat_systems_and_prompt_engineering.md) | Sự tiến hóa từ Stateless Chatbot đến Stateful Autonomous Agents |
-| **01. Harness & Memory** | [01_harness_architecture.md](03-building-agents/01-harness-and-memory/01_harness_architecture.md) | Bộ khung AI Harness: Session Orchestration, Context Quarantine, Guardrails |
+| **01. Harness & Memory** | [00_ai_chat_systems_and_prompt_engineering.md](03-building-agents/01-harness-and-memory/00_ai_chat_systems_and_prompt_engineering.md) | Sự tiến hóa từ Stateless Chatbot đến Stateful Autonomous Agents |
+| | [01_harness_architecture.md](03-building-agents/01-harness-and-memory/01_harness_architecture.md) | Bộ khung AI Harness: Session Orchestration, Context Quarantine, Guardrails |
 | | [02_context_management.md](03-building-agents/01-harness-and-memory/02_context_management.md) | Bệnh lý Context Drift, kỹ thuật Context Pruning, Rolling Summarization |
 | | [03_memory_systems.md](03-building-agents/01-harness-and-memory/03_memory_systems.md) | Kiến trúc bộ nhớ 3 tầng (MemGPT/Letta): Working Context, Episodic & Archival DB |
 | | [04_agent_runtime_parameters_and_prompt_caching.md](03-building-agents/01-harness-and-memory/04_agent_runtime_parameters_and_prompt_caching.md) | Temperature/Top-P/Presence, tối ưu GPU Prefix Caching (RadixTree / vLLM) |
@@ -162,10 +166,12 @@ mindmap
 | | [05_durable_execution_and_stateful_workflows.md](03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md) | Workflow Engine bền vững: Event Sourcing Checkpoint, Replay Determinism, Time-Travel |
 | **04. Observability & Evals** | [01_agent_evals_and_tracing.md](03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md) | Giám sát phân tán OpenTelemetry, Langfuse Tracing, SWE-bench & G-Eval |
 | **05. Multimodal GUI** | [01_multimodal_gui_and_computer_use.md](03-building-agents/05-multimodal-gui-agents/01_multimodal_gui_and_computer_use.md) | Tác tử điều khiển màn hình OS, Pixel Grounding, OmniParser, chống Screen Drift |
-| **06. Enterprise Blueprints** | [06_how_to_build_enterprise_ai_agents.md](03-building-agents/06_how_to_build_enterprise_ai_agents.md) | 5 thất bại kinh điển & kiến trúc phòng vệ toàn diện cho tác tử doanh nghiệp |
-| **07. Full-Stack Agent** | [07_fullstack_agent_mern_architecture.md](03-building-agents/07_fullstack_agent_mern_architecture.md) | Kiến trúc ứng dụng hoàn chỉnh: Node.js Agent Runtime + Express SSE + React Gen-UI + MongoDB Atlas |
-| **08. Code Intelligence** | [08_code_graphs_and_repository_intelligence.md](03-building-agents/08_code_graphs_and_repository_intelligence.md) | Code Property Graph (AST+CFG+DFG), SCIP Symbol Indexing, Graph-RAG cho Codebase, K-Hop Blast Radius & Quản trị ngữ cảnh liên phiên (Memory Bank) |
-| **09. HITL & HOTL** | [09_hitl_and_hotl_human_agent_interaction.md](03-building-agents/09_hitl_and_hotl_human_agent_interaction.md) | Quản trị tương tác Người - Máy: Phổ tự trị HITL/HOTL/HOOTL, Ma trận rủi ro Task-Risk Index, Durable Checkpoint & Emergency Kill Switch |
+| **06. Code Intelligence** | [01_code_graphs_and_repository_intelligence.md](03-building-agents/06-code-intelligence/01_code_graphs_and_repository_intelligence.md) | Code Property Graph (AST+CFG+DFG), SCIP Symbol Indexing, Graph-RAG cho Codebase & Memory Bank |
+| **07. Token Economics** | [01_token_economics_and_cost_optimization.md](03-building-agents/07-cost-and-token-economics/01_token_economics_and_cost_optimization.md) | Tối ưu hóa chi phí: FrugalGPT Model Router, At-the-Boundary Pruning, Prompt Caching & Budget Breakers |
+| **08. Multi-Agent Consensus** | [01_multi_agent_debate_and_consensus.md](03-building-agents/08-multi-agent-consensus/01_multi_agent_debate_and_consensus.md) | Tranh biện đa tác tử: Định lý Condorcet, Borda Count Voting, phá vỡ thiên kiến xác nhận đơn lẻ |
+| **09. Governance & HITL** | [01_hitl_and_hotl_human_agent_interaction.md](03-building-agents/09-governance-and-hitl/01_hitl_and_hotl_human_agent_interaction.md) | Quản trị tương tác Người - Máy: Phổ tự trị HITL/HOTL/HOOTL, Ma trận Task-Risk Index & Kill Switch |
+| **10. Enterprise Delivery** | [01_how_to_build_enterprise_ai_agents.md](03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md) | 5 thất bại kinh điển & kiến trúc phòng vệ toàn diện cho tác tử doanh nghiệp (6 phòng ban) |
+| | [02_fullstack_agent_mern_architecture.md](03-building-agents/10-enterprise-and-production/02_fullstack_agent_mern_architecture.md) | Kiến trúc ứng dụng hoàn chỉnh: Node.js Agent Runtime + Express SSE + React Gen-UI + MongoDB Atlas |
 
 ---
 
@@ -491,8 +497,10 @@ LLM chỉ có thể sinh văn bản; nó không thể tự bấm chuột, chạy
 > * [03_multi_agent_teams.md](./03-building-agents/03-loop-engineering/03_multi_agent_teams.md)
 > * [04_ast_self_healing_code_agents.md](./03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md)
 > * [05_durable_execution_and_stateful_workflows.md](./03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md)
-> * [08_code_graphs_and_repository_intelligence.md](./03-building-agents/08_code_graphs_and_repository_intelligence.md)
-> * [09_hitl_and_hotl_human_agent_interaction.md](./03-building-agents/09_hitl_and_hotl_human_agent_interaction.md)
+> * [01_code_graphs_and_repository_intelligence.md](./03-building-agents/06-code-intelligence/01_code_graphs_and_repository_intelligence.md)
+> * [01_token_economics_and_cost_optimization.md](./03-building-agents/07-cost-and-token-economics/01_token_economics_and_cost_optimization.md)
+> * [01_multi_agent_debate_and_consensus.md](./03-building-agents/08-multi-agent-consensus/01_multi_agent_debate_and_consensus.md)
+> * [01_hitl_and_hotl_human_agent_interaction.md](./03-building-agents/09-governance-and-hitl/01_hitl_and_hotl_human_agent_interaction.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
 Một câu prompt đơn lẻ (One-shot) không thể giải quyết bài toán phức tạp đòi hỏi 20 bước suy luận và thử sai. Nhưng nếu thả cho Agent tự chạy vòng lặp tự do, nó dễ rơi vào bẫy lặp vô tận, bão công cụ (Tool Storm), và mất sạch trạng thái khi gặp sự cố crash.
@@ -518,8 +526,8 @@ Một câu prompt đơn lẻ (One-shot) không thể giải quyết bài toán p
 
 > **Tài liệu liên quan trong Vault:**
 > * [01_agent_evals_and_tracing.md](./03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md)
-> * [06_how_to_build_enterprise_ai_agents.md](./03-building-agents/06_how_to_build_enterprise_ai_agents.md)
-> * [07_fullstack_agent_mern_architecture.md](./03-building-agents/07_fullstack_agent_mern_architecture.md)
+> * [06_how_to_build_enterprise_ai_agents.md](./03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md)
+> * [07_fullstack_agent_mern_architecture.md](./03-building-agents/10-enterprise-and-production/02_fullstack_agent_mern_architecture.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
 Một hệ sinh thái backend mạnh mẽ vô nghĩa nếu không có cách chuyển tải đến người dùng cuối một cách an toàn, minh bạch và có thể giám sát kiểm thử tự động trên môi trường sản xuất (Production).
@@ -632,4 +640,4 @@ Toàn bộ hành trình 8 bước được đóng gói thành một Trace Tree g
 3. **Điều khiển ngữ cảnh:** Đọc [DSPy](./02-prompt-and-context/01-prompt-engineering/02_dspy_and_programmatic_prompting.md) & [Prefix Caching](./03-building-agents/01-harness-and-memory/04_agent_runtime_parameters_and_prompt_caching.md).
 4. **Kết nối công cụ:** Đọc [MCP Architecture](./03-building-agents/02-tools-and-mcp/01_mcp_architecture.md) & [Constrained Decoding](./03-building-agents/02-tools-and-mcp/02_constrained_decoding_and_structured_outputs.md).
 5. **Vận hành tự trị:** Đọc [ReAct Loops](./03-building-agents/03-loop-engineering/02_react_and_planning.md), [AST Self-Healing](./03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md) & [Durable Workflows](./03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md).
-6. **Đóng gói sản phẩm:** Đọc [MERN Full-stack Agent](./03-building-agents/07_fullstack_agent_mern_architecture.md) & [Enterprise Blueprint](./03-building-agents/06_how_to_build_enterprise_ai_agents.md).
+6. **Đóng gói sản phẩm:** Đọc [MERN Full-stack Agent](./03-building-agents/10-enterprise-and-production/02_fullstack_agent_mern_architecture.md) & [Enterprise Blueprint](./03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md).

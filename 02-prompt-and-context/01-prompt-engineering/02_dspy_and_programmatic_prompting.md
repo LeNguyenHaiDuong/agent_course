@@ -510,6 +510,6 @@ Dưới đây là danh mục các bài báo học thuật nền tảng tạo nê
 * [Giải Phẫu Kiến Trúc AI Harness](../../03-building-agents/01-harness-and-memory/01_harness_architecture.md): Tích hợp các DSPy Modules vào bộ khung phần mềm điều khiển.
 * [Kiến Trúc Giao Thức Model Context Protocol (MCP)](../../03-building-agents/02-tools-and-mcp/01_mcp_architecture.md): Đóng gói công cụ ngoài cho DSPy ReAct Module.
 * [Hệ Thống Giám Sát, Đo Lường & Đánh Giá Tác Tử AI](../../03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md): Xây dựng các hàm Metrics và tích hợp Tracing Langfuse cho chương trình DSPy.
-* [Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](../../03-building-agents/06_how_to_build_enterprise_ai_agents.md): Kiến trúc tổng thể đưa DSPy Agent lên môi trường sản xuất.
+* [Cẩm Nang Toàn Tập Xây Dựng AI Agent Doanh Nghiệp](../../03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md): Kiến trúc tổng thể đưa DSPy Agent lên môi trường sản xuất.
 * Trở về mục lục Trụ cột 2: [✍️ Trụ Cột 2: Prompt & Context Engineering](../README.md)
 * Trở về trang chủ Vault: [🏠 Vault Home MOC](../../README.md)
