@@ -107,11 +107,12 @@ mindmap
         Cẩm Nang Xây Dựng Enterprise AI Agent Toàn Tập
         Full-stack MERN Agent: Realtime Generative UI & SSE Stream
         Code Graphs, SCIP Indexing & Cross-Session Memory
+        Human-in-the-Loop & Human-on-the-Loop Governance
 ```
 
 ---
 
-## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 31 BÀI GIẢNG THEO 3 TRỤ CỘT
+## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 32 BÀI GIẢNG THEO 3 TRỤ CỘT
 
 ### 🔬 TRỤ CỘT 1: NỀN TẢNG NGHIÊN CỨU & KHAI PHÁ DỮ LIỆU (RESEARCH & FOUNDATIONS)
 
@@ -164,6 +165,7 @@ mindmap
 | **06. Enterprise Blueprints** | [06_how_to_build_enterprise_ai_agents.md](03-building-agents/06_how_to_build_enterprise_ai_agents.md) | 5 thất bại kinh điển & kiến trúc phòng vệ toàn diện cho tác tử doanh nghiệp |
 | **07. Full-Stack Agent** | [07_fullstack_agent_mern_architecture.md](03-building-agents/07_fullstack_agent_mern_architecture.md) | Kiến trúc ứng dụng hoàn chỉnh: Node.js Agent Runtime + Express SSE + React Gen-UI + MongoDB Atlas |
 | **08. Code Intelligence** | [08_code_graphs_and_repository_intelligence.md](03-building-agents/08_code_graphs_and_repository_intelligence.md) | Code Property Graph (AST+CFG+DFG), SCIP Symbol Indexing, Graph-RAG cho Codebase, K-Hop Blast Radius & Quản trị ngữ cảnh liên phiên (Memory Bank) |
+| **09. HITL & HOTL** | [09_hitl_and_hotl_human_agent_interaction.md](03-building-agents/09_hitl_and_hotl_human_agent_interaction.md) | Quản trị tương tác Người - Máy: Phổ tự trị HITL/HOTL/HOOTL, Ma trận rủi ro Task-Risk Index, Durable Checkpoint & Emergency Kill Switch |
 
 ---
 
@@ -490,6 +492,7 @@ LLM chỉ có thể sinh văn bản; nó không thể tự bấm chuột, chạy
 > * [04_ast_self_healing_code_agents.md](./03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md)
 > * [05_durable_execution_and_stateful_workflows.md](./03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md)
 > * [08_code_graphs_and_repository_intelligence.md](./03-building-agents/08_code_graphs_and_repository_intelligence.md)
+> * [09_hitl_and_hotl_human_agent_interaction.md](./03-building-agents/09_hitl_and_hotl_human_agent_interaction.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
 Một câu prompt đơn lẻ (One-shot) không thể giải quyết bài toán phức tạp đòi hỏi 20 bước suy luận và thử sai. Nhưng nếu thả cho Agent tự chạy vòng lặp tự do, nó dễ rơi vào bẫy lặp vô tận, bão công cụ (Tool Storm), và mất sạch trạng thái khi gặp sự cố crash.

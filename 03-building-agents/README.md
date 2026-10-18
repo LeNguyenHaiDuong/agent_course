@@ -55,7 +55,8 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
 │
 ├── 06_how_to_build_enterprise_ai_agents.md      # 🏗️ Bài 06 (Tổng kết): CẨM NANG TOÀN TẬP kiến trúc khối, 6 phòng ban & Production
 ├── 07_fullstack_agent_mern_architecture.md      # 🌐 Bài 07 (Thực chiến Full-stack): Kiến trúc MERN Stack, Atlas Vector Search & React Generative UI
-└── 08_code_graphs_and_repository_intelligence.md # 🕸️ Bài 08 (Code Intelligence): Code Property Graph, SCIP Indexing, Graph-RAG & Quản trị ngữ cảnh liên phiên
+├── 08_code_graphs_and_repository_intelligence.md # 🕸️ Bài 08 (Code Intelligence): Code Property Graph, SCIP Indexing, Graph-RAG & Quản trị ngữ cảnh liên phiên
+└── 09_hitl_and_hotl_human_agent_interaction.md  # 🛡️ Bài 09 (Quản trị An toàn): Human-in-the-Loop (HITL), Human-on-the-Loop (HOTL) & Durable State Machine
 ```
 
 ---
@@ -154,6 +155,16 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
   * **Graph-RAG cho Codebase:** Thuật toán lan truyền lân cận $k$-bước (K-Hop Neighborhood Expansion) và phân tích vùng ảnh hưởng (Blast Radius / Impact Analysis) ngăn chặn gãy đổ dây chuyền khi refactor.
   * **Bộ 5 chiến lược ngữ cảnh dự án liên phiên (Cross-Session Memory):** Mô hình Memory Bank (`CLAUDE.md`, `AGENTS.md`, `activeContext.md`), On-disk Incremental Delta Index Caching, Session Compaction, Architectural Decision Records (ADRs) và Bi-temporal Knowledge Graphs.
   * **Mã nguồn thực chiến:** Mini Code Graph bằng Python (`networkx` + `ast`) kết hợp bộ quản trị session memory bền vững trên đĩa.
+
+---
+
+### 🛡️ Bài 09: Human-in-the-Loop (HITL) & Human-on-the-Loop (HOTL) (Quản Trị Rủi Ro & Tương Tác Người - Máy)
+* 📖 [**09_hitl_and_hotl_human_agent_interaction.md - HITL, HOTL & Quản Trị Rủi Ro Cấp Doanh Nghiệp**](09_hitl_and_hotl_human_agent_interaction.md):
+  * **Phổ tự trị (The Autonomy Spectrum):** Định nghĩa kỹ thuật 3 cấp độ: HITL (Chốt chặn đồng bộ), HOTL (Giám sát bất đồng bộ) và HOOTL (Tự trị tuyệt đối).
+  * **Ma trận rủi ro vs tự tin (Risk vs. Confidence Matrix):** Công thức định lượng Task Risk Index và Agent Confidence Score; quy tắc leo thang tự động (Dynamic Escalation Protocol).
+  * **4 Architecture Patterns:** Interrupt-Resume với Durable State Machine (Hydration/Dehydration giải phóng tài nguyên server), Parameter Overriding (sửa tham số trực tiếp trước khi chạy), Progressive Autonomy (tự trị tăng dần theo niềm tin), Steerability & Mid-flight Course Correction.
+  * **Tối ưu trải nghiệm người dùng & phòng chống Approval Fatigue:** Context Distillation (Impact Cards, Diff View), Batch Approval với giao dịch nguyên tử, và kiểm soát kép (Two-Person Rule).
+  * **Mã nguồn thực chiến:** Hệ thống Python hoàn chỉnh gồm `RiskEvaluator`, `DurableAgentHarness`, cổng duyệt HITL bất đồng bộ, và chốt dừng khẩn cấp `EmergencyKillSwitch` cho HOTL.
 
 ---
 
