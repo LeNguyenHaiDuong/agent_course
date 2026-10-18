@@ -14,7 +14,7 @@ tags:
   - planning
 type: note
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-10-18
 ---
 
 # 🔄 CÁC MÔ HÌNH VÒNG LẶP CỐT LÕI
@@ -67,24 +67,21 @@ sequenceDiagram
 
     User->>Agent: Mục tiêu: "Kiểm tra phiên bản Python và cài đặt thư viện 'mcp'"
     
-    rect rgb(238, 242, 255)
-    Note over Agent: VÒNG LẶP 1
-    Agent->>Agent: THOUGHT 1: Tôi cần kiểm tra phiên bản Python hiện tại trong terminal.
-    Agent->>Tools: ACTION 1: run_command("python3 --version")
-    Tools-->>Agent: OBSERVATION 1: "Python 3.11.8"
+    loop VÒNG LẶP 1: Kiểm tra phiên bản Python
+        Agent->>Agent: THOUGHT 1: Tôi cần kiểm tra phiên bản Python hiện tại trong terminal.
+        Agent->>Tools: ACTION 1: run_command("python3 --version")
+        Tools-->>Agent: OBSERVATION 1: "Python 3.11.8"
     end
 
-    rect rgb(240, 253, 244)
-    Note over Agent: VÒNG LẶP 2
-    Agent->>Agent: THOUGHT 2: Phiên bản Python 3.11 hoàn toàn tương thích. Giờ tôi chạy lệnh cài pip.
-    Agent->>Tools: ACTION 2: run_command("pip install mcp")
-    Tools-->>Agent: OBSERVATION 2: "Successfully installed mcp-1.0.0"
+    loop VÒNG LẶP 2: Cài đặt thư viện 'mcp'
+        Agent->>Agent: THOUGHT 2: Phiên bản Python 3.11 hoàn toàn tương thích. Giờ tôi chạy lệnh cài pip.
+        Agent->>Tools: ACTION 2: run_command("pip install mcp")
+        Tools-->>Agent: OBSERVATION 2: "Successfully installed mcp-1.0.0"
     end
 
-    rect rgb(254, 242, 242)
-    Note over Agent: VÒNG LẶP 3 (KẾT THÚC)
-    Agent->>Agent: THOUGHT 3: Cả hai bước đều thành công, tôi đã sẵn sàng báo cáo.
-    Agent-->>User: FINAL ANSWER: "Đã cài đặt thành công thư viện 'mcp' trên môi trường Python 3.11.8."
+    loop VÒNG LẶP 3 (KẾT THÚC): Báo cáo kết quả
+        Agent->>Agent: THOUGHT 3: Cả hai bước đều thành công, tôi đã sẵn sàng báo cáo.
+        Agent-->>User: FINAL ANSWER: "Đã cài đặt thành công thư viện 'mcp' trên môi trường Python 3.11.8."
     end
 ```
 
@@ -129,7 +126,7 @@ flowchart TD
     Replanner --> PlanChecklist
 
     style Planner fill:#e0e7ff,stroke:#4338ca,stroke-width:2px,color:#000000
-    style ExecutionEngine fill:#f8fafc,stroke:#3b82f6,stroke-width:2px,color:#000000
+    style ExecutionEngine fill:none,stroke:#3b82f6,stroke-width:2px,stroke-dasharray: 5 5
     style Replanner fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#000000
 ```
 

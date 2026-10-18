@@ -19,7 +19,7 @@ aliases:
   - Persistent Chroma RAG
 type: guide
 created: 2026-10-05
-updated: 2026-10-05
+updated: 2026-10-18
 ---
 
 # TỐI ƯU HÓA & MÔ ĐUN HÓA RAG VỚI LANGCHAIN (MODULAR RAG PIPELINE)
@@ -237,11 +237,9 @@ sequenceDiagram
     C_Retriever->>Base_Retriever: Tìm kiếm vector Top-5
     Base_Retriever-->>C_Retriever: Trả về 5 tài liệu dài (Tổng cộng 2000 từ)
     
-    rect rgb(254, 240, 138)
     Note over C_Retriever,Compressor: BƯỚC NÉN NGỮ CẢNH ĐỘC QUYỀN
     C_Retriever->>Compressor: Gửi 5 tài liệu kèm câu hỏi người dùng
     Compressor-->>C_Retriever: Cắt bỏ 85% đoạn văn rác, chỉ giữ lại 3 câu then chốt!
-    end
 
     C_Retriever-->>Chain: Trả về ngữ cảnh siêu sạch (Tổng cộng 150 từ)
     Chain->>LLM: Prompt gọn gàng + Ngữ cảnh tập trung cao độ

@@ -12,7 +12,7 @@ tags:
   - tools
 type: note
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-10-18
 ---
 
 # 🔌 KIẾN TRÚC GIAO THỨC MODEL CONTEXT PROTOCOL (MCP)
@@ -457,14 +457,11 @@ sequenceDiagram
     participant C as MCP Client
     participant S as MCP Server
 
-    rect rgb(238, 242, 255)
     Note over C,S: GIAI ĐOẠN 1: KHỞI TẠO VÀ THƯƠNG THẢO NĂNG LỰC
     C->>S: Request: initialize (protocolVersion, capabilities, clientInfo)
     S-->>C: Response: (protocolVersion, capabilities, serverInfo)
     C->>S: Notification: notifications/initialized
-    end
 
-    rect rgb(240, 253, 244)
     Note over C,S: GIAI ĐOẠN 2: THỰC THI & PHÁT HIỆN ĐỘNG (OPERATION)
     C->>S: Request: tools/list
     S-->>C: Response: Danh sách Tools & Schemas
@@ -476,13 +473,10 @@ sequenceDiagram
     S-->>C: Notification: notifications/tools/list_changed
     C->>S: Request: tools/list (Cập nhật lại danh sách)
     S-->>C: Response: Danh sách công cụ mới
-    end
 
-    rect rgb(254, 242, 242)
     Note over C,S: GIAI ĐOẠN 3: ĐÓNG PHIÊN LÀM VIỆC
     C->>S: Đóng luồng stdin (stdio) hoặc hủy kết nối SSE
     S->>S: Giải phóng tài nguyên, đóng DB connection, Exit 0
-    end
 ```
 
 ### 5.1. Cơ Chế Bắt Tay Ban Đầu (The Handshake)

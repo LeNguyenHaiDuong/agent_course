@@ -18,7 +18,7 @@ tags:
   - temporal
 type: guide
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-10-18
 ---
 
 # DURABLE AGENT EXECUTION & STATEFUL WORKFLOWS
@@ -189,10 +189,9 @@ sequenceDiagram
     Node-->>Engine: Trả về State Delta: Delta S
     Engine->>Engine: Tính toán State mới: S_{t+1} = R(S_t, Delta S)
     
-    rect rgb(238, 242, 255)
-    Note over Engine,DB: GIAI ĐOẠN LƯU VẾT BỀN VỮNG (ATOMIC COMMIT)
-    Engine->>DB: Ghi bản ghi Checkpoint: {thread_id, step: t+1, state: S_{t+1}, checkpoint_id}
-    DB-->>Engine: Xác nhận ghi thành công (Commit OK)
+    critical GIAI ĐOẠN LƯU VẾT BỀN VỮNG (ATOMIC COMMIT)
+        Engine->>DB: Ghi bản ghi Checkpoint: {thread_id, step: t+1, state: S_{t+1}, checkpoint_id}
+        DB-->>Engine: Xác nhận ghi thành công (Commit OK)
     end
 
     Note over Engine: NẾU SẬP NGUỒN TẠI ĐÂY...

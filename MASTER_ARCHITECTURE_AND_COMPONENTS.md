@@ -1,28 +1,45 @@
 ---
-title: "Bản Đồ Kiến Trúc Toàn Cảnh: Mối Liên Hệ Giữa Toàn Bộ Các Thành Phần Trong AI Agent"
+title: "Bản Đồ Kiến Trúc & Sơ Đồ Tư Duy Toàn Cảnh: Mối Liên Hệ Giữa Toàn Bộ Các Thành Phần Trong AI Agent"
 aliases:
   - Master Architecture and Components Map
   - Kien Truc Toan Canh AI Agent
   - Master Blueprint
+  - Master Course Mindmap
+  - So Do Tu Duy Toan Bo Khoa Hoc
+  - Mindmap Khoa Hoc
 tags:
   - agent-course
   - architecture
   - master-blueprint
   - overview
+  - mindmap
+  - moc
 type: architecture
 created: 2026-10-11
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
-# 🏛️ BẢN ĐỒ KIẾN TRÚC TOÀN CẢNH: MỐI LIÊN HỆ GIỮA TOÀN BỘ CÁC THÀNH PHẦN TRONG AI AGENT
-## Cẩm Nang Hệ Thống Hóa Toàn Diện: Giải Phẫu Bản Chất, Cơ Chế Hoạt Động Ngầm, Đầu Vào/Đầu Ra & Dòng Chảy Dữ Liệu Xuyên Suốt Tất Cả Các Kỹ Thuật
+# 🏛️ BẢN ĐỒ KIẾN TRÚC & SƠ ĐỒ TƯ DUY TOÀN CẢNH: HỆ ĐIỀU HÀNH AI AGENT
+## Cẩm Nang Hệ Thống Hóa Toàn Diện: Sơ Đồ Tư Duy 3 Trụ Cột, Giải Phẫu 7 Tầng Kiến Trúc, Danh Mục 30 Bài Giảng & Dòng Chảy Dữ Liệu
+
+---
+
+> [!tip] 4 Cách Khám Phá Trực Quan Toàn Bộ Khóa Học Trong Obsidian
+> 1. **Bảng Vẽ Vô Cực 2D (Obsidian Canvas):** Mở tệp [Agent-Course-Overview.canvas](Agent-Course-Overview.canvas) để xem và đọc trực tiếp toàn bộ 42 module kiến thức trên giao diện 2D kéo thả tự do.
+> 2. **Sơ Đồ Phân Nhánh Tương Tác (Plugin Mind Map):** Bấm biểu tượng 3 chấm (`...`) ở góc trên bên phải tệp này $\to$ Chọn **"Open as mindmap"** để xem dạng mindmap Markmap/D3 đóng mở từng nhánh con.
+> 3. **Cây Phân Cấp Mermaid Mindmap:** Cuộn xuống [Phần 1](#1-sơ-đồ-tư-duy-phân-nhánh-toàn-bộ-khóa-học-mermaid-mindmap) ngay bên dưới để xem sơ đồ Mermaid trực quan chuẩn Markdown.
+> 4. **Đồ Thị Tri Thức Toàn Vault (Graph View):** Nhấn **`Ctrl + G`** để mở mạng lưới liên kết thực tế giữa tất cả các tệp ghi chú.
 
 ---
 
 ## 📑 MỤC LỤC
-1. [Khái Lược Vĩ Mô: Tư Duy Hệ Điều Hành Tác Tử (The Agent Operating System)](#1-khái-lược-vĩ-mô-tư-duy-hệ-điều-hành-tác-tử-the-agent-operating-system)
-2. [Sơ Đồ Dòng Chảy Kiến Trúc 7 Tầng (End-to-End 7-Layer Architecture)](#2-sơ-đồ-dòng-chảy-kiến-trúc-7-tầng-end-to-end-7-layer-architecture)
-3. [Giải Phẫu Chi Tiết Từng Hệ Thống: Bản Chất, Cách Hoạt Động & Mắt Xích Kết Nối](#3-giải-phẫu-chi-tiết-từng-hệ-thống-bản-chất-cách-hoạt-động--mắt-xích-kết-nối)
+1. [Sơ Đồ Tư Duy Phân Nhánh Toàn Bộ Khóa Học (Mermaid Mindmap)](#1-sơ-đồ-tư-duy-phân-nhánh-toàn-bộ-khóa-học-mermaid-mindmap)
+2. [Bản Đồ Phân Bổ Chi Tiết 30 Bài Giảng Theo 3 Trụ Cột](#2-bản-đồ-phân-bổ-chi-tiết-30-bài-giảng-theo-3-trụ-cột)
+3. [Khái Lược Vĩ Mô: Tư Duy Hệ Điều Hành Tác Tử (The Agent Operating System)](#3-khái-lược-vĩ-mô-tư-duy-hệ-điều-hành-tác-tử-the-agent-operating-system)
+4. [Sơ Đồ Dòng Chảy Kiến Trúc 7 Tầng (End-to-End 7-Layer Architecture)](#4-sơ-đồ-dòng-chảy-kiến-trúc-7-tầng-end-to-end-7-layer-architecture)
+   - [4.1. Ngăn Xếp Kiến Trúc 7 Tầng Phân Lớp (Layered Architecture Stack)](#41-ngăn-xếp-kiến-trúc-7-tầng-phân-lớp-layered-architecture-stack)
+   - [4.2. Dòng Chảy Dữ Liệu Thực Thi Toàn Trình (End-to-End Runtime Pipeline)](#42-dòng-chảy-dữ-liệu-thực-thi-toàn-trình-end-to-end-runtime-pipeline)
+5. [Giải Phẫu Chi Tiết Từng Hệ Thống: Bản Chất, Cách Hoạt Động & Mắt Xích Kết Nối](#5-giải-phẫu-chi-tiết-từng-hệ-thống-bản-chất-cách-hoạt-động--mắt-xích-kết-nối)
    - [Hệ Thống 1: Lõi Nhận Thức & Nền Tảng Vật Lý (LLM Core & Transformer Internals)](#hệ-thống-1-lõi-nhận-thức--nền-tảng-vật-lý-llm-core--transformer-internals)
    - [Hệ Thống 2: Tri Thức Ngoại Vi & Khai Thác Dữ Liệu (Advanced RAG & Semantic Retrieval)](#hệ-thống-2-tri-thức-ngoại-vi--khai-thác-dữ-liệu-advanced-rag--semantic-retrieval)
    - [Hệ Thống 3: Hệ Thần Kinh Điều Khiển & Cửa Sổ Ngữ Cảnh (Prompting, DSPy & Harness)](#hệ-thống-3-hệ-thần-kinh-điều-khiển--cửa-sổ-ngữ-cảnh-prompting-dspy--harness)
@@ -30,12 +47,126 @@ updated: 2026-10-11
    - [Hệ Thống 5: Giác Quan, Công Cụ & Giao Thức Kết Nối (Tools, MCP & Constrained Decoding)](#hệ-thống-5-giác-quan-công-cụ--giao-thức-kết-nối-tools-mcp--constrained-decoding)
    - [Hệ Thống 6: Não Bộ Vận Hành Vòng Lặp Tự Trị (Loop Engineering & Multi-Agent)](#hệ-thống-6-não-bộ-vận-hành-vòng-lặp-tự-trị-loop-engineering--multi-agent)
    - [Hệ Thống 7: Hệ Miễn Dịch, Đo Lường & Phân Phối Người Dùng (Evals, Tracing & MERN Stack)](#hệ-thống-7-hệ-miễn-dịch-đo-lường--phân-phối-người-dùng-evals-tracing--mern-stack)
-4. [Bảng Ma Trận Hợp Nhất: Input $\to$ Processing $\to$ Output $\to$ Next Component](#4-bảng-ma-trận-hợp-nhất-input-to-processing-to-output-to-next-component)
-5. [Điển Cứu Toàn Trình (The Master End-to-End Walkthrough): Từ Bấm Phím Đến Hành Động Thực Tế](#5-điển-cứu-toàn-trình-the-master-end-to-end-walkthrough-từ-bấm-phím-đến-hành-động-thực-tế)
+6. [Bảng Ma Trận Hợp Nhất: Input $\to$ Processing $\to$ Output $\to$ Next Component](#6-bảng-ma-trận-hợp-nhất-input-to-processing-to-output-to-next-component)
+7. [Điển Cứu Toàn Trình (The Master End-to-End Walkthrough): Từ Bấm Phím Đến Hành Động Thực Tế](#7-điển-cứu-toàn-trình-the-master-end-to-end-walkthrough-từ-bấm-phím-đến-hành-động-thực-tế)
 
 ---
 
-## 1. KHÁI LƯỢC VĨ MÔ: TƯ DUY HỆ ĐIỀU HÀNH TÁC TỬ (THE AGENT OPERATING SYSTEM)
+## 1. SƠ ĐỒ TƯ DUY PHÂN NHÁNH TOÀN BỘ KHÓA HỌC (MERMAID MINDMAP)
+
+```mermaid
+mindmap
+  root((🤖 AGENT COURSE))
+    🔬 TRỤ CỘT 1: RESEARCH & FOUNDATIONS
+      Mạng Nơ-ron & Nền Tảng Học Sâu
+        Perceptron & Đạo Hàm Lan Truyền Ngược
+        Hàm Kích Hoạt & Cực Tiểu Cục Bộ
+      Bản Chất & Cơ Chế Hoạt Động LLM
+        Transformer Math: Self-Attention & RoPE
+        Scaling Laws & Định Luật Phân Bổ Năng Lực
+        Quantization: GPTQ, AWQ, GGUF
+        Synthetic Data, Evol-Instruct & DPO Alignment
+      Semantic Search & Advanced RAG
+        Chunking 4 Thế Hệ & Embedding Bi-Encoders
+        Vector DBs & Giải Thuật HNSW / IVF
+        Đánh Giá Vector DB & Embeddings Thực Chiến
+        Kỹ Nghệ Vận Hành Production RAG
+        Bảo Trì & Cập Nhật Delta Vector Indices
+        Tối Ưu Hóa & Mô Đun Hóa với LangChain
+        Advanced Retrieval: Hybrid Search, RRF & Reranking
+        Đánh Giá RAG: Ragas Triad & Faithfulness
+    ✍️ TRỤ CỘT 2: PROMPT & CONTEXT
+      Kỹ Thuật Prompt Nâng Cao
+        Few-Shot In-Context Learning
+        Chain-of-Thought & Tree-of-Thoughts
+      Lập Trình Hóa Prompt với DSPy
+        Signatures, Modules & Declarative LLM Calls
+        Teleprompters & MIPROv2 Auto-Optimization
+    🛠️ TRỤ CỘT 3: BUILDING AGENTS
+      AI Harness & Ký Ức Đa Tầng
+        AI Harness Orchestrator & Session Lifecycle
+        Quản Trị Ngữ Cảnh: Pruning & Context Quarantine
+        Hệ Thống Ký Ức: Working, Episodic, Semantic
+        Agent Runtime Parameters & Prefix Caching
+      Công Cụ & Chuẩn Kết Nối Ngoại Vi
+        Model Context Protocol: Client-Server Architecture
+        Constrained Decoding: FSM, Logit Masking & Jump-Forward
+      Kỹ Nghệ Vòng Lặp & Tự Trị
+        Nền Tảng Loop Engineering & Stopping Rubrics
+        Mô Hình Vòng Lặp: ReAct, Plan-and-Execute, Evaluator-Optimizer
+        Đội Ngũ Đa Tác Tử: Supervisor, Orchestrator, Swarms
+        AST Self-Healing Code: Tự Sửa Lỗi Qua Abstract Syntax Tree
+        Durable Execution: Event-Sourcing Checkpoints & Time-Travel
+      Giám Sát & Đo Lường Hệ Thống
+        Agent Tracing: OpenTelemetry & Langfuse
+        Bộ Tiêu Chuẩn Đánh Giá: Ragas, G-Eval, SWE-bench
+      Tác Tử Đa Phương Thức & Màn Hình
+        Multimodal GUI Agents & Pixel Grounding
+        Normalized Coordinates, OmniParser & Computer-Use
+      Kiến Trúc Triển Khai Doanh Nghiệp
+        Cẩm Nang Xây Dựng Enterprise AI Agent Toàn Tập
+        Full-stack MERN Agent: Realtime Generative UI & SSE Stream
+```
+
+---
+
+## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 30 BÀI GIẢNG THEO 3 TRỤ CỘT
+
+### 🔬 TRỤ CỘT 1: NỀN TẢNG NGHIÊN CỨU & KHAI PHÁ DỮ LIỆU (RESEARCH & FOUNDATIONS)
+
+| Phân Hệ | Bài Học Cụ Thể | Trọng Tâm Kiến Thức Cốt Lõi |
+| :--- | :--- | :--- |
+| **01. Neural Networks** | [neural_networks_and_classifications.md](01-research-and-foundations/01-neural-networks/neural_networks_and_classifications.md) | Đại số tuyến tính, Gradient Descent, Backpropagation, phân loại kiến trúc nơ-ron |
+| **02. LLM Internals** | [what_are_large_language_models.md](01-research-and-foundations/02-llm-internals/what_are_large_language_models.md) | Tổng quan lịch sử, cơ chế sinh tự hồi quy (Autoregressive), Tokenization |
+| | [04_transformer_math_deep_dive.md](01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md) | Toán học Scaled Dot-Product, Multi-Head Attention, RoPE, KV-Cache |
+| | [05_scaling_laws_and_quantization.md](01-research-and-foundations/02-llm-internals/05_scaling_laws_and_quantization.md) | Định luật Chinchilla, lượng tử hóa trọng số (INT8, INT4, GPTQ, AWQ, GGUF) |
+| | [06_synthetic_data_and_agent_alignment.md](01-research-and-foundations/02-llm-internals/06_synthetic_data_and_agent_alignment.md) | Dữ liệu nhân tạo (Evol-Instruct, UltraFeedback), cân chỉnh DPO/ORPO cho Tool Calling |
+| **03. Semantic Search & RAG** | [01_semantic_search_and_reranking.md](01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md) | Bi-Encoder embedding, Cross-Encoder reranking, tương đồng Cosine/Dot-product |
+| | [02_rag_architecture_and_components.md](01-research-and-foundations/03-semantic-search/02_rag_architecture_and_components.md) | 4 cấu phần RAG (Ingestion, Chunking, Retrieval, Generation) |
+| | [03_embeddings_and_vector_databases.md](01-research-and-foundations/03-semantic-search/03_embeddings_and_vector_databases.md) | Bản chất hình học không gian vector, giải thuật HNSW, IVF, ScaNN |
+| | [04_how_database_and_embedding_choices_affect_rag.md](01-research-and-foundations/03-semantic-search/04_how_database_and_embedding_choices_affect_rag.md) | Ma trận đánh giá & lựa chọn Embeddings / Vector DBs theo quy mô |
+| | [05_theory_to_practice_making_rag_work.md](01-research-and-foundations/03-semantic-search/05_theory_to_practice_making_rag_work.md) | Xử lý lỗi production: Lost in the Middle, chunk overlap, siêu dữ liệu metadata |
+| | [06_maintaining_vector_indices_in_rag.md](01-research-and-foundations/03-semantic-search/06_maintaining_vector_indices_in_rag.md) | Quản trị Delta Updates, TTL, Re-indexing không gián đoạn (Zero-downtime) |
+| | [07_optimizing_and_modularizing_rag_with_langchain.md](01-research-and-foundations/03-semantic-search/07_optimizing_and_modularizing_rag_with_langchain.md) | LCEL Pipeline, Contextual Compression, nén ngữ cảnh tiết kiệm 60% Token |
+| | [08_advanced_retrieval_tactics_for_rag.md](01-research-and-foundations/03-semantic-search/08_advanced_retrieval_tactics_for_rag.md) | Hybrid Search kết hợp BM25 + Dense Vectors, Reciprocal Rank Fusion (RRF) |
+| | [09_evaluating_and_optimizing_rag_systems.md](01-research-and-foundations/03-semantic-search/09_evaluating_and_optimizing_rag_systems.md) | Bộ ba đo lường Ragas Triad: Faithfulness, Answer Relevance, Context Precision |
+
+---
+
+### ✍️ TRỤ CỘT 2: KỸ NGHỆ CỬA SỔ NGỮ CẢNH & PROMPT (PROMPT & CONTEXT)
+
+| Phân Hệ | Bài Học Cụ Thể | Trọng Tâm Kiến Thức Cốt Lõi |
+| :--- | :--- | :--- |
+| **01. Prompt Engineering** | [advanced_prompt_engineering_techniques.md](02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md) | Zero-Shot, Few-Shot, CoT, ToT, Self-Consistency, Prompt Injection Defense |
+| | [02_dspy_and_programmatic_prompting.md](02-prompt-and-context/01-prompt-engineering/02_dspy_and_programmatic_prompting.md) | Thay thế viết prompt thủ công bằng lập trình khai báo (Declarative DSPy), MIPROv2 |
+
+---
+
+### 🛠️ TRỤ CỘT 3: XÂY DỰNG TÁC TỬ TỰ HÀNH (BUILDING AGENTS)
+
+| Phân Hệ | Bài Học Cụ Thể | Trọng Tâm Kiến Thức Cốt Lõi |
+| :--- | :--- | :--- |
+| **00. Chat Evolution** | [00_ai_chat_systems_and_prompt_engineering.md](03-building-agents/00_ai_chat_systems_and_prompt_engineering.md) | Sự tiến hóa từ Stateless Chatbot đến Stateful Autonomous Agents |
+| **01. Harness & Memory** | [01_harness_architecture.md](03-building-agents/01-harness-and-memory/01_harness_architecture.md) | Bộ khung AI Harness: Session Orchestration, Context Quarantine, Guardrails |
+| | [02_context_management.md](03-building-agents/01-harness-and-memory/02_context_management.md) | Bệnh lý Context Drift, kỹ thuật Context Pruning, Rolling Summarization |
+| | [03_memory_systems.md](03-building-agents/01-harness-and-memory/03_memory_systems.md) | Kiến trúc bộ nhớ 3 tầng (MemGPT/Letta): Working Context, Episodic & Archival DB |
+| | [04_agent_runtime_parameters_and_prompt_caching.md](03-building-agents/01-harness-and-memory/04_agent_runtime_parameters_and_prompt_caching.md) | Temperature/Top-P/Presence, tối ưu GPU Prefix Caching (RadixTree / vLLM) |
+| **02. Tools & MCP** | [01_mcp_architecture.md](03-building-agents/02-tools-and-mcp/01_mcp_architecture.md) | Giao thức Model Context Protocol: Chuẩn hóa Tools, Resources, Prompts qua stdio/SSE |
+| | [02_constrained_decoding_and_structured_outputs.md](03-building-agents/02-tools-and-mcp/02_constrained_decoding_and_structured_outputs.md) | Cưỡng chế JSON schema ở cấp độ logits (FSM Masking, Outlines, SGLang Jump-forward) |
+| **03. Loop Engineering** | [01_loop_fundamentals.md](03-building-agents/03-loop-engineering/01_loop_fundamentals.md) | Vòng lặp phản hồi tự trị, tiêu chí dừng (Stopping Rubrics), Circuit Breakers |
+| | [02_react_and_planning.md](03-building-agents/03-loop-engineering/02_react_and_planning.md) | So sánh ReAct vs Plan-and-Execute vs Evaluator-Optimizer (Self-Refine) |
+| | [03_multi_agent_teams.md](03-building-agents/03-loop-engineering/03_multi_agent_teams.md) | Phối hợp đa tác tử: Hierarchical Supervisor, Decentralized Swarm, Message Passing |
+| | [04_ast_self_healing_code_agents.md](03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md) | Tác tử lập trình tự sửa code qua Abstract Syntax Tree (Tree-sitter), Repo Map |
+| | [05_durable_execution_and_stateful_workflows.md](03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md) | Workflow Engine bền vững: Event Sourcing Checkpoint, Replay Determinism, Time-Travel |
+| **04. Observability & Evals** | [01_agent_evals_and_tracing.md](03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md) | Giám sát phân tán OpenTelemetry, Langfuse Tracing, SWE-bench & G-Eval |
+| **05. Multimodal GUI** | [01_multimodal_gui_and_computer_use.md](03-building-agents/05-multimodal-gui-agents/01_multimodal_gui_and_computer_use.md) | Tác tử điều khiển màn hình OS, Pixel Grounding, OmniParser, chống Screen Drift |
+| **06. Enterprise Blueprints** | [06_how_to_build_enterprise_ai_agents.md](03-building-agents/06_how_to_build_enterprise_ai_agents.md) | 5 thất bại kinh điển & kiến trúc phòng vệ toàn diện cho tác tử doanh nghiệp |
+| **07. Full-Stack Agent** | [07_fullstack_agent_mern_architecture.md](03-building-agents/07_fullstack_agent_mern_architecture.md) | Kiến trúc ứng dụng hoàn chỉnh: Node.js Agent Runtime + Express SSE + React Gen-UI + MongoDB Atlas |
+
+---
+
+
+## 3. KHÁI LƯỢC VĨ MÔ: TƯ DUY HỆ ĐIỀU HÀNH TÁC TỬ (THE AGENT OPERATING SYSTEM)
 
 Khi tiếp cận từng bài học độc lập, bạn dễ cảm thấy bị ngợp bởi số lượng khái niệm: *Backpropagation, KV-Cache, Chunking, HNSW, DSPy, Prefix Caching, MCP, ReAct, AST Self-Healing, Checkpointing, Langfuse, MERN*.
 
@@ -57,104 +188,151 @@ Mỗi kỹ thuật bạn học **không tồn tại độc lập**; nó xuất h
 
 ---
 
-## 2. SƠ ĐỒ DÒNG CHẢY KIẾN TRÚC 7 TẦNG (END-TO-END 7-LAYER ARCHITECTURE)
+## 4. SƠ ĐỒ DÒNG CHẢY KIẾN TRÚC 7 TẦNG (END-TO-END 7-LAYER ARCHITECTURE)
 
-Dưới đây là bản đồ tuần hoàn dữ liệu và điều phối của toàn bộ hệ sinh thái kỹ thuật trong khóa học:
+Hệ thống AI Agent hiện đại được tổ chức theo kiến trúc phân tầng chặt chẽ. Để tránh sự chồng chéo và rối rắm khi trực quan hóa, kiến trúc được phân tách thành 2 góc nhìn bổ trợ: **Ngăn Xếp Phân Lớp (Layer Stack)** và **Dòng Chảy Vận Hành Toàn Trình (Runtime Pipeline)**.
+
+---
+
+### 4.1. Ngăn Xếp Kiến Trúc 7 Tầng Phân Lớp (Layered Architecture Stack)
+
+Mỗi tầng đảm nhiệm một vai trò độc lập, giao tiếp với tầng liền kề qua các chuẩn kết nối xác định (Interface / Bus), với Tầng Giám Sát bao quanh bảo vệ:
 
 ```mermaid
-flowchart TD
-    %% TẦNG GIAO DIỆN
+flowchart TB
+    %% TẦNG 7
     subgraph L7["TẦNG 7: GIAO DIỆN & VẬN HÀNH (DELIVERY LAYER)"]
-        UI["React Generative UI & HITL Approval Modal"]
-        GW["Express Ingress Gateway & SSE Event Streamer"]
+        direction LR
+        UI["React Generative UI\\n& HITL Approval Modal"] <-->|"SSE Stream / JSON-RPC"| GW["Express Ingress Gateway\\n& RBAC Auth / PII Filter"]
     end
 
-    %% TẦNG ĐIỀU PHỐI VÒNG LẶP
+    %% TẦNG 6
     subgraph L6["TẦNG 6: NÃO BỘ ĐIỀU KHIỂN VÒNG LẶP (AUTONOMOUS LOOPS)"]
-        REACT["ReAct Loop: Thought -> Action -> Observation"]
-        PLAN["Plan-and-Execute & Multi-Agent Swarms"]
-        AST["AST-Guided Self-Healing (Tự vá code không ô nhiễm)"]
-        DUR["Durable State Machine (LangGraph Checkpoints)"]
+        direction LR
+        REACT["ReAct Loop\\n(Thought -> Action -> Obs)"]
+        PLAN["Plan-and-Execute\\n& Multi-Agent Swarms"]
+        AST["AST Self-Healing\\n(Tree-sitter Parser)"]
+        DUR["Durable State Machine\\n(LangGraph Checkpointer)"]
+        REACT <--> PLAN
+        REACT <--> AST
+        REACT <--> DUR
     end
 
-    %% TẦNG CÔNG CỤ & NGOẠI VI
+    %% TẦNG 5
     subgraph L5["TẦNG 5: GIÁC QUAN & TAY CHÂN (TOOLING & MCP)"]
-        MCP["Model Context Protocol (Client <-> Server qua stdio/SSE)"]
-        CD["Constrained Decoding (Logit Masking / FSM JSON Schema)"]
-        GUI["Multimodal Computer-Use (Pixel Grounding & OS Input)"]
+        direction LR
+        MCP["Model Context Protocol\\n(Client <-> Server via stdio/SSE)"]
+        CD["Constrained Decoding\\n(FSM Logit Masking)"]
+        GUI["Multimodal Computer-Use\\n(Pixel Grounding & OS Input)"]
+        MCP <--> CD
+        MCP <--> GUI
     end
 
-    %% TẦNG KÝ ỨC
+    %% TẦNG 4
     subgraph L4["TẦNG 4: HỆ THỐNG KÝ ỨC ĐA TẦNG (MEMORY SYSTEMS)"]
-        WM["Working Memory (ReAct Scratchpad)"]
-        EM["Episodic Memory (Lịch sử phiên & Dynamic Profile)"]
-        LTM["Long-term Semantic Memory (Knowledge Base)"]
+        direction LR
+        WM["Working Memory\\n(ReAct Scratchpad)"]
+        EM["Episodic Memory\\n(Session History & Profile)"]
+        LTM["Long-term Semantic Memory\\n(Archival Knowledge Store)"]
+        WM <--> EM <--> LTM
     end
 
-    %% TẦNG KHUNG ĐIỀU KHIỂN & NGỮ CẢNH
+    %% TẦNG 3
     subgraph L3["TẦNG 3: BỘ KHUNG ĐIỀU KHIỂN & NGỮ CẢNH (HARNESS & CACHING)"]
-        HARN["AI Harness (Quản trị Session, Context Quarantine & Pruning)"]
-        PC["Prefix Caching / RadixTree (Tái sử dụng KV-Cache GPU)"]
-        DSPY["DSPy Programmatic Prompting (Compiler tối ưu Prompt)"]
+        direction LR
+        HARN["AI Harness\\n(Session & Context Quarantine)"]
+        PC["Prefix Caching / RadixTree\\n(vLLM KV-Cache Reuse)"]
+        DSPY["DSPy Prompt Compiler\\n(Auto MIPROv2 Optimizer)"]
+        HARN <--> PC
+        HARN <--> DSPY
     end
 
-    %% TẦNG TRI THỨC NGOÀI
+    %% TẦNG 2
     subgraph L2["TẦNG 2: TRI THỨC NGOẠI VI (ADVANCED RAG)"]
-        CHK["Chunking 4 Thế Hệ (Naive -> AST -> Contextual)"]
-        EMB["Vector Embeddings (Bi-Encoder & Whitening)"]
-        VDB["Vector DB (HNSW Index: MongoDB Atlas / Milvus)"]
-        HYB["Hybrid Search (BM25 + Dense) & Reciprocal Rank Fusion"]
-        RER["Cross-Encoder Re-ranking"]
+        direction LR
+        CHUNK["Chunking & Embedding\\n(AST / Bi-Encoder)"] --> VDB["Vector DB\\n(HNSW / Milvus)"]
+        VDB --> HYB["Hybrid Search\\n(BM25 + Dense RRF)"]
+        HYB --> RER["Cross-Encoder\\nRe-ranking"]
     end
 
-    %% TẦNG NÃO BỘ NỀN TẢNG
+    %% TẦNG 1
     subgraph L1["TẦNG 1: NÃO BỘ NỀN TẢNG (LLM CORE & TRANSFORMERS)"]
-        XFRM["Transformer Math (Scaled Dot-Product, FlashAttention)"]
-        KV["KV-Cache & PagedAttention (vLLM)"]
-        QUANT["Quantization (GPTQ / AWQ / GGUF)"]
-        ALIGN["Alignment & Synthetic Data (DPO / ORPO / Evol-Instruct)"]
+        direction LR
+        XFRM["Transformer Math\\n(FlashAttention & RoPE)"]
+        KV["PagedAttention\\nKV-Cache"]
+        QUANT["Quantization\\n(GPTQ / AWQ / GGUF)"]
+        ALIGN["Alignment & Synthetic Data\\n(DPO / Tool Tuning)"]
+        XFRM <--> KV
+        XFRM <--> QUANT
+        XFRM <--> ALIGN
     end
 
-    %% TẦNG BẢO VỆ & GIÁM SÁT
+    %% TẦNG 0
     subgraph L0["TẦNG GIÁM SÁT & BẢO VỆ TOÀN DIỆN (OBSERVABILITY & GOVERNANCE)"]
-        CB["Circuit Breakers (Chống bão Tool & Lặp vô tận)"]
-        OTEL["Distributed Tracing (OpenTelemetry & Langfuse)"]
-        EVALS["Đánh giá chất lượng (Ragas Triad, G-Eval, SWE-bench)"]
+        direction LR
+        CB["Circuit Breakers\\n(Chống bão Tool & Lặp vô tận)"]
+        OTEL["Distributed Tracing\\n(OpenTelemetry & Langfuse)"]
+        EVALS["Chất lượng đầu ra\\n(Ragas Triad, G-Eval, SWE-bench)"]
+        CB --- OTEL --- EVALS
     end
 
-    %% LIÊN KẾT LUỒNG DỮ LIỆU CHÍNH
-    UI <-->|"SSE Tokens & Actions"| GW
-    GW <-->|"Gửi lệnh / Nhận sự kiện"| DUR
-    DUR <--> REACT
-    REACT <--> PLAN
-    REACT <--> AST
-
-    REACT <-->|"Thực thi công cụ"| MCP
-    MCP <--> CD
-    REACT <--> GUI
-
-    REACT <-->|"Đọc / Ghi ký ức"| WM
-    WM --- EM --- LTM
-    LTM <-->|"Truy vấn tri thức sâu"| HYB
-
-    CHK --> EMB --> VDB --> HYB --> RER --> HARN
-    HARN <--> PC
-    DSPY --> HARN
-
-    HARN <-->|"Prompt tinh gọn"| XFRM
-    XFRM --- KV
-    XFRM --- QUANT
-    XFRM --- ALIGN
-
-    %% GIÁM SÁT TOÀN DIỆN
-    CB -.->|"Ngắt khẩn cấp"| REACT
-    REACT -.->|"Trace logs"| OTEL
-    OTEL -.-> EVALS
+    %% GIAO TIẾP TẦNG THẲNG ĐỨNG (HỆ THỐNG PHÂN CẤP)
+    L7 <==>|"1. Yêu cầu & Dòng phản hồi"| L6
+    L6 <==>|"2. Gọi công cụ ngoại vi"| L5
+    L6 <==>|"3. Cập nhật Working & Profile Memory"| L4
+    L6 <==>|"4. Điều phối Session & Ngữ cảnh"| L3
+    L3 <==>|"5. Truy vấn & Nén ngữ cảnh RAG"| L2
+    L3 <==>|"6. Prompt tối ưu & Nạp weights"| L1
+    L0 -.->|"Giám sát & Ngắt bảo vệ xuyên suốt"| L6
 ```
 
 ---
 
-## 3. GIẢI PHẪU CHI TIẾT TỪNG HỆ THỐNG: BẢN CHẤT, CÁCH HOẠT ĐỘNG & MẮT XÍCH KẾT NỐI
+### 4.2. Dòng Chảy Dữ Liệu Thực Thi Toàn Trình (End-to-End Runtime Pipeline)
+
+Biểu đồ dưới đây mô tả chính xác vòng tuần hoàn dữ liệu từ thời điểm Người dùng gửi câu hỏi đến khi Tác tử trả về kết quả qua 5 bước tuần tự:
+
+```mermaid
+flowchart TD
+    subgraph P1["BƯỚC 1: TIẾP NHẬN & PHÂN QUYỀN"]
+        User(["👤 Người Dùng"]) -->|"Nhập Prompt"| UI["React Generative UI"]
+        UI -->|"POST /api/chat"| GW["Express Ingress Gateway\\n(Xác thực RBAC & Lọc PII)"]
+    end
+
+    subgraph P2["BƯỚC 2: KHỞI TẠO PHIÊN & NẠP KÝ ỨC"]
+        GW -->|"Tạo Session ID"| HARN["AI Harness\\n(Quản trị Session & Context)"]
+        HARN <-->|"Nạp Profile & Lịch sử phiên"| MEM[("Hệ Thống Ký Ức Đa Tầng\\n(Working / Episodic / LTM)")]
+    end
+
+    subgraph P3["BƯỚC 3: TRUY XUẤT TRI THỨC NGOẠI VI (NẾU CẦN)"]
+        HARN -->|"Truy vấn dữ liệu chuyên môn"| RAG["Pipeline Advanced RAG\\n(BM25 + Dense RRF + Re-ranking)"]
+        RAG -->|"Ngữ cảnh sạch & tinh lọc"| CTX["Context Builder & DSPy Compiler"]
+    end
+
+    subgraph P4["BƯỚC 4: SUY LUẬN & THỰC THI VÒNG LẶP"]
+        CTX -->|"Prompt tối ưu + Prefix Caching"| LLM["LLM Core (Transformer Engine)"]
+        LLM <-->|"Vòng lặp ReAct\\nThought -> Action -> Observation"| LOOP["ReAct / Plan-and-Execute Engine"]
+        LOOP <-->|"Thực thi Tool qua MCP\\n(Constrained JSON Decoding)"| TOOLS["External Tools & OS GUI"]
+    end
+
+    subgraph P5["BƯỚC 5: LƯU VẾT BỀN VỮNG & PHẢN HỒI REALTIME"]
+        LOOP -->|"Checkpoint State Delta\\n(Event-Sourcing)"| DB[("Persistent Checkpointer\\n(Postgres / Redis)")]
+        LOOP -->|"Token Streaming (SSE)"| STREAM["SSE Event Streamer"]
+        STREAM -->|"Render giao diện tức thì"| UI
+    end
+
+    subgraph P0["HỆ THỐNG AN TOÀN & GIÁM SÁT (WATCHDOG)"]
+        CB["Circuit Breakers\\n(Ngắt bão lặp & bão tool)"] -.->|"Can thiệp ngắt khẩn"| LOOP
+        LOOP -.->|"Trace Spans"| OTEL["OpenTelemetry & Langfuse"]
+        OTEL -.-> EVALS["Đánh giá chất lượng\\n(Ragas Triad / SWE-bench)"]
+    end
+
+    P1 ==> P2 ==> P3 ==> P4 ==> P5
+```
+
+---
+
+## 5. GIẢI PHẪU CHI TIẾT TỪNG HỆ THỐNG: BẢN CHẤT, CÁCH HOẠT ĐỘNG & MẮT XÍCH KẾT NỐI
 
 ---
 
@@ -355,7 +533,7 @@ Một hệ sinh thái backend mạnh mẽ vô nghĩa nếu không có cách chuy
 
 ---
 
-## 4. BẢNG MA TRẬN HỢP NHẤT: INPUT $\to$ PROCESSING $\to$ OUTPUT $\to$ NEXT COMPONENT
+## 6. BẢNG MA TRẬN HỢP NHẤT: INPUT $\to$ PROCESSING $\to$ OUTPUT $\to$ NEXT COMPONENT
 
 Bảng dưới đây tóm tắt chính xác "Ai nhận cái gì, làm gì, và chuyển giao cho ai":
 
@@ -376,7 +554,7 @@ Bảng dưới đây tóm tắt chính xác "Ai nhận cái gì, làm gì, và c
 
 ---
 
-## 5. ĐIỂN CỨU TOÀN TRÌNH (THE MASTER END-TO-END WALKTHROUGH)
+## 7. ĐIỂN CỨU TOÀN TRÌNH (THE MASTER END-TO-END WALKTHROUGH)
 
 Hãy theo dõi hành trình của một yêu cầu thực tế:
 > **"Kiểm tra doanh số tháng 10 của khách hàng Alpha trong CSDL, so khớp với điều khoản chiết khấu trong hợp đồng PDF đã ký, nếu chiết khấu thực tế sai lệch quá 5% thì cập nhật lại hóa đơn và thông báo kế toán trưởng."**
