@@ -153,7 +153,7 @@ flowchart LR
 
 ### Từ văn bản thô đến Dense Vector Embeddings
 
-Khác với các vector thưa thớt (sparse vectors) khổng lồ chứa hàng chục nghìn chiều của mô hình One-Hot Encoding hay TF-IDF / BM25 (nơi hầu hết các phần tử đều là số 0), các mô hình biểu diễn hiện đại (như [BERT](../02-llm-internals/what_are_large_language_models.md) hay OpenAI Embeddings) ánh xạ văn bản thành các **Vector đậm đặc (Dense Vectors)** trong không gian $\mathbb{R}^d$:
+Khác với các vector thưa thớt (sparse vectors) khổng lồ chứa hàng chục nghìn chiều của mô hình One-Hot Encoding hay TF-IDF / BM25 (nơi hầu hết các phần tử đều là số 0), các mô hình biểu diễn hiện đại (như [BERT](../02-llm-internals/01_what_are_large_language_models.md) hay OpenAI Embeddings) ánh xạ văn bản thành các **Vector đậm đặc (Dense Vectors)** trong không gian $\mathbb{R}^d$:
 * Mỗi chiều trong vector không đại diện cho một từ đơn lẻ, mà đại diện cho một **đặc trưng ngữ nghĩa tiềm ẩn (latent semantic feature)** trừu tượng được học từ quá trình tiền huấn luyện trên hàng tỷ token.
 * **Cơ sở học thuật:** 
   * Bài báo bước ngoặt của Karpukhin et al. (EMNLP 2020) mang tên *Dense Passage Retrieval for Open-Domain Question Answering* ([arXiv:2004.04906](https://arxiv.org/abs/2004.04906)) đã chứng minh thực nghiệm rằng việc ánh xạ truy vấn và tài liệu vào không gian dense vector chung (Dual-Encoder) giúp tăng từ **9% đến 19% độ chính xác tuyệt đối** trong Top-20 đoạn văn truy xuất so với hệ thống BM25 truyền thống mạnh nhất.
@@ -719,7 +719,7 @@ Tại sao chúng ta phải dành nhiều công sức nghiên cứu tầng sâu c
 
 #### Chất lượng truy xuất là "Trần hiệu năng" (Performance Ceiling) của Chatbot
 
-Trong bất kỳ kiến trúc [RAG (Retrieval-Augmented Generation)](../../03-building-agents/01-harness-and-memory/00_ai_chat_systems_and_prompt_engineering.md) hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
+Trong bất kỳ kiến trúc [RAG (Retrieval-Augmented Generation)](../../03-building-agents/01-harness-and-memory/01_ai_chat_systems_and_prompt_engineering.md) hay Tác tử AI nào, mô hình ngôn ngữ lớn (như GPT-4 hay Claude) không tự sinh ra tri thức mới về dữ liệu riêng của bạn. LLM hoàn toàn phụ thuộc vào những gì được "nhồi" vào Context Window của nó:
 
 $$
 \text{Output Quality} \le \text{Quality of Retrieved Context}
@@ -747,7 +747,7 @@ flowchart TD
     style SuccessRet fill:#ccffcc,stroke:#009900,color:#000000
 ```
 
-* Nếu bộ máy truy xuất (Semantic Search) không thể đưa tài liệu đúng vào Top-3 hoặc Top-5, thì dù bạn có sử dụng kỹ thuật [Prompt Engineering](../../02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md) tài tình đến đâu, hay sử dụng mô hình LLM thông minh nhất hành tinh, câu trả lời sinh ra vẫn sẽ là **ảo giác (hallucination)** hoặc câu từ chối sáo rỗng.
+* Nếu bộ máy truy xuất (Semantic Search) không thể đưa tài liệu đúng vào Top-3 hoặc Top-5, thì dù bạn có sử dụng kỹ thuật [Prompt Engineering](../../02-prompt-and-context/01-prompt-engineering/01_advanced_prompt_engineering_techniques.md) tài tình đến đâu, hay sử dụng mô hình LLM thông minh nhất hành tinh, câu trả lời sinh ra vẫn sẽ là **ảo giác (hallucination)** hoặc câu từ chối sáo rỗng.
 * Nói cách khác: **Khả năng của bộ máy Semantic Search chính là chiếc trần nhà giới hạn năng lực tối đa của ứng dụng AI.**
 
 #### Hiện tượng "Lost in the Middle" (Liu et al., 2023) & Vai trò sống còn của Re-ranker
@@ -1149,8 +1149,8 @@ Dưới đây là danh mục các bài báo khoa học nền tảng định hìn
 
 * [Kiến Trúc RAG: Giải Phẫu 4 Cấu Phần Cốt Lõi & Vòng Lặp Điều Phối (Inside RAG)](./02_rag_architecture_and_components.md): Thực thi pipeline 4 nhịp Retrieve-Rank-Generate-Orchestrate và 9 mẫu thiết kế RAG chiến lược.
 * [Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector](./03_embeddings_and_vector_databases.md): So sánh FAISS, ChromaDB, Milvus, Pinecone, giải phẫu HNSW Index và quản trị vòng đời vector.
-* [Bản chất Mô hình Ngôn ngữ Lớn (LLM Internals)](../02-llm-internals/what_are_large_language_models.md): Phân tích cơ chế Self-Attention của Transformer, sự khác biệt giữa Encoder (BERT) và Decoder (GPT).
-* [Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc](../01-neural-networks/neural_networks_and_classifications.md): Nền tảng toán học của Backpropagation, hàm kích hoạt và không gian tiềm ẩn.
-* [Kỹ Thuật Prompt Engineering Nâng Cao](../../02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md): Cách tối ưu hóa context sau khi đã trích xuất thành công tài liệu từ Semantic Search.
-* [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../../03-building-agents/01-harness-and-memory/00_ai_chat_systems_and_prompt_engineering.md): Tích hợp Semantic Memory và Vector DB vào AI Harness.
+* [Bản chất Mô hình Ngôn ngữ Lớn (LLM Internals)](../02-llm-internals/01_what_are_large_language_models.md): Phân tích cơ chế Self-Attention của Transformer, sự khác biệt giữa Encoder (BERT) và Decoder (GPT).
+* [Mạng Nơ-ron & Bản Đồ Phân Loại Kiến Trúc](../01-neural-networks/01_neural_networks_and_classifications.md): Nền tảng toán học của Backpropagation, hàm kích hoạt và không gian tiềm ẩn.
+* [Kỹ Thuật Prompt Engineering Nâng Cao](../../02-prompt-and-context/01-prompt-engineering/01_advanced_prompt_engineering_techniques.md): Cách tối ưu hóa context sau khi đã trích xuất thành công tài liệu từ Semantic Search.
+* [Kiến Trúc & Tiến Hóa Của Các Hệ Thống AI Chat](../../03-building-agents/01-harness-and-memory/01_ai_chat_systems_and_prompt_engineering.md): Tích hợp Semantic Memory và Vector DB vào AI Harness.
 * Về trang chủ khóa học: [🏠 Vault Home MOC](../../README.md)

@@ -549,7 +549,7 @@ flowchart LR
   * **Agentic RAG & Tự phản tư (Self-Reflective Loops):** Chuyển dịch từ đường ống tuyến tính sang vòng lặp tác tử tự trị:
     * **[Self-RAG](./01_semantic_search_and_reranking.md):** Tác tử tự đánh giá xem mình có cần truy xuất thêm hay không qua các reflection tokens.
     * **[Corrective RAG (CRAG)](./01_semantic_search_and_reranking.md):** Tự động kích hoạt Web Search dự phòng nếu điểm tin cậy của tài liệu nội bộ quá thấp.
-    * **[ReAct & Multi-hop Planning](../../03-building-agents/03-loop-engineering/02_react_and_planning.md):** Phân rã câu hỏi lớn thành nhiều câu hỏi con và thực hiện truy xuất tuần tự từng bước.
+    * **[ReAct & Multi-hop Planning](../../03-building-agents/03-loop-and-multi-agent-engineering/02_react_and_planning.md):** Phân rã câu hỏi lớn thành nhiều câu hỏi con và thực hiện truy xuất tuần tự từng bước.
 
 ---
 
@@ -1073,6 +1073,6 @@ flowchart TD
 
 * **Nghiên cứu sâu về toán học vector & mô hình:** [Tìm Kiếm Ngữ Nghĩa & Tái Xếp Hạng (Bi-Encoder vs Cross-Encoder)](./01_semantic_search_and_reranking.md)
 * **Cơ sở dữ liệu Vector & Thuật toán Indexing HNSW:** [Vai Trò Cốt Lõi Của Embeddings & Cơ Sở Dữ Liệu Vector (FAISS, Chroma, Milvus, Pinecone)](./03_embeddings_and_vector_databases.md)
-* **Quản trị rủi ro ngữ cảnh:** [Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh](../../03-building-agents/01-harness-and-memory/02_context_management.md)
-* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../../03-building-agents/01-harness-and-memory/03_memory_systems.md)
-* **Thiết kế tổng thể hệ thống doanh nghiệp:** [Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp](../../03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md)
+* **Quản trị rủi ro ngữ cảnh:** [Quản Trị Cửa Sổ Ngữ Cảnh: Bệnh Lý & Tỉa Nhánh](../../03-building-agents/01-harness-and-memory/03_context_management.md)
+* **Nâng cấp thành bộ nhớ dài hạn cho Agent:** [Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](../../03-building-agents/01-harness-and-memory/04_memory_systems.md)
+* **Thiết kế tổng thể hệ thống doanh nghiệp:** [Cẩm Nang Xây Dựng AI Agent Doanh Nghiệp](../../03-building-agents/06-governance-and-enterprise-delivery/03_how_to_build_enterprise_ai_agents.md)

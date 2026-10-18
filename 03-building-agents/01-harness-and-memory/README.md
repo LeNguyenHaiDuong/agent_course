@@ -1,5 +1,5 @@
 ---
-title: "Tầng 1: AI Harness & Memory Architecture"
+title: "Mô-đun 01: AI Harness & Memory Architecture"
 aliases:
   - Harness and Memory MOC
   - AI Harness Overview
@@ -11,10 +11,10 @@ tags:
   - moc
 type: moc
 created: 2026-09-20
-updated: 2026-09-27
+updated: 2026-10-18
 ---
 
-# 🛠️ AI HARNESS & MEMORY ARCHITECTURE
+# 🛠️ MÔ-ĐUN 01: AI HARNESS & MEMORY ARCHITECTURE
 
 Thư mục này dành riêng để lưu trữ các tài liệu nghiên cứu và thực hành chuyên sâu về **AI Harness** (bộ khung phần mềm điều khiển ứng dụng bọc ngoài LLM Core), nghệ thuật **Quản trị Ngữ cảnh (Context Window Management)** và kiến trúc **Hệ thống Bộ nhớ Đa tầng (Multi-tier Memory Systems)**.
 
@@ -24,14 +24,19 @@ Thư mục này dành riêng để lưu trữ các tài liệu nghiên cứu và
 
 * **AI Harness là gì?** Là toàn bộ lớp phần mềm đứng trung gian giữa người dùng và mô hình ngôn ngữ (LLM Core). Harness chịu trách nhiệm nạp System Prompt, gắn Chat History, tiêm User Memory, quản lý cấp quyền và cung cấp Tools/Connectors.
 * **Tài liệu tham chiếu dẫn nhập:**
-  * [Kiến trúc & Tiến hóa của các hệ thống AI Chat](00_ai_chat_systems_and_prompt_engineering.md): Tổng quan về 4 tầng tiến hóa từ Prompting đến Loop Engineering.
+  * [Kiến trúc & Tiến hóa của các hệ thống AI Chat](./01_ai_chat_systems_and_prompt_engineering.md): Tổng quan về 4 tầng tiến hóa từ Prompting đến Loop Engineering.
   * [Tìm kiếm Ngữ nghĩa & Tái xếp hạng](../../01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md): Hạ tầng truy xuất nền tảng cho Semantic Memory và RAG.
 
 ---
 
-## 📂 Danh Mục Tài Liệu Chuyên Sâu
+## 📂 Danh Mục Tài Liệu Theo Thứ Tự Đọc
 
-* 📖 **[01_harness_architecture.md - Giải Phẫu Kiến Trúc AI Harness, Sandboxing & An Ninh Tác Tử](./01_harness_architecture.md)**:
+* 📖 **[01_ai_chat_systems_and_prompt_engineering.md - Tiến Hóa Hệ Thống Chat & Prompt Engineering](./01_ai_chat_systems_and_prompt_engineering.md)**:
+  * Sự chuyển dịch từ Chatbot đàm thoại đơn thuần sang Tác tử tự trị.
+  * 4 Tầng tiến hóa nhận thức: Single-turn $\to$ Multi-turn Conversation $\to$ Tool Use $\to$ Autonomous Feedback Loop.
+  * Phân biệt vai trò giữa LLM Core (Lõi ngôn ngữ vô trạng thái) và Harness (Khung điều khiển có trạng thái).
+
+* 📖 **[02_harness_architecture.md - Giải Phẫu Kiến Trúc AI Harness, Sandboxing & An Ninh Tác Tử](./02_harness_architecture.md)**:
   * Phân tách ranh giới giữa Lõi tĩnh (LLM Core) và Khung điều khiển có trạng thái (Harness).
   * Giải phẫu 5 phân hệ phần mềm: Ingestion, Context Assembly, LLM Gateway, Tool Dispatcher và Guardrails.
   * Vòng đời trạng thái (Session Lifecycle, Checkpointing & Forking).
@@ -40,14 +45,14 @@ Thư mục này dành riêng để lưu trữ các tài liệu nghiên cứu và
   * So sánh kiến trúc Harness thực chiến: CLI Agent vs IDE Agent vs Web Chatbot.
   * Code mẫu Python xây dựng Mini-Harness với Tool Dispatcher.
 
-* 📖 **[02_context_management.md - Quản Trị Cửa Sổ Ngữ Cảnh, Bệnh Lý & Cô Lập (Quarantine)](./02_context_management.md)**:
+* 📖 **[03_context_management.md - Quản Trị Cửa Sổ Ngữ Cảnh, Bệnh Lý & Cô Lập (Quarantine)](./03_context_management.md)**:
   * Chẩn đoán 3 bệnh lý tử huyệt: **Context Poisoning** (thiên kiến Aarav/Leo, dữ liệu cũ), **Context Decay** (pha loãng token, quên lỗi ban đầu), **Context Starvation** (thiếu dữ liệu).
   * Cuộc cách mạng **Retrieval-Augmented Generation (RAG)**: Triết lý thi mở sách, triệt tiêu ảo giác và cập nhật dữ liệu tươi mới.
   * Kỹ thuật **Context Pruning** (Lọc trùng lặp, Rule-based, Semantic) và **Context Summarization** (Rolling summary).
   * Kiến trúc **Context Quarantine**: Phân vùng phòng ban (Finance vs HR vs Legal), bảo vệ dữ liệu PII/PHI và ngăn chặn lây lan lỗi.
   * Thực nghiệm so sánh: Khung 6 cấu phần **Supercharged Context Engineering** trong viết email chuyên nghiệp.
 
-* 📖 **[03_memory_systems.md - Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](./03_memory_systems.md)**:
+* 📖 **[04_memory_systems.md - Kiến Trúc Bộ Nhớ Đa Tầng Cho AI Agents](./04_memory_systems.md)**:
   * **Cơ sở tâm lý học nhận thức:** Mô hình Atkinson-Shiffrin, phân loại ký ức Endel Tulving (Episodic vs Semantic vs Procedural), và định luật suy giảm hàm mũ **Ebbinghaus Forgetting Curve** $R(t) = \exp(-t/S)$.
   * **Mô hình 4 phân tầng:** Sliding Working Context, Core Memory (L1 Cache ghim User & Agent Persona), Episodic Stream (dòng sự kiện tự truyện) và Semantic/Graph Store.
   * **Kiến trúc MemGPT / Letta:** Quản trị bộ nhớ ảo kiểu Hệ Điều Hành (OS Virtual Memory Paging), cảnh báo tràn trang ngầm (Silent Interrupts), và 4 công cụ tự quản trị bộ nhớ (`core_memory_replace`, `archival_memory_insert`).
@@ -55,7 +60,7 @@ Thư mục này dành riêng để lưu trữ các tài liệu nghiên cứu và
   * **Temporal Knowledge Graph Memory (Zep, Mem0):** Khắc phục lỗi của Vector-only Memory, đồ thị bi-temporal có tem thời gian hiệu lực `[valid_from, valid_to]` và tự động giải quyết mâu thuẫn (Contradiction Resolution).
   * **Thực hành Code:** Triển khai `HierarchicalCognitiveMemoryEngine` Python hoàn chỉnh với tính điểm Ebbinghaus, Reflection worker tự động và Core Memory tool.
 
-* 📖 **[04_agent_runtime_parameters_and_prompt_caching.md - Tham Số Vận Hành Tác Tử & Tối Ưu Hóa Prompt Caching](./04_agent_runtime_parameters_and_prompt_caching.md)**:
+* 📖 **[05_agent_runtime_parameters_and_prompt_caching.md - Tham Số Vận Hành Tác Tử & Tối Ưu Hóa Prompt Caching](./05_agent_runtime_parameters_and_prompt_caching.md)**:
   * **Bản chất kinh tế vòng lặp:** Khủng hoảng Prefill Computation $O(N^2)$, bài toán bùng nổ token tích lũy và giải pháp Prefix Caching (RadixTree).
   * **Giải phẫu Caching:** Phân biệt Hardware KV-Cache vs API-Level Prompt Caching; chu trình Cache Write, Cache Hit (giảm 90% chi phí, TTFT từ 3.5s xuống 0.25s), Cache Miss và chính sách Eviction (LRU/TTL).
   * **Quy tắc Bất biến Tiền tố (Static Prefix Invariance):** Kiến trúc đóng gói System $\to$ Tools Schema $\to$ Few-shot $\to$ Cache Breakpoint $\to$ Dynamic History; 5 bẫy gây rách cache kinh điển và cách phòng hộ.
@@ -67,5 +72,6 @@ Thư mục này dành riêng để lưu trữ các tài liệu nghiên cứu và
 
 ## 🔗 Điều Hướng Nhanh
 * Trở về mục lục Trụ cột 3: [🛠️ Trụ Cột 3: Building Agents](../README.md)
+* Chuyển sang Mô-đun kế tiếp: [🔌 Mô-đun 02: Model Context Protocol (MCP) & Tools](../02-tools-and-mcp/README.md)
 * Trở về trang chủ Vault: [🏠 Vault Home MOC](../../README.md)
 * Xem bản đồ Canvas: [🗺️ Mở Visual Canvas](../../Agent-Course-Overview.canvas)

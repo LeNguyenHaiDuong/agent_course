@@ -6,7 +6,7 @@ Thư mục này lưu trữ toàn bộ các ghi chú, phân tích kỹ thuật v�
 
 ## 📑 Tài Liệu Đã Có
 
-* **[Các Kỹ Thuật Prompt Engineering Nâng Cao](./advanced_prompt_engineering_techniques.md)**:
+* **[Các Kỹ Thuật Prompt Engineering Nâng Cao](./01_advanced_prompt_engineering_techniques.md)**:
   * Tổng hợp toàn bộ các kỹ thuật prompting kinh điển & nâng cao: Zero/Few-Shot, CoT Family, OPRO, Tree of Thoughts (ToT), Directional Stimulus, Chain of Density, Lost-in-the-Middle context management, XML System Instructions và Meta-Prompting.
   * Phân tích bản chất kỹ thuật, trích đoạn prompt mẫu thực tế, sơ đồ luồng Mermaid, ma trận quyết định và danh mục trích dẫn bài báo nghiên cứu arXiv / GitHub.
 * **[Lập Trình Hóa Prompt Với DSPy (Stanford NLP) & Tối Ưu Hóa Tự Động](./02_dspy_and_programmatic_prompting.md)**:

@@ -24,7 +24,7 @@ Trụ cột này đóng vai trò là **cầu nối nhận thức** giữa mô h�
 ├── README.md                                    # (Tài liệu này) Giới thiệu tổng quan Trụ cột 2
 └── 01-prompt-engineering/                       # 🎯 Toàn tập kỹ thuật Prompt & Context Engineering
     ├── README.md                                # Danh mục các kỹ thuật & Lộ trình
-    ├── advanced_prompt_engineering_techniques.md# Cẩm nang 10 kỹ thuật (CoT, ToT, Lost-in-Middle, Meta-Prompting)
+    ├── 01_advanced_prompt_engineering_techniques.md# Cẩm nang 10 kỹ thuật (CoT, ToT, Lost-in-Middle, Meta-Prompting)
     └── 02_dspy_and_programmatic_prompting.md    # Lập trình hóa Prompt với DSPy (Stanford NLP) & Tối ưu hóa tự động
 ```
 
@@ -32,7 +32,7 @@ Trụ cột này đóng vai trò là **cầu nối nhận thức** giữa mô h�
 
 ## 📂 Danh Mục Chuyên Đề Cốt Lõi
 
-### 📖 [Các Kỹ Thuật Prompt & Context Engineering Nâng Cao (Toàn Tập)](./01-prompt-engineering/advanced_prompt_engineering_techniques.md)
+### 📖 [Các Kỹ Thuật Prompt & Context Engineering Nâng Cao (Toàn Tập)](./01-prompt-engineering/01_advanced_prompt_engineering_techniques.md)
 * **Định hình phong cách & dữ liệu:** Zero-Shot, Few-Shot (In-Context Learning qua Induction Heads).
 * **Chuỗi suy luận (Chain-of-Thought):** Zero-shot CoT (`Let's think step by step`), Few-shot CoT, Hybrid CoT, Optimization Prompting (OPRO / "Take a deep breath").
 * **Tăng cường tri thức & Lập luận đa nhánh:** Generated Knowledge Prompting, **Tree of Thoughts (ToT)** với cơ chế đa chuyên gia phản biện và tỉa cành (*pruning*).

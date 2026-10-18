@@ -20,12 +20,12 @@ updated: 2026-10-18
 ---
 
 # 🏛️ BẢN ĐỒ KIẾN TRÚC & SƠ ĐỒ TƯ DUY TOÀN CẢNH: HỆ ĐIỀU HÀNH AI AGENT
-## Cẩm Nang Hệ Thống Hóa Toàn Diện: Sơ Đồ Tư Duy 3 Trụ Cột, Giải Phẫu 7 Tầng Kiến Trúc, Danh Mục 30 Bài Giảng & Dòng Chảy Dữ Liệu
+## Cẩm Nang Hệ Thống Hóa Toàn Diện: Sơ Đồ Tư Duy 3 Trụ Cột, Giải Phẫu 7 Tầng Kiến Trúc, Danh Mục 54 Bài Giảng & Dòng Chảy Dữ Liệu
 
 ---
 
 > [!tip] 4 Cách Khám Phá Trực Quan Toàn Bộ Khóa Học Trong Obsidian
-> 1. **Bảng Vẽ Vô Cực 2D (Obsidian Canvas):** Mở tệp [Agent-Course-Overview.canvas](Agent-Course-Overview.canvas) để xem và đọc trực tiếp toàn bộ 42 module kiến thức trên giao diện 2D kéo thả tự do.
+> 1. **Bảng Vẽ Vô Cực 2D (Obsidian Canvas):** Mở tệp [Agent-Course-Overview.canvas](Agent-Course-Overview.canvas) để xem và đọc trực tiếp toàn bộ 54 bài giảng chuyên sâu trên giao diện 2D kéo thả tự do.
 > 2. **Sơ Đồ Phân Nhánh Tương Tác (Plugin Mind Map):** Bấm biểu tượng 3 chấm (`...`) ở góc trên bên phải tệp này $\to$ Chọn **"Open as mindmap"** để xem dạng mindmap Markmap/D3 đóng mở từng nhánh con.
 > 3. **Cây Phân Cấp Mermaid Mindmap:** Cuộn xuống [Phần 1](#1-sơ-đồ-tư-duy-phân-nhánh-toàn-bộ-khóa-học-mermaid-mindmap) ngay bên dưới để xem sơ đồ Mermaid trực quan chuẩn Markdown.
 > 4. **Đồ Thị Tri Thức Toàn Vault (Graph View):** Nhấn **`Ctrl + G`** để mở mạng lưới liên kết thực tế giữa tất cả các tệp ghi chú.
@@ -34,7 +34,7 @@ updated: 2026-10-18
 
 ## 📑 MỤC LỤC
 1. [Sơ Đồ Tư Duy Phân Nhánh Toàn Bộ Khóa Học (Mermaid Mindmap)](#1-sơ-đồ-tư-duy-phân-nhánh-toàn-bộ-khóa-học-mermaid-mindmap)
-2. [Bản Đồ Phân Bổ Chi Tiết 30 Bài Giảng Theo 3 Trụ Cột](#2-bản-đồ-phân-bổ-chi-tiết-30-bài-giảng-theo-3-trụ-cột)
+2. [Bản Đồ Phân Bổ Chi Tiết 54 Bài Giảng Theo 3 Trụ Cột](#2-bản-đồ-phân-bổ-chi-tiết-54-bài-giảng-theo-3-trụ-cột)
 3. [Khái Lược Vĩ Mô: Tư Duy Hệ Điều Hành Tác Tử (The Agent Operating System)](#3-khái-lược-vĩ-mô-tư-duy-hệ-điều-hành-tác-tử-the-agent-operating-system)
 4. [Sơ Đồ Dòng Chảy Kiến Trúc 7 Tầng (End-to-End 7-Layer Architecture)](#4-sơ-đồ-dòng-chảy-kiến-trúc-7-tầng-end-to-end-7-layer-architecture)
    - [4.1. Ngăn Xếp Kiến Trúc 7 Tầng Phân Lớp (Layered Architecture Stack)](#41-ngăn-xếp-kiến-trúc-7-tầng-phân-lớp-layered-architecture-stack)
@@ -66,6 +66,7 @@ mindmap
         Scaling Laws & Định Luật Phân Bổ Năng Lực
         Quantization: GPTQ, AWQ, GGUF
         Synthetic Data, Evol-Instruct & DPO Alignment
+        Test-Time Compute & Process Reward Models (PRMs)
       Semantic Search & Advanced RAG
         Chunking 4 Thế Hệ & Embedding Bi-Encoders
         Vector DBs & Giải Thuật HNSW / IVF
@@ -75,6 +76,7 @@ mindmap
         Tối Ưu Hóa & Mô Đun Hóa với LangChain
         Advanced Retrieval: Hybrid Search, RRF & Reranking
         Đánh Giá RAG: Ragas Triad & Faithfulness
+        Late Interaction & Token-Level ColBERTv2
     ✍️ TRỤ CỘT 2: PROMPT & CONTEXT
       Kỹ Thuật Prompt Nâng Cao
         Few-Shot In-Context Learning
@@ -83,50 +85,64 @@ mindmap
         Signatures, Modules & Declarative LLM Calls
         Teleprompters & MIPROv2 Auto-Optimization
     🛠️ TRỤ CỘT 3: BUILDING AGENTS
-      AI Harness & Ký Ức Đa Tầng
+      01. AI Harness & Ký Ức Đa Tầng
+        AI Chat Evolution & 4 Cognitive Tiers
         AI Harness Orchestrator & Session Lifecycle
         Quản Trị Ngữ Cảnh: Pruning & Context Quarantine
-        Hệ Thống Ký Ức: Working, Episodic, Semantic
+        Hệ Thống Ký Ức: Working, Episodic, Semantic, MemGPT
         Agent Runtime Parameters & Prefix Caching
-      Công Cụ & Chuẩn Kết Nối Ngoại Vi
+      02. Công Cụ & Chuẩn Kết Nối Ngoại Vi
         Model Context Protocol: Client-Server Architecture
         Constrained Decoding: FSM, Logit Masking & Jump-Forward
-      Kỹ Nghệ Vòng Lặp & Tự Trị
+        Dynamic Tool Retrieval & Tool-RAG
+        Sandboxed Tool Execution: Wasm & MicroVMs
+      03. Vòng Lặp Nhận Thức, Bầy Đàn & Thực Thi Bền Vững
         Nền Tảng Loop Engineering & Stopping Rubrics
         Mô Hình Vòng Lặp: ReAct, Plan-and-Execute, Evaluator-Optimizer
         Đội Ngũ Đa Tác Tử: Supervisor, Orchestrator, Swarms
+        Tranh Biện Đa Tác Tử & Cơ Chế Đồng Thuận
         AST Self-Healing Code: Tự Sửa Lỗi Qua Abstract Syntax Tree
         Durable Execution: Event-Sourcing Checkpoints & Time-Travel
-      Giám Sát & Đo Lường Hệ Thống
+        State Merkle Trees: Merkle DAG & Phân Nhánh Bất Biến
+        Mixture-of-Agents (MoA) & Layered Model Routing
+        Monte Carlo Tree Search (MCTS) cho Tác Tử Tự Hành
+      04. Quan Sát, Đánh Giá & Tối Ưu Hóa Chi Phí
         Agent Tracing: OpenTelemetry & Langfuse
-        Bộ Tiêu Chuẩn Đánh Giá: Ragas, G-Eval, SWE-bench
-      Tác Tử Đa Phương Thức & Màn Hình
-        Multimodal GUI Agents & Pixel Grounding
-        Normalized Coordinates, OmniParser & Computer-Use
-      Trí Tuệ Mã Nguồn & Tối Ưu Hóa Chi Phí
-        Code Graphs, SCIP Indexing & Cross-Session Memory
-        Token Economics, Model Cascading & Prompt Caching
-      Đồng Thuận Bầy Đàn & Quản Trị Rủi Ro
-        Multi-Agent Debate & Borda Count Consensus
-        Human-in-the-Loop & Human-on-the-Loop Governance
-      Kiến Trúc Triển Khai Doanh Nghiệp
+        Dữ Liệu Tổng Hợp, Evol-Instruct & LLM-as-a-Judge
+        Token Economics, Model Cascading & Budget Breakers
+        Nén Prompt, LLMLingua & GPU PagedAttention KV-Cache
+        Speculative Decoding & Tăng Tốc Suy Luận Inference
+        Semantic Caching & Vector Cache (Sub-ms Zero-Token)
+      05. Các Miền Tác Tử Chuyên Biệt
+        Code Graphs, SCIP Indexing & Repo Map PageRank
+        Bộ Nhớ Đa Phiên, Memory Bank & Git Delta Caching
+        Tác Tử Trực Quan Computer-Use & OSWorld
+        Tác Tử Web, Nén Accessibility Tree & Playwright
+        Symbolic AI & Kiểm Định Hình Thức (Z3 SMT, Lean 4)
+        On-Device & Edge Small Agents (WebGPU, NPU)
+      06. Quản Trị, An Ninh & Triển Khai Doanh Nghiệp
+        Quản Trị Tác Tử: Human-in-the-Loop & Human-on-the-Loop
+        Bảo Mật Tác Tử, Phòng Chống IPI & Sandboxing
         Cẩm Nang Xây Dựng Enterprise AI Agent Toàn Tập
         Full-stack MERN Agent: Realtime Generative UI & SSE Stream
+        Adversarial Fuzzing & Automated Red-Teaming (PAIR, TAP)
+        Cryptographic Audit Trails & Enterprise Compliance
 ```
 
 ---
 
-## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 34 BÀI GIẢNG THEO 3 TRỤ CỘT
+## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 54 BÀI GIẢNG THEO 3 TRỤ CỘT
 
 ### 🔬 TRỤ CỘT 1: NỀN TẢNG NGHIÊN CỨU & KHAI PHÁ DỮ LIỆU (RESEARCH & FOUNDATIONS)
 
 | Phân Hệ | Bài Học Cụ Thể | Trọng Tâm Kiến Thức Cốt Lõi |
 | :--- | :--- | :--- |
-| **01. Neural Networks** | [neural_networks_and_classifications.md](01-research-and-foundations/01-neural-networks/neural_networks_and_classifications.md) | Đại số tuyến tính, Gradient Descent, Backpropagation, phân loại kiến trúc nơ-ron |
-| **02. LLM Internals** | [what_are_large_language_models.md](01-research-and-foundations/02-llm-internals/what_are_large_language_models.md) | Tổng quan lịch sử, cơ chế sinh tự hồi quy (Autoregressive), Tokenization |
-| | [04_transformer_math_deep_dive.md](01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md) | Toán học Scaled Dot-Product, Multi-Head Attention, RoPE, KV-Cache |
-| | [05_scaling_laws_and_quantization.md](01-research-and-foundations/02-llm-internals/05_scaling_laws_and_quantization.md) | Định luật Chinchilla, lượng tử hóa trọng số (INT8, INT4, GPTQ, AWQ, GGUF) |
-| | [06_synthetic_data_and_agent_alignment.md](01-research-and-foundations/02-llm-internals/06_synthetic_data_and_agent_alignment.md) | Dữ liệu nhân tạo (Evol-Instruct, UltraFeedback), cân chỉnh DPO/ORPO cho Tool Calling |
+| **01. Neural Networks** | [01_neural_networks_and_classifications.md](01-research-and-foundations/01-neural-networks/01_neural_networks_and_classifications.md) | Đại số tuyến tính, Gradient Descent, Backpropagation, phân loại kiến trúc nơ-ron |
+| **02. LLM Internals** | [01_what_are_large_language_models.md](01-research-and-foundations/02-llm-internals/01_what_are_large_language_models.md) | Tổng quan lịch sử, cơ chế sinh tự hồi quy (Autoregressive), Tokenization |
+| | [02_transformer_math_deep_dive.md](01-research-and-foundations/02-llm-internals/02_transformer_math_deep_dive.md) | Toán học Scaled Dot-Product, Multi-Head Attention, RoPE, KV-Cache |
+| | [03_scaling_laws_and_quantization.md](01-research-and-foundations/02-llm-internals/03_scaling_laws_and_quantization.md) | Định luật Chinchilla, lượng tử hóa trọng số (INT8, INT4, GPTQ, AWQ, GGUF) |
+| | [04_synthetic_data_and_agent_alignment.md](01-research-and-foundations/02-llm-internals/04_synthetic_data_and_agent_alignment.md) | Dữ liệu nhân tạo (Evol-Instruct, UltraFeedback), cân chỉnh DPO/ORPO cho Tool Calling |
+| | [05_test_time_compute_and_process_reward_models.md](01-research-and-foundations/02-llm-internals/05_test_time_compute_and_process_reward_models.md) | Test-Time Scaling Laws, Process Reward Models (PRMs) vs ORMs, Monte Carlo Rollouts |
 | **03. Semantic Search & RAG** | [01_semantic_search_and_reranking.md](01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md) | Bi-Encoder embedding, Cross-Encoder reranking, tương đồng Cosine/Dot-product |
 | | [02_rag_architecture_and_components.md](01-research-and-foundations/03-semantic-search/02_rag_architecture_and_components.md) | 4 cấu phần RAG (Ingestion, Chunking, Retrieval, Generation) |
 | | [03_embeddings_and_vector_databases.md](01-research-and-foundations/03-semantic-search/03_embeddings_and_vector_databases.md) | Bản chất hình học không gian vector, giải thuật HNSW, IVF, ScaNN |
@@ -136,6 +152,7 @@ mindmap
 | | [07_optimizing_and_modularizing_rag_with_langchain.md](01-research-and-foundations/03-semantic-search/07_optimizing_and_modularizing_rag_with_langchain.md) | LCEL Pipeline, Contextual Compression, nén ngữ cảnh tiết kiệm 60% Token |
 | | [08_advanced_retrieval_tactics_for_rag.md](01-research-and-foundations/03-semantic-search/08_advanced_retrieval_tactics_for_rag.md) | Hybrid Search kết hợp BM25 + Dense Vectors, Reciprocal Rank Fusion (RRF) |
 | | [09_evaluating_and_optimizing_rag_systems.md](01-research-and-foundations/03-semantic-search/09_evaluating_and_optimizing_rag_systems.md) | Bộ ba đo lường Ragas Triad: Faithfulness, Answer Relevance, Context Precision |
+| | [10_late_interaction_and_colbert_retrieval.md](01-research-and-foundations/03-semantic-search/10_late_interaction_and_colbert_retrieval.md) | Tương tác muộn ColBERTv2, toán tử MaxSim, nén phần dư Residual & PLAID engine |
 
 ---
 
@@ -143,35 +160,51 @@ mindmap
 
 | Phân Hệ | Bài Học Cụ Thể | Trọng Tâm Kiến Thức Cốt Lõi |
 | :--- | :--- | :--- |
-| **01. Prompt Engineering** | [advanced_prompt_engineering_techniques.md](02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md) | Zero-Shot, Few-Shot, CoT, ToT, Self-Consistency, Prompt Injection Defense |
+| **01. Prompt Engineering** | [01_advanced_prompt_engineering_techniques.md](02-prompt-and-context/01-prompt-engineering/01_advanced_prompt_engineering_techniques.md) | Zero-Shot, Few-Shot, CoT, ToT, Self-Consistency, Prompt Injection Defense |
 | | [02_dspy_and_programmatic_prompting.md](02-prompt-and-context/01-prompt-engineering/02_dspy_and_programmatic_prompting.md) | Thay thế viết prompt thủ công bằng lập trình khai báo (Declarative DSPy), MIPROv2 |
 
 ---
 
-### 🛠️ TRỤ CỘT 3: XÂY DỰNG TÁC TỬ TỰ HÀNH (BUILDING AGENTS - 10 MODULES)
+### 🛠️ TRỤ CỘT 3: XÂY DỰNG TÁC TỬ TỰ HÀNH (BUILDING AGENTS - 6 MASTER MODULES)
 
-| Phân Hệ | Bài Học Cụ Thể | Trọng Tâm Kiến Thức Cốt Lõi |
+| Mô-đun | Bài Học Cụ Thể | Trọng Tâm Kiến Thức Cốt Lõi |
 | :--- | :--- | :--- |
-| **01. Harness & Memory** | [00_ai_chat_systems_and_prompt_engineering.md](03-building-agents/01-harness-and-memory/00_ai_chat_systems_and_prompt_engineering.md) | Sự tiến hóa từ Stateless Chatbot đến Stateful Autonomous Agents |
-| | [01_harness_architecture.md](03-building-agents/01-harness-and-memory/01_harness_architecture.md) | Bộ khung AI Harness: Session Orchestration, Context Quarantine, Guardrails |
-| | [02_context_management.md](03-building-agents/01-harness-and-memory/02_context_management.md) | Bệnh lý Context Drift, kỹ thuật Context Pruning, Rolling Summarization |
-| | [03_memory_systems.md](03-building-agents/01-harness-and-memory/03_memory_systems.md) | Kiến trúc bộ nhớ 3 tầng (MemGPT/Letta): Working Context, Episodic & Archival DB |
-| | [04_agent_runtime_parameters_and_prompt_caching.md](03-building-agents/01-harness-and-memory/04_agent_runtime_parameters_and_prompt_caching.md) | Temperature/Top-P/Presence, tối ưu GPU Prefix Caching (RadixTree / vLLM) |
+| **01. Harness & Memory** | [01_ai_chat_systems_and_prompt_engineering.md](03-building-agents/01-harness-and-memory/01_ai_chat_systems_and_prompt_engineering.md) | Sự tiến hóa từ Stateless Chatbot đến Stateful Autonomous Agents |
+| | [02_harness_architecture.md](03-building-agents/01-harness-and-memory/02_harness_architecture.md) | Bộ khung AI Harness: Session Orchestration, Context Quarantine, Guardrails |
+| | [03_context_management.md](03-building-agents/01-harness-and-memory/03_context_management.md) | Bệnh lý Context Drift, kỹ thuật Context Pruning, Rolling Summarization |
+| | [04_memory_systems.md](03-building-agents/01-harness-and-memory/04_memory_systems.md) | Kiến trúc bộ nhớ 4 tầng: Working, Episodic, Semantic, MemGPT Virtual Memory |
+| | [05_agent_runtime_parameters_and_prompt_caching.md](03-building-agents/01-harness-and-memory/05_agent_runtime_parameters_and_prompt_caching.md) | Temperature/Top-P, Static Prefix Invariance, tối ưu GPU Prefix Caching (RadixTree) |
 | **02. Tools & MCP** | [01_mcp_architecture.md](03-building-agents/02-tools-and-mcp/01_mcp_architecture.md) | Giao thức Model Context Protocol: Chuẩn hóa Tools, Resources, Prompts qua stdio/SSE |
 | | [02_constrained_decoding_and_structured_outputs.md](03-building-agents/02-tools-and-mcp/02_constrained_decoding_and_structured_outputs.md) | Cưỡng chế JSON schema ở cấp độ logits (FSM Masking, Outlines, SGLang Jump-forward) |
-| **03. Loop Engineering** | [01_loop_fundamentals.md](03-building-agents/03-loop-engineering/01_loop_fundamentals.md) | Vòng lặp phản hồi tự trị, tiêu chí dừng (Stopping Rubrics), Circuit Breakers |
-| | [02_react_and_planning.md](03-building-agents/03-loop-engineering/02_react_and_planning.md) | So sánh ReAct vs Plan-and-Execute vs Evaluator-Optimizer (Self-Refine) |
-| | [03_multi_agent_teams.md](03-building-agents/03-loop-engineering/03_multi_agent_teams.md) | Phối hợp đa tác tử: Hierarchical Supervisor, Decentralized Swarm, Message Passing |
-| | [04_ast_self_healing_code_agents.md](03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md) | Tác tử lập trình tự sửa code qua Abstract Syntax Tree (Tree-sitter), Repo Map |
-| | [05_durable_execution_and_stateful_workflows.md](03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md) | Workflow Engine bền vững: Event Sourcing Checkpoint, Replay Determinism, Time-Travel |
-| **04. Observability & Evals** | [01_agent_evals_and_tracing.md](03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md) | Giám sát phân tán OpenTelemetry, Langfuse Tracing, SWE-bench & G-Eval |
-| **05. Multimodal GUI** | [01_multimodal_gui_and_computer_use.md](03-building-agents/05-multimodal-gui-agents/01_multimodal_gui_and_computer_use.md) | Tác tử điều khiển màn hình OS, Pixel Grounding, OmniParser, chống Screen Drift |
-| **06. Code Intelligence** | [01_code_graphs_and_repository_intelligence.md](03-building-agents/06-code-intelligence/01_code_graphs_and_repository_intelligence.md) | Code Property Graph (AST+CFG+DFG), SCIP Symbol Indexing, Graph-RAG cho Codebase & Memory Bank |
-| **07. Token Economics** | [01_token_economics_and_cost_optimization.md](03-building-agents/07-cost-and-token-economics/01_token_economics_and_cost_optimization.md) | Tối ưu hóa chi phí: FrugalGPT Model Router, At-the-Boundary Pruning, Prompt Caching & Budget Breakers |
-| **08. Multi-Agent Consensus** | [01_multi_agent_debate_and_consensus.md](03-building-agents/08-multi-agent-consensus/01_multi_agent_debate_and_consensus.md) | Tranh biện đa tác tử: Định lý Condorcet, Borda Count Voting, phá vỡ thiên kiến xác nhận đơn lẻ |
-| **09. Governance & HITL** | [01_hitl_and_hotl_human_agent_interaction.md](03-building-agents/09-governance-and-hitl/01_hitl_and_hotl_human_agent_interaction.md) | Quản trị tương tác Người - Máy: Phổ tự trị HITL/HOTL/HOOTL, Ma trận Task-Risk Index & Kill Switch |
-| **10. Enterprise Delivery** | [01_how_to_build_enterprise_ai_agents.md](03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md) | 5 thất bại kinh điển & kiến trúc phòng vệ toàn diện cho tác tử doanh nghiệp (6 phòng ban) |
-| | [02_fullstack_agent_mern_architecture.md](03-building-agents/10-enterprise-and-production/02_fullstack_agent_mern_architecture.md) | Kiến trúc ứng dụng hoàn chỉnh: Node.js Agent Runtime + Express SSE + React Gen-UI + MongoDB Atlas |
+| | [03_dynamic_tool_retrieval_and_tool_rag.md](03-building-agents/02-tools-and-mcp/03_dynamic_tool_retrieval_and_tool_rag.md) | Mở rộng hệ thống lên hàng nghìn Tools, Two-Stage Tool-RAG, Hybrid Search & Phân cấp Namespace |
+| | [04_sandboxed_tool_execution_wasm_and_microvm.md](03-building-agents/02-tools-and-mcp/04_sandboxed_tool_execution_wasm_and_microvm.md) | Hộp cát thực thi công cụ Wasm/WASI và Firecracker MicroVM, Capability-based Security |
+| **03. Loop & Multi-Agent** | [01_loop_fundamentals.md](03-building-agents/03-loop-and-multi-agent-engineering/01_loop_fundamentals.md) | Vòng lặp phản hồi tự trị, chu trình OODA, Stopping Rubrics, Circuit Breakers |
+| | [02_react_and_planning.md](03-building-agents/03-loop-and-multi-agent-engineering/02_react_and_planning.md) | So sánh ReAct vs Plan-and-Execute vs Evaluator-Optimizer (Self-Refine) |
+| | [03_multi_agent_teams.md](03-building-agents/03-loop-and-multi-agent-engineering/03_multi_agent_teams.md) | Phối hợp đa tác tử: Hierarchical Supervisor, Decentralized Swarm, Context Quarantine |
+| | [04_multi_agent_debate_and_consensus.md](03-building-agents/03-loop-and-multi-agent-engineering/04_multi_agent_debate_and_consensus.md) | Tranh biện đa tác tử: Phá vỡ thiên kiến xác nhận, Borda Count & Elo Consensus |
+| | [05_ast_self_healing_code_agents.md](03-building-agents/03-loop-and-multi-agent-engineering/05_ast_self_healing_code_agents.md) | Tác tử lập trình tự sửa code qua Cây cú pháp AST (Tree-sitter), SWE-agent ACI |
+| | [06_durable_execution_and_stateful_workflows.md](03-building-agents/03-loop-and-multi-agent-engineering/06_durable_execution_and_stateful_workflows.md) | Workflow Engine bền vững: Event Sourcing Checkpoint, Replay Determinism, Time-Travel |
+| | [07_state_merkle_trees_and_time_travel_debugging.md](03-building-agents/03-loop-and-multi-agent-engineering/07_state_merkle_trees_and_time_travel_debugging.md) | Cây Merkle DAG quản trị trạng thái bất biến, Content-Addressable SHA-256, Git-like Forking & Replay |
+| | [08_mixture_of_agents_and_layered_routing.md](03-building-agents/03-loop-and-multi-agent-engineering/08_mixture_of_agents_and_layered_routing.md) | Hợp tác nhận thức đa mô hình phân tầng Mixture-of-Agents (MoA), Asymmetric Model Funnel |
+| | [09_mcts_and_tree_search_reasoning_loops.md](03-building-agents/03-loop-and-multi-agent-engineering/09_mcts_and_tree_search_reasoning_loops.md) | Tìm kiếm cây Monte Carlo (MCTS) cho Agent, cân bằng PUCT và mô phỏng Rollout/PRM |
+| **04. Observability & Cost** | [01_agent_evals_and_tracing.md](03-building-agents/04-observability-evals-and-cost/01_agent_evals_and_tracing.md) | Giám sát phân tán OpenTelemetry, Langfuse Tracing, SWE-bench & Ragas Triad |
+| | [02_synthetic_benchmarks_and_llm_as_judge.md](03-building-agents/04-observability-evals-and-cost/02_synthetic_benchmarks_and_llm_as_judge.md) | Sinh benchmark Evol-Instruct, 4 thiên kiến LLM Judge, Swap Testing, G-Eval Logits |
+| | [03_token_economics_and_cost_optimization.md](03-building-agents/04-observability-evals-and-cost/03_token_economics_and_cost_optimization.md) | Tối ưu hóa chi phí: FrugalGPT Model Router, Observation Distillation, Budget Breakers |
+| | [04_prompt_compression_and_cache_engineering.md](03-building-agents/04-observability-evals-and-cost/04_prompt_compression_and_cache_engineering.md) | Nén ngữ cảnh LLMLingua qua Entropy, GPU KV-cache PagedAttention & RadixTree |
+| | [05_speculative_decoding_and_inference_acceleration.md](03-building-agents/04-observability-evals-and-cost/05_speculative_decoding_and_inference_acceleration.md) | Nút thắt Memory-bound, Speculative Sampling, Modified Rejection Sampling, Medusa/Eagle, vLLM SpecExec |
+| | [06_semantic_caching_and_vector_cache.md](03-building-agents/04-observability-evals-and-cost/06_semantic_caching_and_vector_cache.md) | Bộ nhớ đệm ngữ nghĩa Semantic Cache, LSH Sub-ms Lookup, tiết kiệm 100% token cho truy vấn tương đồng |
+| **05. Specialized Domains** | [01_code_graphs_and_repository_intelligence.md](03-building-agents/05-specialized-agent-domains/01_code_graphs_and_repository_intelligence.md) | Code Property Graph, SCIP Symbol Indexing, PageRank Repo Map (Aider) |
+| | [02_cross_session_memory_and_delta_caching.md](03-building-agents/05-specialized-agent-domains/02_cross_session_memory_and_delta_caching.md) | Bộ nhớ đa phiên: Memory Bank Markdown, Git Merkle Delta Caching (tiết kiệm 97% parse) |
+| | [03_multimodal_gui_and_computer_use.md](03-building-agents/05-specialized-agent-domains/03_multimodal_gui_and_computer_use.md) | Tác tử điều khiển màn hình OS, Pixel Grounding, OmniParser, chống Screen Drift |
+| | [04_browser_automation_and_web_agents.md](03-building-agents/05-specialized-agent-domains/04_browser_automation_and_web_agents.md) | Tác tử Web, Nén Accessibility Tree (AXTree) giảm 90% token, Set-of-Mark & Stealth |
+| | [05_symbolic_ai_and_formal_verification.md](03-building-agents/05-specialized-agent-domains/05_symbolic_ai_and_formal_verification.md) | Xung đột xác suất vs diễn dịch, Neuro-Symbolic, CEGIS Loop, Z3 SMT Solver & Lean 4 Theorem Prover |
+| | [06_on_device_and_edge_agents.md](03-building-agents/05-specialized-agent-domains/06_on_device_and_edge_agents.md) | Tác tử cục bộ On-Device SLMs (SmolLM2, Qwen-Coder), WebGPU trong trình duyệt, NPU & Zero Data Egress |
+| **06. Governance & Enterprise** | [01_hitl_and_hotl_human_agent_interaction.md](03-building-agents/06-governance-and-enterprise-delivery/01_hitl_and_hotl_human_agent_interaction.md) | Quản trị tương tác Người - Máy: Phổ tự trị HITL/HOTL/HOOTL, Ma trận Task-Risk Index |
+| | [02_agent_security_red_teaming_and_guardrails.md](03-building-agents/06-governance-and-enterprise-delivery/02_agent_security_red_teaming_and_guardrails.md) | Bảo mật tác tử: Phòng chống Indirect Prompt Injection, Dual-LLM & MicroVM Sandbox |
+| | [03_how_to_build_enterprise_ai_agents.md](03-building-agents/06-governance-and-enterprise-delivery/03_how_to_build_enterprise_ai_agents.md) | 5 thất bại kinh điển & kiến trúc phòng vệ toàn diện cho tác tử doanh nghiệp (6 phòng ban) |
+| | [04_fullstack_agent_mern_architecture.md](03-building-agents/06-governance-and-enterprise-delivery/04_fullstack_agent_mern_architecture.md) | Kiến trúc ứng dụng hoàn chỉnh: Node.js Agent Runtime + Express SSE + React Gen-UI + MongoDB Atlas |
+| | [05_adversarial_fuzzing_and_automated_agent_red_teaming.md](03-building-agents/06-governance-and-enterprise-delivery/05_adversarial_fuzzing_and_automated_agent_red_teaming.md) | Kiểm thử thâm nhập tự động cho Agent, giải thuật đối kháng PAIR/TAP, Tool Parameter Fuzzing & ADR |
+| | [06_cryptographic_audit_trails_and_compliance.md](03-building-agents/06-governance-and-enterprise-delivery/06_cryptographic_audit_trails_and_compliance.md) | Sổ cái kiểm toán mật mã bất biến Hash Chaining SHA-256, làm mờ dữ liệu PII, tuân thủ EU AI Act |
 
 ---
 
@@ -349,11 +382,11 @@ flowchart TD
 ### HỆ THỐNG 1: LÕI NHẬN THỨC & NỀN TẢNG VẬT LÝ (LLM CORE & TRANSFORMER INTERNALS)
 
 > **Tài liệu liên quan trong Vault:**
-> * [neural_networks_and_classifications.md](./01-research-and-foundations/01-neural-networks/neural_networks_and_classifications.md)
-> * [what_are_large_language_models.md](./01-research-and-foundations/02-llm-internals/what_are_large_language_models.md)
-> * [04_transformer_math_deep_dive.md](./01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md)
-> * [05_scaling_laws_and_quantization.md](./01-research-and-foundations/02-llm-internals/05_scaling_laws_and_quantization.md)
-> * [06_synthetic_data_and_agent_alignment.md](./01-research-and-foundations/02-llm-internals/06_synthetic_data_and_agent_alignment.md)
+> * [01_neural_networks_and_classifications.md](./01-research-and-foundations/01-neural-networks/01_neural_networks_and_classifications.md)
+> * [01_what_are_large_language_models.md](./01-research-and-foundations/02-llm-internals/01_what_are_large_language_models.md)
+> * [02_transformer_math_deep_dive.md](./01-research-and-foundations/02-llm-internals/02_transformer_math_deep_dive.md)
+> * [03_scaling_laws_and_quantization.md](./01-research-and-foundations/02-llm-internals/03_scaling_laws_and_quantization.md)
+> * [04_synthetic_data_and_agent_alignment.md](./01-research-and-foundations/02-llm-internals/04_synthetic_data_and_agent_alignment.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
 Mô hình ngôn ngữ lớn (LLM) bản chất là một **hàm xác suất thống kê điều kiện** $P(w_t \mid w_1, \dots, w_{t-1})$. Trọng số của nó bị **đóng băng (frozen)** sau huấn luyện, nó hoàn toàn **tĩnh (stateless)** và tiêu tốn tài nguyên GPU khổng lồ trong pha sinh token tự hồi quy (Autoregressive Generation).
@@ -413,11 +446,12 @@ LLM chỉ có thể xử lý ngữ cảnh giới hạn và dễ bị **ảo giá
 ### HỆ THỐNG 3: HỆ THẦN KINH ĐIỀU KHIỂN & CỬA SỔ NGỮ CẢNH (PROMPTING, DSPY & HARNESS)
 
 > **Tài liệu liên quan trong Vault:**
-> * [advanced_prompt_engineering_techniques.md](./02-prompt-and-context/01-prompt-engineering/advanced_prompt_engineering_techniques.md)
+> * [01_advanced_prompt_engineering_techniques.md](./02-prompt-and-context/01-prompt-engineering/01_advanced_prompt_engineering_techniques.md)
 > * [02_dspy_and_programmatic_prompting.md](./02-prompt-and-context/01-prompt-engineering/02_dspy_and_programmatic_prompting.md)
-> * [01_harness_architecture.md](./03-building-agents/01-harness-and-memory/01_harness_architecture.md)
-> * [02_context_management.md](./03-building-agents/01-harness-and-memory/02_context_management.md)
-> * [04_agent_runtime_parameters_and_prompt_caching.md](./03-building-agents/01-harness-and-memory/04_agent_runtime_parameters_and_prompt_caching.md)
+> * [01_ai_chat_systems_and_prompt_engineering.md](./03-building-agents/01-harness-and-memory/01_ai_chat_systems_and_prompt_engineering.md)
+> * [02_harness_architecture.md](./03-building-agents/01-harness-and-memory/02_harness_architecture.md)
+> * [03_context_management.md](./03-building-agents/01-harness-and-memory/03_context_management.md)
+> * [05_agent_runtime_parameters_and_prompt_caching.md](./03-building-agents/01-harness-and-memory/05_agent_runtime_parameters_and_prompt_caching.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
 Viết prompt thủ công rất mong manh (dễ gãy khi đổi model). Đồng thời, khi phiên trò chuyện kéo dài, hệ thống gặp phải 3 căn bệnh: **Context Poisoning** (nhiễm độc rác), **Context Decay** (quên thông tin ở giữa - Lost in the Middle), và **Bùng nổ chi phí tính toán Prefill**.
@@ -439,7 +473,8 @@ Viết prompt thủ công rất mong manh (dễ gãy khi đổi model). Đồng 
 ### HỆ THỐNG 4: HỆ THỐNG KÝ ỨC ĐA TẦNG (COGNITIVE MEMORY SYSTEMS)
 
 > **Tài liệu liên quan trong Vault:**
-> * [03_memory_systems.md](./03-building-agents/01-harness-and-memory/03_memory_systems.md)
+> * [04_memory_systems.md](./03-building-agents/01-harness-and-memory/04_memory_systems.md)
+> * [02_cross_session_memory_and_delta_caching.md](./03-building-agents/05-specialized-agent-domains/02_cross_session_memory_and_delta_caching.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
 Context Window của LLM chỉ là bộ nhớ RAM tạm thời; khi phiên kết thúc hoặc cửa sổ đầy, Agent sẽ bị "mất trí nhớ hoàn toàn" (Amnesia). Một Agent thông minh cần khả năng tích lũy kinh nghiệm qua thời gian.
@@ -466,10 +501,15 @@ Hệ thống tổ chức trí nhớ theo mô hình nhận thức 4 tầng:
 > **Tài liệu liên quan trong Vault:**
 > * [01_mcp_architecture.md](./03-building-agents/02-tools-and-mcp/01_mcp_architecture.md)
 > * [02_constrained_decoding_and_structured_outputs.md](./03-building-agents/02-tools-and-mcp/02_constrained_decoding_and_structured_outputs.md)
-> * [01_multimodal_gui_and_computer_use.md](./03-building-agents/05-multimodal-gui-agents/01_multimodal_gui_and_computer_use.md)
+> * [03_dynamic_tool_retrieval_and_tool_rag.md](./03-building-agents/02-tools-and-mcp/03_dynamic_tool_retrieval_and_tool_rag.md)
+> * [04_sandboxed_tool_execution_wasm_and_microvm.md](./03-building-agents/02-tools-and-mcp/04_sandboxed_tool_execution_wasm_and_microvm.md)
+> * [03_multimodal_gui_and_computer_use.md](./03-building-agents/05-specialized-agent-domains/03_multimodal_gui_and_computer_use.md)
+> * [04_browser_automation_and_web_agents.md](./03-building-agents/05-specialized-agent-domains/04_browser_automation_and_web_agents.md)
+> * [05_symbolic_ai_and_formal_verification.md](./03-building-agents/05-specialized-agent-domains/05_symbolic_ai_and_formal_verification.md)
+> * [06_on_device_and_edge_agents.md](./03-building-agents/05-specialized-agent-domains/06_on_device_and_edge_agents.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
-LLM chỉ có thể sinh văn bản; nó không thể tự bấm chuột, chạy lệnh bash hay đọc database. Đồng thời, khi xuất lệnh gọi hàm, LLM rất hay sinh sai cú pháp JSON (thiếu ngoặc `}`, sai kiểu dữ liệu) làm sập hệ thống điều phối.
+LLM chỉ có thể sinh văn bản; nó không thể tự bấm chuột, chạy lệnh bash hay đọc database. Đồng thời, khi xuất lệnh gọi hàm, LLM rất hay sinh sai cú pháp JSON (thiếu ngoặc `}`, sai kiểu dữ liệu) làm sập hệ thống điều phối, và không thể đảm bảo tính đúng đắn logic $100\%$ trong các bài toán quy hoạch phức tạp. Ngoài ra, việc nhồi nhét hàng trăm công cụ vào context (Tool Storm) gây tràn bộ nhớ và tăng tỷ lệ gọi nhầm tool.
 
 #### 2. Cơ chế hoạt động ngầm (How it works behind the scenes):
 1. **Model Context Protocol (MCP) — Quy trình 4 bước:**
@@ -477,8 +517,12 @@ LLM chỉ có thể sinh văn bản; nó không thể tự bấm chuột, chạy
    * *Bước 2 (Set up Transport):* Thiết lập kênh kết nối qua `stdio` (tiến trình cục bộ an toàn) hoặc `HTTP SSE` (mạng từ xa, có hoặc không có session).
    * *Bước 3 (Handle Requests & Pattern Matching):* Nhận gói tin JSON-RPC `tools/call`, thực thi logic ngoài đời, và bọc kết quả vào mảng `content: [{type: "text", text: ...}]` chuẩn mực.
    * *Bước 4 (UI Integration):* Trả kết quả về Frontend (React/Angular) để hiển thị tự nhiên hoặc kích hoạt Generative UI widget.
-2. **Constrained Decoding (Logit Masking):** Can thiệp trực tiếp vào tầng Unembedding $\mathbf{W}_U$ của LLM. Sử dụng Máy trạng thái hữu hạn (FSM) để áp đặt mặt nạ nhị phân $\mathbf{M}_t$: bất kỳ token nào vi phạm ngữ pháp JSON Schema bị gán xác suất $-\infty$, bảo đảm **$100\%$ tính đúng đắn cú pháp ngay tại thời điểm sinh token**.
-3. **Multimodal GUI (Computer-Use):** Với phần mềm không có API, Agent chụp ảnh màn hình, dùng **Set-of-Mark (SoM)** hoặc **OmniParser** đánh số các nút bấm trên màn hình, ánh xạ tọa độ chuẩn hóa $[0, 1000] \times [0, 1000]$ và phát sinh lệnh di chuột/gõ phím ảo như người thật.
+2. **Dynamic Tool Retrieval & Tool-RAG:** Giải quyết nút thắt Tool Storm khi kho công cụ mở rộng lên hàng nghìn hàm. Sử dụng phương thức truy hồi hai tầng (Two-stage Retrieval: BM25 + Dense Vectors với Reciprocal Rank Fusion) kết hợp phân cấp Namespace phân cấp (`github/*`, `database/*`) để chỉ chèn top-$K$ schema phù hợp nhất vào context theo từng lượt suy luận.
+3. **Constrained Decoding (Logit Masking):** Can thiệp trực tiếp vào tầng Unembedding $\mathbf{W}_U$ của LLM. Sử dụng Máy trạng thái hữu hạn (FSM) để áp đặt mặt nạ nhị phân $\mathbf{M}_t$: bất kỳ token nào vi phạm ngữ pháp JSON Schema bị gán xác suất $-\infty$, bảo đảm **$100\%$ tính đúng đắn cú pháp ngay tại thời điểm sinh token**.
+4. **Multimodal GUI (Computer-Use):** Với phần mềm không có API, Agent chụp ảnh màn hình, dùng **Set-of-Mark (SoM)** hoặc **OmniParser** đánh số các nút bấm trên màn hình, ánh xạ tọa độ chuẩn hóa $[0, 1000] \times [0, 1000]$ và phát sinh lệnh di chuột/gõ phím ảo như người thật.
+5. **Symbolic AI & Formal Verification (Z3 SMT & Lean 4):** Đối với các bài toán có tính ràng buộc toán học khắt khe hoặc xác minh an toàn, tác tử Neuro-Symbolic kết hợp bộ giải hình thức Z3 SMT Solver và Lean 4 Theorem Prover ("Proofs as Programs") thông qua vòng lặp CEGIS (Counterexample-Guided Inductive Synthesis), triệt tiêu hoàn toàn ảo giác logic.
+6. **On-Device & Edge Small Agents (SLM & WebGPU):** Tối ưu hóa triển khai tác tử cục bộ không phụ thuộc đám mây với các mô hình ngôn ngữ nhỏ (SLMs: SmolLM2, Qwen-2.5-Coder, Phi-3.5) chạy qua WebGPU/WASM trong trình duyệt hoặc llama.cpp/NPU trên biên, đảm bảo bảo mật dữ liệu tuyệt đối (Zero Egress) và cơ chế Hybrid Escalation leo thang đám mây linh hoạt.
+7. **Sandboxed Tool Execution (Wasm & Firecracker):** Cách ly an toàn tuyệt đối các công cụ chạy mã hoặc truy cập tài nguyên nhạy cảm. Cấp quyền tường minh (Capability-based Security), thiết lập Watchdog timer ngắt timeout và tự động phá hủy môi trường sau khi hoàn thành.
 
 #### 3. Đầu Vào $\to$ Đầu Ra:
 * **Input:** Yêu cầu hành động từ LLM (Tool Call name & Arguments).
@@ -492,15 +536,17 @@ LLM chỉ có thể sinh văn bản; nó không thể tự bấm chuột, chạy
 ### HỆ THỐNG 6: NÃO BỘ VẬN HÀNH VÒNG LẶP TỰ TRỊ (LOOP ENGINEERING & MULTI-AGENT)
 
 > **Tài liệu liên quan trong Vault:**
-> * [01_loop_fundamentals.md](./03-building-agents/03-loop-engineering/01_loop_fundamentals.md)
-> * [02_react_and_planning.md](./03-building-agents/03-loop-engineering/02_react_and_planning.md)
-> * [03_multi_agent_teams.md](./03-building-agents/03-loop-engineering/03_multi_agent_teams.md)
-> * [04_ast_self_healing_code_agents.md](./03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md)
-> * [05_durable_execution_and_stateful_workflows.md](./03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md)
-> * [01_code_graphs_and_repository_intelligence.md](./03-building-agents/06-code-intelligence/01_code_graphs_and_repository_intelligence.md)
-> * [01_token_economics_and_cost_optimization.md](./03-building-agents/07-cost-and-token-economics/01_token_economics_and_cost_optimization.md)
-> * [01_multi_agent_debate_and_consensus.md](./03-building-agents/08-multi-agent-consensus/01_multi_agent_debate_and_consensus.md)
-> * [01_hitl_and_hotl_human_agent_interaction.md](./03-building-agents/09-governance-and-hitl/01_hitl_and_hotl_human_agent_interaction.md)
+> * [01_loop_fundamentals.md](./03-building-agents/03-loop-and-multi-agent-engineering/01_loop_fundamentals.md)
+> * [02_react_and_planning.md](./03-building-agents/03-loop-and-multi-agent-engineering/02_react_and_planning.md)
+> * [03_multi_agent_teams.md](./03-building-agents/03-loop-and-multi-agent-engineering/03_multi_agent_teams.md)
+> * [04_multi_agent_debate_and_consensus.md](./03-building-agents/03-loop-and-multi-agent-engineering/04_multi_agent_debate_and_consensus.md)
+> * [05_ast_self_healing_code_agents.md](./03-building-agents/03-loop-and-multi-agent-engineering/05_ast_self_healing_code_agents.md)
+> * [06_durable_execution_and_stateful_workflows.md](./03-building-agents/03-loop-and-multi-agent-engineering/06_durable_execution_and_stateful_workflows.md)
+> * [07_state_merkle_trees_and_time_travel_debugging.md](./03-building-agents/03-loop-and-multi-agent-engineering/07_state_merkle_trees_and_time_travel_debugging.md)
+> * [08_mixture_of_agents_and_layered_routing.md](./03-building-agents/03-loop-and-multi-agent-engineering/08_mixture_of_agents_and_layered_routing.md)
+> * [09_mcts_and_tree_search_reasoning_loops.md](./03-building-agents/03-loop-and-multi-agent-engineering/09_mcts_and_tree_search_reasoning_loops.md)
+> * [01_code_graphs_and_repository_intelligence.md](./03-building-agents/05-specialized-agent-domains/01_code_graphs_and_repository_intelligence.md)
+> * [01_hitl_and_hotl_human_agent_interaction.md](./03-building-agents/06-governance-and-enterprise-delivery/01_hitl_and_hotl_human_agent_interaction.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
 Một câu prompt đơn lẻ (One-shot) không thể giải quyết bài toán phức tạp đòi hỏi 20 bước suy luận và thử sai. Nhưng nếu thả cho Agent tự chạy vòng lặp tự do, nó dễ rơi vào bẫy lặp vô tận, bão công cụ (Tool Storm), và mất sạch trạng thái khi gặp sự cố crash.
@@ -512,6 +558,9 @@ Một câu prompt đơn lẻ (One-shot) không thể giải quyết bài toán p
 3. **AST Self-Healing Code Agents:** Khi Agent viết mã bị lỗi kiểm thử, thay vì viết lại cả file gây hỏng lây sang các hàm khác, hệ thống dùng **Cây cú pháp trừu tượng (AST)** cắt đúng nút hàm bị lỗi ra, yêu cầu mô hình vá lỗi cục bộ, chạy kiểm thử trong sandbox và ráp ngược lại cây AST an toàn.
 4. **Multi-Agent Teams & Context Quarantine:** Phân rã nhiệm vụ cho các chuyên gia nhỏ (Coder, Reviewer, Tester) theo mô hình Supervisor. Ngữ cảnh được phân vùng độc lập (Quarantine) để Agent này không bị quá tải bởi suy nghĩ của Agent khác.
 5. **Durable Execution & Checkpointing:** Triết lý chạy bền vững mượn từ Temporal/LangGraph. Mỗi bước chuyển trạng thái trong đồ thị State Graph $\mathcal{S}_t$ được lưu (persist) thành snapshot vào cơ sở dữ liệu (MongoDB). Nếu server sập ở bước 15, khi khởi động lại, Agent phục hồi chính xác từ bước 15 mà không tốn 1 đồng token chạy lại từ đầu.
+6. **State Merkle Trees & Time-Travel Debugging:** Thay vì chỉ lưu checkpoint tuần tự, hệ thống cấu trúc lịch sử thực thi thành Merkle DAG phân nhánh: $\mathcal{H}_t = \text{SHA256}(\mathcal{H}_{t-1} \parallel \Delta \mathcal{S}_t \parallel a_t \parallel o_t \parallel T_t)$. Cơ chế nén delta và chia sẻ cấu trúc (structural sharing) cho phép phân nhánh không sao chép (zero-copy forking), quay ngược thời gian để sửa lỗi cục bộ và chạy lại (replay) có tính tiền định tuyệt đối.
+7. **Mixture-of-Agents (MoA):** Khai thác hiện tượng hợp tác nhận thức (Collaborativeness) bằng cách xếp chồng các tầng mô hình (Proposers $\to$ Refiners $\to$ Synthesizer), thực thi song song bất đồng bộ qua Asymmetric Model Funnel.
+8. **Monte Carlo Tree Search (MCTS):** Chuyển dịch từ ReAct tuyến tính sang tìm kiếm cây chiến lược đa bước, cân bằng Khai thác và Thám hiểm qua công thức PUCT, sử dụng Rollouts và PRM để lựa chọn chuỗi hành động tối ưu.
 
 #### 3. Đầu Vào $\to$ Đầu Ra:
 * **Input:** Mục tiêu vĩ mô của người dùng (Goal) + Danh mục công cụ khả dụng.
@@ -525,12 +574,20 @@ Một câu prompt đơn lẻ (One-shot) không thể giải quyết bài toán p
 ### HỆ THỐNG 7: HỆ MIỄN DỊCH, ĐO LƯỜNG & PHÂN PHỐI NGƯỜI DÙNG (EVALS, TRACING & MERN STACK)
 
 > **Tài liệu liên quan trong Vault:**
-> * [01_agent_evals_and_tracing.md](./03-building-agents/04-observability-and-evals/01_agent_evals_and_tracing.md)
-> * [06_how_to_build_enterprise_ai_agents.md](./03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md)
-> * [07_fullstack_agent_mern_architecture.md](./03-building-agents/10-enterprise-and-production/02_fullstack_agent_mern_architecture.md)
+> * [01_agent_evals_and_tracing.md](./03-building-agents/04-observability-evals-and-cost/01_agent_evals_and_tracing.md)
+> * [02_synthetic_benchmarks_and_llm_as_judge.md](./03-building-agents/04-observability-evals-and-cost/02_synthetic_benchmarks_and_llm_as_judge.md)
+> * [03_token_economics_and_cost_optimization.md](./03-building-agents/04-observability-evals-and-cost/03_token_economics_and_cost_optimization.md)
+> * [04_prompt_compression_and_cache_engineering.md](./03-building-agents/04-observability-evals-and-cost/04_prompt_compression_and_cache_engineering.md)
+> * [05_speculative_decoding_and_inference_acceleration.md](./03-building-agents/04-observability-evals-and-cost/05_speculative_decoding_and_inference_acceleration.md)
+> * [06_semantic_caching_and_vector_cache.md](./03-building-agents/04-observability-evals-and-cost/06_semantic_caching_and_vector_cache.md)
+> * [02_agent_security_red_teaming_and_guardrails.md](./03-building-agents/06-governance-and-enterprise-delivery/02_agent_security_red_teaming_and_guardrails.md)
+> * [03_how_to_build_enterprise_ai_agents.md](./03-building-agents/06-governance-and-enterprise-delivery/03_how_to_build_enterprise_ai_agents.md)
+> * [04_fullstack_agent_mern_architecture.md](./03-building-agents/06-governance-and-enterprise-delivery/04_fullstack_agent_mern_architecture.md)
+> * [05_adversarial_fuzzing_and_automated_agent_red_teaming.md](./03-building-agents/06-governance-and-enterprise-delivery/05_adversarial_fuzzing_and_automated_agent_red_teaming.md)
+> * [06_cryptographic_audit_trails_and_compliance.md](./03-building-agents/06-governance-and-enterprise-delivery/06_cryptographic_audit_trails_and_compliance.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
-Một hệ sinh thái backend mạnh mẽ vô nghĩa nếu không có cách chuyển tải đến người dùng cuối một cách an toàn, minh bạch và có thể giám sát kiểm thử tự động trên môi trường sản xuất (Production).
+Một hệ sinh thái backend mạnh mẽ vô nghĩa nếu không có cách chuyển tải đến người dùng cuối một cách an toàn, minh bạch và có thể giám sát kiểm thử tự động trên môi trường sản xuất (Production). Đồng thời, chi phí và độ trễ sinh từ (Inference Latency) của LLM tạo rào cản lớn cho trải nghiệm người dùng realtime.
 
 #### 2. Cơ chế hoạt động ngầm (How it works behind the scenes):
 1. **Circuit Breakers (Bộ ngắt mạch bảo vệ):** Đếm số bước lặp và số lần tool thất bại liên tiếp. Nếu vượt quá ngưỡng (ví dụ: $> 15$ bước hoặc 3 lần lỗi liên tiếp), hệ thống lập tức ngắt khẩn cấp, chặn đứng nguy cơ cạn kiệt tài khoản ngân hàng do bão API.
@@ -540,6 +597,10 @@ Một hệ sinh thái backend mạnh mẽ vô nghĩa nếu không có cách chuy
    * **Express.js Ingress:** Mở kênh truyền phát **Server-Sent Events (SSE)** truyền tải token thời gian thực và sự kiện suy luận `thought`.
    * **MongoDB Atlas:** Đảm nhiệm vai trò lưu trữ hợp nhất: Dữ liệu Document + Vector Search Index HNSW + Checkpoint Store của State Graph.
    * **React Generative UI & Human-in-the-Loop:** Hiển thị trực quan quá trình tư duy (Scratchpad Visualizer) và bật Popup cảnh báo chặn các hành động nhạy cảm (xóa file, chuyển khoản), chờ người dùng click phê duyệt mới tiếp tục luồng thực thi.
+5. **Speculative Decoding & Tăng tốc Inference:** Phá vỡ nút thắt Memory-Bound của Autoregressive Decoding. Sử dụng mô hình phụ (Drafter) hoặc Multi-Head (Medusa/Eagle) sinh trước chuỗi token ứng viên và xác minh song song trên mô hình Target trong một lượt forward duy nhất (Modified Rejection Sampling), bảo tồn $100\%$ tính nguyên bản phân phối đầu ra và tăng tốc sinh từ $2\times - 3\times$.
+6. **Automated Adversarial Fuzzing & Red-Teaming:** Vượt lên trên phòng thủ tĩnh (Guardrails), hệ thống triển khai tác tử tấn công đối kháng tự động đa lượt (Multi-turn Offensive Agents) sử dụng các thuật toán đột biến jailbreak (PAIR, TAP, GCG) và fuzzing tham số công cụ MCP (SQL injection, path traversal, privilege escalation). Tự động đo lường tỷ lệ phòng thủ Attack Defense Rate (ADR) trong CI/CD trước khi triển khai sản xuất.
+7. **Semantic Caching & Vector Cache:** Nhận diện câu hỏi và lệnh gọi công cụ trùng lặp ngữ nghĩa qua Cosine Similarity $\ge \tau$ và giải thuật LSH, phản hồi trong $< 2\text{ms}$ với $0\text{ token}$.
+8. **Cryptographic Audit Trails & Compliance:** Tạo sổ cái kiểm toán bất biến theo chuỗi xích mật mã SHA-256 ($\mathcal{H}_i$), tự động làm mờ dữ liệu PII và phát hiện mọi hành vi sửa xóa log trong 1ms, đáp ứng EU AI Act và SOC 2 Type II.
 
 #### 3. Đầu Vào $\to$ Đầu Ra:
 * **Input:** Toàn bộ trạng thái thực thi và dữ liệu luồng từ Agent.
@@ -635,9 +696,9 @@ Toàn bộ hành trình 8 bước được đóng gói thành một Trace Tree g
 ## 🔗 ĐIỀU HƯỚNG BẢN ĐỒ & KHUYẾN NGHỊ THỨ TỰ HỌC TẬP
 
 Để làm chủ trọn vẹn cỗ máy này, hãy học theo thứ tự dòng chảy từ lõi ra vỏ:
-1. **Nắm vững bản chất tính toán:** Đọc [Transformer Math](./01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md) & [LLM Internals](./01-research-and-foundations/02-llm-internals/what_are_large_language_models.md).
+1. **Nắm vững bản chất tính toán:** Đọc [Transformer Math](./01-research-and-foundations/02-llm-internals/02_transformer_math_deep_dive.md) & [LLM Internals](./01-research-and-foundations/02-llm-internals/01_what_are_large_language_models.md).
 2. **Làm chủ tri thức ngoài:** Đọc [Advanced RAG](./01-research-and-foundations/03-semantic-search/01_semantic_search_and_reranking.md) & [Kỹ thuật Chunking](./01-research-and-foundations/03-semantic-search/05_theory_to_practice_making_rag_work.md).
-3. **Điều khiển ngữ cảnh:** Đọc [DSPy](./02-prompt-and-context/01-prompt-engineering/02_dspy_and_programmatic_prompting.md) & [Prefix Caching](./03-building-agents/01-harness-and-memory/04_agent_runtime_parameters_and_prompt_caching.md).
+3. **Điều khiển ngữ cảnh:** Đọc [DSPy](./02-prompt-and-context/01-prompt-engineering/02_dspy_and_programmatic_prompting.md) & [Prefix Caching](./03-building-agents/01-harness-and-memory/05_agent_runtime_parameters_and_prompt_caching.md).
 4. **Kết nối công cụ:** Đọc [MCP Architecture](./03-building-agents/02-tools-and-mcp/01_mcp_architecture.md) & [Constrained Decoding](./03-building-agents/02-tools-and-mcp/02_constrained_decoding_and_structured_outputs.md).
-5. **Vận hành tự trị:** Đọc [ReAct Loops](./03-building-agents/03-loop-engineering/02_react_and_planning.md), [AST Self-Healing](./03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md) & [Durable Workflows](./03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md).
-6. **Đóng gói sản phẩm:** Đọc [MERN Full-stack Agent](./03-building-agents/10-enterprise-and-production/02_fullstack_agent_mern_architecture.md) & [Enterprise Blueprint](./03-building-agents/10-enterprise-and-production/01_how_to_build_enterprise_ai_agents.md).
+5. **Vận hành tự trị:** Đọc [ReAct Loops](./03-building-agents/03-loop-and-multi-agent-engineering/02_react_and_planning.md), [AST Self-Healing](./03-building-agents/03-loop-and-multi-agent-engineering/05_ast_self_healing_code_agents.md) & [Durable Workflows](./03-building-agents/03-loop-and-multi-agent-engineering/06_durable_execution_and_stateful_workflows.md).
+6. **Đóng gói sản phẩm:** Đọc [MERN Full-stack Agent](./03-building-agents/06-governance-and-enterprise-delivery/04_fullstack_agent_mern_architecture.md) & [Enterprise Blueprint](./03-building-agents/06-governance-and-enterprise-delivery/03_how_to_build_enterprise_ai_agents.md).

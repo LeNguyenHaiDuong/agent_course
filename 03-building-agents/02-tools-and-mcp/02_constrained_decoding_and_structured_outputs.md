@@ -92,7 +92,7 @@ Phương pháp thử-sai này bộc lộ **3 thất bại chí mạng** trong m�
 
 ## 2. GIẢI PHẪU TẦNG SINH TOKEN CỦA TRANSFORMER (LOGIT-LEVEL MECHANICS)
 
-Để hiểu cách cưỡng chế cú pháp tuyệt đối, ta cần giải phẫu bản chất toán học của quá trình giải mã (Decoding) trong Transformer autoregressive như đã giới thiệu tại [What Are Large Language Models?](../../01-research-and-foundations/02-llm-internals/what_are_large_language_models.md) và [Giải Phẫu Toán Học Của Transformer](../../01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md).
+Để hiểu cách cưỡng chế cú pháp tuyệt đối, ta cần giải phẫu bản chất toán học của quá trình giải mã (Decoding) trong Transformer autoregressive như đã giới thiệu tại [What Are Large Language Models?](../../01-research-and-foundations/02-llm-internals/01_what_are_large_language_models.md) và [Giải Phẫu Toán Học Của Transformer](../../01-research-and-foundations/02-llm-internals/02_transformer_math_deep_dive.md).
 
 ### Toán học từ Hidden State đến Xác suất Softmax
 
@@ -581,7 +581,7 @@ quadrantChart
 
 ## 🔗 LIÊN KẾT ĐIỀU HƯỚNG NỘI BỘ
 * **Giao thức công cụ chuẩn mở:** [Kiến Trúc Giao Thức Model Context Protocol (MCP)](./01_mcp_architecture.md)
-* **Giải phẫu ngôn ngữ lớn & Tokenization:** [What Are Large Language Models?](../../01-research-and-foundations/02-llm-internals/what_are_large_language_models.md)
-* **Nền tảng vi tích phân Transformer:** [Giải Phẫu Toán Học Của Transformer](../../01-research-and-foundations/02-llm-internals/04_transformer_math_deep_dive.md)
-* **Vòng lặp tự trị trong Agent:** [Nền Tảng Loop Engineering & Stopping Criteria](../03-loop-engineering/01_loop_fundamentals.md)
+* **Giải phẫu ngôn ngữ lớn & Tokenization:** [What Are Large Language Models?](../../01-research-and-foundations/02-llm-internals/01_what_are_large_language_models.md)
+* **Nền tảng vi tích phân Transformer:** [Giải Phẫu Toán Học Của Transformer](../../01-research-and-foundations/02-llm-internals/02_transformer_math_deep_dive.md)
+* **Vòng lặp tự trị trong Agent:** [Nền Tảng Loop Engineering & Stopping Criteria](../03-loop-and-multi-agent-engineering/01_loop_fundamentals.md)
 * **Trang chủ Trụ Cột 3:** [🛠️ Trụ Cột 3: Building Agents](../README.md)
