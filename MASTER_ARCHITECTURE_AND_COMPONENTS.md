@@ -103,14 +103,15 @@ mindmap
       Tác Tử Đa Phương Thức & Màn Hình
         Multimodal GUI Agents & Pixel Grounding
         Normalized Coordinates, OmniParser & Computer-Use
-      Kiến Trúc Triển Khai Doanh Nghiệp
+      Kiến Trúc Triển Khai Doanh Nghiệp & Code Intelligence
         Cẩm Nang Xây Dựng Enterprise AI Agent Toàn Tập
         Full-stack MERN Agent: Realtime Generative UI & SSE Stream
+        Code Graphs, SCIP Indexing & Cross-Session Memory
 ```
 
 ---
 
-## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 30 BÀI GIẢNG THEO 3 TRỤ CỘT
+## 2. BẢN ĐỒ PHÂN BỔ CHI TIẾT 31 BÀI GIẢNG THEO 3 TRỤ CỘT
 
 ### 🔬 TRỤ CỘT 1: NỀN TẢNG NGHIÊN CỨU & KHAI PHÁ DỮ LIỆU (RESEARCH & FOUNDATIONS)
 
@@ -162,6 +163,7 @@ mindmap
 | **05. Multimodal GUI** | [01_multimodal_gui_and_computer_use.md](03-building-agents/05-multimodal-gui-agents/01_multimodal_gui_and_computer_use.md) | Tác tử điều khiển màn hình OS, Pixel Grounding, OmniParser, chống Screen Drift |
 | **06. Enterprise Blueprints** | [06_how_to_build_enterprise_ai_agents.md](03-building-agents/06_how_to_build_enterprise_ai_agents.md) | 5 thất bại kinh điển & kiến trúc phòng vệ toàn diện cho tác tử doanh nghiệp |
 | **07. Full-Stack Agent** | [07_fullstack_agent_mern_architecture.md](03-building-agents/07_fullstack_agent_mern_architecture.md) | Kiến trúc ứng dụng hoàn chỉnh: Node.js Agent Runtime + Express SSE + React Gen-UI + MongoDB Atlas |
+| **08. Code Intelligence** | [08_code_graphs_and_repository_intelligence.md](03-building-agents/08_code_graphs_and_repository_intelligence.md) | Code Property Graph (AST+CFG+DFG), SCIP Symbol Indexing, Graph-RAG cho Codebase, K-Hop Blast Radius & Quản trị ngữ cảnh liên phiên (Memory Bank) |
 
 ---
 
@@ -487,6 +489,7 @@ LLM chỉ có thể sinh văn bản; nó không thể tự bấm chuột, chạy
 > * [03_multi_agent_teams.md](./03-building-agents/03-loop-engineering/03_multi_agent_teams.md)
 > * [04_ast_self_healing_code_agents.md](./03-building-agents/03-loop-engineering/04_ast_self_healing_code_agents.md)
 > * [05_durable_execution_and_stateful_workflows.md](./03-building-agents/03-loop-engineering/05_durable_execution_and_stateful_workflows.md)
+> * [08_code_graphs_and_repository_intelligence.md](./03-building-agents/08_code_graphs_and_repository_intelligence.md)
 
 #### 1. Bản chất & Nút thắt cổ chai nó đối mặt:
 Một câu prompt đơn lẻ (One-shot) không thể giải quyết bài toán phức tạp đòi hỏi 20 bước suy luận và thử sai. Nhưng nếu thả cho Agent tự chạy vòng lặp tự do, nó dễ rơi vào bẫy lặp vô tận, bão công cụ (Tool Storm), và mất sạch trạng thái khi gặp sự cố crash.

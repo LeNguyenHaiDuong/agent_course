@@ -54,7 +54,8 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
 │   └── 01_multimodal_gui_and_computer_use.md    # Visual UI Grounding (Set-of-Mark/OmniParser) & OSWorld
 │
 ├── 06_how_to_build_enterprise_ai_agents.md      # 🏗️ Bài 06 (Tổng kết): CẨM NANG TOÀN TẬP kiến trúc khối, 6 phòng ban & Production
-└── 07_fullstack_agent_mern_architecture.md      # 🌐 Bài 07 (Thực chiến Full-stack): Kiến trúc MERN Stack, Atlas Vector Search & React Generative UI
+├── 07_fullstack_agent_mern_architecture.md      # 🌐 Bài 07 (Thực chiến Full-stack): Kiến trúc MERN Stack, Atlas Vector Search & React Generative UI
+└── 08_code_graphs_and_repository_intelligence.md # 🕸️ Bài 08 (Code Intelligence): Code Property Graph, SCIP Indexing, Graph-RAG & Quản trị ngữ cảnh liên phiên
 ```
 
 ---
@@ -142,6 +143,17 @@ Trụ cột này là đích đến tối thượng của khóa học: **Biến m
   * **Express & Node.js MCP Runtime:** Thiết kế Server-Sent Events (SSE) streaming cho ReAct Thought Traces, tích hợp TypeScript MCP Client (`@modelcontextprotocol/sdk`) và bộ ngắt mạch Circuit Breaker.
   * **React Generative UI:** Scratchpad Visualizer, Human-in-the-Loop Confirmation Modals chặn tác vụ nhạy cảm, render UI Component động theo JSON output.
   * **Mã nguồn thực chiến mẫu:** TypeScript Mongoose Vector Schema, Express SSE Controller, và React Chat Workspace.
+
+---
+
+### 🕸️ Bài 08: Code Graphs & Repository Intelligence (Trí Tuệ Kho Mã Nguồn & Ngữ Cảnh Liên Phiên)
+* 📖 [**08_code_graphs_and_repository_intelligence.md - Code Graphs, SCIP Indexing & Cross-Session Project Memory**](08_code_graphs_and_repository_intelligence.md):
+  * **Khoảng cách cú pháp - ngữ nghĩa:** Tại sao Vector RAG truyền thống thất bại thảm hại trước codebase và gây ra hiện tượng Lost in the Middle.
+  * **Giải phẫu Code Property Graph (CPG):** Hợp nhất 3 chiều không gian: Cây cú pháp AST (Tree-sitter), Đồ thị luồng điều khiển CFG và Đồ thị phụ thuộc dữ liệu DFG/PDG (Def-Use chains).
+  * **Giao thức chuẩn doanh nghiệp SCIP & LSIF:** Định danh symbol chính xác $100\%$ không ảo giác, phân giải tham chiếu chéo tệp (Go to Definition, Find all References).
+  * **Graph-RAG cho Codebase:** Thuật toán lan truyền lân cận $k$-bước (K-Hop Neighborhood Expansion) và phân tích vùng ảnh hưởng (Blast Radius / Impact Analysis) ngăn chặn gãy đổ dây chuyền khi refactor.
+  * **Bộ 5 chiến lược ngữ cảnh dự án liên phiên (Cross-Session Memory):** Mô hình Memory Bank (`CLAUDE.md`, `AGENTS.md`, `activeContext.md`), On-disk Incremental Delta Index Caching, Session Compaction, Architectural Decision Records (ADRs) và Bi-temporal Knowledge Graphs.
+  * **Mã nguồn thực chiến:** Mini Code Graph bằng Python (`networkx` + `ast`) kết hợp bộ quản trị session memory bền vững trên đĩa.
 
 ---
 
